@@ -11,7 +11,6 @@ export default async function Home() {
       <p>Home</p>
       <h1>Server Side Rendered</h1>
       <pre>{JSON.stringify(session)}</pre>
-
     </>
   )
 }

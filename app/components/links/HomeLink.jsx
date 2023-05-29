@@ -10,8 +10,6 @@ export default function HomeLink() {
     const currentRoute = router.pathname;
     console.log(currentRoute)
 
-
-
     return (
         <Link href='/'>Home</Link>
     )
