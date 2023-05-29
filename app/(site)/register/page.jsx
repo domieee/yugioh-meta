@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios"
 import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter } from "next/navigation";
+import { signIn } from 'next-auth/react'
 import Link from "next/link"
 // import './register.scss'
 
@@ -26,9 +27,13 @@ export default function Register() {
         setFetching(true)
         axios.post('/api/register', data)
 
-            .then((res) => {
+            .then(async (res) => {
                 console.log(res)
                 console.log('Registration successful')
+                await signIn('credentials', { ...data, redirect: false })
+                    .then(() => {
+                        router.push('/')
+                    })
                 router.replace('/')
             })
 
