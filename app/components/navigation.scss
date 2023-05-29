@@ -3,6 +3,8 @@
     justify-content: space-around;
     height: 50px;
     align-items: center;
+    background-color: #161618;
+
 
     .navigation-links,
     .navigation-validation {
@@ -11,6 +13,18 @@
 
         >a {
             font-size: 0.9rem;
+        }
+    }
+
+    .navigation-validation {
+        .loginLink {
+            color: white;
+            padding-inline-end: 20px;
+            border-right: 2px solid white;
+
+            &:hover {
+                color: #f1f1f1;
+            }
         }
     }
 

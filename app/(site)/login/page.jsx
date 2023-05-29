@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
 import Link from "next/link"
 
-// import './login.scss'
+import './login.scss'
 
 export default function Login() {
 
@@ -15,6 +15,7 @@ export default function Login() {
     });
 
     const router = useRouter()
+    console.log(router)
 
     const loginUser = async (e) => {
         e.preventDefault()
@@ -30,7 +31,9 @@ export default function Login() {
         <form
             onSubmit={loginUser}
             className="loginForm">
+            <button onClick={() => signIn('google')}>Sign in with google</button>
             <article className="formRow">
+
 
                 <label htmlFor="email">E-Mail</label>
                 <input

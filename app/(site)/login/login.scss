@@ -1,0 +1,14 @@
+.loginForm {
+
+    height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+
+    .formRow {
+        display: flex;
+        flex-direction: column;
+    }
+
+}

@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react'
 import Link from "next/link"
-// import './register.scss'
+import './register.scss'
 
 
 export default function Register() {
