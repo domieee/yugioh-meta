@@ -20,7 +20,7 @@ export const authOptions = {
             },
             async authorize(credentials) {
                 const user = { id: 1, name: 'JohnDoe', email: 'johndoe@mail.com' }
-                return user
+                return user;
             }
         })
     ]
