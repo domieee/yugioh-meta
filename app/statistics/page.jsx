@@ -1,7 +1,7 @@
 import PieChart from "./components/PieChart"
 
 async function fetchStatisticData() {
-    const statisticResponse = await fetch('http://localhost:4200/winner-breakdown', {
+    const statisticResponse = await fetch(`${process.env.BACKEND_URL}/winner-breakdown`, {
         validate: {
             next: 20
         }
@@ -15,6 +15,7 @@ async function fetchStatisticData() {
 export default async function Statistics() {
 
     const statistics = await fetchStatisticData()
+    console.log(statistics)
     const json = await statistics.json()
 
 
