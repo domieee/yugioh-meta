@@ -95,3 +95,7 @@ a {
   text-decoration: none;
   color: white;
 }
+
+main {
+  padding-block-start: 50px;
+}
