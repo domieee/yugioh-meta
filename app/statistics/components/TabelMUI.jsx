@@ -24,8 +24,8 @@ export default function TableMUI({ data, table }) {
     return (
 
         <Grid item xs={12} sm={10} md={8}>
-            <TableContainer component={Paper} elevation={2}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableContainer component={Paper} elevation={4}>
+                <Table sx={{ minWidth: 350 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Played Deck</TableCell>
@@ -40,7 +40,11 @@ export default function TableMUI({ data, table }) {
                                 key={index}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell
+                                    component="th"
+                                    scope="row"
+                                    sx={{ fontSize: '12px' }}
+                                >
                                     {value}
                                 </TableCell>
                                 <TableCell align="right">{totals[index]}</TableCell>
@@ -51,6 +55,6 @@ export default function TableMUI({ data, table }) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </Grid>
+        </Grid >
     )
 }

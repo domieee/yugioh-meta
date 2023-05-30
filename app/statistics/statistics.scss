@@ -9,24 +9,22 @@
         display: flex;
         align-items: center;
 
-        .canvasContainer {
-            width: 500px;
-        }
-
-
     }
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+.canvasContainer {
+    width: 450px;
+
+}
+
+@media (min-width: 320px) and (max-width: 720px) {
     .statisticStack {
         flex-direction: column;
 
         .canvasContainer {
-            width: 200px
+            width: 100px
         }
 
-        .tableContainer {
-            width: 100%;
-        }
+
     }
 }

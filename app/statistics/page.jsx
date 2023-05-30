@@ -1,7 +1,11 @@
 import { Stack } from "@mui/material"
 import PieChart from "./components/PieChart"
 import TableMUI from "./components/TabelMUI"
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import TablePie from "./components/TablePie";
 import './statistics.scss'
+import TablePieBox from "./components/TablePieBox";
 
 async function fetchStatisticData() {
     const winnerStatisticResponse = await fetch(`${process.env.BACKEND_URL}/winner-breakdown`, {
@@ -30,29 +34,6 @@ export default async function Statistics() {
 
 
     return (
-        <section className="statisticPage">
-
-            <h1>Statistics</h1>
-            <h2>Winner Breakdown</h2>
-            <article className="statisticStack">
-                <div className="canvasContainer">
-                    <PieChart data={winnerJson} />
-                </div>
-                <div className="tableContainer">
-                    <TableMUI
-                        table='winner-breakdown'
-                        data={winnerJson} />
-                </div>
-            </article>
-            <h2>Overall Top Cut Breakdown</h2>
-            <article className="statisticStack">
-                <div className="canvasContainer">
-                    <PieChart data={topCutJson} />
-                </div>
-                <div className="tableContainer">
-                    <TableMUI data={topCutJson} />
-                </div>
-            </article>
-        </section >
+        <TablePieBox winnerJson={winnerJson} topCutJson={topCutJson} />
     )
 }

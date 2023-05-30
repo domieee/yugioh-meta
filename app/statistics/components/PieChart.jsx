@@ -67,7 +67,6 @@ export default function PieChart({ data }) {
                     'rgba(128, 128, 0, 0.65)',
                     'rgba(0, 128, 128, 0.65)'
                 ],
-                borderWidth: 1,
             },
         ],
     };
