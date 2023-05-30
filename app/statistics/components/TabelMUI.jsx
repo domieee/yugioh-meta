@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
+import Grid from '@mui/material/Grid';
 
 export default function TableMUI({ data, table }) {
 
@@ -22,32 +23,34 @@ export default function TableMUI({ data, table }) {
 
     return (
 
-        <TableContainer component={Paper} elevation={1}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Played Deck</TableCell>
-                        <TableCell align="right">Wins in total</TableCell>
-                        {percentages !== undefined ? <TableCell align="right">Wins by (%)</TableCell> : null}
-
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {values.map((value, index) => (
-                        <TableRow
-                            key={index}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {value}
-                            </TableCell>
-                            <TableCell align="right">{totals[index]}</TableCell>
-                            {percentages !== undefined ? <TableCell align="right">{percentages && percentages[index]}</TableCell> : null}
+        <Grid item xs={12} sm={10} md={8}>
+            <TableContainer component={Paper} elevation={2}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Played Deck</TableCell>
+                            <TableCell align="right">Wins in total</TableCell>
+                            {percentages !== undefined ? <TableCell align="right">Wins by (%)</TableCell> : null}
 
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {values.map((value, index) => (
+                            <TableRow
+                                key={index}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {value}
+                                </TableCell>
+                                <TableCell align="right">{totals[index]}</TableCell>
+                                {percentages !== undefined ? <TableCell align="right">{percentages && percentages[index]}</TableCell> : null}
+
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Grid>
     )
 }

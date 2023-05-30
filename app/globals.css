@@ -91,7 +91,7 @@ body {
 
 body {
   color: white;
-  background-color: #193737;
+  background: linear-gradient(to bottom, #193731, #081316);
   height: 100vh; /* Set the container's height to 100% of the viewport height */
   overflow-y: scroll;
   scrollbar-width: thin;

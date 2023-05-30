@@ -13,9 +13,7 @@
             width: 500px;
         }
 
-        .tableContainer {
-            width: fit-content;
-        }
+
     }
 }
 
@@ -24,11 +22,11 @@
         flex-direction: column;
 
         .canvasContainer {
-            width: 250px;
+            width: 200px
         }
 
         .tableContainer {
-            width: fit-content;
+            width: 100%;
         }
     }
 }
