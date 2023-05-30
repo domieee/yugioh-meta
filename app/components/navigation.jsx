@@ -24,19 +24,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { makeStyles } from '@material-ui/core/styles';
 
 const pages = [
     { title: 'Tournaments', route: '/tournaments' },
     { title: 'Statistics', route: '/statistics' },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const useStyles = makeStyles({
-    scrollableContainer: {
-        maxHeight: '200px', // Adjust the maximum height as needed
-        overflowY: 'scroll',
-    },
-});
+
 
 function ResponsiveAppBar(props) {
 
@@ -180,7 +174,6 @@ function ResponsiveAppBar(props) {
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            className="classes.scrollableContainer"
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
