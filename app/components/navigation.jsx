@@ -51,10 +51,11 @@ export default function Navigation() {
         <>
             <nav className='navigation'>
                 <section className="navigation-links">
-                    <Link href='/'>Home</Link>
+
                     <Link href='/statistics'>Statistics</Link>
+                    <Link href='/tournaments'>Tournaments</Link>
                 </section>
-                <p className='navigation-logo'>Yu-Gi-Oh! Meta</p>
+                <Link className='navigation-logo' href='/'>Yu-Gi-Oh! Meta</Link>
                 <section className="navigation-validation">
                     {session ? (
                         <SignOutButton />

@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
+import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from '@mui/material/Backdrop';
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
 
 import './login.scss'
 
 export default function Login() {
+    const [fetching, setFetching] = useState(false);
+    const [color, setColor] = useState('inherit')
 
     const [data, setData] = useState({
         email: '',
@@ -20,10 +24,15 @@ export default function Login() {
 
     const loginUser = async (e) => {
         e.preventDefault()
-        console.log('first')
+        setFetching(true)
         await signIn('credentials', { ...data, redirect: false })
             .then(() => {
-                router.push('/')
+                setColor('success')
+                setTimeout(() => {
+                    router.push('/')
+                    setFetching(false)
+                }, 1000)
+
             })
             .catch(() => alert('An error occurred. Please try again'))
     }
@@ -67,6 +76,13 @@ export default function Login() {
 
             <p>Not registered yet? <Link href='/register'>Sign up</Link></p>
 
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={fetching}
+
+            >
+                <CircularProgress color={color} />
+            </Backdrop>
         </form>
     )
 }

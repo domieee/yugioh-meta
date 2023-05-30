@@ -11,6 +11,7 @@ import './register.scss'
 
 
 export default function Register() {
+    const [color, setColor] = useState('inherit')
 
     const router = useRouter()
 
@@ -33,15 +34,21 @@ export default function Register() {
                 console.log('Registration successful')
                 await signIn('credentials', { ...data, redirect: false })
                     .then(() => {
-                        setFetching(false)
-                        router.push('/')
+                        setColor('success')
+                        setTimeout(() => {
+                            setFetching(false)
+                            router.push('/')
+                        }, 1000)
+
                     })
             })
 
             .catch((err) => {
-                setFetching(false)
-                console.log('Registration failed')
-                console.log(err)
+                setColor('danger')
+                setTimeout(() => {
+                    setFetching(false)
+                    console.log('Registration failed')
+                }, 1000)
             })
     }
 
@@ -109,7 +116,7 @@ export default function Register() {
                 open={fetching}
 
             >
-                <CircularProgress color="inherit" />
+                <CircularProgress color={color} />
             </Backdrop>
         </section>
     )

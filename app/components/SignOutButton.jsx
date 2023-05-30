@@ -10,7 +10,7 @@ export default function SignOutButton() {
     const router = useRouter()
 
     const handleSignout = () => {
-        signOut({ callbackUrl: 'http://localhost:3000/login' })
+        signOut({ callbackUrl: `http://localhost:3000/login` })
     }
     return (
         <button onClick={handleSignout}>Logout</button>

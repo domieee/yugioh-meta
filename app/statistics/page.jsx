@@ -39,7 +39,9 @@ export default async function Statistics() {
                     <PieChart data={winnerJson} />
                 </div>
                 <div className="tableContainer">
-                    <TableMUI data={winnerJson} />
+                    <TableMUI
+                        table='winner-breakdown'
+                        data={winnerJson} />
                 </div>
             </article>
             <h2>Overall Top Cut Breakdown</h2>
