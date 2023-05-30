@@ -7,6 +7,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 import './login.scss'
 
@@ -39,42 +41,52 @@ export default function Login() {
 
     return (
         <form
-            onSubmit={loginUser}
             className="loginForm">
 
             <article className="formRow">
-
+                <Typography variant="overline" display="block" >
+                    E-Mail
+                </Typography>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                    size="small" />
-                <label htmlFor="email">E-Mail</label>
-                <input
-                    type="email"
                     name="email"
-                    id="email"
                     placeholder="john@doe.com"
-                    required
+                    variant="outlined"
+                    size="small"
                     value={data.email}
                     onChange={e => setData({ ...data, email: e.target.value })} />
+
             </article>
 
             <article className="formRow">
-                <label htmlFor="email">Password</label>
-                <input
-                    type="password"
+                <Typography variant="overline" display="block" >
+                    Password
+                </Typography>
+                <TextField
+                    id="outlined-basic"
                     name="password"
-                    id="password"
-                    placeholder="Password"
-                    required
+
+                    placeholder="••••••••"
+                    variant="outlined"
+                    size="small"
                     value={data.password}
                     onChange={e => setData({ ...data, password: e.target.value })} />
             </article>
 
-            <button type="submit">Login</button>
+            <Button
+                variant="outlined"
+                size="medium"
+                onClick={e => loginUser(e)}
+            >
+                Sign in
+            </Button>
 
-            <p>Not registered yet? <Link href='/register'>Sign up</Link></p>
+
+            <Typography variant="caption" display="block" gutterBottom>
+                Not registered yet?
+                <Link href='/register'> Sign up</Link>
+            </Typography>
+
 
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -83,6 +95,6 @@ export default function Login() {
             >
                 <CircularProgress color={color} />
             </Backdrop>
-        </form>
+        </form >
     )
 }
