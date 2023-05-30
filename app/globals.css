@@ -86,19 +86,23 @@ html {
 html,
 body {
   overflow-x: auto;
+  
 }
 
 body {
   color: white;
-  background-color: #161618;
+  background-color: #193737;
   height: 100vh; /* Set the container's height to 100% of the viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 
 }
 
 a {
   text-decoration: none;
   color: white;
+
 }
 
 main {
