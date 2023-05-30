@@ -4,8 +4,10 @@
     flex-direction: column;
 
     .statisticStack {
+        gap: 50px;
         margin-inline: auto;
         display: flex;
+        align-items: center;
 
         .canvasContainer {
             width: 500px;
