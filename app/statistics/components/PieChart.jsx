@@ -6,7 +6,6 @@ import { Pie } from "react-chartjs-2";
 export default function PieChart({ data }) {
     const [pieValues, setPieValues] = useState([])
     const [pieCounts, setPieCounts] = useState([])
-    const [tablePercentages, setTablePercentages] = useState([])
 
     ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -46,15 +45,12 @@ export default function PieChart({ data }) {
     useEffect(() => {
         const values = data[0]
         const counts = data[1]
-        const percentages = data[2]
         setPieCounts(counts)
         setPieValues(values)
-        setTablePercentages(percentages)
     }, [data])
 
     return (
         <>
-            <div>PieChart</div>
             <Pie data={dataWinners} />
         </>
     )

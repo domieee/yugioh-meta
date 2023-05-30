@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
 import Link from "next/link"
+import TextField from '@mui/material/TextField';
 
 import './login.scss'
 
@@ -31,10 +32,14 @@ export default function Login() {
         <form
             onSubmit={loginUser}
             className="loginForm">
-            <button onClick={() => signIn('google')}>Sign in with google</button>
+
             <article className="formRow">
 
-
+                <TextField
+                    id="outlined-basic"
+                    label="Outlined"
+                    variant="outlined"
+                    size="small" />
                 <label htmlFor="email">E-Mail</label>
                 <input
                     type="email"
