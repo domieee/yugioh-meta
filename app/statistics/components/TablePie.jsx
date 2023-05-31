@@ -13,6 +13,7 @@ export default function TablePie({ winnerJson, topCutJson }) {
             display="flex"
             flexDirection="column"
             bgcolor="background.paper"
+            justifyContent={center}
             p={2}
             borderRadius={4}
             boxShadow={8}
@@ -20,7 +21,8 @@ export default function TablePie({ winnerJson, topCutJson }) {
         >
             <Typography
                 paddingLeft={10}
-                variant="h5">
+                variant="h5"
+                textAlign={center}>
                 {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
             </Typography>
             <Box
