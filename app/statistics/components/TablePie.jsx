@@ -38,7 +38,13 @@ export default function TablePie({ winnerJson, topCutJson }) {
             <Typography
                 paddingLeft={10}
                 variant="h5"
-                textAlign='center'>
+                textAlign='center'
+                sx={{
+                    paddingLeft: {
+                        xs: '0px',
+                        sm: '0px'
+                    }
+                }}>
                 {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
             </Typography>
             <Box
