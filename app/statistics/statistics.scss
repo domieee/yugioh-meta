@@ -12,19 +12,20 @@
     }
 }
 
-.canvas {
+canvas {
     width: 320px;
     height: 320px;
     margin-inline: auto;
+    padding-bottom: 20px;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
-    .css-MuiBox-root css-1tue9jv {
-        display: flex;
+    .css-1tue9jv {
         flex-direction: column;
-        margin-inline: auto;
 
+    }
 
-
+    .css-a9k5ng-MuiTypography-root {
+        padding-left: 0;
     }
 }
