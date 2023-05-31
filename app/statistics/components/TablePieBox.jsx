@@ -5,7 +5,6 @@ import TablePie from './TablePie'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 
-
 export default function TablePieBox() {
 
     const [pieData, setPieData] = useState({})
