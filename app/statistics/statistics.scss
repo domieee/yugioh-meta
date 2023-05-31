@@ -19,7 +19,8 @@
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
-    .css-1tue9jv {
+    .css-MuiBox-root css-1tue9jv {
+        display: flex;
         flex-direction: column;
         margin-inline: auto;
 
