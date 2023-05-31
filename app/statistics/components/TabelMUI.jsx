@@ -17,7 +17,6 @@ export default function TableMUI({ data, table }) {
 
     const values = data[0]
     const totals = data[1]
-
     const percentages = data[2]
 
 
@@ -35,7 +34,7 @@ export default function TableMUI({ data, table }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {values.map((value, index) => (
+                        {data && values && values.map((value, index) => (
                             <TableRow
                                 key={index}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

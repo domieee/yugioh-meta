@@ -12,11 +12,16 @@
     }
 }
 
+.canvasContainer {
+    margin-block: auto;
+}
+
 canvas {
     width: 320px;
     height: 320px;
     margin-inline: auto;
     padding-bottom: 20px;
+
 }
 
 @media (min-width: 320px) and (max-width: 720px) {

@@ -42,7 +42,13 @@ export default function TablePie({ winnerJson, topCutJson }) {
                 sx={{
                     paddingLeft: {
                         xs: '0px',
-                        sm: '0px'
+                        sm: '0px',
+                        md: '50px'
+                    },
+                    textAlign: {
+                        xs: 'center',
+                        sm: 'center',
+                        md: 'start'
                     }
                 }}>
                 {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
@@ -59,7 +65,8 @@ export default function TablePie({ winnerJson, topCutJson }) {
                 sx={{
                     flexDirection: {
                         xs: 'column',
-                        sm: 'column'
+                        sm: 'column',
+                        md: 'row'
                     }
                 }}>
                 <div className="canvasContainer">

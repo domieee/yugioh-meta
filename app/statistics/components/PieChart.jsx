@@ -80,7 +80,8 @@ export default function PieChart({ data }) {
 
     return (
         <>
-            <Pie data={dataWinners} />
+            {data && pieValues && pieCounts ? <Pie data={dataWinners} /> : null}
+
         </>
     )
 }
