@@ -12,18 +12,17 @@
     }
 }
 
-.canvasContainer {
+.canvas {
     width: 450px;
-
+    height: 400px;
+    margin-inline: auto;
 }
 
 @media (min-width: 320px) and (max-width: 720px) {
-    .statisticStack {
+    .css-1tue9jv {
         flex-direction: column;
+        margin-inline: auto;
 
-        .canvasContainer {
-            width: 100px
-        }
 
 
     }

@@ -15,7 +15,6 @@ export default function TablePieBox({ winnerJson, topCutJson }) {
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
-                height="100vh"
             >
                 <TablePie winnerJson={winnerJson} />
                 <TablePie topCutJson={topCutJson} />
