@@ -7,8 +7,9 @@ import { useState, useEffect } from "react";
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useRef, useLayoutEffect } from "react";
+import { signOut } from "next-auth/react"
 import * as React from "react";
-
+import { useRouter } from "next/navigation";
 import './navigation.scss';
 
 import AppBar from '@mui/material/AppBar';
@@ -25,14 +26,53 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = [
-    { title: 'Tournaments', route: '/tournaments' },
-    { title: 'Statistics', route: '/statistics' },
-];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 
 function ResponsiveAppBar(props) {
+
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+
+    const pages = [
+        { title: 'Tournaments', route: '/tournaments' },
+        { title: 'Statistics', route: '/statistics' },
+    ];
+    const settings = [
+        {
+            title: 'Profile', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        }, {
+            title: 'Dashboard', clickHandler: () => {
+                //...
+                handleCloseNavMenu()
+            }
+        }, {
+            title: 'Sign out', clickHandler: async () => {
+                signOut() // TODO: ...redirect to login or homepage
+                handleCloseNavMenu()
+            }
+        }
+    ];
+
 
 
     console.log(props)
@@ -55,23 +95,8 @@ function ResponsiveAppBar(props) {
         }
     }, [status]);
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
 
 
 
@@ -190,8 +215,8 @@ function ResponsiveAppBar(props) {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem key={setting.title} onClick={setting.clickHandler}>
+                                    <Typography textAlign="center">{setting.title}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
