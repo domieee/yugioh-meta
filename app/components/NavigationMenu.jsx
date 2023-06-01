@@ -11,10 +11,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import { signOut } from "next-auth/react"
+import LoginIcon from '@mui/icons-material/Login';
+import { useRouter } from 'next/navigation';
 
 export default function NavigationMenu({ session }) {
+    const router = useRouter()
 
-    console.log(session.user.name, 'username')
+    const handleLoginClick = () => {
+        router.push('/login')
+    }
+
 
     const settings = [
         {
@@ -56,7 +62,11 @@ export default function NavigationMenu({ session }) {
 
     return (
         session === null ?
-            <h1>Null</h1> :
+            <IconButton
+                onClick={handleLoginClick}
+                aria-label="add an alarm" >
+                <LoginIcon />
+            </IconButton > :
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
