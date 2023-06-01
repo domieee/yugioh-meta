@@ -12,18 +12,13 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function TableMUI({ data, table }) {
 
-
-
-
     const values = data[0]
     const totals = data[1]
-
     const percentages = data[2]
-
 
     return (
         <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
-            <TableContainer component={Paper} elevation={1} sx={{ maxHeight: 380 }}>
+            <TableContainer component={Paper} elevation={0} sx={{ maxHeight: 380 }}>
                 <Table stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
                     <TableHead>
                         <TableRow>

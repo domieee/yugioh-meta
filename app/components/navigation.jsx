@@ -25,14 +25,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
-
-
+import NavigationMenu from "./NavigationMenu";
 
 function ResponsiveAppBar(props) {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
+
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -80,6 +82,8 @@ function ResponsiveAppBar(props) {
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
+    console.log(session, 'session')
+
     useEffect(() => {
         if (status === "loading") {
             setLoading(true);
@@ -91,7 +95,6 @@ function ResponsiveAppBar(props) {
                     setProgress(0);
                 }, 100)
             }, 300)
-
         }
     }, [status]);
 
@@ -100,7 +103,7 @@ function ResponsiveAppBar(props) {
 
 
     return (
-        <AppBar position="sticky" top={0}>
+        <AppBar position="sticky" top={0} >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -191,35 +194,12 @@ function ResponsiveAppBar(props) {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting.title} onClick={setting.clickHandler}>
-                                    <Typography textAlign="center">{setting.title}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    {session === undefined ?
+                        <Skeleton variant="circular" width={40} height={40} /> :
+                        <NavigationMenu session={session} />
+                    }
+
+
                 </Toolbar>
             </Container>
         </AppBar>
