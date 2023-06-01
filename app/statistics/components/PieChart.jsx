@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { Skeleton, Stack } from '@mui/material';
 
 export default function PieChart({ data }) {
-    const [pieValues, setPieValues] = useState([])
+    const [pieValues, setPieValues] = useState(null)
     const [pieCounts, setPieCounts] = useState([])
 
     ChartJS.register(ArcElement, Tooltip, Legend);
@@ -80,7 +81,13 @@ export default function PieChart({ data }) {
 
     return (
         <>
-            {data && pieValues && pieCounts ? <Pie data={dataWinners} /> : null}
+            {pieValues === null ?
+                <Stack spacing={1}>
+                    <Skeleton variant="text" sx={{ fontSize: '2rem', minWidth: 330 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '2rem', minWidth: 330 }} />
+                    <Skeleton variant="circular" sx={{ minWidth: 270, minHeight: 270 }} />
+                </Stack> :
+                <Pie data={dataWinners} />}
 
         </>
     )

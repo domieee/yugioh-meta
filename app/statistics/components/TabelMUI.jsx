@@ -24,8 +24,8 @@ export default function TableMUI({ data, table }) {
     return (
         <>
             {!values ?
-                <Stack spacing={2}>
-                    <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
+                <Stack spacing={1}>
+                    <Skeleton variant="text" sx={{ fontSize: '2rem', minWidth: 330 }} />
                     <Skeleton variant="rectangular" sx={{ minWidth: 330, minHeight: 340 }} />
                 </Stack> :
                 <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
