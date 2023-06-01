@@ -24,7 +24,7 @@ export default function TableMUI({ data, table }) {
     return (
         <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
             <TableContainer component={Paper} elevation={1} sx={{ maxHeight: 350 }}>
-                <Table stickyHeader sx={{ minWidth: 350 }} size='small' aria-label="simple table">
+                <Table stickyHeader sx={{ minWidth: 300 }} size='small' aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Played Deck</TableCell>
@@ -36,6 +36,7 @@ export default function TableMUI({ data, table }) {
                     <TableBody>
                         {data && values && values.map((value, index) => (
                             <TableRow
+                                onClick={(value) => alert({ value })}
                                 hover
                                 key={index}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
