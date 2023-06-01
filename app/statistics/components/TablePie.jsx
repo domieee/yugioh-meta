@@ -27,32 +27,38 @@ export default function TablePie({ winnerJson, topCutJson }) {
             display="flex"
             flexDirection="column"
             justifyContent='center'
-            alignItems='center'
+
             p={2}
             borderRadius={4}
             boxShadow={8}
             marginBottom={2}
             sx={{
-                minHeight: 500
+                minHeight: 500,
+                minWidth: 'fit-content'
             }}
         >
-            <Typography
-                paddingLeft={10}
-                variant="h5"
-                sx={{
-                    paddingLeft: {
-                        xs: '0px',
-                        sm: '0px',
-                        md: '50px'
-                    },
-                    textAlign: {
-                        xs: 'start',
-                        sm: 'start',
-                        md: 'start'
-                    }
-                }}>
-                {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
-            </Typography>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: {
+                    xs: 'center',
+                    sm: 'center',
+                    md: 'center',
+                    lg: 'center'
+                },
+
+            }}>
+                <Typography
+                    variant="h5"
+                    sx={{
+                        paddingLeft: {
+                            xs: '0px',
+                            sm: '0px',
+                            md: '75px'
+                        }
+                    }}>
+                    {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
+                </Typography>
+            </Box>
             <Box
                 theme={theme}
                 justifyContent='center'
@@ -61,7 +67,8 @@ export default function TablePie({ winnerJson, topCutJson }) {
                 alignItems='center'
                 p={2}
                 borderRadius={4}
-                minHeight={500}
+                minHeight={400}
+
                 sx={{
                     flexDirection: {
                         xs: 'column',
