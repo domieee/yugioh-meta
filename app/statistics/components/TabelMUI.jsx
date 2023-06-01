@@ -25,8 +25,8 @@ export default function TableMUI({ data, table }) {
         <>
             {!values ?
                 <Stack spacing={1}>
-                    <Skeleton variant="text" sx={{ fontSize: '2rem', minWidth: 330 }} />
-                    <Skeleton variant="rectangular" sx={{ minWidth: 330, minHeight: 340 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
+                    <Skeleton variant="rounded" sx={{ minWidth: 330, minHeight: 340 }} />
                 </Stack> :
                 <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
                     <TableContainer component={Paper} elevation={0} sx={{ maxHeight: 380 }}>
