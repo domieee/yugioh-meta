@@ -35,7 +35,7 @@ export default function TablePieBox() {
                 display="flex"
                 flexDirection="column"
                 bgcolor="background.paper"
-                p={2}
+                p={1}
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
