@@ -95,6 +95,10 @@ function ResponsiveAppBar(props) {
         }
     }, [status]);
 
+
+
+
+
     return (
         <AppBar position="sticky" top={0}>
             <Container maxWidth="xl">
@@ -174,18 +178,18 @@ function ResponsiveAppBar(props) {
                     >
 
                     </Typography>
-                    <div style={{ display: 'flex', gap: '20px' }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map(page => (
                             <Link
                                 href={`${page.route}`}
                                 key={page.title}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block', pl: 5 }}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page.title}
                             </Link>
                         ))}
-                    </div>
+                    </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">

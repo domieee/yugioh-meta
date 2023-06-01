@@ -23,8 +23,8 @@ export default function TableMUI({ data, table }) {
 
     return (
         <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
-            <TableContainer component={Paper} elevation={1} sx={{ maxHeight: 350 }}>
-                <Table stickyHeader sx={{ minWidth: 290 }} size='small' aria-label="simple table">
+            <TableContainer component={Paper} elevation={1} sx={{ maxHeight: 380 }}>
+                <Table stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Played Deck</TableCell>
