@@ -85,7 +85,7 @@ export default function PieChart({ data }) {
                 <Stack spacing='2px'
                     justifyContent="center"
                     alignItems="center"
-                    sx={{ minWidth: 330, height: 330, marginInlineEnd: 2 }}>
+                    sx={{ minWidth: 3700, height: 380 }}>
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 240 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />

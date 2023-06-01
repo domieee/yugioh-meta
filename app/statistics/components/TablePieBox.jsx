@@ -2,9 +2,10 @@
 
 import React from 'react'
 import TablePie from './TablePie'
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { useState, useEffect } from 'react';
 import { createTheme } from '@mui/material/styles';
+
 
 export default function TablePieBox() {
 
@@ -45,13 +46,17 @@ export default function TablePieBox() {
 
     return (
         <>
-            <Box
+            <Stack
                 bgcolor="background.paper"
-                borderRadius={4}
+                backgroundColor='#212121'
+                gap={2}
                 boxShadow={8}
                 marginBottom={2}
                 display="flex"
                 justifyContent="center"
+                flexWrap='wrap'
+                alignItems="center"
+                p={5}
                 sx={{
                     flexDirection: {
                         // small phone
@@ -65,7 +70,8 @@ export default function TablePieBox() {
 
                 <TablePie winnerJson={pieData} />
                 <TablePie topCutJson={pieOverallData} />
-            </Box>
+
+            </Stack>
         </>
     )
 }

@@ -25,25 +25,25 @@ export default function TableMUI({ data, table }) {
         <>
             {!values ?
                 <Stack sx={{ marginInline: 'auto' }}>
-                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+
+
 
                 </Stack > :
                 <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
-                    <TableContainer component={Paper} elevation={0} sx={{ maxHeight: 380 }}>
-                        <Table stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
+                    <TableContainer component={Paper} sx={{ height: 380 }}>
+                        <Table variant='outline' backgroundColor='#2f2f2f' stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
+                            <TableHead >
+                                <TableRow backgroundColor='#2f2f2f'>
                                     <TableCell>Played Deck</TableCell>
                                     <TableCell align="right">Wins in total</TableCell>
                                     {percentages !== undefined ? <TableCell align="right">Wins by (%)</TableCell> : null}

@@ -27,22 +27,31 @@ export default function TablePie({ winnerJson, topCutJson }) {
             display="flex"
             flexDirection="column"
             justifyContent='center'
-
-            p={2}
+            p={1}
             borderRadius={4}
-            boxShadow={8}
+            border='solid 1px black'
+            borderWidth='1px'
+            borderColor='#fff'
             marginBottom={2}
+            maxWidth={700}
             sx={{
-                minHeight: 500,
-                minWidth: 'fit-content'
-            }}
+                minWidth: {
+                    xs: '380px',
+                    sm: '380px',
+                    md: '380px',
+                    lg: '900px'
+                }
+            }
+            }
         >
             <Box sx={{
                 display: 'flex',
+                height: '50px',
+                alignItems: 'center',
                 justifyContent: {
                     xs: 'center',
                     sm: 'center',
-                    md: 'center',
+                    md: 'start',
                     lg: 'center'
                 },
 
@@ -54,7 +63,13 @@ export default function TablePie({ winnerJson, topCutJson }) {
                             xs: '0px',
                             sm: '0px',
                             md: '75px'
-                        }
+                        },
+                        justifyContent: {
+                            xs: 'center',
+                            sm: 'center',
+                            md: 'center',
+                            lg: 'center'
+                        },
                     }}>
                     {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
                 </Typography>
@@ -64,10 +79,10 @@ export default function TablePie({ winnerJson, topCutJson }) {
                 justifyContent='center'
                 display="flex"
                 flexDirection="row"
-                alignItems='center'
+
                 p={2}
                 borderRadius={4}
-                minHeight={400}
+                minHeight={430}
 
                 sx={{
                     flexDirection: {
