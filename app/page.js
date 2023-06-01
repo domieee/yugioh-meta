@@ -8,8 +8,8 @@ export default async function Home() {
 
   return (
     <>
-      <p>Home</p>
-      <h1>Server Side Rendered</h1>
+
+      <h1>Unleash Your Dueling Potential with Yu-Gi-Oh! Meta - Your Gateway to Winning Strategies!</h1>
       <pre>{JSON.stringify(session)}</pre>
     </>
   )

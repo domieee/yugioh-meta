@@ -67,7 +67,7 @@ function ResponsiveAppBar(props) {
             }
         }, {
             title: 'Sign out', clickHandler: async () => {
-                signOut() // TODO: ...redirect to login or homepage
+                signOut() // ...redirect to login or homepage
                 handleCloseNavMenu()
             }
         }
@@ -101,7 +101,7 @@ function ResponsiveAppBar(props) {
 
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky" top={0}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
