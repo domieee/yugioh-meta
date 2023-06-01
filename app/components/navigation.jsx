@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useRef, useLayoutEffect } from "react";
-import { signOut } from "next-auth/react"
+
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import './navigation.scss';
@@ -20,9 +20,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import NavigationMenu from "./NavigationMenu";
@@ -56,26 +54,6 @@ function ResponsiveAppBar(props) {
         { title: 'Tournaments', route: '/tournaments' },
         { title: 'Statistics', route: '/statistics' },
     ];
-    const settings = [
-        {
-            title: 'Profile', clickHandler: () => {
-                // ...
-                handleCloseNavMenu()
-            }
-        }, {
-            title: 'Dashboard', clickHandler: () => {
-                //...
-                handleCloseNavMenu()
-            }
-        }, {
-            title: 'Sign out', clickHandler: async () => {
-                signOut() // ...redirect to login or homepage
-                handleCloseNavMenu()
-            }
-        }
-    ];
-
-
 
     console.log(props)
     const { data: session, status } = useSession();
