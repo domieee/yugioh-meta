@@ -24,16 +24,17 @@ export default function TablePie({ winnerJson, topCutJson }) {
     });
     return (
         <Box
-
             display="flex"
             flexDirection="column"
-
             justifyContent='center'
+            alignItems='center'
             p={2}
             borderRadius={4}
             boxShadow={8}
             marginBottom={2}
-
+            sx={{
+                minHeight: 500
+            }}
         >
             <Typography
                 paddingLeft={10}
@@ -55,13 +56,13 @@ export default function TablePie({ winnerJson, topCutJson }) {
             </Typography>
             <Box
                 theme={theme}
-                justifyContent='space-evenly'
+                justifyContent='center'
                 display="flex"
                 flexDirection="row"
+                alignContent='center'
                 p={2}
                 borderRadius={4}
 
-                marginBottom={2}
                 sx={{
                     flexDirection: {
                         xs: 'column',
@@ -78,7 +79,7 @@ export default function TablePie({ winnerJson, topCutJson }) {
                         data={winnerJson || topCutJson} />
                 </div>
             </Box>
-        </Box>
+        </Box >
 
     )
 }

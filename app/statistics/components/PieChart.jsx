@@ -82,10 +82,14 @@ export default function PieChart({ data }) {
     return (
         <>
             {!pieValues && pieValues === null ?
-                <Stack spacing={1} sx={{ paddingBottom: 2.5, display: 'flex', justifyContent: 'center', minWidth: 330, height: 330 }}>
-                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.5rem', minWidth: 330 }} />
-                    <Skeleton variant="circular" sx={{ width: 200, height: 200, marginInline: 'auto' }} />
+                <Stack spacing='1px'
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ minWidth: 330, height: 330 }}>
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 330 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 330 }} />
+                    <Skeleton variant="circular" sx={{ width: 180, height: 180 }} />
                 </Stack > :
                 <Pie data={dataWinners} />
             }

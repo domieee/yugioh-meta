@@ -4,11 +4,25 @@ import React from 'react'
 import TablePie from './TablePie'
 import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
+import { createTheme } from '@mui/material/styles';
 
 export default function TablePieBox() {
 
     const [pieData, setPieData] = useState([])
     const [pieOverallData, setPieOverallData] = useState([])
+
+    const theme = createTheme({
+        breakpoints: {
+            values: {
+                xxs: 0, // small phone
+                xs: 300, // phone
+                sm: 600, // tablets
+                md: 900, // small laptop
+                lg: 1200, // desktop
+                xl: 1536 // large screens
+            }
+        }
+    });
 
     useEffect(() => {
         const fetchPieData = async () => {
@@ -32,14 +46,20 @@ export default function TablePieBox() {
     return (
         <>
             <Box
-                display="flex"
-                flexDirection="row"
                 bgcolor="background.paper"
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
                 justifyContent="center"
+                sx={{
+                    flexDirection: {
+                        xs: "row",
+                        sm: 'row',
+                        lg: 'column'
+                    }
+                }}
             >
+
                 <TablePie winnerJson={pieData} />
                 <TablePie topCutJson={pieOverallData} />
             </Box>
