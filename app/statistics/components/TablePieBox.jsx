@@ -50,12 +50,15 @@ export default function TablePieBox() {
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
+                display="flex"
                 justifyContent="center"
                 sx={{
                     flexDirection: {
-                        xs: "row",
-                        sm: 'row',
-                        lg: 'column'
+                        // small phone
+                        xs: 'column', // phone
+                        sm: 'column', // tablets
+                        md: 'column', // small laptop
+                        xl: 'row'
                     }
                 }}
             >
