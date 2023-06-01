@@ -33,12 +33,12 @@ export default function TablePieBox() {
         <>
             <Box
                 display="flex"
-                flexDirection="column"
+                flexDirection="row"
                 bgcolor="background.paper"
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
-                sx={{ minHeight: '95dvh' }}
+                justifyContent="center"
             >
                 <TablePie winnerJson={pieData} />
                 <TablePie topCutJson={pieOverallData} />
