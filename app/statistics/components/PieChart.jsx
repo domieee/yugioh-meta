@@ -90,6 +90,7 @@ export default function PieChart({ data }) {
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 240 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 270 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 200 }} />
                     <Skeleton variant="circular" sx={{ width: 190, height: 190 }} />
                 </Stack > :
                 <Pie data={dataWinners} />
