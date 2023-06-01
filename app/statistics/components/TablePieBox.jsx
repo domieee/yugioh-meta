@@ -7,8 +7,8 @@ import { useState, useEffect } from 'react';
 
 export default function TablePieBox() {
 
-    const [pieData, setPieData] = useState({})
-    const [pieOverallData, setPieOverallData] = useState({})
+    const [pieData, setPieData] = useState([])
+    const [pieOverallData, setPieOverallData] = useState([])
 
     useEffect(() => {
         const fetchPieData = async () => {
@@ -38,7 +38,7 @@ export default function TablePieBox() {
                 borderRadius={4}
                 boxShadow={8}
                 marginBottom={2}
-
+                sx={{ minHeight: '95dvh' }}
             >
                 <TablePie winnerJson={pieData} />
                 <TablePie topCutJson={pieOverallData} />

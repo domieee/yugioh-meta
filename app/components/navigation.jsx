@@ -27,12 +27,14 @@ import NavigationMenu from "./NavigationMenu";
 
 function ResponsiveAppBar(props) {
 
+    const [loading, setLoading] = useState(true);
+    const [progress, setProgress] = useState(0);
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-
-
-
+    const router = useRouter()
+    const { data: session, status } = useSession()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -55,12 +57,9 @@ function ResponsiveAppBar(props) {
         { title: 'Statistics', route: '/statistics' },
     ];
 
-    console.log(props)
-    const { data: session, status } = useSession();
-    const [loading, setLoading] = useState(true);
-    const [progress, setProgress] = useState(0);
 
-    console.log(session, 'session')
+
+
 
     useEffect(() => {
         if (status === "loading") {
