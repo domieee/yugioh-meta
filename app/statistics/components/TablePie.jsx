@@ -39,7 +39,6 @@ export default function TablePie({ winnerJson, topCutJson }) {
             <Typography
                 paddingLeft={10}
                 variant="h5"
-                textAlign='center'
                 sx={{
                     paddingLeft: {
                         xs: '0px',
@@ -47,8 +46,8 @@ export default function TablePie({ winnerJson, topCutJson }) {
                         md: '50px'
                     },
                     textAlign: {
-                        xs: 'center',
-                        sm: 'center',
+                        xs: 'start',
+                        sm: 'start',
                         md: 'start'
                     }
                 }}>
@@ -59,10 +58,10 @@ export default function TablePie({ winnerJson, topCutJson }) {
                 justifyContent='center'
                 display="flex"
                 flexDirection="row"
-                alignContent='center'
+                alignItems='center'
                 p={2}
                 borderRadius={4}
-
+                minHeight={500}
                 sx={{
                     flexDirection: {
                         xs: 'column',
