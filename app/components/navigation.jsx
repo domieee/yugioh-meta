@@ -25,7 +25,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import NavigationMenu from "./NavigationMenu";
 
-function ResponsiveAppBar(props) {
+function Navigation(props) {
 
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
@@ -175,4 +175,4 @@ function ResponsiveAppBar(props) {
         </AppBar >
     );
 }
-export default ResponsiveAppBar;
+export default Navigation;
