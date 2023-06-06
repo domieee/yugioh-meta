@@ -72,7 +72,7 @@ function ResponsiveAppBar(props) {
     }, [status]);
 
     return (
-        <AppBar boxShadow={0} marginBottom={20} position="sticky" top={0} color='primary' >
+        <AppBar boxShadow={0} marginBottom={20} position="sticky" top={0} >
             <Container maxWidth="xl" boxShadow={0}>
                 <Toolbar disableGutters boxShadow={0}>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
