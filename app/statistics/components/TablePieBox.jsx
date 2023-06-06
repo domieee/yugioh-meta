@@ -50,14 +50,14 @@ export default function TablePieBox() {
                 bgcolor="background.paper"
                 backgroundColor='#212121'
                 gap={2}
-                marginBottom={2}
+
                 display="flex"
                 justifyContent="center"
                 flexWrap='wrap'
                 alignItems="start"
                 height='100%'
                 minHeight='100%'
-                p={2.5}
+                p={5}
                 sx={{
                     flexDirection: {
                         // small phone

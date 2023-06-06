@@ -55,7 +55,6 @@ export default function Register() {
     return (
         <section className="registerPage">
 
-
             <form
                 className="registerForm"
                 onSubmit={registerUser}>

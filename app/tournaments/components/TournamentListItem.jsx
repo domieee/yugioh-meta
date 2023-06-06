@@ -14,8 +14,8 @@ export default function TournamentListItem({ data }) {
 
     return (
 
-        <Grid item xs={6} md={6} boxShadow={0} >
-            <Card backgroundColor='white' elevation={3} >
+        <Grid item xs={6} md={6} boxShadow='2px 2px 10px rgba(0, 0, 0, 0.0)' >
+            <Card backgroundColor='white' elevation={3}  >
                 <CardActionArea onClick={() => console.log('first')}>
                     <CardContent>
 

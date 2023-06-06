@@ -35,13 +35,16 @@ export default function TournamentList() {
             p={5}
         >
             <Box
+                bgcolor="background.paper"
+                backgroundColor='#272727'
                 display="flex"
                 flexDirection="column"
                 justifyContent='center'
-                p={1}
+                p={5}
                 borderRadius={4}
                 marginBottom={2}
                 maxWidth={700}
+                boxShadow='2px 2px 10px rgba(0, 0, 0, 0.2)'
                 sx={{
                     minWidth: {
                         xs: '380px',
