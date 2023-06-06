@@ -25,7 +25,7 @@
 // import AdbIcon from '@mui/icons-material/Adb';
 // import NavigationMenu from "./NavigationMenu";
 
-function Navigation(props) {
+function Navigation() {
 
     /*    const [loading, setLoading] = useState(true);
        const [progress, setProgress] = useState(0);
@@ -74,7 +74,7 @@ function Navigation(props) {
     return (
         <h1>Moin</h1>
         /*    <AppBar boxShadow={0} marginBottom={20} position="sticky" top={0} >
-               <Container maxWidth="xl" boxShadow={0}>
+               <Container maxWidth="xl" boxShadow={0}>  
                    <Toolbar disableGutters boxShadow={0}>
                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                        <Typography
