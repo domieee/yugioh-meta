@@ -5,9 +5,11 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TournamentListItem from './TournamentListItem';
+import Skeleton from '@mui/material/Skeleton';
 
 export default function TournamentList() {
     const [tournaments, setTournaments] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     console.log(tournaments)
 
@@ -17,6 +19,7 @@ export default function TournamentList() {
             const json = await response.json()
             console.log(json)
             setTournaments(json)
+            setIsLoading(false)
         }
         fetchPieData()
     }, [])
@@ -42,10 +45,10 @@ export default function TournamentList() {
                 flexDirection="column"
                 justifyContent='center'
                 p={1}
-                borderRadius={4}
+                borderRadius={1}
                 marginBottom={2}
                 maxWidth={700}
-                boxShadow='2px 2px 10px rgba(0, 0, 0, 0.2)'
+                boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
                 sx={{
                     minWidth: {
                         xs: '380px',
@@ -90,9 +93,19 @@ export default function TournamentList() {
                     container
 
                     spacing={3}>
-                    {tournaments.map((tournament, index) => {
-                        return <TournamentListItem key={index} data={tournament} />
-                    })}
+                    {/* Render skeletons if isLoading is true */}
+                    {isLoading ? (
+                        Array.from({ length: 20 }, (_, index) => (
+                            <Grid item xs={6} md={6} key={index}>
+                                <Skeleton animation='wave' variant="rect" height={55} borderRadius={1} />
+                            </Grid>
+                        ))
+                    ) : (
+                        // Render tournament list if data is loaded
+                        tournaments.map((tournament, index) => (
+                            <TournamentListItem key={index} data={tournament} />
+                        ))
+                    )}
                 </Grid>
             </Box>
         </Box >

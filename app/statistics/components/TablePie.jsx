@@ -68,11 +68,12 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                 bgcolor="background.paper"
                 backgroundColor='#272727'
                 p={1}
-                borderRadius={4}
+                borderRadius={2}
                 elevation={3}
                 marginBottom={2}
                 maxWidth={700}
-                boxShadow='2px 2px 10px rgba(0, 0, 0, 0.2)'
+                marginInline='auto'
+                boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
                 sx={{
                     minWidth: {
                         xs: '380px',

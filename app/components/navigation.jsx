@@ -72,8 +72,14 @@ function Navigation() {
     }, [status]);
 
     return (
-        <AppBar marginBottom={20} position="sticky" top={0} >
-            <Container maxWidth="xl" boxShadow={0}>
+        <AppBar marginBottom={20} position="sticky" top={0}
+            sx={{// Apply blur effect
+                backgroundColor: '#202020', // Set background color with opacity
+                boxShadow: 'none', // Remove box shadow
+                opacity: 0.97
+            }
+            } >
+            <Container maxWidth="xl">
                 <Toolbar disableGutters boxShadow={0}>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
@@ -172,7 +178,7 @@ function Navigation() {
 
                 </Toolbar>
             </Container>
-        </AppBar >
+        </ AppBar >
     );
 }
 export default Navigation;
