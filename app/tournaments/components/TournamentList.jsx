@@ -61,6 +61,7 @@ export default function TournamentList() {
                     display: 'flex',
                     height: '50px',
                     alignItems: 'start',
+
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',
@@ -89,7 +90,7 @@ export default function TournamentList() {
                 <Grid
                     justifyContent='space-between'
                     paddingInline='100px'
-                    flexWrap='wrap'
+                    paddingBottom='25px'
                     container
 
                     spacing={3}>

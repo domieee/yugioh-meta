@@ -92,7 +92,7 @@ body {
 body {
   color: white;
   background: linear-gradient(to bottom, #193731, #081316);
-
+  background-repeat: no-repeat;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
