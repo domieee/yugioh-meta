@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import * as React from 'react'
 import Box from '@mui/material/Box';
 import PieChart from "./PieChart"
 import TableMUI from "./TabelMUI"
@@ -16,8 +16,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import { createTheme } from '@mui/material/styles';
 import { useState } from 'react';
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function TablePie({ winnerJson, topCutJson, item }) {
+
     const [open, setOpen] = useState({ state: false, dialog: '' })
 
     const handleClickOpen = (dialogItem) => {
@@ -79,17 +85,12 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
-                    alignItems: 'center',
+                    alignItems: 'start',
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',
                         md: 'start',
                         lg: 'space-between'
-                    },
-                    paddingInline: {
-                        xs: '0px',
-                        sm: '0px',
-                        md: '100px'
                     }
                 }}>
                     <Typography
@@ -101,18 +102,18 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                                 md: 'center',
                                 lg: 'center'
                             },
+                            paddingInline: {
+                                xs: '0px',
+                                sm: '0px',
+                                md: '100px'
+                            }
                         }}>
                         {winnerJson ? "Winner Breakdown" : " Overall Top Cut Breakdown"}
                     </Typography>
                     <IconButton
-                        maxWidth={16}
-                        maxHeight={16}
                         onClick={() => handleClickOpen(item === 'winner-breakdown' ? 'winner-breakdown' : 'overall-breakdown')}
                         aria-label="Example">
-                        <QuestionMarkIcon
-                            maxWidth={16}
-                            maxHeight={16}
-                        />
+                        <QuestionMarkIcon style={{ width: '16px' }} />
                     </IconButton>
                 </Box>
                 <Box
@@ -151,6 +152,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
             </Box >
 
             <Dialog
+                TransitionComponent={Transition}
                 open={open.state}
                 onClose={() => handleClose(item === 'winner-breakdown' ? 'winner-breakdown' : 'overall-breakdown')}
                 aria-labelledby="alert-dialog-title"
