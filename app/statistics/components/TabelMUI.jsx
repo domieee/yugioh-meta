@@ -35,18 +35,15 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
-
-
-
                 </Stack > :
                 <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
                     <TableContainer component={Paper} sx={{ height: 380 }}>
                         <Table variant='outline' backgroundColor='#2f2f2f' stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
                             <TableHead >
                                 <TableRow backgroundColor='#2f2f2f'>
-                                    <TableCell>Played Deck</TableCell>
-                                    <TableCell align="right">Wins in total</TableCell>
-                                    {percentages !== undefined ? <TableCell align="right">Wins by (%)</TableCell> : null}
+                                    <TableCell>Deck</TableCell>
+                                    <TableCell align="right">Total</TableCell>
+                                    {percentages !== undefined ? <TableCell align="right">%</TableCell> : null}
 
                                 </TableRow>
                             </TableHead>
@@ -56,9 +53,10 @@ export default function TableMUI({ data, table }) {
                                         onClick={(value) => alert({ value })}
                                         hover
                                         key={index}
+
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" cursor='pointer'>
                                             {value}
                                         </TableCell>
                                         <TableCell align="right">{totals[index]}</TableCell>

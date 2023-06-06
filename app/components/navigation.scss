@@ -3,36 +3,39 @@
     justify-content: space-around;
     height: 50px;
     width: 100%;
-    align-items: center;
+    align-items: baseline;
     background-color: #161618;
     position: fixed;
     top: 0;
     margin-bottom: 20px;
+}
 
+.navigation-link {
+    font-size: 0.8rem;
+    color: rgb(255, 255, 255);
+    transition: color 0.1s ease-in-out;
 
-    .navigation-links,
-    .navigation-validation {
-        display: flex;
-        gap: 15px;
+    &:nth-child(1) {
+        margin-inline: 5px 10px;
+    }
 
-        >a {
-            font-size: 0.9rem;
+    &:hover {
+        color: #FFD700;
+    }
+}
+
+.navigation-validation {
+    .loginLink {
+        color: white;
+        padding-inline-end: 20px;
+        border-right: 2px solid white;
+
+        &:hover {
+            color: #f1f1f1;
         }
     }
+}
 
-    .navigation-validation {
-        .loginLink {
-            color: white;
-            padding-inline-end: 20px;
-            border-right: 2px solid white;
-
-            &:hover {
-                color: #f1f1f1;
-            }
-        }
-    }
-
-    .navigation-logo {
-        justify-self: center;
-    }
+.navigation-logo {
+    justify-self: center;
 }

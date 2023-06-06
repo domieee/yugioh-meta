@@ -1,18 +1,4 @@
-canvas {
-    width: 380px;
-
-}
-
-@media (min-width: 380px) {
-    canvas {
-        width: 300px;
-        margin-bottom: 20px;
-    }
-}
-
-@media (min-width: 720px) {
-    canvas {
-        width: 350px;
-        margin-bottom: 0px;
-    }
+.chart {
+    margin-inline: auto;
+    width: 350px
 }

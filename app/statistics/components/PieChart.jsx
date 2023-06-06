@@ -43,30 +43,7 @@ export default function PieChart({ data }) {
                     'rgba(0, 128, 128, 0.65)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 0.65)',
-                    'rgba(54, 162, 235, 0.65)',
-                    'rgba(255, 206, 86, 0.65)',
-                    'rgba(75, 192, 192, 0.65)',
-                    'rgba(153, 102, 255, 0.65)',
-                    'rgba(255, 159, 64, 0.65)',
-                    'rgba(255, 200, 132, 0.65)',
-                    'rgba(54, 42, 235, 0.65)',
-                    'rgba(199, 26, 86, 0.65)',
-                    'rgba(75, 192, 192, 0.65)',
-                    'rgba(153, 102, 255, 0.65)',
-                    'rgba(255, 159, 64, 0.65)',
-                    'rgba(255, 99, 71, 0.65)',
-                    'rgba(0, 128, 0, 0.65)',
-                    'rgba(255, 165, 0, 0.65)',
-                    'rgba(218, 112, 214, 0.65)',
-                    'rgba(70, 130, 180, 0.65)',
-                    'rgba(255, 0, 255, 0.65)',
-                    'rgba(255, 255, 0, 0.65)',
-                    'rgba(0, 255, 255, 0.65)',
-                    'rgba(128, 0, 0, 0.65)',
-                    'rgba(0, 0, 128, 0.65)',
-                    'rgba(128, 128, 0, 0.65)',
-                    'rgba(0, 128, 128, 0.65)'
+                    'rgba(0, 0, 0, 0)'
                 ],
             },
         ],
@@ -85,7 +62,7 @@ export default function PieChart({ data }) {
                 <Stack spacing='2px'
                     justifyContent="center"
                     alignItems="center"
-                    sx={{ minWidth: 3700, height: 380 }}>
+                    sx={{ height: 380 }}>
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 240 }} />
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
@@ -93,7 +70,9 @@ export default function PieChart({ data }) {
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1rem', minWidth: 200 }} />
                     <Skeleton variant="circular" sx={{ width: 190, height: 190 }} />
                 </Stack > :
-                <Pie data={dataWinners} />
+                <div className='chart' >
+                    <Pie data={dataWinners} />
+                </div >
             }
 
         </>

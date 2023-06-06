@@ -1,7 +1,8 @@
 
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Navigation from './components/navigation'
+import Navigation from './components/Navigation'
+import Footer from './components/Footer'
 import { NextAuthProvider } from './providers/nextAuthProvider'
 
 
@@ -28,6 +29,7 @@ export default async function RootLayout({ children }) {
           <main>
             {children}
           </main>
+          <Footer />
         </NextAuthProvider>
       </body>
 

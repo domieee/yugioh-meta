@@ -22,20 +22,46 @@ export default function TournamentList() {
 
     return (
         <Box
+            bgcolor="background.paper"
+            backgroundColor='#212121'
+            gap={2}
+            marginBottom={2}
             display="flex"
-            flexDirection="column"
-            justifyContent='center'
+            justifyContent="center"
+            flexWrap='wrap'
+            alignItems="center"
+            height='100%'
+            minHeight='100%'
             p={5}
-            borderRadius={4}
-            boxShadow={8}
         >
-            <Grid
-                container
-                spacing={1}>
-                {tournaments.map((tournament, index) => {
-                    return <TournamentListItem key={index} data={tournament} />
-                })}
-            </Grid>
+            <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent='center'
+                p={1}
+                borderRadius={4}
+                marginBottom={2}
+                maxWidth={700}
+                sx={{
+                    minWidth: {
+                        xs: '380px',
+                        sm: '380px',
+                        md: '380px',
+                        lg: '1280px'
+                    }
+                }}>
+                <Grid
+                    justifyContent='space-between'
+                    paddingInline='100px'
+                    flexWrap='wrap'
+                    container
+
+                    spacing={3}>
+                    {tournaments.map((tournament, index) => {
+                        return <TournamentListItem key={index} data={tournament} />
+                    })}
+                </Grid>
+            </Box>
         </Box >
     )
 }

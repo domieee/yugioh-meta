@@ -20,7 +20,6 @@ export async function POST(request) {
         }
     })
 
-
     if (userExists) {
         throw new NextResponse('Email already exists', { status: 400 })
     }

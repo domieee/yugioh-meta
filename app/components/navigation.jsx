@@ -57,10 +57,6 @@ function ResponsiveAppBar(props) {
         { title: 'Statistics', route: '/statistics' },
     ];
 
-
-
-
-
     useEffect(() => {
         if (status === "loading") {
             setLoading(true);
@@ -75,14 +71,10 @@ function ResponsiveAppBar(props) {
         }
     }, [status]);
 
-
-
-
-
     return (
-        <AppBar marginBottom={20} position="sticky" top={0} >
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
+        <AppBar boxShadow={0} marginBottom={20} position="sticky" top={0} color='primary' >
+            <Container maxWidth="xl" boxShadow={0}>
+                <Toolbar disableGutters boxShadow={0}>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
@@ -93,7 +85,7 @@ function ResponsiveAppBar(props) {
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'system-ui',
-                            fontSize: '16px',
+                            fontSize: '0.9rem',
                             fontWeight: 400,
                             letterSpacing: '.1rem',
                             color: 'inherit',
@@ -161,6 +153,7 @@ function ResponsiveAppBar(props) {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map(page => (
                             <Link
+                                className="navigation-link"
                                 href={`${page.route}`}
                                 key={page.title}
                                 onClick={handleCloseNavMenu}
@@ -179,7 +172,7 @@ function ResponsiveAppBar(props) {
 
                 </Toolbar>
             </Container>
-        </AppBar>
+        </AppBar >
     );
 }
 export default ResponsiveAppBar;

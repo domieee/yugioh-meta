@@ -109,9 +109,6 @@ main {
 
 
 }
-canvas {
-  width: 400px;
-}
 
 /* Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
