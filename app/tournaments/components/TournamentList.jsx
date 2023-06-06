@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import TournamentListItem from './TournamentListItem';
 
 export default function TournamentList() {
@@ -40,7 +41,7 @@ export default function TournamentList() {
                 display="flex"
                 flexDirection="column"
                 justifyContent='center'
-                p={5}
+                p={1}
                 borderRadius={4}
                 marginBottom={2}
                 maxWidth={700}
@@ -53,6 +54,35 @@ export default function TournamentList() {
                         lg: '1280px'
                     }
                 }}>
+                <Box sx={{
+                    display: 'flex',
+                    height: '50px',
+                    alignItems: 'start',
+                    justifyContent: {
+                        xs: 'center',
+                        sm: 'center',
+                        md: 'start',
+                        lg: 'space-between'
+                    }
+                }}>
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            justifyContent: {
+                                xs: 'center',
+                                sm: 'center',
+                                md: 'center',
+                                lg: 'center'
+                            },
+                            paddingInline: {
+                                xs: '0px',
+                                sm: '0px',
+                                md: '100px'
+                            }
+                        }}>
+                        National Tournaments
+                    </Typography>
+                </Box>
                 <Grid
                     justifyContent='space-between'
                     paddingInline='100px'

@@ -50,7 +50,6 @@ export default function TablePieBox() {
                 bgcolor="background.paper"
                 backgroundColor='#212121'
                 gap={2}
-
                 display="flex"
                 justifyContent="center"
                 flexWrap='wrap'
