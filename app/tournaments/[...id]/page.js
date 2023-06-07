@@ -90,13 +90,49 @@ export default function TournamentOverview({ params }) {
                         }}>
                         Tournament Overview
                     </Typography>
-
                 </Box>
-                <Box
-                    paddingLeft='100px'>
-                    <Typography variant='body2'>Some potential data</Typography>
-                    <Typography variant='body2'>Some potential data</Typography>
-                    <Typography variant='body2'>Some potential data</Typography>
+                <Box paddingLeft='100px'>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'baseline',
+                        }}>
+                        <Box
+                            sx={{
+                                minWidth: '100px',
+                                marginRight: '20px'
+                            }}>
+                            <Typography variant='body2'>Location </Typography>
+                        </Box>
+
+                        <Typography variant='body2'>{tournament?.location}</Typography>
+                    </Box>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'baseline',
+                        }}>
+                        <Box
+                            sx={{
+                                minWidth: '100px',
+                                marginRight: '20px'
+                            }}>
+                            <Typography variant='body2'>Date </Typography>
+                        </Box>
+                        <Typography variant='body2'>{tournament?.date}</Typography>
+                    </Box>
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'baseline',
+                    }}>
+                        <Box sx={{
+                            minWidth: '100px',
+                            marginRight: '20px'
+                        }}>
+                            <Typography variant='body2'>Participants</Typography>
+                        </Box>
+                        <Typography variant='body2'>{tournament?.totalParticipants}</Typography>
+                    </Box>
                 </Box>
             </Box>
         </Box>
