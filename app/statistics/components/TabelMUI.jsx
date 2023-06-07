@@ -25,7 +25,7 @@ export default function TableMUI({ data, table }) {
         <>
             {!values ?
                 <Stack sx={{ marginInline: 'auto' }}>
-                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
+                    <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.75rem', minWidth: 400 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
@@ -38,7 +38,7 @@ export default function TableMUI({ data, table }) {
                 </Stack > :
                 <Paper sx={{ heigth: '100%', overflow: 'hidden' }}>
                     <TableContainer component={Paper} sx={{ height: 380 }}>
-                        <Table variant='outline' backgroundColor='#2f2f2f' stickyHeader sx={{ minWidth: 270 }} size='small' aria-label="simple table">
+                        <Table variant='outline' backgroundColor='#2f2f2f' stickyHeader sx={{ minWidth: 370 }} size='small' aria-label="simple table">
                             <TableHead >
                                 <TableRow backgroundColor='#2f2f2f'>
                                     <TableCell>Deck</TableCell>

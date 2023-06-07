@@ -1,8 +1,11 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 export default function TournamentOverview({ params }) {
+
+    const [tournament, setTournament] = useState()
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {
@@ -17,7 +20,7 @@ export default function TournamentOverview({ params }) {
                     })
                 });
                 const json = await response.json()
-                console.log(json)
+                setTournament(json)
             } catch (error) {
                 console.log(error)
             }
@@ -59,7 +62,42 @@ export default function TournamentOverview({ params }) {
                         lg: '1280px'
                     }
                 }}>
+                <Box sx={{
+                    display: 'flex',
+                    height: '50px',
+                    alignItems: 'start',
+                    justifyContent: {
+                        xs: 'center',
+                        sm: 'center',
+                        md: 'start',
+                        lg: 'space-between'
+                    }
+                }}>
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            justifyContent: {
+                                xs: 'center',
+                                sm: 'center',
+                                md: 'center',
+                                lg: 'center'
+                            },
+                            paddingInline: {
+                                xs: '0px',
+                                sm: '0px',
+                                md: '100px'
+                            }
+                        }}>
+                        Tournament Overview
+                    </Typography>
 
+                </Box>
+                <Box
+                    paddingLeft='100px'>
+                    <Typography variant='body2'>Some potential data</Typography>
+                    <Typography variant='body2'>Some potential data</Typography>
+                    <Typography variant='body2'>Some potential data</Typography>
+                </Box>
             </Box>
         </Box>
     )

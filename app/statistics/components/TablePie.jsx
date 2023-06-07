@@ -73,7 +73,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                 marginBottom={2}
                 maxWidth={700}
                 marginInline='auto'
-                boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
+                boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px'
                 sx={{
                     minWidth: {
                         xs: '380px',
@@ -95,7 +95,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                     }
                 }}>
                     <Typography
-                        variant="h6"
+                        variant="h5"
                         sx={{
                             justifyContent: {
                                 xs: 'center',

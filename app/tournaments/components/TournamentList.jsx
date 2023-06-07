@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 import TournamentListItem from './TournamentListItem';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -70,7 +71,7 @@ export default function TournamentList() {
                     }
                 }}>
                     <Typography
-                        variant="h6"
+                        variant="h5"
                         sx={{
                             justifyContent: {
                                 xs: 'center',
@@ -98,9 +99,10 @@ export default function TournamentList() {
                     {isLoading ? (
                         Array.from({ length: 20 }, (_, index) => (
                             <Grid item xs={6} md={6} key={index}>
-                                <Skeleton animation='wave' variant="rect" height={55} borderRadius={1} />
+                                <Skeleton animation='wave' variant="rect" height={75} borderRadius={1} />
                             </Grid>
                         ))
+
                     ) : (
                         // Render tournament list if data is loaded
                         tournaments.map((tournament, index) => (
