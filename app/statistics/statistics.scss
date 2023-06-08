@@ -1,4 +1,9 @@
 .chart {
+
+    display: flex;
+    min-height: 380px;
     margin-inline: auto;
-    width: 350px
+    width: 350px;
+    align-items: center;
+
 }

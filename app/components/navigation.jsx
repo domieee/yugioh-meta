@@ -53,8 +53,27 @@ function Navigation() {
 
 
     const pages = [
-        { title: 'Tournaments', route: '/tournaments' },
-        { title: 'Statistics', route: '/statistics' },
+        {
+            title: 'Tournaments', route: () => {
+                router.push('/tournaments')
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Statistics', route: () => {
+                router.push('/statistics')
+                handleCloseNavMenu()
+            },
+        }
+    ];
+
+    const largeScreenMenu = [
+        {
+            title: 'Tournaments', route: '/tournaments'
+        },
+        {
+            title: 'Statistics', route: '/tournaments'
+        }
     ];
 
     useEffect(() => {
@@ -131,7 +150,7 @@ function Navigation() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page.title} onClick={page.route}>
                                     <Typography textAlign="center">{page.title}</Typography>
                                 </MenuItem>
                             ))}
@@ -157,7 +176,7 @@ function Navigation() {
 
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map(page => (
+                        {largeScreenMenu.map(page => (
                             <Link
                                 className="navigation-link"
                                 href={`${page.route}`}

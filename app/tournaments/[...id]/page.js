@@ -121,11 +121,18 @@ export default function TournamentOverview({ params }) {
                         Tournament Overview
                     </Typography>
                 </Box>
-                <Box paddingLeft='100px'>
+                <Box sx={{
+                    paddingLeft: {
+                        xs: '0px',
+                        sm: '0px',
+                        md: '100px'
+                    }
+                }}>
                     <Box
                         sx={{
                             display: 'flex',
                             alignItems: 'baseline',
+                            justfiyContent: 'center'
                         }}>
                         <Box
                             sx={{
