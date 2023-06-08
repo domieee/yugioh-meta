@@ -12,7 +12,24 @@ import Tooltip from '@mui/material/Tooltip';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
+import { useEffect, useRef } from 'react';
+
 export default function TableMUI({ data, table }) {
+
+    const containerRef = useRef(null);
+    const bodyRef = useRef(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        const body = bodyRef.current
+
+        console.log(body, container)
+        if (container && container.scrollHeight > container.clientHeight) {
+            container.classList.add('scrollable');
+        } else {
+            container?.classList.remove('scrollable');
+        }
+    }, []);
 
 
 
@@ -37,8 +54,8 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
-                <Paper sx={{ heigth: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px' }} elevation={5} boxShadow={0} >
-                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none' }} elevation={9}  >
+                <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px' }} elevation={5} boxShadow={0} >
+                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none' }} elevation={9} className='table-container' ref={containerRef}  >
                         <Table variant='outline' boxShadow={0} stickyHeader style={{ width: 350, boxShadow: 'none' }} size='small' aria-label="simple table">
                             <TableHead >
                                 <TableRow backgroundColor='white'>
@@ -48,7 +65,7 @@ export default function TableMUI({ data, table }) {
 
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            <TableBody red={bodyRef}>
                                 {data && values && values.map((value, index) => (
                                     <TableRow
                                         onClick={(value) => alert({ value })}

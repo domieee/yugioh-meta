@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 import { GiTrophy, GiTabletopPlayers, GiCalendar } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
@@ -149,7 +151,15 @@ export default function TournamentOverview({ params }) {
                             alignItems: 'center',
                         }}>
                             <IconContext.Provider value={{ color: "#FFD700" }}>
-                                <GiTrophy />
+                                <Tooltip title='Winner of the tournament'>
+                                    <IconButton sx={{
+                                        width: '30px',
+                                        height: '30px',
+                                        cursor: 'help'
+                                    }}>
+                                        <GiTrophy />
+                                    </IconButton>
+                                </Tooltip>
                             </IconContext.Provider>
                         </Box>
                         {isLoading ?
@@ -172,7 +182,15 @@ export default function TournamentOverview({ params }) {
                             width: '20px', marginRight: '15px', display: 'flex',
                             alignItems: 'center',
                         }}>
-                            <MdLocationOn />
+                            <Tooltip title='Tournament location'>
+                                <IconButton sx={{
+                                    width: '30px',
+                                    height: '30px',
+                                    cursor: 'help'
+                                }}>
+                                    <MdLocationOn />
+                                </IconButton>
+                            </Tooltip>
                         </Box>
                         {isLoading ?
                             <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 60 }} /> :
@@ -193,7 +211,16 @@ export default function TournamentOverview({ params }) {
                             width: '20px', marginRight: '15px', display: 'flex',
                             alignItems: 'center',
                         }}>
-                            <GiCalendar />
+                            <Tooltip title='Tournament date'>
+                                <IconButton sx={{
+                                    width: '30px',
+                                    height: '30px',
+                                    cursor: 'help'
+                                }}>
+                                    <GiCalendar />
+                                </IconButton>
+                            </Tooltip>
+
                         </Box>
                         {isLoading ?
                             <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 78 }} /> :
@@ -211,7 +238,16 @@ export default function TournamentOverview({ params }) {
                             width: '20px', marginRight: '15px', display: 'flex',
                             alignItems: 'center',
                         }}>
-                            <GiTabletopPlayers />
+                            <Tooltip title='Total players participated'>
+                                <IconButton sx={{
+                                    width: '30px',
+                                    height: '30px',
+                                    cursor: 'help'
+                                }}>
+                                    <GiTabletopPlayers />
+                                </IconButton>
+                            </Tooltip>
+
                         </Box>
                         {isLoading ?
                             <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 26, alignSelf: 'center' }} /> :
