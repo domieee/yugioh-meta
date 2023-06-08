@@ -72,7 +72,7 @@ function Navigation() {
             title: 'Tournaments', route: '/tournaments'
         },
         {
-            title: 'Statistics', route: '/tournaments'
+            title: 'Statistics', route: '/statistics'
         }
     ];
 
