@@ -56,7 +56,7 @@ export default function TablePieBox() {
                 alignItems="start"
                 height='100%'
                 minHeight='100%'
-                p={5}
+
                 sx={{
                     flexDirection: {
                         // small phone
@@ -64,6 +64,12 @@ export default function TablePieBox() {
                         sm: 'column', // tablets
                         md: 'column', // small laptop
                         xl: 'row'
+                    },
+                    padding: {
+                        xs: '0px', // phone
+                        sm: '40px', // tablets
+                        md: '40px', // small laptop
+                        xl: '40px'
                     }
                 }}
             >
