@@ -47,8 +47,14 @@ export default function Footer() {
                         }}>
                         <Typography
                             variant='caption'
-                            marginBottom={2.5}
+                            marginBottom='10px'
                         >We are constantly working on improving this website. Do you have any suggestions for improvement, or would you like to support the project? Follow the links below.</Typography>
+                        <a href=''
+                            style={{ marginBottom: '10px' }}>
+                            <Typography
+
+                                variant='caption'>Write a feedback</Typography>
+                        </a>
                         <a href="https://www.buymeacoffee.com/domiedev">
                             <Image
                                 src='/bmc-button.png'
@@ -56,6 +62,7 @@ export default function Footer() {
                                 width={130}
                                 height={35} />
                         </a>
+
                     </Box>
 
                 </Box>

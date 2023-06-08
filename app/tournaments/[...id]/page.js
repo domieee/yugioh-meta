@@ -26,7 +26,28 @@ export default function TournamentOverview({ params }) {
             }
         }
         fetchTournamentOverview()
-    })
+    }, [])
+
+    useEffect(() => {
+        const fetchTournamentBreakdown = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-breakdown`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: params.id
+                    })
+                })
+                const json = await response.json()
+                console.log(json)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchTournamentBreakdown()
+    }, [])
 
     return (
         <Box
