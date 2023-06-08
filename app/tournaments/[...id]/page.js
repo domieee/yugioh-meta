@@ -3,9 +3,14 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
+import PieChart from '@/app/statistics/components/PieChart';
+import TableMUI from '@/app/statistics/components/TabelMUI';
+
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState()
+    const [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {
@@ -13,6 +18,7 @@ export default function TournamentOverview({ params }) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-overview`, {
                     method: 'POST',
                     headers: {
+                        "Access-Control-Allow-Origin": "*",
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
@@ -34,6 +40,7 @@ export default function TournamentOverview({ params }) {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-breakdown`, {
                     method: 'POST',
                     headers: {
+                        "Access-Control-Allow-Origin": "*",
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
@@ -41,7 +48,7 @@ export default function TournamentOverview({ params }) {
                     })
                 })
                 const json = await response.json()
-                console.log(json)
+                setTournamentBreakdownData(json)
             } catch (error) {
                 console.log(error)
             }
@@ -153,6 +160,34 @@ export default function TournamentOverview({ params }) {
                             <Typography variant='body2'>Participants</Typography>
                         </Box>
                         <Typography variant='body2'>{tournament?.totalParticipants}</Typography>
+                    </Box>
+                    <Box
+
+                        justifyContent='space-evenly'
+                        alignItems='center'
+                        display="flex"
+                        flexDirection="row"
+
+                        p={2}
+                        borderRadius={1}
+                        minHeight={430}
+
+                        sx={{
+                            flexDirection: {
+                                xs: 'column',
+                                sm: 'column',
+                                md: 'row'
+                            }
+                        }}>
+                        <div className="canvasContainer">
+                            <PieChart
+                                data={tournamentBreakdownData} />
+                        </div>
+                        <div className="tableContainer">
+                            <TableMUI
+                                table='winner-breakdown'
+                                data={tournamentBreakdownData} />
+                        </div>
                     </Box>
                 </Box>
             </Box>
