@@ -58,7 +58,7 @@ export default function TournamentOverview({ params }) {
                     })
                 })
                 const json = await response.json()
-                setTournamentBreakdownData(json)
+                setTimeout(() => setTournamentBreakdownData(json), 500)
             } catch (error) {
                 console.log(error)
             }
