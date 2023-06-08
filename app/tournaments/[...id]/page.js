@@ -1,9 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
+
+import { GiTrophy, GiTabletopPlayers, GiCalendar } from "react-icons/gi";
+import { MdLocationOn } from "react-icons/md";
+import { IconContext } from "react-icons"
 
 import PieChart from '@/app/statistics/components/PieChart';
 import TableMUI from '@/app/statistics/components/TabelMUI';
@@ -128,54 +133,91 @@ export default function TournamentOverview({ params }) {
                         md: '100px'
                     }
                 }}>
+
                     <Box
                         sx={{
+                            height: '20px',
+                            minWidth: '100px',
+                            marginRight: '20px',
                             display: 'flex',
-                            alignItems: 'baseline',
-                            justfiyContent: 'center'
+                            alignItems: 'center',
+                            justfiyContent: 'center',
+                            marginBottom: '5px'
                         }}>
-                        <Box
-                            sx={{
-                                minWidth: '100px',
-                                marginRight: '20px'
-                            }}>
-                            <Typography variant='body2'>Location </Typography>
+                        <Box sx={{
+                            width: '20px', marginRight: '15px', display: 'flex',
+                            alignItems: 'center',
+                        }}>
+                            <IconContext.Provider value={{ color: "#FFD700" }}>
+                                <GiTrophy />
+                            </IconContext.Provider>
                         </Box>
                         {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 60 }} /> :
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 140 }} /> :
+                            <Typography variant='body2'>{`${tournament.player[0].name} with ${tournament.player[0].deck}`}</Typography>}
+                    </Box>
+
+
+                    <Box
+                        sx={{
+                            height: '20px',
+                            minWidth: '100px',
+                            marginRight: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justfiyContent: 'center',
+                            marginBottom: '5px'
+                        }}>
+                        <Box sx={{
+                            width: '20px', marginRight: '15px', display: 'flex',
+                            alignItems: 'center',
+                        }}>
+                            <MdLocationOn />
+                        </Box>
+                        {isLoading ?
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 60 }} /> :
                             <Typography variant='body2'>{tournament?.location}</Typography>}
                     </Box>
+
+
                     <Box
                         sx={{
+                            height: '20px',
+                            minWidth: '100px',
+                            marginRight: '20px',
                             display: 'flex',
-                            alignItems: 'baseline',
+                            alignItems: 'center',
+                            marginBottom: '5px'
                         }}>
-                        <Box
-                            sx={{
-                                minWidth: '100px',
-                                marginRight: '20px'
-                            }}>
-                            <Typography variant='body2'>Date </Typography>
+                        <Box sx={{
+                            width: '20px', marginRight: '15px', display: 'flex',
+                            alignItems: 'center',
+                        }}>
+                            <GiCalendar />
                         </Box>
                         {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 85 }} /> :
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 78 }} /> :
                             <Typography variant='body2'>{tournament?.date}</Typography>}
-
                     </Box>
+
                     <Box sx={{
+                        height: '20px',
+                        minWidth: '100px',
+                        marginRight: '20px',
                         display: 'flex',
-                        alignItems: 'baseline',
+
                     }}>
                         <Box sx={{
-                            minWidth: '100px',
-                            marginRight: '20px'
+                            width: '20px', marginRight: '15px', display: 'flex',
+                            alignItems: 'center',
                         }}>
-                            <Typography variant='body2'>Participants</Typography>
+                            <GiTabletopPlayers />
                         </Box>
                         {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 26 }} /> :
-                            <Typography variant='body2'>{tournament?.totalParticipants}</Typography>}
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 26, alignSelf: 'center' }} /> :
+                            <Typography variant='body2' sx={{ alignSelf: 'center' }}>{tournament?.totalParticipants}</Typography>}
                     </Box>
+
                     <Box
 
                         justifyContent='space-evenly'
@@ -206,6 +248,6 @@ export default function TournamentOverview({ params }) {
                     </Box>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     )
 }
