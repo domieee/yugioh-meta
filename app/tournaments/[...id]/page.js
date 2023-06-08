@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 
 import PieChart from '@/app/statistics/components/PieChart';
 import TableMUI from '@/app/statistics/components/TabelMUI';
@@ -10,6 +11,7 @@ import TableMUI from '@/app/statistics/components/TabelMUI';
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState()
+    const [isLoading, setIsLoading] = useState(true)
     const [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
 
     useEffect(() => {
@@ -27,6 +29,7 @@ export default function TournamentOverview({ params }) {
                 });
                 const json = await response.json()
                 setTournament(json)
+                setIsLoading(false)
             } catch (error) {
                 console.log(error)
             }
@@ -92,7 +95,7 @@ export default function TournamentOverview({ params }) {
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
-                    alignItems: 'start',
+                    alignItems: 'baseline',
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',
@@ -131,8 +134,9 @@ export default function TournamentOverview({ params }) {
                             }}>
                             <Typography variant='body2'>Location </Typography>
                         </Box>
-
-                        <Typography variant='body2'>{tournament?.location}</Typography>
+                        {isLoading ?
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 60 }} /> :
+                            <Typography variant='body2'>{tournament?.location}</Typography>}
                     </Box>
                     <Box
                         sx={{
@@ -146,7 +150,10 @@ export default function TournamentOverview({ params }) {
                             }}>
                             <Typography variant='body2'>Date </Typography>
                         </Box>
-                        <Typography variant='body2'>{tournament?.date}</Typography>
+                        {isLoading ?
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 85 }} /> :
+                            <Typography variant='body2'>{tournament?.date}</Typography>}
+
                     </Box>
                     <Box sx={{
                         display: 'flex',
@@ -158,7 +165,9 @@ export default function TournamentOverview({ params }) {
                         }}>
                             <Typography variant='body2'>Participants</Typography>
                         </Box>
-                        <Typography variant='body2'>{tournament?.totalParticipants}</Typography>
+                        {isLoading ?
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.9rem', width: 26 }} /> :
+                            <Typography variant='body2'>{tournament?.totalParticipants}</Typography>}
                     </Box>
                     <Box
 
