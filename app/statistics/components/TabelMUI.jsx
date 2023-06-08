@@ -36,8 +36,8 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 370 }} />
                 </Stack > :
-                <Paper sx={{ heigth: '100%', overflow: 'hidden', boxShadow: 'none' }} elevation={5} boxShadow={0} >
-                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none' }} elevation={9} >
+                <Paper sx={{ heigth: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px' }} elevation={5} boxShadow={0} >
+                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none' }} elevation={9}  >
                         <Table variant='outline' boxShadow={0} stickyHeader style={{ width: 350, boxShadow: 'none' }} size='small' aria-label="simple table">
                             <TableHead >
                                 <TableRow backgroundColor='white'>
