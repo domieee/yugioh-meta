@@ -30,7 +30,6 @@ export default function TournamentList() {
             bgcolor="background.paper"
             backgroundColor='#212121'
             gap={2}
-            marginBottom={2}
             display="flex"
             justifyContent="center"
             flexWrap='wrap'

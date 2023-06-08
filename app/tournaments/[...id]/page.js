@@ -61,7 +61,6 @@ export default function TournamentOverview({ params }) {
             bgcolor="background.paper"
             backgroundColor='#212121'
             gap={2}
-            marginBottom={2}
             display="flex"
             justifyContent="center"
             flexWrap='wrap'
@@ -78,7 +77,7 @@ export default function TournamentOverview({ params }) {
                 p={1}
                 borderRadius={2}
                 elevation={3}
-                marginBottom={2}
+
                 maxWidth={700}
                 marginInline='auto'
                 boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
