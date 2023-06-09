@@ -5,10 +5,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
 import Backdrop from '@mui/material/Backdrop';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ export default function Register() {
     const [errorMessage, setErrorMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [errorKey, setErrorKey] = useState(false);
+    const [fetching, setFetching] = useState(false);
 
     const router = useRouter()
 
@@ -47,15 +48,15 @@ export default function Register() {
         setOpen(false);
     };
 
-    const Alert = forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    });
+    // const Alert = forwardRef(function Alert(props, ref) {
+    //     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    // });
 
 
-    const [fetching, setFetching] = useState(false);
+
 
     const registerUser = async () => {
-
+        setFetching(true);
 
         console.log(data)
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}register`, {
@@ -78,8 +79,13 @@ export default function Register() {
         } else if (response.status === 400) {
             const json = await response.json()
             console.log(json)
-            setErrorMessage(json.msg)
-            setOpen(true)
+
+            setTimeout(() => {
+                setFetching(false)
+                setErrorMessage(json.msg)
+                setOpen(true)
+            }, 500)
+
             console.log(errorMessage)
         } else {
             const json = await response.json()
@@ -192,9 +198,10 @@ export default function Register() {
                     </Box>
 
 
-                    <Button
+                    <LoadingButton
                         variant="outlined"
                         size="small"
+                        loading={fetching}
                         onClick={() => registerUser()}
                         sx={{
                             width: '50%',
@@ -202,7 +209,7 @@ export default function Register() {
                         }}
                     >
                         Sign up
-                    </Button>
+                    </LoadingButton>
 
                     <Typography
                         textAlign="center"
@@ -264,21 +271,19 @@ export default function Register() {
                 <p>Already a member? <Link href='/login'>Sign in</Link></p>
             </form> */}
             <Snackbar
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 autoHideDuration={5000}
                 onClose={handleClose}>
-                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    {errorMessage && errorMessage}
-                </Alert>
+                <Alert severity="error" >{errorMessage && errorMessage}</Alert>
             </Snackbar>
-            <Backdrop
+            {/* <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={fetching}
 
             >
                 <CircularProgress color={color} />
-            </Backdrop>
+            </Backdrop> */}
         </section>
     )
 }
