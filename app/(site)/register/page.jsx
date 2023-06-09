@@ -38,7 +38,6 @@ export default function Register() {
     });
 
 
-
     const handleClick = () => {
         setAlertOpen(true);
     };
@@ -81,7 +80,8 @@ export default function Register() {
 
         if (response.status === 200) {
             const json = await response.json()
-            console.log(json)
+            console.log(json, 'response')
+
             Cookies.set('token', json, { expires: 7 })
             setTimeout(() => {
                 setFetching(false)

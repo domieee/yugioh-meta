@@ -20,21 +20,24 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
+import Cookies from 'js-cookie';
 
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import NavigationMenu from "./NavigationMenu";
 
-function Navigation() {
+function Navigation({ props }) {
+
+    console.log(props)
 
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
-
+    const [user, setUser] = useState({ username: undefined, id: undefined, role: undefined })
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const router = useRouter()
-    const { data: session, status } = useSession()
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -77,18 +80,49 @@ function Navigation() {
     ];
 
     useEffect(() => {
-        if (status === "loading") {
-            setLoading(true);
-        } else {
-            setTimeout(() => {
-                setProgress(100)
-                setLoading(false)
-                setTimeout(() => {
-                    setProgress(0);
-                }, 100)
-            }, 300)
+
+        const revealUserInformations = async () => {
+            // To receive the current user and role we check if a token exists
+            const hasToken = () => {
+                const token = Cookies.get('token');
+                return token !== undefined;
+            }
+
+            if (hasToken()) {
+                const currentToken = Cookies.get('token');
+                try {
+                    // In that case we send the token the server and receive the requested information
+                    // With that information we build the navigation with the matching menu options dedicated to the user role
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}reveal-user-informations`, {
+                        method: 'POST',
+                        headers: {
+                            "Access-Control-Allow-Origin": "*",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            token: currentToken
+                        })
+                    })
+                    const json = await response.json()
+                    setUser({
+                        username: json.username,
+                        id: json.id,
+                        role: json.role
+                    })
+                    setLoading(false)
+                    console.log(user)
+                } catch (err) {
+                    console.log(err)
+                }
+            } else {
+                // In case that currently isn't a cookie set, we set the parameters to 'null' which will cause the page to show a login button 
+                setUser({ id: null, role: null })
+            }
         }
-    }, [status]);
+        revealUserInformations()
+    }, []);
+
+    console.log(user);
 
     return (
         <AppBar marginBottom={20} position="sticky" top={0}
@@ -189,9 +223,9 @@ function Navigation() {
                         ))}
                     </Box>
 
-                    {session === undefined ?
+                    {user.id === undefined ?
                         <Skeleton variant="circular" width={40} height={40} /> :
-                        <NavigationMenu session={session} />
+                        <NavigationMenu user={user} />
                     }
 
 

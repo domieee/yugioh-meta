@@ -14,32 +14,90 @@ import { signOut } from "next-auth/react"
 import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
 
-export default function NavigationMenu({ session }) {
+export default function NavigationMenu({ user }) {
     const router = useRouter()
 
     const handleLoginClick = () => {
         router.push('/login')
     }
 
-
-    const settings = [
+    const userMenuOptions = [
         {
             title: 'Profile', clickHandler: () => {
                 // ...
                 handleCloseNavMenu()
             }
-        }, {
-            title: 'Dashboard', clickHandler: () => {
-                //...
-                handleCloseNavMenu()
-            }
-        }, {
-            title: 'Sign out', clickHandler: async () => {
-                signOut() // ...redirect to login or homepage
+        },
+        {
+            title: 'Sign Out', clickHandler: () => {
+                // ...
                 handleCloseNavMenu()
             }
         }
-    ];
+    ]
+    const proMenuOptions = [
+        {
+            title: 'Profile', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Sign Out', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        }
+    ]
+
+    const moderatorMenuOptions = [
+        {
+            title: 'Profile', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Interface', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Sign Out', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        }
+    ]
+
+    const administratorMenuOptions = [
+        {
+            title: 'Profile', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Interface', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Admin Panel', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        },
+        {
+            title: 'Sign Out', clickHandler: () => {
+                // ...
+                handleCloseNavMenu()
+            }
+        }
+    ]
+
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -59,9 +117,44 @@ export default function NavigationMenu({ session }) {
         setAnchorElUser(null);
     };
 
+    const checkForUserRole = () => {
+        if (user.role === 'user') {
+            return (
+                userMenuOptions.map((menuOption) => (
+                    <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
+                        <Typography textAlign="center">{menuOption.title}</Typography>
+                    </MenuItem>
+                ))
+            )
+        } else if (user.role === 'pro') {
+            return (
+                proMenuOptions.map((menuOption) => (
+                    <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
+                        <Typography textAlign="center">{menuOption.title}</Typography>
+                    </MenuItem>
+                ))
+            )
+        } else if (user.role === 'moderator') {
+            return (
+                moderatorMenuOptions.map((menuOption) => (
+                    <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
+                        <Typography textAlign="center">{menuOption.title}</Typography>
+                    </MenuItem>
+                ))
+            )
+        } else if (user.role === 'administrator') {
+            return (
+                administratorMenuOptions.map((menuOption) => (
+                    <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
+                        <Typography textAlign="center">{menuOption.title}</Typography>
+                    </MenuItem>
+                ))
+            )
+        }
+    }
 
     return (
-        session === null ?
+        user.id === null ?
             <IconButton
                 onClick={handleLoginClick}
                 aria-label="add an alarm" >
@@ -70,7 +163,7 @@ export default function NavigationMenu({ session }) {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt={`${session.user.name}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
+                        <Avatar alt={`${user.username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
                     </IconButton>
                 </Tooltip>
                 <Menu
@@ -89,11 +182,8 @@ export default function NavigationMenu({ session }) {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    {settings.map((setting) => (
-                        <MenuItem key={setting.title} onClick={setting.clickHandler}>
-                            <Typography textAlign="center">{setting.title}</Typography>
-                        </MenuItem>
-                    ))}
+                    {checkForUserRole()}
+
                 </Menu>
             </Box>
     )
