@@ -37,7 +37,8 @@ export default function Register() {
         const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}register`, {
             method: 'POST',
             headers: {
-                "Access-Control-Allow-Origin": true,
+                "Access-Control-Allow-Origin": '*',
+                'Access-Control-Allow-Credentials': true,
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
