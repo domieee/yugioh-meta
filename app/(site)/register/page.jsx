@@ -15,13 +15,16 @@ import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react'
 import Link from "next/link"
 import './register.scss'
+import Cookies from 'js-cookie';
+
 import { Preview } from "@mui/icons-material";
 
 
 export default function Register() {
     const [color, setColor] = useState('inherit')
     const [errorMessage, setErrorMessage] = useState('');
-    const [open, setOpen] = useState(false);
+    const [alertOpen, setAlertOpen] = useState(false);
+    const [successOpen, setSuccessOpen] = useState(false);
     const [errorKey, setErrorKey] = useState(false);
     const [fetching, setFetching] = useState(false);
 
@@ -37,22 +40,25 @@ export default function Register() {
 
 
     const handleClick = () => {
-        setOpen(true);
+        setAlertOpen(true);
     };
 
-    const handleClose = (event, reason) => {
+    const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-
-        setOpen(false);
+        setAlertOpen(false);
     };
 
-    // const Alert = forwardRef(function Alert(props, ref) {
-    //     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    // });
 
 
+
+    const handleSuccessClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSuccessOpen(false);
+    };
 
 
     const registerUser = async () => {
@@ -76,6 +82,12 @@ export default function Register() {
         if (response.status === 200) {
             const json = await response.json()
             console.log(json)
+            Cookies.set('token', json, { expires: 7 })
+            setTimeout(() => {
+                setFetching(false)
+                setSuccessOpen(true)
+            }, 500)
+            router.push('/')
         } else if (response.status === 400) {
             const json = await response.json()
             console.log(json)
@@ -83,7 +95,7 @@ export default function Register() {
             setTimeout(() => {
                 setFetching(false)
                 setErrorMessage(json.msg)
-                setOpen(true)
+                setAlertOpen(true)
             }, 500)
 
             console.log(errorMessage)
@@ -125,12 +137,13 @@ export default function Register() {
         <section className="registerPage">
 
             <Card
+                boxShadow={0}
                 borderRadius={4}
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    padding: '50px 75px'
+                    padding: '35px'
                 }}>
                 <Typography variant="h6" display="block" >
                     Register
@@ -272,9 +285,16 @@ export default function Register() {
             </form> */}
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={open}
+                open={successOpen}
                 autoHideDuration={5000}
-                onClose={handleClose}>
+                onClose={handleSuccessClose}>
+                <Alert severity="success" >Registration successfull</Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={alertOpen}
+                autoHideDuration={5000}
+                onClose={handleAlertClose}>
                 <Alert severity="error" >{errorMessage && errorMessage}</Alert>
             </Snackbar>
             {/* <Backdrop
