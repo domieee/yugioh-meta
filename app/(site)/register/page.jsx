@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios"
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
@@ -15,46 +15,72 @@ export default function Register() {
 
     const router = useRouter()
 
-    const [data, setData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
+    // const [data, setData] = useState({
+    //     name: '',
+    //     email: '',
+    //     password: '',
+    //     confirmPassword: ''
+    // });
+
+    let username = useRef('')
+    let email = useRef('')
+    let password = useRef('')
+    let confirmPassword = useRef('')
 
     const [fetching, setFetching] = useState(false);
 
     const registerUser = async (e) => {
+
+        console.log(username.current.value)
         e.preventDefault()
-        setFetching(true)
-        axios.post('/api/register', data)
 
-            .then(async (res) => {
-                console.log(res)
-                console.log('Registration successful')
-                await signIn('credentials', { ...data, redirect: false })
-                    .then(() => {
-                        setColor('success')
-                        setTimeout(() => {
-                            setFetching(false)
-                            router.push('/')
-                        }, 1000)
-
-                    })
+        const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}register`, {
+            method: 'POST',
+            credentials: "include",
+            headers: { "Content-Type": "application/json; charset=UTF-8" },
+            body: JSON.stringify({
+                username: username.current.value,
+                mail: email.current.value,
+                password: password.current.value,
+                confirmPassword: confirmPassword.current.value,
             })
+        })
 
-            .catch((err) => {
-                setColor('danger')
-                setTimeout(() => {
-                    setFetching(false)
-                    console.log('Registration failed')
-                }, 1000)
-            })
+        if (response.ok) {
+            const json = await response.json()
+            console.log(json)
+        } else if (!response.ok) {
+            const json = await response.json()
+            console.log(json)
+        }
+        // setFetching(true)
+        // axios.post('/api/register', data)
+
+        //     .then(async (res) => {
+        //         console.log(res)
+        //         console.log('Registration successful')
+        //         await signIn('credentials', { ...data, redirect: false })
+        //             .then(() => {
+        //                 setColor('success')
+        //                 setTimeout(() => {
+        //                     setFetching(false)
+        //                     router.push('/')
+        //                 }, 1000)
+
+        //             })
+        //     })
+
+        //     .catch((err) => {
+        //         setColor('danger')
+        //         setTimeout(() => {
+        //             setFetching(false)
+        //             console.log('Registration failed')
+        //         }, 1000)
+        //     })
     }
 
     return (
         <section className="registerPage">
-
             <form
                 className="registerForm"
                 onSubmit={registerUser}>
@@ -65,9 +91,7 @@ export default function Register() {
                         name="username"
                         id="username"
                         placeholder="johndoe1337"
-                        required
-                        value={data.name}
-                        onChange={e => setData({ ...data, name: e.target.value })} />
+                        ref={username} />
                 </article>
 
                 <article className="formRow">
@@ -77,9 +101,7 @@ export default function Register() {
                         name="email"
                         id="email"
                         placeholder="john@doe.com"
-                        required
-                        value={data.email}
-                        onChange={e => setData({ ...data, email: e.target.value })} />
+                        ref={email} />
                 </article>
 
                 <article className="formRow">
@@ -89,9 +111,7 @@ export default function Register() {
                         name="password"
                         id="password"
                         placeholder="Password"
-                        required
-                        value={data.password}
-                        onChange={e => setData({ ...data, password: e.target.value })} />
+                        ref={password} />
                 </article>
 
                 <article className="formRow">
@@ -101,9 +121,7 @@ export default function Register() {
                         name="confirmation"
                         id="confirmation"
                         placeholder="Confirm Password"
-                        required
-                        value={data.confirmPassword}
-                        onChange={e => setData({ ...data, confirmPassword: e.target.value })} />
+                        ref={confirmPassword} />
                 </article>
 
                 <button type="submit">Register Account</button>

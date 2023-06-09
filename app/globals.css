@@ -102,8 +102,12 @@ body {
 a {
   text-decoration: none;
   color: white;
-
 }
+
+p {
+  cursor: 'pointer';
+}
+
 ::-webkit-scrollbar {
   width: 5px; /* Set the width of the scrollbar */
 }
