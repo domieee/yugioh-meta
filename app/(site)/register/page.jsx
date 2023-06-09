@@ -36,8 +36,10 @@ export default function Register() {
 
         const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}register`, {
             method: 'POST',
-            credentials: "include",
-            headers: { "Content-Type": "application/json; charset=UTF-8" },
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json; charset=UTF-8"
+            },
             body: JSON.stringify({
                 username: username.current.value,
                 mail: email.current.value,
@@ -50,8 +52,8 @@ export default function Register() {
             const json = await response.json()
             console.log(json)
         } else if (!response.ok) {
-            const json = await response.json()
-            console.log(json)
+
+            console.log(await response)
         }
         // setFetching(true)
         // axios.post('/api/register', data)
