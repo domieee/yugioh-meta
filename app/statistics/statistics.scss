@@ -1,5 +1,5 @@
 .chart {
-
+    margin-inline: 'auto';
     display: flex;
     min-height: 380px;
     margin-inline: auto;
@@ -9,7 +9,9 @@
 }
 
 .table-container {
+    margin-inline: 'auto';
     max-height: 380px;
+    min-width: 350px;
     /* Adjust the maximum height as needed */
     overflow-y: auto;
     /* Enable vertical scrolling */

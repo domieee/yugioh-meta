@@ -129,7 +129,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                     alignItems='center'
                     display="flex"
                     flexDirection="row"
-
+                    marginInline='auto'
                     p={2}
                     borderRadius={1}
                     minHeight={430}

@@ -21,10 +21,25 @@ export default function NavigationMenu({ user }) {
         router.push('/login')
     }
 
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     const userMenuOptions = [
         {
             title: 'Profile', clickHandler: () => {
-                // ...
+                router.push('/profile')
                 handleCloseNavMenu()
             }
         },
@@ -102,20 +117,7 @@ export default function NavigationMenu({ user }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
 
     const checkForUserRole = () => {
         if (user.role === 'user') {
