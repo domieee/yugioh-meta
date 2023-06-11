@@ -83,6 +83,9 @@ html {
   scroll-behavior: smooth;
 
 }
+main {
+  padding-top: '65px';
+}
 
 html,
 body {

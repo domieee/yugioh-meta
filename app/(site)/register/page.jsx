@@ -16,6 +16,7 @@ import { signIn } from 'next-auth/react'
 import Link from "next/link"
 import './register.scss'
 import Cookies from 'js-cookie';
+import useStore from "../../components/store.js";
 
 import { Preview } from "@mui/icons-material";
 
@@ -35,35 +36,34 @@ export default function Register() {
         email: '',
         password: '',
         confirmPassword: ''
-    });
+    })
+
+
+    const setUserName = useStore((state) => state.setUserName)
 
 
     const handleClick = () => {
         setAlertOpen(true);
-    };
+    }
 
     const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
         setAlertOpen(false);
-    };
-
-
-
+    }
 
     const handleSuccessClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
         setSuccessOpen(false);
-    };
-
+    }
 
     const registerUser = async () => {
+
         setFetching(true);
 
-        console.log(data)
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}register`, {
             method: 'POST',
             headers: {
@@ -80,14 +80,37 @@ export default function Register() {
 
         if (response.status === 200) {
             const json = await response.json()
-            console.log(json, 'response')
 
             Cookies.set('token', json, { expires: 7 })
-            setTimeout(() => {
-                setFetching(false)
-                setSuccessOpen(true)
-            }, 500)
-            router.push('/')
+            const currentToken = Cookies.get('token');
+
+            const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
+                method: 'POST',
+                headers: {
+                    "Access-Control-Allow-Origin": '*',
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify({
+                    token: currentToken
+                })
+            })
+
+            if (userInformation.status === 200) {
+                setTimeout(() => {
+                    setFetching(false)
+                    setSuccessOpen(true)
+                    router.push('/')
+                }, 500)
+                const json = await userInformation.json()
+                console.log(json)
+                await setUserName(json.username)
+
+                console.log(username, 'usernameeeee')
+            } else if (userInformation.status === 400) {
+                const json = await response.json()
+                console.log(json)
+            }
+
         } else if (response.status === 400) {
             const json = await response.json()
             console.log(json)
@@ -103,35 +126,7 @@ export default function Register() {
             const json = await response.json()
             console.log(json)
         }
-
-        // setFetching(true)
-        // axios.post('/api/register', data)
-
-        //     .then(async (res) => {
-        //         console.log(res)
-        //         console.log('Registration successful')
-        //         await signIn('credentials', { ...data, redirect: false })
-        //             .then(() => {
-        //                 setColor('success')
-        //                 setTimeout(() => {
-        //                     setFetching(false)
-        //                     router.push('/')
-        //                 }, 1000)
-
-        //             })
-        //     })
-
-        //     .catch((err) => {
-        //         setColor('danger')
-        //         setTimeout(() => {
-        //             setFetching(false)
-        //             console.log('Registration failed')
-        //         }, 1000)
-        //     })
     }
-    useEffect(() => {
-        console.log(data.username);
-    }, [data.username]);
 
     return (
         <section className="registerPage">
@@ -146,7 +141,7 @@ export default function Register() {
                     padding: '35px'
                 }}>
                 <Typography variant="h6" display="block" >
-                    Register
+                    Sign Up
                 </Typography>
                 <Stack
                     spacing={1}
@@ -235,54 +230,6 @@ export default function Register() {
                 </Stack>
             </Card>
 
-
-            {/* <form
-                className="registerForm"
-                onSubmit={registerUser}>
-                <article className="formRow">
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        placeholder="johndoe1337"
-                        ref={username} />
-                </article>
-
-                <article className="formRow">
-                    <label htmlFor="email">E-Mail</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="john@doe.com"
-                        ref={email} />
-                </article>
-
-                <article className="formRow">
-                    <label htmlFor="email">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Password"
-                        ref={password} />
-                </article>
-
-                <article className="formRow">
-                    <label htmlFor="email">Confirm Password</label>
-                    <input
-                        type="password"
-                        name="confirmation"
-                        id="confirmation"
-                        placeholder="Confirm Password"
-                        ref={confirmPassword} />
-                </article>
-
-                <button type="submit">Register Account</button>
-
-                <p>Already a member? <Link href='/login'>Sign in</Link></p>
-            </form> */}
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={successOpen}
@@ -297,13 +244,7 @@ export default function Register() {
                 onClose={handleAlertClose}>
                 <Alert severity="error" >{errorMessage && errorMessage}</Alert>
             </Snackbar>
-            {/* <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={fetching}
 
-            >
-                <CircularProgress color={color} />
-            </Backdrop> */}
         </section>
     )
 }

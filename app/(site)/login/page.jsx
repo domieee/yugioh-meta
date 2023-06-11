@@ -5,12 +5,14 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
 import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from '@mui/material/Backdrop';
+import Card from '@mui/material/Card';
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import './login.scss'
+import { Box, Stack } from "@mui/material";
 
 export default function Login() {
     const [fetching, setFetching] = useState(false);
@@ -40,61 +42,84 @@ export default function Login() {
     }
 
     return (
-        <form
-            className="loginForm">
+        <>
+            <section className="loginPage">
+                <Card sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    padding: '35px'
+                }}>
+                    <Typography variant="h6" display="block" >
+                        Sign In
+                    </Typography>
+                    <Stack
+                        spacing={1}
+                        direction='column'
+                        justifyContent="center"
+                        alignItems='center'>
 
-            <article className="formRow">
-                <Typography variant="overline" display="block" >
-                    E-Mail
-                </Typography>
-                <TextField
-                    id="outlined-basic"
-                    name="email"
-                    placeholder="john@doe.com"
-                    variant="outlined"
-                    size="small"
-                    value={data.email}
-                    onChange={e => setData({ ...data, email: e.target.value })} />
-
-            </article>
-
-            <article className="formRow">
-                <Typography variant="overline" display="block" >
-                    Password
-                </Typography>
-                <TextField
-                    id="outlined-basic"
-                    name="password"
-
-                    placeholder="••••••••"
-                    variant="outlined"
-                    size="small"
-                    value={data.password}
-                    onChange={e => setData({ ...data, password: e.target.value })} />
-            </article>
-
-            <Button
-                variant="outlined"
-                size="medium"
-                onClick={e => loginUser(e)}
-            >
-                Sign in
-            </Button>
+                        <Box>
+                            <Typography variant="overline" display="block" >
+                                E-Mail
+                            </Typography>
+                            <TextField
+                                id="outlined-basic"
+                                name="email"
+                                placeholder="john@doe.com"
+                                variant="outlined"
+                                size="small"
+                                value={data.email}
+                                onChange={e => setData({ ...data, email: e.target.value })} />
+                        </Box>
 
 
-            <Typography variant="caption" display="block" gutterBottom>
-                Not registered yet?
-                <Link href='/register'> Sign up</Link>
-            </Typography>
+
+                        <Box>
+                            <Typography variant="overline" display="block" >
+                                Password
+                            </Typography>
+                            <TextField
+                                id="outlined-basic"
+                                name="password"
+
+                                placeholder="••••••••"
+                                variant="outlined"
+                                size="small"
+                                value={data.password}
+                                onChange={e => setData({ ...data, password: e.target.value })} />
+                        </Box>
 
 
-            <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={fetching}
+                        <LoadingButton
+                            variant="outlined"
+                            size="small"
+                            loading={fetching}
+                            onClick={() => loginUser()}
+                            sx={{
+                                width: '50%',
+                                marginInline: 'auto'
+                            }}>
+                            Sign In
+                        </LoadingButton>
 
-            >
-                <CircularProgress color={color} />
-            </Backdrop>
-        </form >
+                        <Typography
+                            sx={{ textAlign: 'center' }}
+                            variant="caption"
+                            display="block"
+                            gutterBottom>
+                            Not registered yet?
+                            <Link
+                                style={{
+                                    '&:hover': {
+                                        textDecoration: 'underline'
+                                    }
+                                }}
+                                href='/register'> Sign Up</Link>
+                        </Typography>
+                    </Stack>
+                </Card>
+            </section>
+        </>
     )
 }

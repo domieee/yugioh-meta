@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import { useRef, useLayoutEffect } from "react";
 
 import * as React from "react";
+import useStore from "../components/store";
 import { useRouter } from "next/navigation";
 import './navigation.scss';
 
@@ -79,6 +80,10 @@ function Navigation({ props }) {
         }
     ];
 
+    const username = useStore((state) => state.username)
+    console.log(username, 'yeeeeey a username')
+
+
     useEffect(() => {
 
         const revealUserInformations = async () => {
@@ -104,11 +109,7 @@ function Navigation({ props }) {
                         })
                     })
                     const json = await response.json()
-                    setUser({
-                        username: json.username,
-                        id: json.id,
-                        role: json.role
-                    })
+
                     setLoading(false)
                     console.log(user)
                 } catch (err) {
@@ -125,11 +126,13 @@ function Navigation({ props }) {
     console.log(user);
 
     return (
-        <AppBar marginBottom={20} position="sticky" top={0}
+        <AppBar marginBottom={20} position="sticky"
             sx={{// Apply blur effect
                 backgroundColor: '#202020', // Set background color with opacity
                 boxShadow: 'none', // Remove box shadow
-                opacity: 0.97
+                opacity: 0.97,
+                height: '65px',
+                top: '0'
             }
             } >
             <Container maxWidth="xl">
@@ -227,8 +230,6 @@ function Navigation({ props }) {
                         <Skeleton variant="circular" width={40} height={40} /> :
                         <NavigationMenu user={user} />
                     }
-
-
                 </Toolbar>
             </Container>
         </ AppBar >

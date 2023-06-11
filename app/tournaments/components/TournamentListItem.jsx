@@ -17,7 +17,15 @@ export default function TournamentListItem({ data }) {
 
         <Grid item xs={6} md={6}  >
             <Link href={`/tournaments/${data._id}`}>
-                <Card backgroundColor='white' elevation={3} boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'   >
+                <Card sx={{
+                    backgroundColor: '#212121',
+                    boxShadow: '0',
+                    transition: 'all 0.1s linear',
+                    '&:hover': {
+                        backgroundColor: '#272727',
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                    }
+                }} elevation={1}   >
                     <CardActionArea onClick={() => console.log('first')}>
                         <CardContent >
                             <Box
