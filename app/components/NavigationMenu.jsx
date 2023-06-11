@@ -14,7 +14,7 @@ import { signOut } from "next-auth/react"
 import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
 
-export default function NavigationMenu({ user }) {
+export default function NavigationMenu({ role, username }) {
     const router = useRouter()
 
     const handleLoginClick = () => {
@@ -120,7 +120,7 @@ export default function NavigationMenu({ user }) {
 
 
     const checkForUserRole = () => {
-        if (user.role === 'user') {
+        if (role === 'user') {
             return (
                 userMenuOptions.map((menuOption) => (
                     <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
@@ -128,7 +128,7 @@ export default function NavigationMenu({ user }) {
                     </MenuItem>
                 ))
             )
-        } else if (user.role === 'pro') {
+        } else if (role === 'pro') {
             return (
                 proMenuOptions.map((menuOption) => (
                     <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
@@ -136,7 +136,7 @@ export default function NavigationMenu({ user }) {
                     </MenuItem>
                 ))
             )
-        } else if (user.role === 'moderator') {
+        } else if (role === 'moderator') {
             return (
                 moderatorMenuOptions.map((menuOption) => (
                     <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
@@ -144,7 +144,7 @@ export default function NavigationMenu({ user }) {
                     </MenuItem>
                 ))
             )
-        } else if (user.role === 'administrator') {
+        } else if (role === 'administrator') {
             return (
                 administratorMenuOptions.map((menuOption) => (
                     <MenuItem key={menuOption.title} onClick={menuOption.clickHandler}>
@@ -156,7 +156,7 @@ export default function NavigationMenu({ user }) {
     }
 
     return (
-        user.id === null ?
+        role && role === undefined ?
             <IconButton
                 onClick={handleLoginClick}
                 aria-label="add an alarm" >
@@ -165,7 +165,7 @@ export default function NavigationMenu({ user }) {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt={`${user.username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
+                        <Avatar alt={`${username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
                     </IconButton>
                 </Tooltip>
                 <Menu

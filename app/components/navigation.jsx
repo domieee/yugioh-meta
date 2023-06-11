@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import { useRef, useLayoutEffect } from "react";
 
 import * as React from "react";
-import useStore from "../components/store";
+import { useStore } from "./store";
 import { useRouter } from "next/navigation";
 import './navigation.scss';
 
@@ -33,7 +33,6 @@ function Navigation({ props }) {
 
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
-    const [user, setUser] = useState({ username: undefined, id: undefined, role: undefined })
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -80,50 +79,12 @@ function Navigation({ props }) {
         }
     ];
 
-    const username = useStore((state) => state.username)
-    console.log(username, 'yeeeeey a username')
 
+    let username = useStore((state) => state.username)
+    let id = useStore((state) => state.id)
+    let role = useStore((state) => state.role)
 
-    useEffect(() => {
-
-        const revealUserInformations = async () => {
-            // To receive the current user and role we check if a token exists
-            const hasToken = () => {
-                const token = Cookies.get('token');
-                return token !== undefined;
-            }
-
-            if (hasToken()) {
-                const currentToken = Cookies.get('token');
-                try {
-                    // In that case we send the token the server and receive the requested information
-                    // With that information we build the navigation with the matching menu options dedicated to the user role
-                    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}reveal-user-informations`, {
-                        method: 'POST',
-                        headers: {
-                            "Access-Control-Allow-Origin": "*",
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            token: currentToken
-                        })
-                    })
-                    const json = await response.json()
-
-                    setLoading(false)
-                    console.log(user)
-                } catch (err) {
-                    console.log(err)
-                }
-            } else {
-                // In case that currently isn't a cookie set, we set the parameters to 'null' which will cause the page to show a login button 
-                setUser({ id: null, role: null })
-            }
-        }
-        revealUserInformations()
-    }, []);
-
-    console.log(user);
+    console.log(username, id, role, ' successfully received')
 
     return (
         <AppBar marginBottom={20} position="sticky"
@@ -226,10 +187,8 @@ function Navigation({ props }) {
                         ))}
                     </Box>
 
-                    {user.id === undefined ?
-                        <Skeleton variant="circular" width={40} height={40} /> :
-                        <NavigationMenu user={user} />
-                    }
+                    <NavigationMenu role={role} username={username} />
+
                 </Toolbar>
             </Container>
         </ AppBar >

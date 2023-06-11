@@ -16,9 +16,10 @@ import { signIn } from 'next-auth/react'
 import Link from "next/link"
 import './register.scss'
 import Cookies from 'js-cookie';
-import useStore from "../../components/store.js";
+import { useStore } from "../../components/store";
 
 import { Preview } from "@mui/icons-material";
+import Controller from "@/app/components/Controls";
 
 
 export default function Register() {
@@ -40,7 +41,8 @@ export default function Register() {
 
 
     const setUserName = useStore((state) => state.setUserName)
-
+    const setUserID = useStore((state) => state.setUserID)
+    const setUserRole = useStore((state) => state.setUserRole)
 
     const handleClick = () => {
         setAlertOpen(true);
@@ -96,16 +98,16 @@ export default function Register() {
             })
 
             if (userInformation.status === 200) {
+                const json = await userInformation.json()
+                await setUserName(json.username)
+                await setUserID(json.id)
+                await setUserRole(json.role)
                 setTimeout(() => {
                     setFetching(false)
                     setSuccessOpen(true)
                     router.push('/')
                 }, 500)
-                const json = await userInformation.json()
-                console.log(json)
-                await setUserName(json.username)
 
-                console.log(username, 'usernameeeee')
             } else if (userInformation.status === 400) {
                 const json = await response.json()
                 console.log(json)

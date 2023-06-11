@@ -1,7 +1,7 @@
 
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Navigation from './components/navigation.jsx'
+import Navigation from './components/Navigation.jsx'
 import Footer from './components/Footer'
 import { NextAuthProvider } from './providers/nextAuthProvider'
 

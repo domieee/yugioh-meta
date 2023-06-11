@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from "zustand/middleware"
 
-const useStore = create(
+export const useStore = create(
     persist(
         (set) => ({
             username: undefined,
@@ -15,4 +15,4 @@ const useStore = create(
     )
 );
 
-export default useStore;
+
