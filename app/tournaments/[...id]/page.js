@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { useStore } from '../../components/store'
 
 import { GiTrophy, GiTabletopPlayers, GiCalendar } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
@@ -20,6 +21,8 @@ export default function TournamentOverview({ params }) {
     const [tournament, setTournament] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
+
+    let role = useStore((state) => state.role)
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {
@@ -65,6 +68,8 @@ export default function TournamentOverview({ params }) {
         }
         fetchTournamentBreakdown()
     }, [])
+
+    console.log(role)
 
     return (
         <Box

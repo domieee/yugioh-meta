@@ -4,15 +4,16 @@ import { persist } from "zustand/middleware"
 export const useStore = create(
     persist(
         (set) => ({
-            username: undefined,
-            id: undefined,
-            role: undefined,
+            username: null,
+            id: null,
+            role: null,
             setUserName: (username) => set((state) => ({ username: username })),
             setUserID: (id) => set((state) => ({ id: id })),
-            setUserRole: (role) => set((state) => ({ role: role }))
+            setUserRole: (role) => set((state) => ({ role: role })),
+            setUsernameNull: () => set((state) => ({ username: false })),
+            setIDNull: () => set((state) => ({ id: false })),
+            setRoleNull: () => set((state) => ({ role: false }))
         }),
         { name: 'asdasdasdasdasdasds' }
     )
 );
-
-

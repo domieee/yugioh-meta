@@ -79,10 +79,53 @@ function Navigation({ props }) {
         }
     ];
 
-
     let username = useStore((state) => state.username)
     let id = useStore((state) => state.id)
     let role = useStore((state) => state.role)
+
+    const setUserName = useStore((state) => state.setUserName)
+    const setUserID = useStore((state) => state.setUserID)
+    const setUserRole = useStore((state) => state.setUserRole)
+
+    const setUsernameNull = useStore((state) => state.setUsernameNull)
+    const setIDNull = useStore((state) => state.setIDNull)
+    const setRoleNull = useStore((state) => state.setRoleNull)
+
+    if (Cookies.get('token')) {
+        const receiveUserInformations = async () => {
+            const currentToken = Cookies.get('token');
+
+            const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
+                method: 'POST',
+                headers: {
+                    "Access-Control-Allow-Origin": '*',
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify({
+                    token: currentToken
+                })
+            })
+
+            if (userInformation.status === 200) {
+                const json = await userInformation.json()
+                await setUserName(json.username || json.nameOrMail)
+                await setUserID(json.id)
+                await setUserRole(json.role)
+
+            } else if (userInformation.status === 400) {
+                const json = await response.json()
+                console.log(json)
+            }
+        }
+        receiveUserInformations()
+    } else {
+        setUsernameNull()
+        setIDNull()
+        setRoleNull()
+    }
+
+
+
 
     console.log(username, id, role, ' successfully received')
 

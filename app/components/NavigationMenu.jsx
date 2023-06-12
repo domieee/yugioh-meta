@@ -13,8 +13,14 @@ import MenuItem from '@mui/material/MenuItem';
 import { signOut } from "next-auth/react"
 import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
+import { useStore } from './store';
+import Cookies from 'js-cookie';
 
 export default function NavigationMenu({ role, username }) {
+
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
     const router = useRouter()
 
     const handleLoginClick = () => {
@@ -36,6 +42,10 @@ export default function NavigationMenu({ role, username }) {
         setAnchorElUser(null);
     };
 
+    const setUsernameNull = useStore((state) => state.setUsernameNull)
+    const setIDNull = useStore((state) => state.setIDNull)
+    const setRoleNull = useStore((state) => state.setRoleNull)
+
     const userMenuOptions = [
         {
             title: 'Profile', clickHandler: () => {
@@ -44,8 +54,12 @@ export default function NavigationMenu({ role, username }) {
             }
         },
         {
-            title: 'Sign Out', clickHandler: () => {
-                // ...
+            title: 'Sign Out', clickHandler: async () => {
+                Cookies.remove('token');
+                await setUsernameNull()
+                await setIDNull()
+                await setRoleNull()
+                router.push('/login')
                 handleCloseNavMenu()
             }
         }
@@ -53,13 +67,17 @@ export default function NavigationMenu({ role, username }) {
     const proMenuOptions = [
         {
             title: 'Profile', clickHandler: () => {
-                // ...
+                router.push('/profile')
                 handleCloseNavMenu()
             }
         },
         {
-            title: 'Sign Out', clickHandler: () => {
-                // ...
+            title: 'Sign Out', clickHandler: async () => {
+                Cookies.remove('token');
+                await setUsernameNull()
+                await setIDNull()
+                await setRoleNull()
+                router.push('/login')
                 handleCloseNavMenu()
             }
         }
@@ -67,8 +85,8 @@ export default function NavigationMenu({ role, username }) {
 
     const moderatorMenuOptions = [
         {
-            title: 'Profile', clickHandler: () => {
-                // ...
+            title: 'Profile', clickHandler: async () => {
+                router.push('/profile')
                 handleCloseNavMenu()
             }
         },
@@ -79,8 +97,12 @@ export default function NavigationMenu({ role, username }) {
             }
         },
         {
-            title: 'Sign Out', clickHandler: () => {
-                // ...
+            title: 'Sign Out', clickHandler: async () => {
+                Cookies.remove('token');
+                await setUsernameNull()
+                await setIDNull()
+                await setRoleNull()
+                router.push('/login')
                 handleCloseNavMenu()
             }
         }
@@ -89,7 +111,7 @@ export default function NavigationMenu({ role, username }) {
     const administratorMenuOptions = [
         {
             title: 'Profile', clickHandler: () => {
-                // ...
+                router.push('/profile')
                 handleCloseNavMenu()
             }
         },
@@ -106,18 +128,16 @@ export default function NavigationMenu({ role, username }) {
             }
         },
         {
-            title: 'Sign Out', clickHandler: () => {
-                // ...
+            title: 'Sign Out', clickHandler: async () => {
+                Cookies.remove('token');
+                await setUsernameNull()
+                await setIDNull()
+                await setRoleNull()
+                router.push('/login')
                 handleCloseNavMenu()
             }
         }
     ]
-
-
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-
 
     const checkForUserRole = () => {
         if (role === 'user') {
@@ -156,7 +176,7 @@ export default function NavigationMenu({ role, username }) {
     }
 
     return (
-        role && role === undefined ?
+        role === false ?
             <IconButton
                 onClick={handleLoginClick}
                 aria-label="add an alarm" >
