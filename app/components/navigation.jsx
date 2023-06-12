@@ -31,7 +31,7 @@ function Navigation({ props }) {
 
     console.log(props)
 
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [progress, setProgress] = useState(0);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -112,7 +112,8 @@ function Navigation({ props }) {
                 await setUserID(json.id)
                 await setUserRole(json.role)
 
-            } else if (userInformation.status === 400) {
+
+            } else if (userInformation.status === 400 || !userInformation.ok) {
                 const json = await response.json()
                 console.log(json)
             }
@@ -124,7 +125,9 @@ function Navigation({ props }) {
         setRoleNull()
     }
 
-
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
 
 
     console.log(username, id, role, ' successfully received')
@@ -229,8 +232,8 @@ function Navigation({ props }) {
                             </Link>
                         ))}
                     </Box>
+                    {isLoading ? null : <NavigationMenu role={role} username={username} />}
 
-                    <NavigationMenu role={role} username={username} />
 
                 </Toolbar>
             </Container>
