@@ -60,7 +60,7 @@ export default function NavigationMenu({ role, username }) {
                 await setIDNull()
                 await setRoleNull()
                 router.push('/login')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         }
     ]
@@ -68,7 +68,7 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Profile', clickHandler: () => {
                 router.push('/profile')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {
@@ -78,7 +78,7 @@ export default function NavigationMenu({ role, username }) {
                 await setIDNull()
                 await setRoleNull()
                 router.push('/login')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         }
     ]
@@ -103,7 +103,7 @@ export default function NavigationMenu({ role, username }) {
                 await setIDNull()
                 await setRoleNull()
                 router.push('/login')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         }
     ]
@@ -134,7 +134,7 @@ export default function NavigationMenu({ role, username }) {
                 await setIDNull()
                 await setRoleNull()
                 router.push('/login')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         }
     ]

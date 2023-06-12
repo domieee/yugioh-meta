@@ -232,7 +232,7 @@ function Navigation({ props }) {
                             </Link>
                         ))}
                     </Box>
-                    {isLoading ? null : <NavigationMenu role={role} username={username} />}
+                    {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}
 
 
                 </Toolbar>

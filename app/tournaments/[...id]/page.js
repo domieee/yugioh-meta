@@ -9,12 +9,15 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { useStore } from '../../components/store'
 
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+
 import { GiTrophy, GiTabletopPlayers, GiCalendar } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons"
 
 import PieChart from '@/app/statistics/components/PieChart';
 import TableMUI from '@/app/statistics/components/TabelMUI';
+import EditButton from '../components/EditButton';
 
 export default function TournamentOverview({ params }) {
 
@@ -132,6 +135,11 @@ export default function TournamentOverview({ params }) {
                         }}>
                         Tournament Overview
                     </Typography>
+                    {isLoading ?
+                        null :
+                        <EditButton />
+                    }
+
                 </Box>
                 <Box sx={{
                     paddingLeft: {
