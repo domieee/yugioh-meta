@@ -92,7 +92,7 @@ export default function NavigationMenu({ role, username }) {
         },
         {
             title: 'Interface', clickHandler: () => {
-                // ...
+                router.push('/interface')
                 handleCloseNavMenu()
             }
         },
@@ -117,7 +117,7 @@ export default function NavigationMenu({ role, username }) {
         },
         {
             title: 'Interface', clickHandler: () => {
-                // ...
+                router.push('/interface')
                 handleCloseNavMenu()
             }
         },

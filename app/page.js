@@ -7,13 +7,8 @@ import Redirect from './components/Redirect'
 
 export default async function Home() {
 
-  const session = await getServerSession(authOptions)
-
-
-
   return (
     <>
-
       <div style={{ height: '100vh', position: 'relative', margin: '0' }}>
         <div style={{ position: 'relative' }}>
           <h1>Unleash Your Dueling Potential with Yu-Gi-Oh Meta!</h1>
