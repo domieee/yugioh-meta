@@ -18,6 +18,10 @@ export default function Interface() {
     const [alignment, setAlignment] = useState('national');
 
     const handleChange = (event, newAlignment) => {
+        if (alignment === newAlignment) {
+            event.preventDefault()
+            return
+        }
         setAlignment(newAlignment);
     }
 
@@ -45,7 +49,7 @@ export default function Interface() {
                     xs: '0px', // phone
                     sm: '40px', // tablets
                     md: '40px', // small laptop
-                    xl: '40px'
+                    xl: '40px 100px'
                 }
             }}
         >
@@ -71,6 +75,7 @@ export default function Interface() {
                     }
                 }}
             >
+
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
@@ -79,9 +84,10 @@ export default function Interface() {
                         xs: 'center',
                         sm: 'center',
                         md: 'start',
-                        lg: 'space-between'
+                        lg: 'space-around'
                     }
                 }}>
+
                     <Typography
                         variant="h5"
                         sx={{
@@ -99,19 +105,44 @@ export default function Interface() {
                         }}>
                         Create a {alignment === 'national' ? 'national' : 'regional'} tournament
                     </Typography>
-
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
+                        marginInline='auto'
+                        sx={{ marginInline: 'auto' }}>
+                        <ToggleButton
+                            size='small'
+                            value="national">
+                            National
+                        </ToggleButton>
+                        <ToggleButton
+                            size='small'
+                            value="regional">
+                            Regional
+                        </ToggleButton>
+                    </ToggleButtonGroup>
                 </Box>
-                <ToggleButtonGroup
-                    color="primary"
-                    value={alignment}
-                    exclusive
-                    onChange={handleChange}
-                    aria-label="Platform"
-                    marginInline='auto'
-                >
-                    <ToggleButton size='small' value="national">National</ToggleButton>
-                    <ToggleButton size='small' value="regional">Regional</ToggleButton>
-                </ToggleButtonGroup>
+
+                <Typography
+                    variant="h6"
+                    sx={{
+                        justifyContent: {
+                            xs: 'center',
+                            sm: 'center',
+                            md: 'center',
+                            lg: 'center'
+                        },
+                        paddingInline: {
+                            xs: '0px',
+                            sm: '0px',
+                            md: '100px'
+                        }
+                    }}>
+                    Tournament Informations
+                </Typography>
 
                 {alignment === 'national' ? <NationalTournamentInterface /> : null}
             </Box>

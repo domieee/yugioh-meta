@@ -17,6 +17,7 @@ import Link from "next/link"
 import './register.scss'
 import Cookies from 'js-cookie';
 import { useStore } from "../../components/store";
+import { css } from '@emotion/react';
 
 import { Preview } from "@mui/icons-material";
 import Controller from "@/app/components/Controls";
@@ -24,11 +25,14 @@ import Controller from "@/app/components/Controls";
 
 export default function Register() {
     const [color, setColor] = useState('inherit')
+
+    const [successOpen, setSuccessOpen] = useState(false);
+
+    const [fetching, setFetching] = useState(false);
+
     const [errorMessage, setErrorMessage] = useState('');
     const [alertOpen, setAlertOpen] = useState(false);
-    const [successOpen, setSuccessOpen] = useState(false);
-    const [errorKey, setErrorKey] = useState(false);
-    const [fetching, setFetching] = useState(false);
+    const [errorKey, setErrorKey] = useState('');
 
     const router = useRouter()
 
@@ -61,6 +65,8 @@ export default function Register() {
         }
         setSuccessOpen(false);
     }
+
+    const hoverStyles = css`color: red`;
 
     const registerUser = async () => {
 
@@ -95,18 +101,18 @@ export default function Register() {
                 body: JSON.stringify({
                     token: currentToken
                 })
-            })
+            });
 
             if (userInformation.status === 200) {
                 const json = await userInformation.json()
                 await setUserName(json.username)
                 await setUserID(json.id)
                 await setUserRole(json.role)
+                setSuccessOpen(true)
                 setTimeout(() => {
                     setFetching(false)
-                    setSuccessOpen(true)
-                    router.push('/')
-                }, 500)
+                    router.push('/');
+                }, 1000)
 
             } else if (userInformation.status === 400) {
                 const json = await response.json()
@@ -114,14 +120,15 @@ export default function Register() {
             }
 
         } else if (response.status === 400) {
-            const json = await response.json()
-            console.log(json)
-
+            const error = await response.json()
+            console.log(error)
+            setFetching(false)
+            setErrorMessage(error.msg)
+            setErrorKey(error.key)
+            setAlertOpen(true)
             setTimeout(() => {
-                setFetching(false)
-                setErrorMessage(json.msg)
-                setAlertOpen(true)
-            }, 500)
+                setErrorKey('')
+            }, 5000)
 
             console.log(errorMessage)
         } else {
@@ -152,7 +159,12 @@ export default function Register() {
                     alignItems='center'>
 
                     <Box>
-                        <Typography variant="overline" display="block" >
+                        <Typography
+                            sx={errorKey === 'username' ?
+                                { color: 'red', transition: 'color 0.1s linear' } :
+                                { color: 'white', transition: 'color 0.1s linear' }}
+                            variant="overline"
+                            display="block" >
                             Username
                         </Typography>
                         <TextField
@@ -168,7 +180,12 @@ export default function Register() {
                     </Box>
 
                     <Box>
-                        <Typography variant="overline" display="block" >
+                        <Typography
+                            sx={errorKey === 'email' ?
+                                { color: 'red', transition: 'color 0.1s linear' } :
+                                { color: 'white', transition: 'color 0.1s linear' }}
+                            variant="overline"
+                            display="block" >
                             E-Mail
                         </Typography>
                         <TextField
@@ -227,7 +244,13 @@ export default function Register() {
                         display="block"
                         gutterBottom>
                         Already registered?
-                        <Link href='/login'> Sign in</Link>
+                        <Link
+                            sx={{
+                                '&:hover': {
+                                    color: 'red'
+                                }
+                            }}
+                            href='/login'> Sign In</Link>
                     </Typography>
                 </Stack>
             </Card>

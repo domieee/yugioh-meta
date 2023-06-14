@@ -8,9 +8,12 @@ import Backdrop from '@mui/material/Backdrop';
 import Card from '@mui/material/Card';
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Cookies from 'js-cookie';
+import { css } from '@emotion/react';
 
 import './login.scss'
 import { Box, Stack } from "@mui/material";
@@ -18,8 +21,10 @@ import { useStore } from "../../components/store";
 
 export default function Login() {
     const [fetching, setFetching] = useState(false);
-    const [color, setColor] = useState('inherit')
     const [successOpen, setSuccessOpen] = useState(false);
+    const [alertOpen, setAlertOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [errorKey, setErrorKey] = useState('');
 
     const [data, setData] = useState({
         mailOrName: '',
@@ -33,6 +38,18 @@ export default function Login() {
 
     const router = useRouter()
     console.log(router)
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setAlertOpen(false);
+    }
+
+    const errorStyles = {
+        fieldset: {
+            outlineColor: errorKey != '' ? 'red' : undefined,
+        },
+    };
 
     const loginUser = async (e) => {
         setFetching(true)
@@ -69,9 +86,9 @@ export default function Login() {
                 await setUserName(json.username)
                 await setUserID(json.id)
                 await setUserRole(json.role)
+                setSuccessOpen(true)
                 setTimeout(() => {
                     setFetching(false)
-                    setSuccessOpen(true)
                     router.push('/')
                 }, 500)
 
@@ -81,9 +98,16 @@ export default function Login() {
             }
 
         } else if (response.status === 400) {
-            const json = await response.json()
+            const error = await response.json()
+            console.log(error)
             setFetching(false)
-            console.log(json)
+            setAlertOpen(true)
+            setErrorMessage(error.msg)
+            setErrorKey(error.key)
+            setTimeout(() => {
+                setErrorKey('')
+            }, 5000)
+
         } else {
             const error = await response.json()
             console.log(error)
@@ -91,83 +115,110 @@ export default function Login() {
     }
 
     return (
-        <>
-            <section className="loginPage">
-                <Card sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    padding: '35px'
-                }}>
-                    <Typography variant="h6" display="block" >
-                        Sign In
-                    </Typography>
-                    <Stack
-                        spacing={1}
-                        direction='column'
-                        justifyContent="center"
-                        alignItems='center'>
 
-                        <Box>
-                            <Typography variant="overline" display="block" >
-                                E-Mail Or Username
-                            </Typography>
-                            <TextField
-                                id="outlined-basic"
-                                name="email"
-                                placeholder="john@doe.com"
-                                variant="outlined"
-                                size="small"
-                                value={data.email}
-                                onChange={e => setData({ ...data, mailOrName: e.target.value })} />
-                        </Box>
+        <section className="loginPage">
+            <Card sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                padding: '35px'
+            }}>
+                <Typography variant="h6" display="block" >
+                    Sign In
+                </Typography>
+                <Stack
+                    spacing={1}
+                    direction='column'
+                    justifyContent="center"
+                    alignItems='center'>
 
-
-
-                        <Box>
-                            <Typography variant="overline" display="block" >
-                                Password
-                            </Typography>
-                            <TextField
-                                id="outlined-basic"
-                                name="password"
-                                placeholder="••••••••"
-                                variant="outlined"
-                                size="small"
-                                value={data.password}
-                                onChange={e => setData({ ...data, password: e.target.value })} />
-                        </Box>
-
-
-                        <LoadingButton
+                    <Box>
+                        <Typography
+                            sx={errorKey === 'email' || errorKey === 'mailOrPassword' ?
+                                { color: 'red', transition: 'color 0.1s linear' } :
+                                { color: 'white', transition: 'color 0.1s linear' }}
+                            variant="overline"
+                            display="block" >
+                            E-Mail Or Username
+                        </Typography>
+                        <TextField
+                            sx={{ errorStyles }}
+                            id="outlined-basic"
+                            name="email"
+                            placeholder="john@doe.com"
                             variant="outlined"
                             size="small"
-                            loading={fetching}
-                            onClick={() => loginUser()}
-                            sx={{
-                                width: '50%',
-                                marginInline: 'auto'
-                            }}>
-                            Sign In
-                        </LoadingButton>
+                            value={data.email}
+                            onChange={e => setData({ ...data, mailOrName: e.target.value })} />
+                    </Box>
 
+                    <Box>
                         <Typography
-                            sx={{ textAlign: 'center' }}
-                            variant="caption"
-                            display="block"
-                            gutterBottom>
-                            Not registered yet?
-                            <Link
-                                style={{
-                                    '&:hover': {
-                                        textDecoration: 'underline'
-                                    }
-                                }}
-                                href='/register'> Sign Up</Link>
+                            sx={errorKey === 'password' || errorKey === 'mailOrPassword' ?
+                                { color: 'red', transition: 'color 0.1s linear' } :
+                                { color: 'white', transition: 'color 0.1s linear' }}
+                            variant="overline"
+                            display="block" >
+                            Password
                         </Typography>
-                    </Stack>
-                </Card>
-            </section>
-        </>
+                        <TextField
+                            id="outlined-basic"
+                            name="password"
+                            placeholder="••••••••"
+                            variant="outlined"
+                            size="small"
+                            value={data.password}
+                            onChange={e => setData({ ...data, password: e.target.value })} />
+                    </Box>
+
+                    <LoadingButton
+                        variant="outlined"
+                        size="small"
+                        loading={fetching}
+                        onClick={() => loginUser()}
+                        sx={{
+                            width: '50%',
+                            marginInline: 'auto'
+                        }}>
+                        Sign In
+                    </LoadingButton>
+
+                    <Typography
+                        sx={{ textAlign: 'center' }}
+                        variant="caption"
+                        display="block"
+                        gutterBottom>
+                        Not registered yet?
+                        <Link
+                            style={{
+                                '&:hover': {
+                                    textDecoration: 'underline',
+                                    color: 'red'
+                                }
+                            }}
+                            href='/register'> Sign Up</Link>
+                    </Typography>
+                </Stack>
+            </Card>
+
+            {/* Snackbar to handle success feedback during the login process */}
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={alertOpen}
+                autoHideDuration={5000}
+                onClose={handleAlertClose}>
+                <Alert severity="error" >{errorMessage && errorMessage}</Alert>
+            </Snackbar>
+
+            {/* Snackbar to handle error feedback during the login process */}
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={alertOpen}
+                autoHideDuration={5000}
+                onClose={handleAlertClose}>
+                <Alert severity="error" >{errorMessage && errorMessage}</Alert>
+            </Snackbar>
+
+        </section >
     )
 }
