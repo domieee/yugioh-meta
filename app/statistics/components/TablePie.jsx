@@ -86,7 +86,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
-                    alignItems: 'start',
+                    alignItems: 'center',
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',

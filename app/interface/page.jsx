@@ -49,7 +49,7 @@ export default function Interface() {
                     xs: '0px', // phone
                     sm: '40px', // tablets
                     md: '40px', // small laptop
-                    xl: '40px 100px'
+                    xl: '40px'
                 }
             }}
         >
@@ -72,6 +72,12 @@ export default function Interface() {
                         sm: '380px',
                         md: '380px',
                         lg: '1280px'
+                    },
+                    paddingInline: {
+                        xs: '0px',
+                        sm: '0px',
+                        md: '100px',
+                        lg: '100px'
                     }
                 }}
             >
@@ -79,12 +85,12 @@ export default function Interface() {
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
-                    alignItems: 'start',
+                    alignItems: 'center',
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',
-                        md: 'start',
-                        lg: 'space-around'
+                        md: 'space-between',
+                        lg: 'space-between'
                     }
                 }}>
 
@@ -96,11 +102,6 @@ export default function Interface() {
                                 sm: 'center',
                                 md: 'center',
                                 lg: 'center'
-                            },
-                            paddingInline: {
-                                xs: '0px',
-                                sm: '0px',
-                                md: '100px'
                             }
                         }}>
                         Create a {alignment === 'national' ? 'national' : 'regional'} tournament
@@ -110,9 +111,7 @@ export default function Interface() {
                         value={alignment}
                         exclusive
                         onChange={handleChange}
-                        aria-label="Platform"
-                        marginInline='auto'
-                        sx={{ marginInline: 'auto' }}>
+                        aria-label="Platform">
                         <ToggleButton
                             size='small'
                             value="national">
@@ -134,11 +133,6 @@ export default function Interface() {
                             sm: 'center',
                             md: 'center',
                             lg: 'center'
-                        },
-                        paddingInline: {
-                            xs: '0px',
-                            sm: '0px',
-                            md: '100px'
                         }
                     }}>
                     Tournament Informations
