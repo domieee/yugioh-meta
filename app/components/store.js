@@ -17,3 +17,32 @@ export const useStore = create(
         { name: 'asdasdasdasdasdasds' }
     )
 );
+
+export const useTournamentStore = create(
+    (set) => ({
+        firstPlace: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        secondPlace: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        top4FirstItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        top4SecondItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        }
+    })
+)

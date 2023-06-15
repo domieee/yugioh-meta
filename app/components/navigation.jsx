@@ -13,6 +13,8 @@ import { useStore } from "./store";
 import { useRouter } from "next/navigation";
 import './navigation.scss';
 
+
+// @mui/material
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -115,7 +117,8 @@ function Navigation({ props }) {
 
             } else if (userInformation.status === 400 || !userInformation.ok) {
                 const json = await response.json()
-                console.log(json)
+                Cookies.remove('token');
+                router.push('/login')
             }
         }
         receiveUserInformations()

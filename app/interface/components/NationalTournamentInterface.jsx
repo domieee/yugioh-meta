@@ -11,7 +11,12 @@ import {
     Stack
 } from '@mui/material'
 
+import { GiTrophy, GiTabletopPlayers } from "react-icons/gi";
+import { IconContext } from "react-icons"
+
 import countries from '../utils/data.json'
+
+import TournamentTree from './TournamentTree';
 
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -172,6 +177,7 @@ export default function NationalTournamentInterface() {
 
                 </Stack>
             </Box>
+            <TournamentTree />
         </>
     )
 }

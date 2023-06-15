@@ -9,7 +9,8 @@ import {
 } from '@mui/material'
 
 import {
-    useState
+    useState,
+    useEffect
 } from 'react'
 import NationalTournamentInterface from './components/NationalTournamentInterface';
 
@@ -24,6 +25,21 @@ export default function Interface() {
         }
         setAlignment(newAlignment);
     }
+
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            event.returnValue = ''; // This is required for Chrome compatibility
+
+            return ''; // This is required for Firefox compatibility
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     return (
         <Box

@@ -133,7 +133,7 @@ export default function TablePie({ winnerJson, topCutJson, item }) {
                     p={2}
                     borderRadius={1}
                     minHeight={430}
-
+                    width='100%'
                     sx={{
                         flexDirection: {
                             xs: 'column',
