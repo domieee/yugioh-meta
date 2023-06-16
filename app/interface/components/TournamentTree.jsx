@@ -14,6 +14,8 @@ import {
     Button
 } from '@mui/material'
 
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import Cookies from 'js-cookie';
 
 import { useTournamentStore } from '../tournamentStore';
@@ -23,7 +25,7 @@ import { useRouter } from 'next/navigation';
 
 
 export default function TournamentTree() {
-
+    const [isLoading, setIsLoading] = useState(false)
     const [top16, setTop16] = useState(false)
 
     const router = useRouter()
@@ -46,8 +48,9 @@ export default function TournamentTree() {
         { key: 'top16EighthItem', title: 'Top 16' },
     ];
 
-    const postTournament = async () => {
 
+    const postTournament = async () => {
+        setIsLoading(true);
         const tournamentData = {
             tournament: {
                 "tournamentType": tournamentStore.tournamentType,
@@ -183,7 +186,11 @@ export default function TournamentTree() {
 
         if (response.ok) {
             const tournamentID = await response.json()
+            setIsLoading(false)
             router.push(`/tournaments/${tournamentID}`)
+        } else if (!response.ok) {
+            const json = await response.json()
+            console.log(json)
         }
     }
 
@@ -259,11 +266,14 @@ export default function TournamentTree() {
                         null
                     }
                 </Stack>
-                <Button
-                    onClick={() => postTournament()}
-                    variant='outlined'>
-                    Create Tournament
-                </Button>
+                <LoadingButton
+                    size="small"
+                    onClick={postTournament}
+                    loading={isLoading}
+                    variant="outlined"
+                >
+                    <span>Create Tournament</span>
+                </LoadingButton>
             </Box >
         </>
     )
