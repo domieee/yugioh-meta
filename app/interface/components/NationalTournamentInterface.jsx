@@ -69,7 +69,9 @@ export default function NationalTournamentInterface() {
             <Box
                 width='100%'
                 display='flex'
-                justifyContent='center'>
+                justifyContent='center'
+                alignItems='center'
+                marginBlock='25px'>
                 <Stack
                     width='100%'
                     direction="row"
@@ -80,7 +82,6 @@ export default function NationalTournamentInterface() {
                         width: '220px',
                         display: 'flex',
                         flexDirection: 'column',
-                        marginTop: 'auto'
                     }}>
                         <Typography variant="overline" display="block" >
                             Location
@@ -120,15 +121,12 @@ export default function NationalTournamentInterface() {
                                 />
                             )}
                         />
-                        <div>
-                            {`${tournamentStore.location} `}
-                        </div>
                     </Box>
 
                     <Box sx={{
+                        marginBlock: '25px',
                         display: 'flex',
                         flexDirection: 'column',
-                        marginTop: 'auto'
                     }}>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -151,24 +149,19 @@ export default function NationalTournamentInterface() {
                                         }}
                                     />
                                 </Box>
-
                             </DemoContainer>
                         </LocalizationProvider >
-                        <div>
-                            {`${tournamentStore.date} `}
-                        </div>
                     </Box>
 
                     <Box sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        marginTop: 'auto'
                     }}>
                         <Typography variant="overline" display="block" >
                             Total Participants
                         </Typography>
                         <TextField
-                            value={tournamentStore.totalParticipants}
+                            value={tournamentStore.total}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             id="outlined-number"
@@ -181,9 +174,6 @@ export default function NationalTournamentInterface() {
                                 pattern: '[0-9]*',
                                 min: 1,
                             }} />
-                        <div>
-                            {`${tournamentStore.totalParticipants} `}
-                        </div>
                     </Box>
 
 

@@ -186,8 +186,10 @@ export default function TournamentTree() {
 
         if (response.ok) {
             const tournamentID = await response.json()
-            setIsLoading(false)
-            router.push(`/tournaments/${tournamentID}`)
+            setTimeout(() => {
+                setIsLoading(false)
+                router.push(`/tournaments/${tournamentID}`)
+            }, 2000)
         } else if (!response.ok) {
             const json = await response.json()
             console.log(json)
@@ -202,6 +204,9 @@ export default function TournamentTree() {
                     Tournament Tree
                 </Typography>
                 <Stack
+                    sx={{
+                        marginBlock: '25px'
+                    }}
                     alignItems='center'
 
                     spacing={2}>
@@ -266,14 +271,22 @@ export default function TournamentTree() {
                         null
                     }
                 </Stack>
-                <LoadingButton
-                    size="small"
-                    onClick={postTournament}
-                    loading={isLoading}
-                    variant="outlined"
-                >
-                    <span>Create Tournament</span>
-                </LoadingButton>
+                <Box
+                    sx={{
+                        marginBottom: '25px',
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}>
+                    <LoadingButton
+                        marginInline='auto'
+                        onClick={postTournament}
+                        loading={isLoading}
+                        variant="outlined"
+                    >
+                        <span>Create Tournament</span>
+                    </LoadingButton>
+                </Box>
             </Box >
         </>
     )
