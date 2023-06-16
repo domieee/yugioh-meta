@@ -161,7 +161,7 @@ export default function NationalTournamentInterface() {
                             Total Participants
                         </Typography>
                         <TextField
-                            value={tournamentStore.total}
+                            value={tournamentStore.totalParticipants}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             id="outlined-number"
