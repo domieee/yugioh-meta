@@ -145,6 +145,7 @@ export default function TournamentTreeItem({ item }) {
                             alignItems='center'
                             direction='row'>
                             <Box
+                                width='100%'
                                 sx={{
                                     display: "flex",
                                     alignItems: "center"
@@ -167,8 +168,17 @@ export default function TournamentTreeItem({ item }) {
                                         No deck note provided
                                     </Typography> :
                                     <Typography
+                                        marginLeft={0.75}
+                                        sx={{
+                                            color: 'rgba(255, 255, 255, 1)',
+                                            maxWidth: "100%",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            flex: '1'
+                                        }}
                                         variant='body2'>
-                                        {tournamentStore[item.key]?.playerName}
+                                        {tournamentStore[item.key]?.deckNotes}
                                     </Typography>
                                 }
                             </Box>
@@ -193,6 +203,7 @@ export default function TournamentTreeItem({ item }) {
                         Player Name
                     </Typography>
                     <TextField
+                        placeholder="John Doe"
                         value={tournamentStore[open.key]?.playerName || ''}
                         size='small'
                         onChange={(e) =>
@@ -205,6 +216,7 @@ export default function TournamentTreeItem({ item }) {
                         Played Deck
                     </Typography>
                     <TextField
+                        placeholder="Kashtir"
                         value={tournamentStore[open.key]?.playedDeck || ''}
                         size='small'
                         display="block"
@@ -219,6 +231,7 @@ export default function TournamentTreeItem({ item }) {
                         Deck Notes
                     </Typography>
                     <TextField
+                        placeholder="Evil Twin"
                         value={tournamentStore[open.key]?.deckNotes || ''}
                         size='small'
                         onChange={(e) =>
@@ -232,6 +245,7 @@ export default function TournamentTreeItem({ item }) {
                         Deck Link
                     </Typography>
                     <TextField
+                        placeholder='www.youtube.com/watch?v=12345678'
                         value={tournamentStore[open.key]?.deckLink || ''}
                         size='small'
                         onChange={(e) =>

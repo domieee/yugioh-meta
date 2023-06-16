@@ -14,8 +14,11 @@ import {
     Button
 } from '@mui/material'
 
+import Cookies from 'js-cookie';
+
 import { useTournamentStore } from '../tournamentStore';
 import TournamentTreeItem from './TournamentTreeItem';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -23,6 +26,7 @@ export default function TournamentTree() {
 
     const [top16, setTop16] = useState(false)
 
+    const router = useRouter()
 
 
     let tournamentStore = useTournamentStore(state => state)
@@ -43,13 +47,9 @@ export default function TournamentTree() {
     ];
 
     const postTournament = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}post-new-tournament`, {
-            method: 'POST',
-            headers: {
-                "Access-Control-Allow-Origin": '*',
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({
+
+        const tournamentData = {
+            tournament: {
                 "tournamentType": tournamentStore.tournamentType,
                 "location": tournamentStore.location,
                 "totalParticipants": tournamentStore.totalParticipants,
@@ -168,12 +168,22 @@ export default function TournamentTree() {
                         "deckLink": tournamentStore.top16EighthItem.deckLink
                     }
                 ]
-            })
+            },
+            userId: Cookies.get('token')
+        };
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}post-new-tournament`, {
+            method: 'POST',
+            headers: {
+                "Access-Control-Allow-Origin": '*',
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(tournamentData)
         })
 
         if (response.ok) {
-            const json = response.json()
-            console.log(json)
+            const tournamentID = await response.json()
+            router.push(`/tournaments/${tournamentID}`)
         }
     }
 
