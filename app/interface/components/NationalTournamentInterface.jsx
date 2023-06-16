@@ -124,7 +124,6 @@ export default function NationalTournamentInterface() {
                     </Box>
 
                     <Box sx={{
-                        marginBlock: '25px',
                         display: 'flex',
                         flexDirection: 'column',
                     }}>
