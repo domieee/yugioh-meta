@@ -212,14 +212,22 @@ export default function TournamentTree() {
 
     return (
         <>
-            <Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
                 <Typography
                     variant='h6' >
                     Tournament Tree
                 </Typography>
                 <Stack
                     sx={{
-                        marginBlock: '25px'
+                        paddingBlock: '20px',
+                        backgroundColor: '#212121',
+                        marginBlock: '25px',
+                        borderRadius: '20px'
                     }}
                     alignItems='center'
 
@@ -256,32 +264,38 @@ export default function TournamentTree() {
                             />
                         ))}
                     </Stack>
-                </Stack>
-                {!top16 && !top16 ?
-                    <Button
-                        onClick={() => setTop16(true)}
-                        variant='outlined'>
-                        Add Top 16
-                    </Button> :
-                    null
-                }
 
-                {top16 && top16Row ?
-                    <Stack
-                        marginBlock={2} justifyContent='center' alignItems='center' direction='column' spacing={2}>
-                        <Stack direction="row" spacing={2}>
-                            {top16Row.slice(0, 4).map((item, index) => (
-                                <TournamentTreeItem key={index} item={item} />
-                            ))}
-                        </Stack>
-                        <Stack direction="row" spacing={2}>
-                            {top16Row.slice(4, 8).map((item, index) => (
-                                <TournamentTreeItem key={index + 4} item={item} />
-                            ))}
-                        </Stack>
-                    </Stack> :
-                    null
-                }
+                    {top16 && top16Row ?
+                        <Stack
+                            marginBlock={2} justifyContent='center' alignItems='center' direction='column' spacing={2}>
+                            <Stack direction="row" spacing={2}>
+                                {top16Row.slice(0, 4).map((item, index) => (
+                                    <TournamentTreeItem key={index} item={item} />
+                                ))}
+                            </Stack>
+                            <Stack direction="row" spacing={2}>
+                                {top16Row.slice(4, 8).map((item, index) => (
+                                    <TournamentTreeItem key={index + 4} item={item} />
+                                ))}
+                            </Stack>
+                        </Stack> :
+                        null
+                    }
+                </Stack>
+
+                <Button
+                    onClick={() => setTop16(prevState => !prevState)}
+                    sx={{
+                        marginInline: 'auto'
+                    }}>
+                    {!top16 && !top16 ?
+                        "Add " :
+                        "Remove "
+                    }
+                    Top 16
+                </Button>
+
+
 
                 <Box
                     sx={{

@@ -110,7 +110,7 @@ export default function TournamentOverview({ params }) {
                 <Box sx={{
                     display: 'flex',
                     height: '50px',
-                    alignItems: 'baseline',
+                    alignItems: 'center',
                     justifyContent: {
                         xs: 'center',
                         sm: 'center',
@@ -142,6 +142,9 @@ export default function TournamentOverview({ params }) {
 
                 </Box>
                 <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    marginBlock: '20px',
                     paddingLeft: {
                         xs: '0px',
                         sm: '0px',
@@ -151,13 +154,11 @@ export default function TournamentOverview({ params }) {
 
                     <Box
                         sx={{
-                            height: '20px',
                             minWidth: '100px',
                             marginRight: '20px',
                             display: 'flex',
                             alignItems: 'center',
                             justfiyContent: 'center',
-                            marginBottom: '5px'
                         }}>
                         <Box sx={{
                             width: '20px', marginRight: '15px', display: 'flex',
@@ -183,13 +184,11 @@ export default function TournamentOverview({ params }) {
 
                     <Box
                         sx={{
-                            height: '20px',
                             minWidth: '100px',
                             marginRight: '20px',
                             display: 'flex',
                             alignItems: 'center',
                             justfiyContent: 'center',
-                            marginBottom: '5px'
                         }}>
                         <Box sx={{
                             width: '20px', marginRight: '15px', display: 'flex',
@@ -213,12 +212,12 @@ export default function TournamentOverview({ params }) {
 
                     <Box
                         sx={{
-                            height: '20px',
+
                             minWidth: '100px',
                             marginRight: '20px',
                             display: 'flex',
                             alignItems: 'center',
-                            marginBottom: '5px'
+
                         }}>
                         <Box sx={{
                             width: '20px', marginRight: '15px', display: 'flex',
@@ -241,7 +240,6 @@ export default function TournamentOverview({ params }) {
                     </Box>
 
                     <Box sx={{
-                        height: '20px',
                         minWidth: '100px',
                         marginRight: '20px',
                         display: 'flex',
@@ -267,34 +265,35 @@ export default function TournamentOverview({ params }) {
                             <Typography variant='body2' sx={{ alignSelf: 'center' }}>{tournament?.totalParticipants}</Typography>}
                     </Box>
 
-                    <Box
 
-                        justifyContent='space-evenly'
-                        alignItems='center'
-                        display="flex"
-                        flexDirection="row"
+                </Box>
+                <Box
 
-                        p={2}
-                        borderRadius={1}
-                        minHeight={430}
+                    justifyContent='space-evenly'
+                    alignItems='center'
+                    display="flex"
+                    flexDirection="row"
 
-                        sx={{
-                            flexDirection: {
-                                xs: 'column',
-                                sm: 'column',
-                                md: 'row'
-                            }
-                        }}>
-                        <div className="canvasContainer">
-                            <PieChart
-                                data={tournamentBreakdownData} />
-                        </div>
-                        <div className="tableContainer">
-                            <TableMUI
-                                table='winner-breakdown'
-                                data={tournamentBreakdownData} />
-                        </div>
-                    </Box>
+                    p={2}
+                    borderRadius={1}
+                    minHeight={430}
+
+                    sx={{
+                        flexDirection: {
+                            xs: 'column',
+                            sm: 'column',
+                            md: 'row'
+                        }
+                    }}>
+                    <div className="canvasContainer">
+                        <PieChart
+                            data={tournamentBreakdownData} />
+                    </div>
+                    <div className="tableContainer">
+                        <TableMUI
+                            table='winner-breakdown'
+                            data={tournamentBreakdownData} />
+                    </div>
                 </Box>
             </Box>
         </Box >
