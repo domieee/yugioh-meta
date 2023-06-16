@@ -41,6 +41,142 @@ export default function TournamentTree() {
         { key: 'top16SeventhItem', title: 'Top 16' },
         { key: 'top16EighthItem', title: 'Top 16' },
     ];
+
+    const postTournament = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}post-new-tournament`, {
+            method: 'POST',
+            headers: {
+                "Access-Control-Allow-Origin": '*',
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "tournamentType": tournamentStore.tournamentType,
+                "location": tournamentStore.location,
+                "totalParticipants": tournamentStore.totalParticipants,
+                "date": tournamentStore.date,
+                "player": [
+                    {
+                        "place": 'first',
+                        "name": tournamentStore.firstPlace.playerName,
+                        "deck": tournamentStore.firstPlace.playedDeck,
+                        "deckNote": tournamentStore.firstPlace.deckNotes,
+                        "deckLink": tournamentStore.firstPlace.deckLink
+                    },
+                    {
+                        "place": 'second',
+                        "name": tournamentStore.secondPlace.playerName,
+                        "deck": tournamentStore.secondPlace.playedDeck,
+                        "deckNote": tournamentStore.secondPlace.deckNotes,
+                        "deckLink": tournamentStore.secondPlace.deckLink
+                    },
+                    {
+                        "place": 'top4',
+                        "name": tournamentStore.top4FirstItem.playerName,
+                        "deck": tournamentStore.top4FirstItem.playedDeck,
+                        "deckNote": tournamentStore.top4FirstItem.deckNotes,
+                        "deckLink": tournamentStore.top4FirstItem.deckLink
+                    },
+                    {
+                        "place": 'top4',
+                        "name": tournamentStore.top4SecondItem.playerName,
+                        "deck": tournamentStore.top4SecondItem.playedDeck,
+                        "deckNote": tournamentStore.top4SecondItem.deckNotes,
+                        "deckLink": tournamentStore.top4SecondItem.deckLink
+                    },
+                    {
+                        "place": 'top8',
+                        "name": tournamentStore.top8FirstItem.playerName,
+                        "deck": tournamentStore.top8FirstItem.playedDeck,
+                        "deckNote": tournamentStore.top8FirstItem.deckNotes,
+                        "deckLink": tournamentStore.top8FirstItem.deckLink
+                    },
+                    {
+                        "place": 'top8',
+                        "name": tournamentStore.top8SecondItem.playerName,
+                        "deck": tournamentStore.top8SecondItem.playedDeck,
+                        "deckNote": tournamentStore.top8SecondItem.deckNotes,
+                        "deckLink": tournamentStore.top8SecondItem.deckLink
+                    },
+                    {
+                        "place": 'top8',
+                        "name": tournamentStore.top8ThirdItem.playerName,
+                        "deck": tournamentStore.top8ThirdItem.playedDeck,
+                        "deckNote": tournamentStore.top8ThirdItem.deckNotes,
+                        "deckLink": tournamentStore.top8ThirdItem.deckLink
+                    },
+                    {
+                        "place": 'top8',
+                        "name": tournamentStore.top8FourthItem.playerName,
+                        "deck": tournamentStore.top8FourthItem.playedDeck,
+                        "deckNote": tournamentStore.top8FourthItem.deckNotes,
+                        "deckLink": tournamentStore.top8FourthItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16FirstItem.playerName,
+                        "deck": tournamentStore.top16FirstItem.playedDeck,
+                        "deckNote": tournamentStore.top16FirstItem.deckNotes,
+                        "deckLink": tournamentStore.top16FirstItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16SecondItem.playerName,
+                        "deck": tournamentStore.top16SecondItem.playedDeck,
+                        "deckNote": tournamentStore.top16SecondItem.deckNotes,
+                        "deckLink": tournamentStore.top16SecondItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16ThirdItem.playerName,
+                        "deck": tournamentStore.top16ThirdItem.playedDeck,
+                        "deckNote": tournamentStore.top16ThirdItem.deckNotes,
+                        "deckLink": tournamentStore.top16ThirdItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16FourthItem.playerName,
+                        "deck": tournamentStore.top16FourthItem.playedDeck,
+                        "deckNote": tournamentStore.top16FourthItem.deckNotes,
+                        "deckLink": tournamentStore.top16FourthItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16FifthItem.playerName,
+                        "deck": tournamentStore.top16FifthItem.playedDeck,
+                        "deckNote": tournamentStore.top16FifthItem.deckNotes,
+                        "deckLink": tournamentStore.top16FifthItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16SixthItem.playerName,
+                        "deck": tournamentStore.top16SixthItem.playedDeck,
+                        "deckNote": tournamentStore.top16SixthItem.deckNotes,
+                        "deckLink": tournamentStore.top16SixthItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16SeventhItem.playerName,
+                        "deck": tournamentStore.top16SeventhItem.playedDeck,
+                        "deckNote": tournamentStore.top16SeventhItem.deckNotes,
+                        "deckLink": tournamentStore.top16SeventhItem.deckLink
+                    },
+                    {
+                        "place": 'top16',
+                        "name": tournamentStore.top16EighthItem.playerName,
+                        "deck": tournamentStore.top16EighthItem.playedDeck,
+                        "deckNote": tournamentStore.top16EighthItem.deckNotes,
+                        "deckLink": tournamentStore.top16EighthItem.deckLink
+                    }
+                ]
+            })
+        })
+
+        if (response.ok) {
+            const json = response.json()
+            console.log(json)
+        }
+    }
+
     return (
         <>
             <Box>
@@ -114,7 +250,7 @@ export default function TournamentTree() {
                     }
                 </Stack>
                 <Button
-
+                    onClick={() => postTournament()}
                     variant='outlined'>
                     Create Tournament
                 </Button>
