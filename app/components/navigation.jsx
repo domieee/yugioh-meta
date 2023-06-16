@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import SignOutButton from "./SignOutButton";
+
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Skeleton from '@mui/material/Skeleton';
@@ -117,6 +117,9 @@ function Navigation({ props }) {
 
             } else if (userInformation.status === 400 || !userInformation.ok) {
                 const json = await response.json()
+                await setUserName(false)
+                await setUserID(false)
+                await setUserRole(false)
                 Cookies.remove('token');
                 router.push('/login')
             }
