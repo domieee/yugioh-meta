@@ -26,6 +26,7 @@ import { useRouter } from 'next/navigation';
 
 export default function TournamentTree() {
     const [isLoading, setIsLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
     const [top16, setTop16] = useState(false)
 
     const router = useRouter()
@@ -188,6 +189,7 @@ export default function TournamentTree() {
             const tournamentID = await response.json()
             setTimeout(() => {
                 setIsLoading(false)
+                setSuccess(true)
                 router.push(`/tournaments/${tournamentID}`)
             }, 2000)
         } else if (!response.ok) {
@@ -265,7 +267,6 @@ export default function TournamentTree() {
                                 <TournamentTreeItem key={index + 4} item={item} />
                             ))}
                         </Stack>
-
                     </Stack> :
                     null
                 }
@@ -278,6 +279,7 @@ export default function TournamentTree() {
                         justifyContent: 'center'
                     }}>
                     <LoadingButton
+                        color={success ? 'success' : 'primary'}
                         marginInline='auto'
                         onClick={postTournament}
                         loading={isLoading}
