@@ -34,10 +34,22 @@ export default function TournamentTree() {
 
     let tournamentStore = useTournamentStore(state => state)
 
-    const firstPlaceRow = [{ key: 'firstPlace', title: 'First Place' }];
-    const secondPlaceRow = [{ key: 'secondPlace', title: 'Second Place' }];
-    const top4Row = [{ key: 'top4FirstItem', title: 'Top 4' }, { key: 'top4SecondItem', title: 'Top 4' }];
-    const top8Row = [{ key: 'top8FirstItem', title: 'Top 8' }, { key: 'top8SecondItem', title: 'Top 8' }, { key: 'top8ThirdItem', title: 'Top 8' }, { key: 'top8FourthItem', title: 'Top 8' }]
+    const firstPlaceRow = [
+        { key: 'firstPlace', title: 'First Place' }
+    ];
+    const secondPlaceRow = [
+        { key: 'secondPlace', title: 'Second Place' }
+    ];
+    const top4Row = [
+        { key: 'top4FirstItem', title: 'Top 4' },
+        { key: 'top4SecondItem', title: 'Top 4' }
+    ];
+    const top8Row = [
+        { key: 'top8FirstItem', title: 'Top 8' },
+        { key: 'top8SecondItem', title: 'Top 8' },
+        { key: 'top8ThirdItem', title: 'Top 8' },
+        { key: 'top8FourthItem', title: 'Top 8' }
+    ]
     const top16Row = [
         { key: 'top16FirstItem', title: 'Top 16' },
         { key: 'top16SecondItem', title: 'Top 16' },
