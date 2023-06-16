@@ -15,6 +15,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Cookies from 'js-cookie';
 import { css } from '@emotion/react';
 
+
 import './login.scss'
 import { Box, Stack } from "@mui/material";
 import { useStore } from "../../components/store";
@@ -145,7 +146,7 @@ export default function Login() {
                             sx={{ errorStyles }}
                             id="outlined-basic"
                             name="email"
-                            placeholder="john@doe.com"
+                            placeholder="johndoe@mail.com"
                             variant="outlined"
                             size="small"
                             value={data.email}
@@ -171,17 +172,28 @@ export default function Login() {
                             onChange={e => setData({ ...data, password: e.target.value })} />
                     </Box>
 
-                    <LoadingButton
-                        variant="outlined"
-                        size="small"
-                        loading={fetching}
-                        onClick={() => loginUser()}
-                        sx={{
-                            width: '50%',
-                            marginInline: 'auto'
-                        }}>
-                        Sign In
-                    </LoadingButton>
+
+                </Stack>
+
+                <LoadingButton
+                    variant="outlined"
+                    size="small"
+                    loading={fetching}
+                    onClick={() => loginUser()}
+                    sx={{
+                        width: '50%',
+                        marginInline: 'auto',
+                        marginBlock: '15px 10px'
+                    }}>
+                    Sign In
+                </LoadingButton>
+
+                <Box
+                    sx={{
+                        marginInline: 'auto',
+                        display: 'flex',
+                        flexDirection: 'row',
+                    }}>
 
                     <Typography
                         sx={{ textAlign: 'center' }}
@@ -189,16 +201,24 @@ export default function Login() {
                         display="block"
                         gutterBottom>
                         Not registered yet?
-                        <Link
-                            style={{
-                                '&:hover': {
-                                    textDecoration: 'underline',
-                                    color: 'red'
-                                }
-                            }}
-                            href='/register'> Sign Up</Link>
+                        <Link href='/register'>
+                            <Typography
+                                sx={{
+                                    marginLeft: '2.5px',
+                                    '&:hover': {
+                                        textDecoration: 'underline'
+                                    }
+                                }}
+                                textAlign="center"
+                                variant="caption"
+                                display="inline"
+                                gutterBottom>Sign Up
+                            </Typography>
+                        </Link>
                     </Typography>
-                </Stack>
+                </Box>
+
+
             </Card>
 
             {/* Snackbar to handle success feedback during the login process */}

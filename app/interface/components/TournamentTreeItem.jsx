@@ -47,13 +47,28 @@ export default function TournamentTreeItem({ item }) {
     const handleOpen = (key) => setOpen({ state: true, key: key });
     const handleClose = () => setOpen({ state: false, key: '' });
     let tournamentStore = useTournamentStore(state => state)
+    const [validLink, setValidLink] = useState(false)
+
+    function isValidHttpsLink(link) {
+        // Check if the link starts with "https://" or "http://"
+        if (link.startsWith("https://")) {
+            return true;
+        } else {
+            return false
+        }
+    }
 
     console.log(tournamentStore)
     return (
         <>
             <Card
                 sx={{
-                    width: 225
+                    width: 225,
+                    '&:hover': {
+                        cursor: 'crosshair',
+                        backgroundColor: '#272727',
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                    }
                 }}>
                 <CardActionArea onClick={() => handleOpen(item.key)}>
                     <CardContent>
@@ -245,16 +260,27 @@ export default function TournamentTreeItem({ item }) {
                         Deck Link
                     </Typography>
                     <TextField
-                        placeholder='www.youtube.com/watch?v=12345678'
+                        placeholder='https://www.youtube.com/watch?v=12345678'
                         value={tournamentStore[open.key]?.deckLink || ''}
                         size='small'
-                        onChange={(e) =>
+                        onChange={(e) => {
                             tournamentStore.setItem(open.key, {
                                 deckLink: e.target.value
                             })
+                            if (isValidHttpsLink(e.target.value)) {
+                                setValidLink(true)
+                            } else {
+                                setValidLink(false)
+                            }
+                        }
                         } />
                     <Button
-                        marginTop={2}
+                        disabled={validLink}
+                        sx={{
+                            width: '50%',
+                            marginInline: 'auto',
+                            marginTop: '20px'
+                        }}
                         onClick={() => {
                             handleClose()
                         }}

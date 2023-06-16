@@ -223,36 +223,52 @@ export default function Register() {
                             value={data.confirmPassword}
                             onChange={e => setData({ ...data, confirmPassword: e.target.value })} />
                     </Box>
+                </Stack>
 
-
-                    <LoadingButton
-                        variant="outlined"
-                        size="small"
-                        loading={fetching}
-                        onClick={() => registerUser()}
-                        sx={{
-                            width: '50%',
-                            marginInline: 'auto'
-                        }}
-                    >
-                        Sign up
-                    </LoadingButton>
+                <LoadingButton
+                    variant="outlined"
+                    size="small"
+                    loading={fetching}
+                    onClick={() => registerUser()}
+                    sx={{
+                        width: '50%',
+                        marginInline: 'auto',
+                        marginBlock: '15px 10px'
+                    }}
+                >
+                    Sign up
+                </LoadingButton>
+                <Box
+                    sx={{
+                        marginInline: 'auto',
+                        display: 'flex',
+                        flexDirection: 'row',
+                    }}>
 
                     <Typography
                         textAlign="center"
                         variant="caption"
-                        display="block"
+                        display="inline"
                         gutterBottom>
                         Already registered?
-                        <Link
-                            sx={{
-                                '&:hover': {
-                                    color: 'red'
-                                }
-                            }}
-                            href='/login'> Sign In</Link>
+                        <Link href='/login'>
+                            <Typography
+                                sx={{
+                                    marginLeft: '2.5px',
+                                    '&:hover': {
+                                        textDecoration: 'underline'
+                                    }
+                                }}
+                                textAlign="center"
+                                variant="caption"
+                                display="inline"
+                                gutterBottom>
+                                Sign In
+                            </Typography>
+                        </Link>
                     </Typography>
-                </Stack>
+                </Box>
+
             </Card>
 
             <Snackbar
