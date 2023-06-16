@@ -13,17 +13,21 @@ import {
     useEffect
 } from 'react'
 import NationalTournamentInterface from './components/NationalTournamentInterface';
+import { useTournamentStore } from './tournamentStore';
 
 export default function Interface() {
+    let tournamentStore = useTournamentStore(state => state)
 
     const [alignment, setAlignment] = useState('national');
 
     const handleChange = (event, newAlignment) => {
-        if (alignment === newAlignment) {
+
+        console.log(newAlignment)
+        if (tournamentStore.tournamentType === newAlignment) {
             event.preventDefault()
             return
         }
-        setAlignment(newAlignment);
+        tournamentStore.setTournamentType(newAlignment)
     }
 
     useEffect(() => {
@@ -120,11 +124,11 @@ export default function Interface() {
                                 lg: 'center'
                             }
                         }}>
-                        Create a {alignment === 'national' ? 'national' : 'regional'} tournament
+                        Create a {tournamentStore.tournamentType === 'national' ? 'national' : 'regional'} tournament
                     </Typography>
                     <ToggleButtonGroup
                         color="primary"
-                        value={alignment}
+                        value={tournamentStore.tournamentType}
                         exclusive
                         onChange={handleChange}
                         aria-label="Platform">
@@ -154,7 +158,7 @@ export default function Interface() {
                     Tournament Informations
                 </Typography>
 
-                {alignment === 'national' ? <NationalTournamentInterface /> : null}
+                {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
             </Box>
         </Box>
     )

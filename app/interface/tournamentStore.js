@@ -3,6 +3,10 @@ import { persist } from "zustand/middleware"
 
 export const useTournamentStore = create(
     (set) => ({
+        tournamentType: 'national',
+        location: '',
+        totalParticipants: 0,
+        date: '',
         firstPlace: {
             playerName: '',
             playedDeck: '',
@@ -103,6 +107,18 @@ export const useTournamentStore = create(
             set((state) => ({
                 [key]: { ...state[key], ...value }
             }));
+        },
+        setTournamentType: (tournamentType) => {
+            set({ tournamentType });
+        },
+        setLocation: (location) => {
+            set({ location });
+        },
+        setTotalParticipants: (totalParticipants) => {
+            set({ totalParticipants });
+        },
+        setDate: (date) => {
+            set({ date });
         }
     })
 )   

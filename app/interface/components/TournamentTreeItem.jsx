@@ -5,11 +5,16 @@ import {
 
 import { useTournamentStore } from '../tournamentStore';
 
-import { GiStabbedNote, GiBroadsword, GiTrophy, GiFamilyTree } from "react-icons/gi";
+import {
+    GiStabbedNote,
+    GiBroadsword,
+    GiTrophy,
+    GiFamilyTree
+} from "react-icons/gi";
+
+import { HiExternalLink } from "react-icons/hi";
 
 import { IconContext } from 'react-icons'
-
-
 
 import {
     Box,
@@ -42,6 +47,8 @@ export default function TournamentTreeItem({ item }) {
     const handleOpen = (key) => setOpen({ state: true, key: key });
     const handleClose = () => setOpen({ state: false, key: '' });
     let tournamentStore = useTournamentStore(state => state)
+
+    console.log(tournamentStore)
     return (
         <>
             <Card
@@ -53,22 +60,37 @@ export default function TournamentTreeItem({ item }) {
                         <Stack
                             spacing={0.75}
                             alignItems='center'
+                            justifyContent='space-between'
                             direction='row'>
-                            {
-                                item && item.title === 'First Place' ?
-                                    <IconContext.Provider value={{ color: "#FFD700" }}>
-                                        <GiTrophy style={{ width: '20px' }} />
-                                    </IconContext.Provider> :
-                                    <GiFamilyTree style={{ width: '20px' }} />
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}>
+                                {
+                                    item && item.title === 'First Place' ?
+                                        <IconContext.Provider value={{ color: "#FFD700" }}>
+                                            <GiTrophy style={{ width: '20px' }} />
+                                        </IconContext.Provider> :
+                                        <GiFamilyTree style={{ width: '20px' }} />
+                                }
+
+                                <Typography
+                                    marginLeft={0.75}
+                                    variant='overline'>
+                                    {item?.title}
+                                </Typography>
+                            </Box>
+
+                            {tournamentStore[item.key]?.deckLink === '' ?
+                                <IconContext.Provider value={{ color: "#2f2f2f" }}>
+                                    <HiExternalLink style={{ width: '20px' }} />
+                                </IconContext.Provider> :
+                                <IconContext.Provider value={{ color: "#ffffff" }}>
+                                    <HiExternalLink style={{ width: '20px' }} />
+                                </IconContext.Provider>
                             }
 
-                            <Typography
-                                sx={{
-                                    marginLeft: 'auto'
-                                }}
-                                variant='overline'>
-                                {item?.title}
-                            </Typography>
                         </Stack>
 
                         <Stack
@@ -82,7 +104,7 @@ export default function TournamentTreeItem({ item }) {
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
-                                        color: 'rgba(255, 255, 255, 0.7)',
+                                        color: 'rgba(255, 255, 255, 0.6)',
                                         maxWidth: "100%",
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
@@ -93,25 +115,66 @@ export default function TournamentTreeItem({ item }) {
                                 >
                                     No player information provided
                                 </Typography> :
-                                tournamentStore[item.key]?.playerName}
+                                <Typography
+                                    variant='body2'>
+                                    {tournamentStore[item.key]?.playerName}
+                                </Typography>
+                            }
                             {tournamentStore[item.key]?.playerName === '' ||
                                 tournamentStore[item.key]?.playedDeck === '' ?
                                 '' :
-                                ' with ' + tournamentStore[item.key]?.playedDeck}
+                                <Typography
+                                    sx={{
+                                        maxWidth: "100%",
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                        whiteSpace: "nowrap",
+                                        flex: '1'
+                                    }}
+                                    variant='body2'
+                                >
+                                    with {tournamentStore[item.key]?.playedDeck}
+                                </Typography>
+                            }
 
                         </Stack>
-                        <Box>
 
-                            <Stack
-                                spacing={0.75}
-                                alignItems='center'
-                                direction='row'>
+
+                        <Stack
+                            justifyContent='space-between'
+                            alignItems='center'
+                            direction='row'>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                <Typography variant='body2'>
-                                    asdasd
-                                </Typography>
-                            </Stack>
-                        </Box>
+                                {tournamentStore[item.key]?.playerName === '' ?
+                                    <Typography
+                                        marginLeft={0.75}
+                                        sx={{
+                                            fontStyle: 'italic',
+                                            color: 'rgba(255, 255, 255, 0.6)',
+                                            maxWidth: "100%",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            flex: '1'
+                                        }}
+                                        variant='body2'
+                                    >
+                                        No deck note provided
+                                    </Typography> :
+                                    <Typography
+                                        variant='body2'>
+                                        {tournamentStore[item.key]?.playerName}
+                                    </Typography>
+                                }
+                            </Box>
+
+                        </Stack>
+
                     </CardContent>
                 </CardActionArea>
             </Card >

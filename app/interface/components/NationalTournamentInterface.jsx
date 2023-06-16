@@ -1,5 +1,6 @@
 import {
-    useState
+    useState,
+    useEffect
 } from 'react'
 
 import {
@@ -23,6 +24,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useTournamentStore } from '../tournamentStore';
 
 export default function NationalTournamentInterface() {
 
@@ -37,12 +39,14 @@ export default function NationalTournamentInterface() {
 
     const [calendarValue, setCalendarValue] = useState(dayjs(formattedDate).startOf('day'));
     const [dateValue, setDateValue] = useState(1);
+    let tournamentStore = useTournamentStore(state => state)
 
     const handleChange = (event) => {
         const newValue = event.target.value;
-        setDateValue(newValue)
-    };
-
+        tournamentStore.setTotalParticipants(newValue)
+        console.log(tournamentStore.totalParticipants)
+        console.log(tournamentStore.date)
+    }
 
     const handleKeyPress = (event) => {
         const keyCode = event.keyCode || event.which;
@@ -53,6 +57,11 @@ export default function NationalTournamentInterface() {
             event.preventDefault();
         }
     };
+
+    useEffect(() => {
+        tournamentStore.setLocation(inputValue);
+        console.log(tournamentStore.location);
+    }, [inputValue]);
 
     console.log(countries)
     return (
@@ -84,6 +93,7 @@ export default function NationalTournamentInterface() {
                             inputValue={inputValue}
                             onInputChange={(event, newInputValue) => {
                                 setInputValue(newInputValue);
+                                console.log(inputValue)
                             }}
                             id="country-select-demo"
                             options={countries}
@@ -111,7 +121,7 @@ export default function NationalTournamentInterface() {
                             )}
                         />
                         <div>
-                            {`${inputValue} `}
+                            {`${tournamentStore.location} `}
                         </div>
                     </Box>
 
@@ -134,8 +144,10 @@ export default function NationalTournamentInterface() {
                                         size="small"
                                         value={calendarValue}
                                         onChange={(newValue) => {
-                                            console.log(newValue)
-                                            setCalendarValue(dayjs(newValue).startOf('day'))
+                                            const selectedDate = new Date(newValue); // Convert to Date format
+                                            console.log(selectedDate);
+                                            tournamentStore.setDate(selectedDate);
+
                                         }}
                                     />
                                 </Box>
@@ -143,7 +155,7 @@ export default function NationalTournamentInterface() {
                             </DemoContainer>
                         </LocalizationProvider >
                         <div>
-                            {`${calendarValue} `}
+                            {`${tournamentStore.date} `}
                         </div>
                     </Box>
 
@@ -156,7 +168,7 @@ export default function NationalTournamentInterface() {
                             Total Participants
                         </Typography>
                         <TextField
-                            value={dateValue}
+                            value={tournamentStore.totalParticipants}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             id="outlined-number"
@@ -170,7 +182,7 @@ export default function NationalTournamentInterface() {
                                 min: 1,
                             }} />
                         <div>
-                            {`${dateValue} `}
+                            {`${tournamentStore.totalParticipants} `}
                         </div>
                     </Box>
 

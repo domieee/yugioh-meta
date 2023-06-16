@@ -78,6 +78,9 @@
   padding: 0;
   margin: 0;
 }
+*{
+  scrollbar-gutter: stable;
+}
 
 html {
   scroll-behavior: smooth;
