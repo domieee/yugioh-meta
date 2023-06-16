@@ -151,7 +151,7 @@ export default function TournamentTreeItem({ item }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {tournamentStore[item.key]?.playerName === '' ?
+                                {tournamentStore[item.key]?.deckNotes === '' ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -216,7 +216,7 @@ export default function TournamentTreeItem({ item }) {
                         Played Deck
                     </Typography>
                     <TextField
-                        placeholder="Kashtir"
+                        placeholder="Kashtira"
                         value={tournamentStore[open.key]?.playedDeck || ''}
                         size='small'
                         display="block"
