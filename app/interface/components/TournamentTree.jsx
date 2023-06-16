@@ -251,29 +251,28 @@ export default function TournamentTree() {
                     </Button> :
                     null
                 }
-                <Stack
-                    marginBlock={2} justifyContent='center' alignItems='center' direction='column' spacing={2}>
-                    {top16 && top16Row ?
-                        <>
 
-                            <Stack direction="row" spacing={2}>
-                                {top16Row.slice(0, 4).map((item, index) => (
-                                    <TournamentTreeItem key={index} item={item} />
-                                ))}
-                            </Stack>
-                            <Stack direction="row" spacing={2}>
-                                {top16Row.slice(4, 8).map((item, index) => (
-                                    <TournamentTreeItem key={index + 4} item={item} />
-                                ))}
-                            </Stack>
+                {top16 && top16Row ?
+                    <Stack
+                        marginBlock={2} justifyContent='center' alignItems='center' direction='column' spacing={2}>
+                        <Stack direction="row" spacing={2}>
+                            {top16Row.slice(0, 4).map((item, index) => (
+                                <TournamentTreeItem key={index} item={item} />
+                            ))}
+                        </Stack>
+                        <Stack direction="row" spacing={2}>
+                            {top16Row.slice(4, 8).map((item, index) => (
+                                <TournamentTreeItem key={index + 4} item={item} />
+                            ))}
+                        </Stack>
 
-                        </> :
-                        null
-                    }
-                </Stack>
+                    </Stack> :
+                    null
+                }
+
                 <Box
                     sx={{
-                        marginBottom: '25px',
+                        marginBlock: '25px',
                         width: '100%',
                         display: 'flex',
                         justifyContent: 'center'
