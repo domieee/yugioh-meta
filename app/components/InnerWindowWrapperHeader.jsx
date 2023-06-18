@@ -27,9 +27,9 @@ export default function InnerWindowWrapperHeader({
         } else if (currentRoute === '/interface') {
             setItemState(menuOptions)
         } else {
-            return null
+            setItemState(null)
         }
-    }, [role])
+    }, [])
 
 
 

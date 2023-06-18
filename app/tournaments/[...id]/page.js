@@ -24,12 +24,16 @@ import InnerWindowWrapper from '@/app/components/InnerWindowWrapper';
 import TournamentDetails from '@/app/components/TournamentDetails';
 import TournamentDetailsItem from '@/app/components/TournamentDetailsItem';
 import TablePie from '@/app/components/TablePie';
+import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
+import Stack from '@mui/material';
+import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
 
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState()
     const [isLoading, setIsLoading] = useState(true)
     let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
+    let [tournamentTree, setTournamentTree] = useState([])
 
     let role = useStore((state) => state.role)
 
@@ -76,6 +80,30 @@ export default function TournamentOverview({ params }) {
             }
         }
         fetchTournamentBreakdown()
+    }, [])
+
+    useEffect(() => {
+        const fetchTournamentTree = async () => {
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}fetch-tournament-tree`, {
+                    method: 'POST',
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        tournamentId: params.id
+                    })
+                })
+                const json = await response.json()
+                console.log(json)
+                setTournamentTree(json)
+                console.log(tournamentTree)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchTournamentTree()
     }, [])
 
     console.log(role)
@@ -146,8 +174,21 @@ export default function TournamentOverview({ params }) {
                 </TournamentDetails>
 
                 <Typography variant='h6'>Tournament Tree</Typography>
+                <Stack
+                    sx={{
+                        paddingBlock: '20px',
+                        backgroundColor: '#212121',
+                        marginBlock: '25px',
+                        borderRadius: '20px'
+                    }}
+                    alignItems='center'
 
-                {/* <TablePie tournamentJson={tournamentBreakdownData && tournamentBreakdownData} /> */}
+                    spacing={2}>
+                    <TournamentTreeOverviewRow data={tournamentTree && tournamentTree[0]} />
+                </Stack>
+
+
+                {/* <TablePie tournamentJson={tournamentBreakdownData && tournamentBreakdownData} /> */}s
                 {/* <Grid
                     container
                     flexDirection="row"

@@ -1,9 +1,5 @@
-import {
-    useState
-} from 'react'
+import React from 'react'
 
-
-import { useTournamentStore } from '../tournamentStore';
 
 import {
     GiStabbedNote,
@@ -42,23 +38,9 @@ const style = {
     flexDirection: 'column'
 };
 
-export default function TournamentTreeItem({ item, data }) {
-    const [open, setOpen] = useState({ state: false, key: '' });
-    const handleOpen = (key) => setOpen({ state: true, key: key });
-    const handleClose = () => setOpen({ state: false, key: '' });
-    let tournamentStore = useTournamentStore(state => state)
-    const [validLink, setValidLink] = useState(false)
 
-    function isValidHttpsLink(link) {
-        // Check if the link starts with "https://" or "http://"
-        if (link.startsWith("https://")) {
-            return true;
-        } else {
-            return false
-        }
-    }
-
-    console.log(tournamentStore)
+export default function TournamentTreeOverviewItem({ data }) {
+    console.log(data)
     return (
         <>
             <Card
@@ -70,7 +52,7 @@ export default function TournamentTreeItem({ item, data }) {
                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
                     }
                 }}>
-                <CardActionArea onClick={() => handleOpen(item.key)}>
+                <CardActionArea >
                     <CardContent>
                         <Stack
                             spacing={0.75}
@@ -83,7 +65,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     alignItems: "center"
                                 }}>
                                 {
-                                    item && item.title === 'First Place' ?
+                                    data.place === 'first' ?
                                         <IconContext.Provider value={{ color: "#FFD700" }}>
                                             <GiTrophy style={{ width: '20px' }} />
                                         </IconContext.Provider> :
@@ -93,11 +75,11 @@ export default function TournamentTreeItem({ item, data }) {
                                 <Typography
                                     marginLeft={0.75}
                                     variant='overline'>
-                                    {item?.title}
+                                    {data.place}
                                 </Typography>
                             </Box>
 
-                            {tournamentStore[item.key].deckLink === '' ?
+                            {data.deckLink === '' ?
                                 <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                     <HiExternalLink style={{ width: '20px' }} />
                                 </IconContext.Provider> :
@@ -115,7 +97,7 @@ export default function TournamentTreeItem({ item, data }) {
                             <GiBroadsword style={{ width: '20px' }} />
 
 
-                            {tournamentStore[item.key]?.playerName || da === '' ?
+                            {data.playerName === '' ?
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
@@ -132,11 +114,11 @@ export default function TournamentTreeItem({ item, data }) {
                                 </Typography> :
                                 <Typography
                                     variant='body2'>
-                                    {tournamentStore[item.key]?.playerName}
+                                    {data.playerName}
                                 </Typography>
                             }
-                            {tournamentStore[item.key]?.playerName === '' ||
-                                tournamentStore[item.key]?.playedDeck === '' ?
+                            {data === '' ||
+                                data === '' ?
                                 '' :
                                 <Typography
                                     sx={{
@@ -148,7 +130,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     }}
                                     variant='body2'
                                 >
-                                    with {tournamentStore[item.key]?.playedDeck}
+                                    with {data.playedDeck}
                                 </Typography>
                             }
 
@@ -166,7 +148,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {tournamentStore[item.key]?.deckNotes === '' ?
+                                {data.deckNotes === '' ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -193,7 +175,7 @@ export default function TournamentTreeItem({ item, data }) {
                                             flex: '1'
                                         }}
                                         variant='body2'>
-                                        {tournamentStore[item.key]?.deckNotes}
+                                        {data.deckNotes}
                                     </Typography>
                                 }
                             </Box>
@@ -203,90 +185,6 @@ export default function TournamentTreeItem({ item, data }) {
                     </CardContent>
                 </CardActionArea>
             </Card >
-
-            <Modal
-                open={open.state}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description">
-                <Box
-
-                    sx={style}>
-                    <Typography
-                        variant="overline"
-                        display="block" >
-                        Player Name
-                    </Typography>
-                    <TextField
-                        placeholder="John Doe"
-                        value={tournamentStore[open.key]?.playerName || ''}
-                        size='small'
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                playerName: e.target.value
-                            })
-                        } />
-                    <Typography
-                        variant="overline">
-                        Played Deck
-                    </Typography>
-                    <TextField
-                        placeholder="Kashtira"
-                        value={tournamentStore[open.key]?.playedDeck || ''}
-                        size='small'
-                        display="block"
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                playedDeck: e.target.value
-                            })
-                        } />
-                    <Typography
-                        variant="overline"
-                        display="block" >
-                        Deck Notes
-                    </Typography>
-                    <TextField
-                        placeholder="Evil Twin"
-                        value={tournamentStore[open.key]?.deckNotes || ''}
-                        size='small'
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                deckNotes: e.target.value
-                            })
-                        } />
-                    <Typography
-                        variant="overline"
-                        display="block" >
-                        Deck Link
-                    </Typography>
-                    <TextField
-                        placeholder='https://www.youtube.com/watch?v=12345678'
-                        value={tournamentStore[open.key]?.deckLink || ''}
-                        size='small'
-                        onChange={(e) => {
-                            tournamentStore.setItem(open.key, {
-                                deckLink: e.target.value
-                            })
-                            if (isValidHttpsLink(e.target.value)) {
-                                setValidLink(true)
-                            } else {
-                                setValidLink(false)
-                            }
-                        }
-                        } />
-                    <Button
-                        disabled={validLink}
-                        sx={{
-                            width: '50%',
-                            marginInline: 'auto',
-                            marginTop: '20px'
-                        }}
-                        onClick={() => {
-                            handleClose()
-                        }}
-                        variant='outlined'>OK</Button>
-                </Box>
-            </Modal>
         </>
     )
 }
