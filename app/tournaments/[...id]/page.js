@@ -18,6 +18,8 @@ import { IconContext } from "react-icons"
 import PieChart from '@/app/statistics/components/PieChart';
 import TableMUI from '@/app/statistics/components/TabelMUI';
 import EditButton from '../components/EditButton';
+import OuterWindowWrapper from '@/app/components/OuterWindowWrapper';
+import InnerWindowWrapper from '@/app/components/InnerWindowWrapper';
 
 export default function TournamentOverview({ params }) {
 
@@ -75,72 +77,12 @@ export default function TournamentOverview({ params }) {
     console.log(role)
 
     return (
-        <Box
-            bgcolor="background.paper"
-            backgroundColor='#212121'
-            gap={2}
-            display="flex"
-            justifyContent="center"
-            flexWrap='wrap'
-            alignItems="center"
-            height='100%'
-            minHeight='100%'
-            p={5}>
-            <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent='center'
-                bgcolor="background.paper"
-                backgroundColor='#272727'
-                p={1}
-                borderRadius={2}
-                elevation={3}
+        <OuterWindowWrapper>
+            <InnerWindowWrapper
+                route={'tournament/id'}
+                menuOptions={<EditButton />}
+                pagetitle={'Tournament Overview'}>
 
-                maxWidth={700}
-                marginInline='auto'
-                boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
-                sx={{
-                    minWidth: {
-                        xs: '380px',
-                        sm: '380px',
-                        md: '380px',
-                        lg: '1280px'
-                    }
-                }}>
-                <Box sx={{
-                    display: 'flex',
-                    height: '50px',
-                    alignItems: 'center',
-                    justifyContent: {
-                        xs: 'center',
-                        sm: 'center',
-                        md: 'start',
-                        lg: 'space-between'
-                    }
-                }}>
-                    <Typography
-                        variant="h5"
-                        sx={{
-                            justifyContent: {
-                                xs: 'center',
-                                sm: 'center',
-                                md: 'center',
-                                lg: 'center'
-                            },
-                            paddingInline: {
-                                xs: '0px',
-                                sm: '0px',
-                                md: '100px'
-                            }
-                        }}>
-                        Tournament Overview
-                    </Typography>
-                    {isLoading ?
-                        null :
-                        <EditButton />
-                    }
-
-                </Box>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-evenly',
@@ -295,7 +237,7 @@ export default function TournamentOverview({ params }) {
                             data={tournamentBreakdownData} />
                     </div>
                 </Box>
-            </Box>
-        </Box >
+            </InnerWindowWrapper>
+        </OuterWindowWrapper>
     )
 }

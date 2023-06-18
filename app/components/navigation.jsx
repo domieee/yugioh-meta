@@ -93,50 +93,51 @@ function Navigation({ props }) {
     const setIDNull = useStore((state) => state.setIDNull)
     const setRoleNull = useStore((state) => state.setRoleNull)
 
-    if (Cookies.get('token')) {
-        const receiveUserInformations = async () => {
-            const currentToken = Cookies.get('token');
+    useEffect(() => {
+        if (Cookies.get('token')) {
+            const receiveUserInformations = async () => {
+                const currentToken = Cookies.get('token');
 
-            const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
-                method: 'POST',
-                headers: {
-                    "Access-Control-Allow-Origin": '*',
-                    "Content-Type": "application/json; charset=UTF-8"
-                },
-                body: JSON.stringify({
-                    token: currentToken
+                const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
+                    method: 'POST',
+                    headers: {
+                        "Access-Control-Allow-Origin": '*',
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        token: currentToken
+                    })
                 })
-            })
 
-            if (userInformation.status === 200) {
-                const json = await userInformation.json()
-                await setUserName(json.username || json.nameOrMail)
-                await setUserID(json.id)
-                await setUserRole(json.role)
+                if (userInformation.status === 200) {
+                    const json = await userInformation.json()
+                    await setUserName(json.username || json.nameOrMail)
+                    await setUserID(json.id)
+                    await setUserRole(json.role)
 
 
-            } else if (userInformation.status === 400 || !userInformation.ok) {
-                const json = await response.json()
-                await setUserName(false)
-                await setUserID(false)
-                await setUserRole(false)
-                Cookies.remove('token');
-                router.push('/login')
+                } else if (userInformation.status === 400 || !userInformation.ok) {
+                    const json = await response.json()
+                    await setUserName(false)
+                    await setUserID(false)
+                    await setUserRole(false)
+                    Cookies.remove('token');
+                    router.push('/login')
+                }
             }
+            receiveUserInformations()
+        } else {
+            setUserName(false)
+            setUserID(false)
+            setUserRole(false)
         }
-        receiveUserInformations()
-    } else {
-        setUsernameNull()
-        setIDNull()
-        setRoleNull()
-    }
 
+
+    })
     useEffect(() => {
         setIsLoading(false)
     }, [])
 
-
-    console.log(username, id, role, ' successfully received')
 
     return (
         <AppBar marginBottom={20} position="sticky"
@@ -170,7 +171,13 @@ function Navigation({ props }) {
                         YU-GI-OH! Meta
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{
+                        flexGrow: 1,
+                        display: {
+                            xs: 'flex',
+                            md: 'none'
+                        }
+                    }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -206,7 +213,13 @@ function Navigation({ props }) {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <AdbIcon sx={{
+                        display: {
+                            xs: 'flex',
+                            md: 'none'
+                        },
+                        mr: 1
+                    }} />
                     <Typography
                         variant="h5"
                         noWrap

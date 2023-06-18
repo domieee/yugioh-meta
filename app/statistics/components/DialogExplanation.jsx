@@ -1,13 +1,35 @@
-import React from 'react'
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { useState, forwardRef } from 'react';
+import {
+    IconButton,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Slide,
+} from '@mui/material';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-export default function DialogExplanation() {
-    const [open, setOpen] = React.useState(false);
+
+const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+export default function DialogExplanation({ item }) {
+    const [open, setOpen] = useState(false);
+
+    const dialogContext = {
+        'winner-breakdown': {
+            title: 'Winner Breakdown',
+            context: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...',
+        },
+        'overall-breakdown': {
+            title: 'Overall Breakdown',
+            context: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...',
+        },
+    };
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -18,32 +40,33 @@ export default function DialogExplanation() {
     };
 
     return (
-        <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open alert dialog
-            </Button>
+        <>
+            <IconButton onClick={handleClickOpen} aria-label="Example">
+                <QuestionMarkIcon style={{ width: '16px' }} />
+            </IconButton>
+
             <Dialog
+                TransitionComponent={Transition}
                 open={open}
+
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Use Google's location service?"}
+                    {dialogContext[item]?.title}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Let Google help apps determine location. This means sending anonymous
-                        location data to Google, even when no apps are running.
+                        {dialogContext[item]?.context}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
                     <Button onClick={handleClose} autoFocus>
-                        Agree
+                        OK
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     );
 }

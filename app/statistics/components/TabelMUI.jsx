@@ -40,7 +40,7 @@ export default function TableMUI({ data, table }) {
 
     return (
         <>
-            {!values ?
+            {!data ?
                 <Stack sx={{ marginInline: 'auto' }}>
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
@@ -66,7 +66,7 @@ export default function TableMUI({ data, table }) {
                                 </TableRow>
                             </TableHead>
                             <TableBody red={bodyRef}>
-                                {data && values && values.map((value, index) => (
+                                {values && values.map((value, index) => (
                                     <TableRow
                                         onClick={(value) => alert({ value })}
                                         hover

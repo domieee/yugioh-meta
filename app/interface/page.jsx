@@ -4,31 +4,24 @@ import {
     TextField,
     Box,
     Typography,
-    ToggleButton,
-    ToggleButtonGroup
+
 } from '@mui/material'
 
 import {
     useState,
     useEffect
 } from 'react'
+
 import NationalTournamentInterface from './components/NationalTournamentInterface';
 import { useTournamentStore } from './tournamentStore';
+import OuterWindowWrapper from '../components/OuterWindowWrapper';
+import InnerWindowWrapper from '../components/InnerWindowWrapper';
+import TournamentToggle from './components/TournamentToggle';
 
 export default function Interface() {
     let tournamentStore = useTournamentStore(state => state)
 
-    const [alignment, setAlignment] = useState('national');
 
-    const handleChange = (event, newAlignment) => {
-
-        console.log(newAlignment)
-        if (tournamentStore.tournamentType === newAlignment) {
-            event.preventDefault()
-            return
-        }
-        tournamentStore.setTournamentType(newAlignment)
-    }
 
     useEffect(() => {
         const handleBeforeUnload = (event) => {
@@ -46,60 +39,12 @@ export default function Interface() {
     }, []);
 
     return (
-        <Box
-            bgcolor="background.paper"
-            backgroundColor='#212121'
-            gap={2}
-            display="flex"
-            justifyContent="center"
-            flexWrap='wrap'
-            alignItems="start"
-            height='100%'
-            minHeight='100%'
-
-            sx={{
-                flexDirection: {
-                    // small phone
-                    xs: 'column', // phone
-                    sm: 'column', // tablets
-                    md: 'column', // small laptop
-                    xl: 'row'
-                },
-                padding: {
-                    xs: '0px', // phone
-                    sm: '40px', // tablets
-                    md: '40px', // small laptop
-                    xl: '40px'
-                }
-            }}
-        >
-            <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent='center'
-                bgcolor="background.paper"
-                backgroundColor='#272727'
-                p={1}
-                borderRadius={1}
-                elevation={3}
-                marginBottom={2}
-                maxWidth={700}
-                marginInline='auto'
-                boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
-                sx={{
-                    minWidth: {
-                        xs: '380px',
-                        sm: '380px',
-                        md: '380px',
-                        lg: '1280px'
-                    },
-                    paddingInline: {
-                        xs: '0px',
-                        sm: '0px',
-                        md: '100px',
-                        lg: '100px'
-                    }
-                }}
+        <OuterWindowWrapper>
+            <InnerWindowWrapper
+                menuOptions={<TournamentToggle />}
+                pagetitle={tournamentStore.tournamentType === 'national' ?
+                    'Create a national tournament' :
+                    'Create a regional tournament'}
             >
 
                 <Box sx={{
@@ -124,25 +69,8 @@ export default function Interface() {
                                 lg: 'center'
                             }
                         }}>
-                        Create a {tournamentStore.tournamentType === 'national' ? 'national' : 'regional'} tournament
                     </Typography>
-                    <ToggleButtonGroup
-                        color="primary"
-                        value={tournamentStore.tournamentType}
-                        exclusive
-                        onChange={handleChange}
-                        aria-label="Platform">
-                        <ToggleButton
-                            size='small'
-                            value="national">
-                            National
-                        </ToggleButton>
-                        <ToggleButton
-                            size='small'
-                            value="regional">
-                            Regional
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+
                 </Box>
 
                 <Typography
@@ -159,7 +87,7 @@ export default function Interface() {
                 </Typography>
 
                 {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
-            </Box>
-        </Box>
+            </InnerWindowWrapper>
+        </OuterWindowWrapper >
     )
 }

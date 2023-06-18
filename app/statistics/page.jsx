@@ -1,16 +1,62 @@
+'use client'
+
 import { Stack } from "@mui/material"
-import PieChart from "./components/PieChart"
-import TableMUI from "./components/TabelMUI"
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { useState, useEffect } from "react";
+import OuterWindowWrapper from "../components/OuterWindowWrapper";
+import InnerWindowWrapper from "../components/InnerWindowWrapper";
 import TablePie from "./components/TablePie";
-import './statistics.scss'
-import TablePieBox from "./components/TablePieBox";
+import DialogExplanation from "./components/DialogExplanation";
 
+export default function Statistics() {
+    const [pieData, setPieData] = useState([]);
+    const [pieOverallData, setPieOverallData] = useState([]);
 
-export default async function Statistics() {
+    useEffect(() => {
+        const fetchPieData = async () => {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}winner-breakdown`
+            );
+            const json = await response.json();
+            setPieData(json);
+        };
+        fetchPieData();
+    }, []); // Empty dependency array
+
+    useEffect(() => {
+        const fetchPieOverallData = async () => {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}overall-breakdown`
+            );
+            const json = await response.json();
+            setPieOverallData(json);
+        };
+        fetchPieOverallData();
+    }, []); // Empty dependency array
 
     return (
-        <TablePieBox />
-    )
+        <OuterWindowWrapper>
+            <InnerWindowWrapper
+                menuOptions={
+                    <DialogExplanation
+                        item={'winner-breakdown'}
+                    />}
+                currentRoute={'/statistics'}
+                pagetitle={'Winner Breakdown'}>
+                <TablePie winnerJson={pieData} item="winner-breakdown" />
+            </InnerWindowWrapper>
+
+            <InnerWindowWrapper
+                menuOptions={
+                    <DialogExplanation
+                        item={'overall-breakdown'}
+                    />}
+                currentRoute={'/statistics'}
+                item={'overall-breakdown'}
+                pagetitle={'Overall Breakdown'}>
+                <TablePie
+                    topCutJson={pieOverallData}
+                    item="overall-breakdown" />
+            </InnerWindowWrapper>
+        </OuterWindowWrapper>
+    );
 }
