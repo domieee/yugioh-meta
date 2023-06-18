@@ -127,6 +127,9 @@ function Navigation({ props }) {
             }
             receiveUserInformations()
         } else {
+            Cookies.remove('token');
+            router.push('/login')
+
             setUserName(false)
             setUserID(false)
             setUserRole(false)

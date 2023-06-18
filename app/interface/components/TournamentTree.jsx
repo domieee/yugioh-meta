@@ -311,7 +311,7 @@ export default function TournamentTree() {
                         loading={isLoading}
                         variant="outlined"
                     >
-                        <span>Create Tournament</span>
+                        <span>{success ? 'Tournament created' : 'Create Tournament'}</span>
                     </LoadingButton>
                 </Box>
             </Box >
