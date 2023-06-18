@@ -190,11 +190,16 @@ export default function TournamentOverview({ params }) {
                     alignItems='center'
 
                     spacing={2}>
-                    <TournamentTreeOverviewRow data={tournamentTree[0]} />
-                    <TournamentTreeOverviewRow data={tournamentTree[1]} />
-                    <TournamentTreeOverviewRow data={tournamentTree[2]} />
-                    <TournamentTreeOverviewRow data={tournamentTree[3]} />
-                    <TournamentTreeOverviewRow data={top16FirstRow} />
+                    {tournamentTree.length > 0 && (
+                        <>
+                            <TournamentTreeOverviewRow data={tournamentTree[0]} />
+                            <TournamentTreeOverviewRow data={tournamentTree[1]} />
+                            <TournamentTreeOverviewRow data={tournamentTree[2]} />
+                            <TournamentTreeOverviewRow data={tournamentTree[3]} />
+                            <TournamentTreeOverviewRow data={top16FirstRow} />
+                        </>
+                    )}
+
 
                 </Stack>
             </InnerWindowWrapper>

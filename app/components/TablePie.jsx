@@ -66,6 +66,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             backgroundColor: '#1F0F26',
                             borderRadius: 2,
                             padding: '10px',
+                            height: '380px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
