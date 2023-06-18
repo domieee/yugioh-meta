@@ -1,3 +1,5 @@
+'use client'
+
 import { Children } from "react"
 import {
     Box
@@ -8,7 +10,7 @@ export default function OuterWindowWrapper({ children }) {
     return (
         <Box
             bgcolor="background.paper"
-            backgroundColor='#212121'
+            backgroundColor='#09030D'
             display="flex"
             justifyContent="center"
             flexWrap='wrap'

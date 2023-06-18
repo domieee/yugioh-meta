@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Box,
-    Typography
+    Typography,
+    Skeleton
 } from '@mui/material'
 
 import { useStore } from './store'
@@ -14,19 +15,24 @@ export default function InnerWindowWrapperHeader({
     item
 }) {
 
+    const [itemState, setItemState] = useState(undefined)
+
     let role = useStore((state) => state.role)
 
-    const setMenuOptions = () => {
+    useEffect(() => {
         if (currentRoute === '/tournament/id' && role === 'moderator' || role === 'administrator') {
-            return menuOptions
+            setItemState(menuOptions)
         } else if (currentRoute === '/statistics') {
-            return menuOptions
+            setItemState(menuOptions)
         } else if (currentRoute === '/interface') {
-            return menuOptions
+            setItemState(menuOptions)
         } else {
             return null
         }
-    }
+    }, [role])
+
+
+
 
     return (
         <Box sx={{
@@ -53,7 +59,9 @@ export default function InnerWindowWrapperHeader({
                 }}>
                 {pagetitle}
             </Typography>
-            {menuOptions ? setMenuOptions() : null}
+            {itemState === undefined ?
+                <Skeleton variant="circular" width={35} height={35} /> :
+                itemState}
         </Box>
     )
 }

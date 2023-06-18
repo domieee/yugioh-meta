@@ -1,3 +1,5 @@
+'use client'
+
 import { Children } from "react"
 import { Box } from "@mui/material"
 import InnerWindowWrapperHeader from "./InnerWindowWrapperHeader"
@@ -14,9 +16,9 @@ export default function InnerWindowWrapper({
             flexDirection="column"
             justifyContent='center'
             bgcolor="background.paper"
-            backgroundColor='#272727'
+            backgroundColor='#1F0F26'
             p={1}
-            borderRadius={1}
+            borderRadius={2}
             elevation={3}
             marginBottom={2}
             maxWidth={700}

@@ -4,7 +4,7 @@ import { Stack } from "@mui/material"
 import { useState, useEffect } from "react";
 import OuterWindowWrapper from "../components/OuterWindowWrapper";
 import InnerWindowWrapper from "../components/InnerWindowWrapper";
-import TablePie from "./components/TablePie";
+import TablePie from "../components/TablePie";
 import DialogExplanation from "./components/DialogExplanation";
 
 export default function Statistics() {

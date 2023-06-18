@@ -54,9 +54,9 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
-                <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px' }} elevation={5} boxShadow={0} >
-                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none' }} elevation={9} className='table-container' ref={containerRef}  >
-                        <Table variant='outline' boxShadow={0} stickyHeader style={{ width: 350, boxShadow: 'none' }} size='small' aria-label="simple table">
+                <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px', backgroundColor: '#1F0F26' }} elevation={5} boxShadow={0} >
+                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none', backgroundColor: '#1F0F26' }} className='table-container' ref={containerRef}  >
+                        <Table variant='outline' boxShadow={0} stickyHeader style={{ boxShadow: 'none' }} size='small' aria-label="simple table">
                             <TableHead >
                                 <TableRow backgroundColor='white'>
                                     <TableCell>Deck</TableCell>

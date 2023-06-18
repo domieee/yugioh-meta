@@ -142,7 +142,7 @@ function Navigation({ props }) {
     return (
         <AppBar marginBottom={20} position="sticky"
             sx={{// Apply blur effect
-                backgroundColor: '#202020', // Set background color with opacity
+                backgroundColor: '#1F0F26', // Set background color with opacity
                 boxShadow: 'none', // Remove box shadow
                 opacity: 0.97,
                 height: '65px',

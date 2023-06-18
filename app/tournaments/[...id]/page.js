@@ -11,21 +11,25 @@ import { useStore } from '../../components/store'
 
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-import { GiTrophy, GiTabletopPlayers, GiCalendar } from "react-icons/gi";
+import { GiTrophy, GiTabletopPlayers, GiCalendar, GiPlanetConquest } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons"
 
 import PieChart from '@/app/statistics/components/PieChart';
 import TableMUI from '@/app/statistics/components/TabelMUI';
+import { Grid, Card, Paper } from '@mui/material';
 import EditButton from '../components/EditButton';
 import OuterWindowWrapper from '@/app/components/OuterWindowWrapper';
 import InnerWindowWrapper from '@/app/components/InnerWindowWrapper';
+import TournamentDetails from '@/app/components/TournamentDetails';
+import TournamentDetailsItem from '@/app/components/TournamentDetailsItem';
+import TablePie from '@/app/components/TablePie';
 
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState()
     const [isLoading, setIsLoading] = useState(true)
-    const [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
+    let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
 
     let role = useStore((state) => state.role)
 
@@ -82,143 +86,74 @@ export default function TournamentOverview({ params }) {
                 route={'tournament/id'}
                 menuOptions={<EditButton />}
                 pagetitle={'Tournament Overview'}>
+                <Typography variant='h6'>Informations</Typography>
+                <TournamentDetails>
+                    <TournamentDetailsItem
+                        iconType={'winner'}
+                        icon={<GiTrophy />}
+                        data={`${tournament?.player[0].name} with ${tournament?.player[0].deck}`}
+                        tooltipTitle={'Tournament Winner'} />
 
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'space-evenly',
-                    marginBlock: '20px',
-                    paddingLeft: {
-                        xs: '0px',
-                        sm: '0px',
-                        md: '100px'
-                    }
-                }}>
+                    <TournamentDetailsItem
+                        icon={<GiPlanetConquest />}
+                        data={`${tournament?.location}`}
+                        tooltipTitle={'Tournament Location'} />
 
-                    <Box
+                    <TournamentDetailsItem
+                        icon={<GiCalendar />}
+                        data={tournament?.date}
+                        tooltipTitle={'Tournament Date'} />
+
+                    <TournamentDetailsItem
+                        icon={<GiTabletopPlayers />}
+                        data={tournament?.totalParticipants}
+                        tooltipTitle={'Total Participants'} />
+                </TournamentDetails>
+
+                <Typography variant='h6'>Statistics</Typography>
+                <TournamentDetails>
+                    <Grid
+                        item
+                        xs={6}
+                        borderRadius={2}
+                        height='380px'
+                        justifyContent="center"
                         sx={{
-                            minWidth: '100px',
-                            marginRight: '20px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justfiyContent: 'center',
-                        }}>
-                        <Box sx={{
-                            width: '20px', marginRight: '15px', display: 'flex',
-                            alignItems: 'center',
-                        }}>
-                            <IconContext.Provider value={{ color: "#FFD700" }}>
-                                <Tooltip title='Winner of the tournament'>
-                                    <IconButton sx={{
-                                        width: '30px',
-                                        height: '30px',
-                                        cursor: 'help'
-                                    }}>
-                                        <GiTrophy />
-                                    </IconButton>
-                                </Tooltip>
-                            </IconContext.Provider>
-                        </Box>
-                        {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 140 }} /> :
-                            <Typography variant='body2'>{`${tournament.player[0].name} with ${tournament.player[0].deck}`}</Typography>}
-                    </Box>
+                            height: '380px'
+                        }} className="canvasContainer">
+                        <Paper
 
+                            justifyContent="center"
+                            sx={{
+                                backgroundColor: '#1F0F26',
+                                borderRadius: 2,
+                                padding: '10px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'column'
+                            }}>
+                            <div style={{ width: '320px', margin: '10px' }}>
+                                <PieChart data={tournamentBreakdownData} />
+                            </div>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6} className="tableContainer">
+                        <TableMUI
+                            table='winner-breakdown'
+                            data={tournamentBreakdownData} />
+                    </Grid>
+                </TournamentDetails>
 
-                    <Box
-                        sx={{
-                            minWidth: '100px',
-                            marginRight: '20px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justfiyContent: 'center',
-                        }}>
-                        <Box sx={{
-                            width: '20px', marginRight: '15px', display: 'flex',
-                            alignItems: 'center',
-                        }}>
-                            <Tooltip title='Tournament location'>
-                                <IconButton sx={{
-                                    width: '30px',
-                                    height: '30px',
-                                    cursor: 'help'
-                                }}>
-                                    <MdLocationOn />
-                                </IconButton>
-                            </Tooltip>
-                        </Box>
-                        {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 60 }} /> :
-                            <Typography variant='body2'>{tournament?.location}</Typography>}
-                    </Box>
+                <Typography variant='h6'>Tournament Tree</Typography>
 
-
-                    <Box
-                        sx={{
-
-                            minWidth: '100px',
-                            marginRight: '20px',
-                            display: 'flex',
-                            alignItems: 'center',
-
-                        }}>
-                        <Box sx={{
-                            width: '20px', marginRight: '15px', display: 'flex',
-                            alignItems: 'center',
-                        }}>
-                            <Tooltip title='Tournament date'>
-                                <IconButton sx={{
-                                    width: '30px',
-                                    height: '30px',
-                                    cursor: 'help'
-                                }}>
-                                    <GiCalendar />
-                                </IconButton>
-                            </Tooltip>
-
-                        </Box>
-                        {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 78 }} /> :
-                            <Typography variant='body2'>{tournament?.date}</Typography>}
-                    </Box>
-
-                    <Box sx={{
-                        minWidth: '100px',
-                        marginRight: '20px',
-                        display: 'flex',
-
-                    }}>
-                        <Box sx={{
-                            width: '20px', marginRight: '15px', display: 'flex',
-                            alignItems: 'center',
-                        }}>
-                            <Tooltip title='Total players participated'>
-                                <IconButton sx={{
-                                    width: '30px',
-                                    height: '30px',
-                                    cursor: 'help'
-                                }}>
-                                    <GiTabletopPlayers />
-                                </IconButton>
-                            </Tooltip>
-
-                        </Box>
-                        {isLoading ?
-                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 26, alignSelf: 'center' }} /> :
-                            <Typography variant='body2' sx={{ alignSelf: 'center' }}>{tournament?.totalParticipants}</Typography>}
-                    </Box>
-
-
-                </Box>
-                <Box
-
-                    justifyContent='space-evenly'
-                    alignItems='center'
-                    display="flex"
+                {/* <TablePie tournamentJson={tournamentBreakdownData && tournamentBreakdownData} /> */}
+                {/* <Grid
+                    container
                     flexDirection="row"
 
-                    p={2}
                     borderRadius={1}
-                    minHeight={430}
+
 
                     sx={{
                         flexDirection: {
@@ -227,17 +162,32 @@ export default function TournamentOverview({ params }) {
                             md: 'row'
                         }
                     }}>
-                    <div className="canvasContainer">
-                        <PieChart
-                            data={tournamentBreakdownData} />
-                    </div>
-                    <div className="tableContainer">
+                    <Grid xs={6} item className="canvasContainer">
+                        <Card>
+                            <Paper
+                                borderRadius={2}
+                                sx={{
+
+                                    backgroundColor: '#1F0F26',
+                                }}>
+                                <PieChart
+                                    data={tournamentBreakdownData} />
+                            </Paper>
+                        </Card>
+                    </Grid>
+                    <Grid sx={{
+                        height: '350px'
+                    }} xs={6} item className="tableContainer">
                         <TableMUI
                             table='winner-breakdown'
                             data={tournamentBreakdownData} />
-                    </div>
-                </Box>
+                    </Grid>
+                </Grid> */}
+
+
+
+
             </InnerWindowWrapper>
-        </OuterWindowWrapper>
+        </OuterWindowWrapper >
     )
 }
