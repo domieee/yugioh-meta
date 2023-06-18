@@ -115,7 +115,7 @@ export default function TournamentTreeItem({ item, data }) {
                             <GiBroadsword style={{ width: '20px' }} />
 
 
-                            {tournamentStore[item.key]?.playerName || da === '' ?
+                            {tournamentStore[item.key]?.playerName === '' ?
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
