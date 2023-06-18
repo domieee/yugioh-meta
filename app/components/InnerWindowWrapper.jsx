@@ -15,6 +15,7 @@ export default function InnerWindowWrapper({
             display="flex"
             flexDirection="column"
             justifyContent='center'
+            alignItems='center'
             bgcolor="background.paper"
             backgroundColor='#1F0F26'
             p={1}

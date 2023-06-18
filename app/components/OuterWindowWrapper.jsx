@@ -14,7 +14,7 @@ export default function OuterWindowWrapper({ children }) {
             display="flex"
             justifyContent="center"
             flexWrap='wrap'
-            alignItems="start"
+            alignItems="center"
             height='100%'
             minHeight='100%'
 
@@ -24,7 +24,7 @@ export default function OuterWindowWrapper({ children }) {
                     xs: 'column', // phone
                     sm: 'column', // tablets
                     md: 'column', // small laptop
-                    xl: 'row'
+                    xl: 'column'
                 },
                 padding: {
                     xs: '0px', // phone

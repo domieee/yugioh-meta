@@ -65,7 +65,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                                     alignItems: "center"
                                 }}>
                                 {
-                                    data.place === 'first' ?
+                                    data[0].place === 'first' ?
                                         <IconContext.Provider value={{ color: "#FFD700" }}>
                                             <GiTrophy style={{ width: '20px' }} />
                                         </IconContext.Provider> :
@@ -75,11 +75,11 @@ export default function TournamentTreeOverviewItem({ data }) {
                                 <Typography
                                     marginLeft={0.75}
                                     variant='overline'>
-                                    {data.place}
+                                    {data[0].place}
                                 </Typography>
                             </Box>
 
-                            {data.deckLink === '' ?
+                            {data[0].deckLink === '' ?
                                 <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                     <HiExternalLink style={{ width: '20px' }} />
                                 </IconContext.Provider> :
@@ -97,7 +97,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                             <GiBroadsword style={{ width: '20px' }} />
 
 
-                            {data.playerName === '' ?
+                            {data[0].name === '' ?
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
@@ -114,11 +114,11 @@ export default function TournamentTreeOverviewItem({ data }) {
                                 </Typography> :
                                 <Typography
                                     variant='body2'>
-                                    {data.playerName}
+                                    {data[0].name}
                                 </Typography>
                             }
-                            {data === '' ||
-                                data === '' ?
+                            {data[0].name === '' ||
+                                data[0].deckNote === '' ?
                                 '' :
                                 <Typography
                                     sx={{
@@ -130,7 +130,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                                     }}
                                     variant='body2'
                                 >
-                                    with {data.playedDeck}
+                                    with {data[0].deck}
                                 </Typography>
                             }
 
@@ -148,7 +148,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {data.deckNotes === '' ?
+                                {data[0].deckNote === '' ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -175,7 +175,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                                             flex: '1'
                                         }}
                                         variant='body2'>
-                                        {data.deckNotes}
+                                        {data[0].deckNote}
                                     </Typography>
                                 }
                             </Box>

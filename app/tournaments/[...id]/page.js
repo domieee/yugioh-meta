@@ -15,18 +15,20 @@ import { GiTrophy, GiTabletopPlayers, GiCalendar, GiPlanetConquest } from "react
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons"
 
-import PieChart from '@/app/statistics/components/PieChart';
-import TableMUI from '@/app/statistics/components/TabelMUI';
+import PieChart from '../../statistics/components/PieChart';
+import TableMUI from '../../statistics/components/TabelMUI';
 import { Grid, Card, Paper } from '@mui/material';
 import EditButton from '../components/EditButton';
-import OuterWindowWrapper from '@/app/components/OuterWindowWrapper';
-import InnerWindowWrapper from '@/app/components/InnerWindowWrapper';
-import TournamentDetails from '@/app/components/TournamentDetails';
-import TournamentDetailsItem from '@/app/components/TournamentDetailsItem';
+import OuterWindowWrapper from '../../components/OuterWindowWrapper';
+import InnerWindowWrapper from '../../components/InnerWindowWrapper';
+import TournamentDetails from '../../components/TournamentDetails';
+import TournamentDetailsItem from '../../components/TournamentDetailsItem';
 import TablePie from '@/app/components/TablePie';
-import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
-import Stack from '@mui/material';
+
+import Stack from '@mui/material/Stack';
 import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
+import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
+
 
 export default function TournamentOverview({ params }) {
 
@@ -34,6 +36,9 @@ export default function TournamentOverview({ params }) {
     const [isLoading, setIsLoading] = useState(true)
     let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
     let [tournamentTree, setTournamentTree] = useState([])
+
+    const top16FirstRow = tournamentTree[4]?.slice(0, 4)
+    const top16SecondRow = tournamentTree[4]?.slice(4, 8)
 
     let role = useStore((state) => state.role)
 
@@ -176,6 +181,7 @@ export default function TournamentOverview({ params }) {
                 <Typography variant='h6'>Tournament Tree</Typography>
                 <Stack
                     sx={{
+                        width: '100%',
                         paddingBlock: '20px',
                         backgroundColor: '#212121',
                         marginBlock: '25px',
@@ -184,50 +190,13 @@ export default function TournamentOverview({ params }) {
                     alignItems='center'
 
                     spacing={2}>
-                    <TournamentTreeOverviewRow data={tournamentTree && tournamentTree[0]} />
+                    <TournamentTreeOverviewRow data={tournamentTree[0]} />
+                    <TournamentTreeOverviewRow data={tournamentTree[1]} />
+                    <TournamentTreeOverviewRow data={tournamentTree[2]} />
+                    <TournamentTreeOverviewRow data={tournamentTree[3]} />
+                    <TournamentTreeOverviewRow data={top16FirstRow} />
+
                 </Stack>
-
-
-                {/* <TablePie tournamentJson={tournamentBreakdownData && tournamentBreakdownData} /> */}s
-                {/* <Grid
-                    container
-                    flexDirection="row"
-
-                    borderRadius={1}
-
-
-                    sx={{
-                        flexDirection: {
-                            xs: 'column',
-                            sm: 'column',
-                            md: 'row'
-                        }
-                    }}>
-                    <Grid xs={6} item className="canvasContainer">
-                        <Card>
-                            <Paper
-                                borderRadius={2}
-                                sx={{
-
-                                    backgroundColor: '#1F0F26',
-                                }}>
-                                <PieChart
-                                    data={tournamentBreakdownData} />
-                            </Paper>
-                        </Card>
-                    </Grid>
-                    <Grid sx={{
-                        height: '350px'
-                    }} xs={6} item className="tableContainer">
-                        <TableMUI
-                            table='winner-breakdown'
-                            data={tournamentBreakdownData} />
-                    </Grid>
-                </Grid> */}
-
-
-
-
             </InnerWindowWrapper>
         </OuterWindowWrapper >
     )
