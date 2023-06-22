@@ -25,21 +25,31 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Cookies from 'js-cookie';
 import Alert from '@mui/material/Alert';
-
+import Snackbar from '@mui/material/Snackbar';
+import LinearProgress from '@mui/material/LinearProgress';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Slide from '@mui/material/Slide';
 import NavigationMenu from "./NavigationMenu";
+
+import { updateProgress } from "../interfaceStore";
+
+import { useInterfaceStore } from "../interfaceStore";
 
 function Navigation({ props }) {
 
     console.log(props)
 
     const [isLoading, setIsLoading] = useState(true);
-    const [progress, setProgress] = useState(0);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [alertOpen, setAlertOpen] = useState(true);
 
     const router = useRouter()
+
+    const alert = useInterfaceStore((state) => state.alert.msg);
+    const success = useInterfaceStore((state) => state.success.msg);
+
 
 
     const handleOpenNavMenu = (event) => {
@@ -61,12 +71,14 @@ function Navigation({ props }) {
     const pages = [
         {
             title: 'Tournaments', route: () => {
+                updateProgress(25)
                 router.push('/tournaments')
                 handleCloseNavMenu()
             }
         },
         {
             title: 'Statistics', route: () => {
+                updateProgress(25)
                 router.push('/statistics')
                 handleCloseNavMenu()
             },
@@ -86,13 +98,23 @@ function Navigation({ props }) {
     let id = useStore((state) => state.id)
     let role = useStore((state) => state.role)
 
+    let progress = useInterfaceStore((state) => state.progress)
+
+    let alertVisibility = useInterfaceStore((state) => state.alert.visibility)
+    let successVisibility = useInterfaceStore((state) => state.success.visibility)
+    let updateSuccessVisibility = useInterfaceStore((state) => state.updateSuccessVisibility)
+
     const setUserName = useStore((state) => state.setUserName)
     const setUserID = useStore((state) => state.setUserID)
     const setUserRole = useStore((state) => state.setUserRole)
 
-    const setUsernameNull = useStore((state) => state.setUsernameNull)
-    const setIDNull = useStore((state) => state.setIDNull)
-    const setRoleNull = useStore((state) => state.setRoleNull)
+
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setAlertOpen(false);
+    }
 
     useEffect(() => {
         if (Cookies.get('token')) {
@@ -111,7 +133,9 @@ function Navigation({ props }) {
                 })
 
                 if (userInformation.status === 200) {
+
                     const json = await userInformation.json()
+                    console.log("🚀 ~ file: navigation.jsx:138 ~ receiveUserInformations ~ json:", json)
                     await setUserName(json.username || json.nameOrMail)
                     await setUserID(json.id)
                     await setUserRole(json.role)
@@ -127,16 +151,7 @@ function Navigation({ props }) {
                 }
             }
             receiveUserInformations()
-        } else {
-            Cookies.remove('token');
-            router.push('/login')
-
-            setUserName(false)
-            setUserID(false)
-            setUserRole(false)
         }
-
-
     })
     useEffect(() => {
         setIsLoading(false)
@@ -243,16 +258,15 @@ function Navigation({ props }) {
 
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {largeScreenMenu.map(page => (
-                                <Link
+                            {pages.map(page => (
+                                <Typography
                                     className="navigation-link"
-                                    href={`${page.route}`}
                                     key={page.title}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={page.route}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     {page.title}
-                                </Link>
+                                </Typography>
                             ))}
                         </Box>
                         {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}
@@ -260,8 +274,33 @@ function Navigation({ props }) {
 
                     </Toolbar>
                 </Container>
+                <LinearProgress
+                    variant="determinate"
+                    value={progress}
+                    sx={{
+                        backgroundColor: '#232423'
+                    }}
+                />
             </ AppBar >
-            <Alert severity="error">This is an error alert — check it out!</Alert>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={alertVisibility}
+
+                autoHideDuration={5000}
+                onClose={handleAlertClose}>
+                <Alert severity="error" onClose={() => { }}>{alert}</Alert>
+
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={successVisibility}
+
+                autoHideDuration={5000}
+                onClose={handleAlertClose}>
+                <Alert severity="success" onClose={() => updateSuccessVisibility(false)}>{success}</Alert>
+            </Snackbar>
+
         </>
     );
 }

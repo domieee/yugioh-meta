@@ -30,6 +30,7 @@ import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
 import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
 
 import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
+import { updateProgress } from '@/app/interfaceStore';
 
 
 export default function TournamentOverview({ params }) {
@@ -43,6 +44,9 @@ export default function TournamentOverview({ params }) {
     const top16SecondRow = tournamentTree[4]?.slice(4, 8)
 
     let role = useStore((state) => state.role)
+    useEffect(() => {
+        updateProgress(50)
+    })
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {

@@ -3,10 +3,9 @@
 import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
 import TournamentListItem from './TournamentListItem';
 import Skeleton from '@mui/material/Skeleton';
+import { updateProgress } from '@/app/interfaceStore';
 
 export default function TournamentList() {
     const [tournaments, setTournaments] = useState([])
@@ -21,6 +20,8 @@ export default function TournamentList() {
             console.log(json)
             setTournaments(json)
             setIsLoading(false)
+            updateProgress(100)
+            setTimeout(() => updateProgress(0), 500)
         }
         fetchPieData()
     }, [])

@@ -15,6 +15,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
 import { useStore } from './store';
 import Cookies from 'js-cookie';
+import { useInterfaceStore } from '../interfaceStore';
 
 export default function NavigationMenu({ role, username }) {
 
@@ -42,9 +43,11 @@ export default function NavigationMenu({ role, username }) {
         setAnchorElUser(null);
     };
 
-    const setUsernameNull = useStore((state) => state.setUsernameNull)
-    const setIDNull = useStore((state) => state.setIDNull)
-    const setRoleNull = useStore((state) => state.setRoleNull)
+    const setUserName = useStore((state) => state.setUserName)
+    const setUserID = useStore((state) => state.setUserID)
+    const setUserRole = useStore((state) => state.setUserRole)
+    let updateSuccessVisibility = useInterfaceStore((state) => state.updateSuccessVisibility)
+    const updateSuccess = useInterfaceStore((state) => state.updateSuccess);
 
     const userMenuOptions = [
         {
@@ -56,9 +59,11 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Sign Out', clickHandler: async () => {
                 Cookies.remove('token');
-                await setUsernameNull()
-                await setIDNull()
-                await setRoleNull()
+                updateSuccessVisibility(true)
+                updateSuccess('Successfully logged out. We look forward to your return.')
+                await setUserName(false)
+                await setUserID(false)
+                await setUserRole(false)
                 router.push('/login')
                 handleCloseUserMenu()
             }
@@ -74,9 +79,11 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Sign Out', clickHandler: async () => {
                 Cookies.remove('token');
-                await setUsernameNull()
-                await setIDNull()
-                await setRoleNull()
+                updateSuccessVisibility(true)
+                updateSuccess('Successfully logged out. We look forward to your return.')
+                await setUserName(false)
+                await setUserID(false)
+                await setUserRole(false)
                 router.push('/login')
                 handleCloseUserMenu()
             }
@@ -99,9 +106,11 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Sign Out', clickHandler: async () => {
                 Cookies.remove('token');
-                await setUsernameNull()
-                await setIDNull()
-                await setRoleNull()
+                updateSuccessVisibility(true)
+                updateSuccess('Successfully logged out. We look forward to your return.')
+                await setUserName(false)
+                await setUserID(false)
+                await setUserRole(false)
                 router.push('/login')
                 handleCloseUserMenu()
             }
@@ -130,9 +139,11 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Sign Out', clickHandler: async () => {
                 Cookies.remove('token');
-                await setUsernameNull()
-                await setIDNull()
-                await setRoleNull()
+                updateSuccessVisibility(true)
+                updateSuccess('Successfully logged out. We look forward to your return.')
+                await setUserName(false)
+                await setUserID(false)
+                await setUserRole(false)
                 router.push('/login')
                 handleCloseUserMenu()
             }

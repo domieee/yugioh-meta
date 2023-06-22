@@ -15,6 +15,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Cookies from 'js-cookie';
 import { css } from '@emotion/react';
 
+import { useInterfaceStore } from "../../interfaceStore";
+
 
 import './login.scss'
 import { Box, Stack } from "@mui/material";
@@ -32,6 +34,13 @@ export default function Login() {
         password: ''
     });
 
+    const updateAlert = useInterfaceStore((state) => state.updateAlert);
+    const updateSuccess = useInterfaceStore((state) => state.updateSuccess);
+    const updateAlertVisibility = useInterfaceStore((state) => state.updateAlertVisibility);
+    const updateSuccessVisibility = useInterfaceStore((state) => state.updateSuccessVisibility)
+
+    // Access the alert visibility
+    const alertVisible = useInterfaceStore((state) => state.alert.visibility);
     const setUserName = useStore((state) => state.setUserName)
     const setUserID = useStore((state) => state.setUserID)
     const setUserRole = useStore((state) => state.setUserRole)
@@ -53,6 +62,7 @@ export default function Login() {
     };
 
     const loginUser = async (e) => {
+
         setFetching(true)
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}login`, {
             method: 'POST',
@@ -67,6 +77,7 @@ export default function Login() {
         })
 
         if (response.status === 200) {
+
             const json = await response.json()
             Cookies.set('token', json, { expires: 7 })
             const currentToken = Cookies.get('token');
@@ -84,6 +95,12 @@ export default function Login() {
 
             if (userInformation.status === 200) {
                 const json = await userInformation.json()
+                console.log("🚀 ~ file: page.jsx:98 ~ loginUser ~ json:", json)
+                updateSuccess('You´re in! Successfully logged in and ready to dive in.')
+                updateSuccessVisibility(true)
+
+
+                // Handle the user states in the user store
                 await setUserName(json.username)
                 await setUserID(json.id)
                 await setUserRole(json.role)
@@ -91,6 +108,7 @@ export default function Login() {
                 setTimeout(() => {
                     setFetching(false)
                     router.push('/')
+
                 }, 500)
 
             } else if (userInformation.status === 400) {
@@ -99,14 +117,17 @@ export default function Login() {
             }
 
         } else if (response.status === 400) {
+
             const error = await response.json()
             console.log(error)
             setFetching(false)
-            setAlertOpen(true)
-            setErrorMessage(error.msg)
-            setErrorKey(error.key)
+
+            // Handle the errors in the UI
+            updateAlertVisibility(true)
+            updateAlert(error.msg)
             setTimeout(() => {
                 setErrorKey('')
+
             }, 5000)
 
         } else {
@@ -220,24 +241,6 @@ export default function Login() {
 
 
             </Card>
-
-            {/* Snackbar to handle success feedback during the login process */}
-            <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={alertOpen}
-                autoHideDuration={5000}
-                onClose={handleAlertClose}>
-                <Alert severity="error" >{errorMessage && errorMessage}</Alert>
-            </Snackbar>
-
-            {/* Snackbar to handle error feedback during the login process */}
-            <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={alertOpen}
-                autoHideDuration={5000}
-                onClose={handleAlertClose}>
-                <Alert severity="error" >{errorMessage && errorMessage}</Alert>
-            </Snackbar>
 
         </section >
     )
