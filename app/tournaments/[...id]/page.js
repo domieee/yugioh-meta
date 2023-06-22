@@ -50,6 +50,7 @@ export default function TournamentOverview({ params }) {
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {
+            updateProgress(75)
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-overview`, {
                     method: 'POST',

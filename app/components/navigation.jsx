@@ -169,6 +169,13 @@ function Navigation({ props }) {
                     top: '0'
                 }
                 } >
+                <LinearProgress
+                    variant="determinate"
+                    value={progress}
+                    sx={{
+                        backgroundColor: '#232423'
+                    }}
+                />
                 <Container maxWidth="xl">
                     <Toolbar disableGutters boxShadow={0}>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -274,13 +281,7 @@ function Navigation({ props }) {
 
                     </Toolbar>
                 </Container>
-                <LinearProgress
-                    variant="determinate"
-                    value={progress}
-                    sx={{
-                        backgroundColor: '#232423'
-                    }}
-                />
+
             </ AppBar >
 
             <Snackbar
