@@ -13,6 +13,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 
 import { useEffect, useRef } from 'react';
+import { Typography } from '@mui/material';
 
 export default function TableMUI({ data, table }) {
 
@@ -31,12 +32,9 @@ export default function TableMUI({ data, table }) {
         }
     }, []);
 
-
-
     const values = data[0]
     const totals = data[1]
     const percentages = data[2]
-
 
     return (
         <>
@@ -55,9 +53,9 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
                 <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px', backgroundColor: '#1F0F26' }} elevation={5} boxShadow={0} >
-                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none', backgroundColor: '#1F0F26' }} className='table-container' ref={containerRef}  >
-                        <Table variant='outline' boxShadow={0} stickyHeader style={{ boxShadow: 'none' }} size='small' aria-label="simple table">
-                            <TableHead >
+                    <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none', backgroundColor: '#232423' }} className='table-container' ref={containerRef}  >
+                        <Table variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none' }} aria-label="simple table">
+                            <TableHead style={{ backgroundColor: '#fff' }}>
                                 <TableRow backgroundColor='white'>
                                     <TableCell>Deck</TableCell>
                                     <TableCell align="right">Total</TableCell>
@@ -71,11 +69,12 @@ export default function TableMUI({ data, table }) {
                                         onClick={(value) => alert({ value })}
                                         hover
                                         key={index}
-
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell component="th" scope="row" cursor='pointer'>
-                                            {value}
+                                            <Typography variant='body1'>
+                                                {value}
+                                            </Typography>
                                         </TableCell>
                                         <TableCell align="right">{totals[index]}</TableCell>
                                         {percentages !== undefined ? <TableCell align="right">{percentages && percentages[index]}</TableCell> : null}

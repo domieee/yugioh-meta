@@ -63,7 +63,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
 
                         justifyContent="center"
                         sx={{
-                            backgroundColor: '#1F0F26',
+                            backgroundColor: '#232423',
                             borderRadius: 2,
                             padding: '10px',
                             height: '380px',
@@ -72,7 +72,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             justifyContent: 'center',
                             flexDirection: 'column'
                         }}>
-                        <div style={{ width: '320px', margin: '10px' }}>
+                        <div style={{ width: '320px', margin: '20px', height: '380px', display: 'flex' }}>
                             <PieChart data={winnerJson || topCutJson || tournamentJson} />
                         </div>
                     </Paper>

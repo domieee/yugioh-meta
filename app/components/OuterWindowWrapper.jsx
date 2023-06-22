@@ -10,7 +10,7 @@ export default function OuterWindowWrapper({ children }) {
     return (
         <Box
             bgcolor="background.paper"
-            backgroundColor='#09030D'
+            backgroundColor='#1b1b1c'
             display="flex"
             justifyContent="center"
             flexWrap='wrap'

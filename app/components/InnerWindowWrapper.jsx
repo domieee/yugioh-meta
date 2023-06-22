@@ -17,14 +17,12 @@ export default function InnerWindowWrapper({
             justifyContent='center'
             alignItems='center'
             bgcolor="background.paper"
-            backgroundColor='#1F0F26'
+            backgroundColor='#232423'
             p={1}
-            borderRadius={2}
-            elevation={3}
             marginBottom={2}
             maxWidth={700}
             marginInline='auto'
-            boxShadow='2px 2px 4px rgba(0, 0, 0, 0.2)'
+            boxShadow='0'
             sx={{
                 minWidth: {
                     xs: '380px',
@@ -37,7 +35,8 @@ export default function InnerWindowWrapper({
                     sm: '50px',
                     md: '100px',
                     lg: '100px'
-                }
+                },
+                paddingBottom: '40px'
             }}
         >
             <InnerWindowWrapperHeader

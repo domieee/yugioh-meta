@@ -8,7 +8,9 @@ import {
     Tooltip,
     IconButton,
     Typography,
-    Paper
+    Paper,
+    Divider,
+    Skeleton
 } from '@mui/material'
 
 
@@ -24,48 +26,59 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
             <Paper
                 sx={{
                     width: '100%',
-                    backgroundColor: '#1F0F26',
+                    backgroundColor: '#232423',
                     borderRadius: 2,
-                    padding: '10px',
+                    paddingBlock: '10px',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'column'
+                    height: '75px',
+                    flexDirection: 'row',
+                    boxShadow: 0
                 }}>
                 <Box sx={{
                     width: '20px',
-
+                    marginInline: " 25px",
+                    heigth: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                    placeItems: 'center'
+                    boxShadow: 0
+
                 }}>
-                    {iconType === 'winner' ?
-                        <IconContext.Provider value={{ color: "#FFD700" }}>
-                            <Tooltip title={tooltipTitle}>
-                                <IconButton sx={{
-                                    width: '35px',
-                                    height: '35px',
-                                    cursor: 'help',
-                                    marginInline: 'auto'
-                                }}>
-                                    {icon && icon}
-                                </IconButton>
-                            </Tooltip>
-                        </IconContext.Provider> :
-                        <Tooltip title={tooltipTitle}>
-                            <IconButton sx={{
-                                width: '35px',
-                                height: '35px',
-                                cursor: 'help',
-                                marginInline: 'auto'
-                            }}>
+                    <Box sx={{
+                        height: '100%'
+                    }}>
+                        {iconType === 'winner' ?
+
+                            <IconContext.Provider value={{ color: "#FFD700" }}>
+
                                 {icon && icon}
-                            </IconButton>
-                        </Tooltip>}
+
+
+                            </IconContext.Provider> :
+
+
+                            icon
+
+
+                        }
+                    </Box>
+                </Box>
+                <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{
+                        marginRight: '25px'
+                    }}
+                />
+
+                <Box>
+                    <Typography variant='overline'>{tooltipTitle}</Typography>
+                    {data === undefined ?
+                        <Skeleton sx={{ height: '25px' }} />
+                        :
+                        <Typography variant='body1'>{data}</Typography>}
 
                 </Box>
-
-                <Typography variant='body1'>{data}</Typography>
             </Paper>
         </Grid>
     )

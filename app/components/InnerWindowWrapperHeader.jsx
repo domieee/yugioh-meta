@@ -12,7 +12,8 @@ export default function InnerWindowWrapperHeader({
     currentRoute,
     pagetitle,
     menuOptions,
-    item
+    item,
+    disabledIcon,
 }) {
 
     const [itemState, setItemState] = useState(undefined)
@@ -32,36 +33,68 @@ export default function InnerWindowWrapperHeader({
     }, [])
 
 
-
+    const iconProvider = () => {
+        if (currentRoute === '/tournament') {
+            return null
+        }
+    }
 
     return (
-        <Box sx={{
-            display: 'flex',
-            height: '50px',
-            alignItems: 'start',
+        disabledIcon ?
+            <Box sx={{
+                display: 'flex',
+                height: '50px',
+                alignItems: 'start',
+                width: '100%',
+                justifyContent: {
+                    xs: 'center',
+                    sm: 'center',
+                    md: 'space-between',
+                    lg: 'space-between'
+                }
+            }}>
+                <Typography
+                    variant="h5"
+                    sx={{
+                        justifyContent: {
+                            xs: 'center',
+                            sm: 'center',
+                            md: 'start',
+                            lg: 'space-between'
+                        }
+                    }}>
+                    {pagetitle}
+                </Typography>
+            </Box> :
 
-            justifyContent: {
-                xs: 'center',
-                sm: 'center',
-                md: 'start',
-                lg: 'space-between'
-            }
-        }}>
-            <Typography
-                variant="h5"
-                sx={{
-                    justifyContent: {
-                        xs: 'center',
-                        sm: 'center',
-                        md: 'center',
-                        lg: 'center'
-                    }
-                }}>
-                {pagetitle}
-            </Typography>
-            {itemState === undefined ?
-                <Skeleton variant="circular" width={35} height={35} /> :
-                itemState}
-        </Box>
+            <Box sx={{
+                display: 'flex',
+                height: '50px',
+                alignItems: 'start',
+                width: '100%',
+                justifyContent: {
+                    xs: 'center',
+                    sm: 'center',
+                    md: 'space-between',
+                    lg: 'space-between'
+                }
+            }}>
+                <Typography
+                    variant="h5"
+                    sx={{
+                        justifyContent: {
+                            xs: 'center',
+                            sm: 'center',
+                            md: 'start',
+                            lg: 'space-between'
+                        }
+                    }}>
+                    {pagetitle}
+                </Typography>
+                {iconProvider()}
+                {itemState === undefined ?
+                    null :
+                    itemState}
+            </Box>
     )
 }

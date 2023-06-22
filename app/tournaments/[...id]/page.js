@@ -29,6 +29,8 @@ import Stack from '@mui/material/Stack';
 import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
 import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
 
+import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
+
 
 export default function TournamentOverview({ params }) {
 
@@ -119,31 +121,32 @@ export default function TournamentOverview({ params }) {
                 route={'tournament/id'}
                 menuOptions={<EditButton />}
                 pagetitle={'Tournament Overview'}>
-                <Typography variant='h6'>Informations</Typography>
+                <SecondaryWindowHeader sectionTitle={'Informations'} />
                 <TournamentDetails>
                     <TournamentDetailsItem
                         iconType={'winner'}
-                        icon={<GiTrophy />}
+                        icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
                         data={`${tournament?.player[0].name} with ${tournament?.player[0].deck}`}
                         tooltipTitle={'Tournament Winner'} />
 
                     <TournamentDetailsItem
-                        icon={<GiPlanetConquest />}
+                        icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
                         data={`${tournament?.location}`}
                         tooltipTitle={'Tournament Location'} />
 
                     <TournamentDetailsItem
-                        icon={<GiCalendar />}
+                        icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
                         data={tournament?.date}
                         tooltipTitle={'Tournament Date'} />
 
                     <TournamentDetailsItem
-                        icon={<GiTabletopPlayers />}
+                        icon={<GiTabletopPlayers style={{ width: '25px', height: '25px' }} />}
                         data={tournament?.totalParticipants}
                         tooltipTitle={'Total Participants'} />
                 </TournamentDetails>
 
-                <Typography variant='h6'>Statistics</Typography>
+                <SecondaryWindowHeader sectionTitle={'Statistics'} />
+
                 <TournamentDetails>
                     <Grid
                         item
@@ -158,15 +161,14 @@ export default function TournamentOverview({ params }) {
 
                             justifyContent="center"
                             sx={{
-                                backgroundColor: '#1F0F26',
+                                backgroundColor: '#232423',
                                 borderRadius: 2,
-                                padding: '10px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 flexDirection: 'column'
                             }}>
-                            <div style={{ width: '320px', margin: '10px' }}>
+                            <div style={{ width: '360px', margin: '10px' }}>
                                 <PieChart data={tournamentBreakdownData} />
                             </div>
                         </Paper>
@@ -178,30 +180,33 @@ export default function TournamentOverview({ params }) {
                     </Grid>
                 </TournamentDetails>
 
-                <Typography variant='h6'>Tournament Tree</Typography>
-                <Stack
+                <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
+                <Paper sx={{
+                    backgroundColor: '#232423',
+                    width: '100%'
+                }}>                <Stack
+                    borderRadius={2}
                     sx={{
                         width: '100%',
                         paddingBlock: '20px',
-                        backgroundColor: '#212121',
                         marginBlock: '25px',
-                        borderRadius: '20px'
+
                     }}
                     alignItems='center'
 
                     spacing={2}>
-                    {tournamentTree.length > 0 && (
-                        <>
-                            <TournamentTreeOverviewRow data={tournamentTree[0]} />
-                            <TournamentTreeOverviewRow data={tournamentTree[1]} />
-                            <TournamentTreeOverviewRow data={tournamentTree[2]} />
-                            <TournamentTreeOverviewRow data={tournamentTree[3]} />
-                            <TournamentTreeOverviewRow data={top16FirstRow} />
-                        </>
-                    )}
-
-
-                </Stack>
+                        {tournamentTree.length > 0 && (
+                            <>
+                                <TournamentTreeOverviewRow data={tournamentTree[0]} />
+                                <TournamentTreeOverviewRow data={tournamentTree[1]} />
+                                <TournamentTreeOverviewRow data={tournamentTree[2]} />
+                                <TournamentTreeOverviewRow data={tournamentTree[3]} />
+                                <TournamentTreeOverviewRow data={top16FirstRow} />
+                                <TournamentTreeOverviewRow data={top16SecondRow} />
+                            </>
+                        )}
+                    </Stack>
+                </Paper>
             </InnerWindowWrapper>
         </OuterWindowWrapper >
     )

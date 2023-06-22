@@ -44,12 +44,14 @@ export default function TournamentTreeOverviewItem({ data }) {
     return (
         <>
             <Card
+                elevation={2}
                 sx={{
+                    backgroundColor: '#232423',
                     width: 225,
                     '&:hover': {
                         cursor: 'crosshair',
                         backgroundColor: '#272727',
-                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                        boxShadow: '0'
                     }
                 }}>
                 <CardActionArea >

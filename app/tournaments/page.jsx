@@ -8,7 +8,7 @@ export default function Tournaments() {
 
     return (
         <OuterWindowWrapper>
-            <InnerWindowWrapper pagetitle={'National Tournament'}>
+            <InnerWindowWrapper pagetitle={'National Tournament'} currentRoute={'/tournaments'} disabledIcon={true}>
                 <TournamentList />
             </InnerWindowWrapper>
         </OuterWindowWrapper>
