@@ -8,6 +8,7 @@ import TablePie from "../components/TablePie";
 import DialogExplanation from "./components/DialogExplanation";
 import { updateProgress } from '@/app/interfaceStore';
 import InformationHeader from "../components/InformationHeader";
+import SecondaryWindowHeader from "../components/SecondaryWindowHeader";
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
@@ -41,28 +42,15 @@ export default function Statistics() {
     return (
         <OuterWindowWrapper>
             <InnerWindowWrapper
-                menuOptions={
-                    <DialogExplanation
-                        item={'winner-breakdown'}
-                    />}
                 currentRoute={'/statistics'}
-                pagetitle={'Winner Breakdown'}>
+                pagetitle={'Statistics'}>
+                <SecondaryWindowHeader sectionTitle={'Winner Breakdown'} />
                 <InformationHeader informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'} />
                 <TablePie winnerJson={pieData} item="winner-breakdown" />
+                <SecondaryWindowHeader sectionTitle={'Overall Breakdown'} />
+                <InformationHeader informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'} />
+                <TablePie winnerJson={pieOverallData} item="winner-breakdown" />
             </InnerWindowWrapper>
-
-            <InnerWindowWrapper
-                menuOptions={
-                    <DialogExplanation
-                        item={'overall-breakdown'}
-                    />}
-                currentRoute={'/statistics'}
-                item={'overall-breakdown'}
-                pagetitle={'Overall Breakdown'}>
-                <TablePie
-                    topCutJson={pieOverallData}
-                    item="overall-breakdown" />
-            </InnerWindowWrapper>
-        </OuterWindowWrapper>
+        </OuterWindowWrapper >
     );
 }

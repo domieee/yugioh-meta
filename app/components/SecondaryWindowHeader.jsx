@@ -7,6 +7,7 @@ import { Children } from "react";
 export default function SecondaryWindowHeader({ children, sectionTitle }) {
     return (
         <Box sx={{
+            component: 'section',
             width: '100%',
             marginTop: '15px'
         }}>
