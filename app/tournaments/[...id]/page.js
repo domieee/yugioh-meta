@@ -31,6 +31,7 @@ import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem
 
 import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
 import { updateProgress } from '@/app/interfaceStore';
+import InformationHeader from '@/app/components/InformationHeader';
 
 
 export default function TournamentOverview({ params }) {
@@ -186,6 +187,7 @@ export default function TournamentOverview({ params }) {
                 </TournamentDetails>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
+                <InformationHeader informationTitle={'Click on a item to watch the deck on a external page'} />
                 <Paper sx={{
                     backgroundColor: '#232423',
                     width: '100%'

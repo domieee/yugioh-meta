@@ -223,7 +223,14 @@ function Navigation({ props }) {
                 />
                 <Container maxWidth="xl">
                     <Toolbar disableGutters boxShadow={0}>
-                        <GiFoxHead style={{ marginRight: '10px' }} />
+                        <Box sx={{
+                            display: {
+                                xs: 'none',
+                                md: 'flex'
+                            }
+                        }}>
+                            <GiFoxHead style={{ marginRight: '10px', width: '20px', height: '20px' }} />
+                        </Box>
                         <Typography
                             variant="h6"
                             noWrap
@@ -285,13 +292,19 @@ function Navigation({ props }) {
                                 ))}
                             </Menu>
                         </Box>
-                        <AdbIcon sx={{
+                        <Box sx={{
                             display: {
                                 xs: 'flex',
                                 md: 'none'
-                            },
-                            mr: 1
-                        }} />
+                            }
+                        }}>
+                            <GiFoxHead
+                                style={{
+                                    marginRight: '10px',
+                                    width: '20px',
+                                    height: '20px'
+                                }} />
+                        </Box>
                         <Typography
                             variant="h5"
                             noWrap
