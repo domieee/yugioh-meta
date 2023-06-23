@@ -7,6 +7,7 @@ import InnerWindowWrapper from "../components/InnerWindowWrapper";
 import TablePie from "../components/TablePie";
 import DialogExplanation from "./components/DialogExplanation";
 import { updateProgress } from '@/app/interfaceStore';
+import InformationHeader from "../components/InformationHeader";
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
@@ -46,6 +47,7 @@ export default function Statistics() {
                     />}
                 currentRoute={'/statistics'}
                 pagetitle={'Winner Breakdown'}>
+                <InformationHeader informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'} />
                 <TablePie winnerJson={pieData} item="winner-breakdown" />
             </InnerWindowWrapper>
 

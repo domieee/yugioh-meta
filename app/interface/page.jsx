@@ -13,9 +13,11 @@ import { useTournamentStore } from './tournamentStore';
 import OuterWindowWrapper from '../components/OuterWindowWrapper';
 import InnerWindowWrapper from '../components/InnerWindowWrapper';
 import TournamentToggle from './components/TournamentToggle';
+import { useEffect } from 'react';
 
 export default function Interface() {
     let tournamentStore = useTournamentStore(state => state)
+
 
 
     return (

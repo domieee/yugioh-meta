@@ -15,7 +15,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useRouter } from 'next/navigation';
 import { useStore } from './store';
 import Cookies from 'js-cookie';
-import { useInterfaceStore } from '../interfaceStore';
+import { updateProgress, useInterfaceStore } from '../interfaceStore';
 
 export default function NavigationMenu({ role, username }) {
 
@@ -94,13 +94,14 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Profile', clickHandler: async () => {
                 router.push('/profile')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {
             title: 'Interface', clickHandler: () => {
+                updateProgress(25)
                 router.push('/interface')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {
@@ -121,19 +122,20 @@ export default function NavigationMenu({ role, username }) {
         {
             title: 'Profile', clickHandler: () => {
                 router.push('/profile')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {
             title: 'Interface', clickHandler: () => {
+                updateProgress(25)
                 router.push('/interface')
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {
             title: 'Admin Panel', clickHandler: () => {
                 // ...
-                handleCloseNavMenu()
+                handleCloseUserMenu()
             }
         },
         {

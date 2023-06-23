@@ -25,6 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useTournamentStore } from '../tournamentStore';
+import { updateProgress } from '@/app/interfaceStore';
 
 export default function NationalTournamentInterface() {
 
@@ -61,6 +62,8 @@ export default function NationalTournamentInterface() {
     useEffect(() => {
         tournamentStore.setLocation(inputValue);
         console.log(tournamentStore.location);
+        updateProgress(100)
+        setTimeout(() => updateProgress(0), 500)
     }, [inputValue]);
 
     console.log(countries)
