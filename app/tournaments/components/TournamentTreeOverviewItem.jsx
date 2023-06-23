@@ -39,8 +39,12 @@ const style = {
 };
 
 
+
 export default function TournamentTreeOverviewItem({ data }) {
-    console.log(data)
+    let place = data[0].place;
+    if (place.includes('top')) {
+        place = place.replace('top', 'top ');
+    }
     return (
         <>
             <Card
@@ -77,7 +81,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                                 <Typography
                                     marginLeft={0.75}
                                     variant='overline'>
-                                    {data[0].place}
+                                    {place}
                                 </Typography>
                             </Box>
 

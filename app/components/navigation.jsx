@@ -12,6 +12,7 @@ import * as React from "react";
 import { useStore } from "./store";
 import { useRouter } from "next/navigation";
 import './navigation.scss';
+import { styled } from '@mui/material/styles';
 
 
 // @mui/material
@@ -26,7 +27,7 @@ import Container from '@mui/material/Container';
 import Cookies from 'js-cookie';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Slide from '@mui/material/Slide';
@@ -35,6 +36,19 @@ import NavigationMenu from "./NavigationMenu";
 import { updateProgress } from "../interfaceStore";
 
 import { useInterfaceStore } from "../interfaceStore";
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+        backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+        borderRadius: 5,
+        backgroundColor: theme.palette.mode === 'light' ? '#FFD700' : '#FFD700',
+        transition: 'width 0.3s ease-in-out'
+    },
+}));
 
 function Navigation({ props }) {
 
@@ -158,6 +172,8 @@ function Navigation({ props }) {
     }, [])
 
 
+
+
     return (
         <>
             <AppBar marginBottom={20} position="sticky"
@@ -169,7 +185,7 @@ function Navigation({ props }) {
                     top: '0'
                 }
                 } >
-                <LinearProgress
+                <BorderLinearProgress
                     variant="determinate"
                     value={progress}
                     sx={{
