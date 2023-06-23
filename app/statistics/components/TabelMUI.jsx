@@ -57,7 +57,7 @@ export default function TableMUI({ data, table }) {
                         <Table variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none' }} aria-label="simple table">
                             <TableHead style={{ backgroundColor: '#fff' }}>
                                 <TableRow backgroundColor='white'>
-                                    <TableCell>Deck</TableCell>
+                                    <TableCell>Played Deck</TableCell>
                                     <TableCell align="right">Total</TableCell>
                                     {percentages !== undefined ? <TableCell align="right">%</TableCell> : null}
 

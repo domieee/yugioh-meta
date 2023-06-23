@@ -25,7 +25,6 @@ export default function Interface() {
     return (
         <OuterWindowWrapper>
             <InnerWindowWrapper
-                menuOptions={<TournamentToggle type={'asds'} />}
                 pagetitle={tournamentStore?.tournamentType === 'national' ?
                     'Create a national tournament' :
                     'Create a regional tournament'}
@@ -35,7 +34,7 @@ export default function Interface() {
 
                 {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
                 <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
-                <InformationHeader informationTitle={'You can click on one of the items to edit its information.'} />
+                <InformationHeader informationTitle={'Go ahead and click on any item to easily edit its information.'} />
                 <TournamentTree />
             </InnerWindowWrapper>
         </OuterWindowWrapper >
