@@ -255,7 +255,7 @@ export default function TournamentTreeOverviewItem({ data }) {
                 <DialogActions>
                     <Button onClick={handleClose}>Decline</Button>
                     <Button onClick={handleRedirect} autoFocus>
-                        Accept
+                        Open
                     </Button>
                 </DialogActions>
             </Dialog>
