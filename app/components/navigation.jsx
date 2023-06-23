@@ -38,6 +38,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import { GiFoxHead } from "react-icons/gi";
+
 
 import { updateProgress } from "../interfaceStore";
 
@@ -221,7 +223,7 @@ function Navigation({ props }) {
                 />
                 <Container maxWidth="xl">
                     <Toolbar disableGutters boxShadow={0}>
-                        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                        <GiFoxHead style={{ marginRight: '10px' }} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -342,10 +344,6 @@ function Navigation({ props }) {
                 onClose={handleAlertClose}>
                 <Alert severity="success" onClose={() => updateSuccessVisibility(false)}>{success}</Alert>
             </Snackbar>
-
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open alert dialog
-            </Button>
 
             {/* This dialog is used to handle the session expired event */}
             <Dialog
