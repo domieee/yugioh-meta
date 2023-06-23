@@ -187,7 +187,7 @@ export default function TournamentOverview({ params }) {
                 </TournamentDetails>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
-                <InformationHeader informationTitle={'Click on a item to watch the deck on a external page'} />
+                <InformationHeader informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'} />
                 <Paper sx={{
                     backgroundColor: '#232423',
                     width: '100%'
