@@ -214,14 +214,11 @@ export default function TournamentTree() {
         <>
             <Box
                 sx={{
+                    widht: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center'
                 }}>
-                <Typography
-                    variant='h6' >
-                    Tournament Tree
-                </Typography>
                 <Stack
                     sx={{
                         paddingBlock: '20px',

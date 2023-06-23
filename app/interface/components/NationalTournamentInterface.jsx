@@ -72,6 +72,7 @@ export default function NationalTournamentInterface() {
             <Box
                 width='100%'
                 display='flex'
+                flexDirection='column'
                 justifyContent='center'
                 alignItems='center'
                 marginBlock='25px'>
@@ -177,11 +178,8 @@ export default function NationalTournamentInterface() {
                                 min: 1,
                             }} />
                     </Box>
-
-
                 </Stack>
             </Box>
-            <TournamentTree />
         </>
     )
 }

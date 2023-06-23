@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import {
@@ -7,6 +7,12 @@ import {
     GiTrophy,
     GiFamilyTree
 } from "react-icons/gi";
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 import { HiExternalLink } from "react-icons/hi";
 
@@ -41,7 +47,40 @@ const style = {
 
 
 export default function TournamentTreeOverviewItem({ data }) {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleRedirect = () => {
+        const newWindow = window.open(data[0].deckLink, '_blank');
+        if (newWindow) {
+            newWindow.focus();
+        }
+        setOpen(false);
+    }
+
     let place = data[0].place;
+
+    let link = data[0].deckLink;
+    let [linkAvailable, setLinkAvailable] = useState()
+
+    useEffect(() => {
+        if (link.length > 0) {
+            setLinkAvailable(false)
+        } else {
+            setLinkAvailable(true)
+        }
+    }, [])
+
+
     if (place.includes('top')) {
         place = place.replace('top', 'top ');
     }
@@ -53,12 +92,11 @@ export default function TournamentTreeOverviewItem({ data }) {
                     backgroundColor: '#232423',
                     width: 225,
                     '&:hover': {
-                        cursor: 'crosshair',
                         backgroundColor: '#272727',
                         boxShadow: '0'
                     }
                 }}>
-                <CardActionArea >
+                <CardActionArea disabled={linkAvailable} onClick={() => handleClickOpen()}>
                     <CardContent>
                         <Stack
                             spacing={0.75}
@@ -191,6 +229,36 @@ export default function TournamentTreeOverviewItem({ data }) {
                     </CardContent>
                 </CardActionArea>
             </Card >
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Redirect to external link?"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        You are about to be redirected from Yu-Gi-Oh! Meta to an external link:
+                    </DialogContentText>
+                    <DialogContentText
+                        sx={{
+                            mt: '10px',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        }}
+                        id="alert-dialog-description">
+                        {data[0].deckLink}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Decline</Button>
+                    <Button onClick={handleRedirect} autoFocus>
+                        Accept
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
