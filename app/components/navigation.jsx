@@ -277,8 +277,6 @@ function Navigation({ props }) {
                             ))}
                         </Box>
                         {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}
-
-
                     </Toolbar>
                 </Container>
 

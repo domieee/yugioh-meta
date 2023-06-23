@@ -44,13 +44,10 @@ export default function TournamentOverview({ params }) {
     const top16SecondRow = tournamentTree[4]?.slice(4, 8)
 
     let role = useStore((state) => state.role)
-    useEffect(() => {
-        updateProgress(50)
-    })
+
 
     useEffect(() => {
         const fetchTournamentOverview = async () => {
-            updateProgress(75)
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-overview`, {
                     method: 'POST',
@@ -62,17 +59,15 @@ export default function TournamentOverview({ params }) {
                         id: params.id
                     })
                 });
-                const json = await response.json()
-                setTournament(json)
-                setIsLoading(false)
+                const json = await response.json();
+                setTournament(json);
+                setIsLoading(false);
+                updateProgress(60)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
-        fetchTournamentOverview()
-    }, [])
+        };
 
-    useEffect(() => {
         const fetchTournamentBreakdown = async () => {
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}tournament-breakdown`, {
@@ -84,17 +79,15 @@ export default function TournamentOverview({ params }) {
                     body: JSON.stringify({
                         id: params.id
                     })
-                })
-                const json = await response.json()
-                setTimeout(() => setTournamentBreakdownData(json), 500)
+                });
+                const json = await response.json();
+                setTournamentBreakdownData(json)
+                updateProgress(80)
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
-        fetchTournamentBreakdown()
-    }, [])
+        };
 
-    useEffect(() => {
         const fetchTournamentTree = async () => {
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}fetch-tournament-tree`, {
@@ -106,19 +99,26 @@ export default function TournamentOverview({ params }) {
                     body: JSON.stringify({
                         tournamentId: params.id
                     })
-                })
-                const json = await response.json()
-                console.log(json)
-                setTournamentTree(json)
-                console.log(tournamentTree)
+                });
+                const json = await response.json();
+                setTournamentTree(json);
+                updateProgress(100)
+                setTimeout(() => {
+                    updateProgress(0)
+                }, 500)
+                console.log(tournamentTree);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
-        }
-        fetchTournamentTree()
-    }, [])
+        };
 
-    console.log(role)
+        const fetchData = async () => {
+            await fetchTournamentOverview();
+            await fetchTournamentBreakdown();
+            await fetchTournamentTree();
+        };
+        fetchData()
+    }, [])
 
     return (
         <OuterWindowWrapper>
