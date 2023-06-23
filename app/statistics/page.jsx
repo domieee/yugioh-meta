@@ -6,6 +6,7 @@ import OuterWindowWrapper from "../components/OuterWindowWrapper";
 import InnerWindowWrapper from "../components/InnerWindowWrapper";
 import TablePie from "../components/TablePie";
 import DialogExplanation from "./components/DialogExplanation";
+import { updateProgress } from '@/app/interfaceStore';
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
@@ -18,19 +19,22 @@ export default function Statistics() {
             );
             const json = await response.json();
             setPieData(json);
+            updateProgress(75)
         };
-        fetchPieData();
-    }, []); // Empty dependency array
-
-    useEffect(() => {
         const fetchPieOverallData = async () => {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}overall-breakdown`
             );
             const json = await response.json();
             setPieOverallData(json);
+            updateProgress(100)
+            setTimeout(() => updateProgress(0), 500)
         };
-        fetchPieOverallData();
+        const data = async () => {
+            await fetchPieData();
+            await fetchPieOverallData()
+        }
+        data()
     }, []); // Empty dependency array
 
     return (
