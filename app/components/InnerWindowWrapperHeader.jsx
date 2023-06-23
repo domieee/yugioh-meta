@@ -71,7 +71,6 @@ export default function InnerWindowWrapperHeader({
                 display: 'flex',
                 height: '50px',
                 alignItems: 'start',
-                marginBottom: '15px',
                 width: '100%',
                 justifyContent: {
                     xs: 'center',

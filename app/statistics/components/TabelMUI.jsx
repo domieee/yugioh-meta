@@ -52,7 +52,7 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
-                <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', borderRadius: '4px', backgroundColor: '#1F0F26' }} elevation={5} boxShadow={0} >
+                <Paper sx={{ height: '100%', overflow: 'hidden', boxShadow: 'none', backgroundColor: '#1F0F26' }} elevation={5} boxShadow={0} >
                     <TableContainer component={Paper} sx={{ height: 380, boxShadow: 'none', backgroundColor: '#232423' }} className='table-container' ref={containerRef}  >
                         <Table variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none' }} aria-label="simple table">
                             <TableHead style={{ backgroundColor: '#fff' }}>
