@@ -35,7 +35,7 @@ export default function Statistics() {
             await fetchPieOverallData()
         }
         data()
-    }, []); // Empty dependency array
+    }, []);
 
     return (
         <OuterWindowWrapper>

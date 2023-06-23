@@ -5,6 +5,7 @@ import {
     Typography,
 
 } from '@mui/material'
+import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
 
 
 import NationalTournamentInterface from './components/NationalTournamentInterface';
@@ -26,18 +27,7 @@ export default function Interface() {
                     'Create a regional tournament'}
             >
 
-                <Typography
-                    variant="h6"
-                    sx={{
-                        justifyContent: {
-                            xs: 'center',
-                            sm: 'center',
-                            md: 'center',
-                            lg: 'center'
-                        }
-                    }}>
-                    Tournament Informations
-                </Typography>
+                <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
 
                 {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
             </InnerWindowWrapper>

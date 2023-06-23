@@ -23,6 +23,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import Cookies from 'js-cookie';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
@@ -31,10 +32,29 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Slide from '@mui/material/Slide';
 import NavigationMenu from "./NavigationMenu";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 import { updateProgress } from "../interfaceStore";
 
 import { useInterfaceStore } from "../interfaceStore";
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 
 function Navigation({ props }) {
 
@@ -46,6 +66,22 @@ function Navigation({ props }) {
     const [alertOpen, setAlertOpen] = useState(true);
 
     const router = useRouter()
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleSignInClick = () => {
+        setOpen(false);
+        router.push('/login')
+    }
+
 
     const alert = useInterfaceStore((state) => state.alert.msg);
     const success = useInterfaceStore((state) => state.success.msg);
@@ -147,7 +183,7 @@ function Navigation({ props }) {
                     await setUserID(false)
                     await setUserRole(false)
                     Cookies.remove('token');
-                    router.push('/login')
+                    setOpen(true)
                 }
             }
             receiveUserInformations()
@@ -301,6 +337,43 @@ function Navigation({ props }) {
                 onClose={handleAlertClose}>
                 <Alert severity="success" onClose={() => updateSuccessVisibility(false)}>{success}</Alert>
             </Snackbar>
+
+            <Button variant="outlined" onClick={handleClickOpen}>
+                Open alert dialog
+            </Button>
+
+            {/* This dialog is used to handle the session expired event */}
+            <Dialog
+                sx={{
+                    p: 4
+                }}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Session expired"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Your session has expired. Please log in again to continue.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions
+                    justifyContent='space-between'>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button
+                        sx={{
+                            marginLeft: 'auto'
+                        }}
+                        variant="outlined"
+                        onClick={handleSignInClick} autoFocus>
+                        Sign in
+                    </Button>
+                </DialogActions>
+            </Dialog >
+
 
         </>
     );

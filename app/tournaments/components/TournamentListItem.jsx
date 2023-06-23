@@ -13,10 +13,7 @@ import Link from 'next/link';
 
 export default function TournamentListItem({ data }) {
 
-
-
     return (
-
         <Grid item xs={6} md={6}  >
             <Link href={`/tournaments/${data._id}`}>
                 <Card sx={{

@@ -43,6 +43,30 @@ export const useTournamentStore = create(
             playedDeck: '',
             deckNotes: '',
             deckLink: ''
+        },
+        top8FirstItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        top8SecondItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        top8ThridItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
+        },
+        top8FourthItem: {
+            playerName: '',
+            playedDeck: '',
+            deckNotes: '',
+            deckLink: ''
         }
     })
 )

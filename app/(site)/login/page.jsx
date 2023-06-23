@@ -62,6 +62,13 @@ export default function Login() {
     };
 
     const loginUser = async (e) => {
+        console.log("🚀 ~ file: page.jsx:77 ~ loginUser ~ data.mailOrName:", data.mailOrName)
+        console.log("🚀 ~ file: page.jsx:77 ~ loginUser ~ data.password:", data.password)
+
+        const requestBody = {
+            mailOrName: String(data.mailOrName),
+            password: String(data.password)
+        };
 
         setFetching(true)
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}login`, {
@@ -70,10 +77,9 @@ export default function Login() {
                 "Access-Control-Allow-Origin": '*',
                 "Content-Type": "application/json; charset=UTF-8"
             },
-            body: JSON.stringify({
-                mailOrName: data.mailOrName,
-                password: data.password
-            })
+            body: JSON.stringify(requestBody)
+
+
         })
 
         if (response.status === 200) {

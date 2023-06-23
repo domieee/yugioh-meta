@@ -269,8 +269,6 @@ export default function TournamentTreeItem({ item, data }) {
                             })
                             if (isValidHttpsLink(e.target.value)) {
                                 setValidLink(false)
-                            } else if (tournamentStore[open.key]?.deckLink === null) {
-                                setValidLink(false)
                             } else {
                                 setValidLink(true)
                             }
