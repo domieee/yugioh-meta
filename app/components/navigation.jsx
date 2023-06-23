@@ -152,41 +152,46 @@ function Navigation({ props }) {
         setAlertOpen(false);
     }
 
+    const receiveUserInformations = async () => {
+        const currentToken = Cookies.get('token');
+
+        const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
+            method: 'POST',
+            headers: {
+                "Access-Control-Allow-Origin": '*',
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                token: currentToken
+            })
+        })
+
+        if (userInformation.status === 200) {
+
+            const json = await userInformation.json()
+            console.log("🚀 ~ file: navigation.jsx:138 ~ receiveUserInformations ~ json:", json)
+            await setUserName(json.username || json.nameOrMail)
+            await setUserID(json.id)
+            await setUserRole(json.role)
+
+
+        } else if (userInformation.status === 401 || !userInformation.ok) {
+            const json = await userInformation.json()
+            await setUserName(false)
+            await setUserID(false)
+            await setUserRole(false)
+            Cookies.remove('token');
+            setOpen(true)
+        }
+    }
+
     useEffect(() => {
         if (Cookies.get('token')) {
-            const receiveUserInformations = async () => {
-                const currentToken = Cookies.get('token');
-
-                const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
-                    method: 'POST',
-                    headers: {
-                        "Access-Control-Allow-Origin": '*',
-                        "Content-Type": "application/json; charset=UTF-8"
-                    },
-                    body: JSON.stringify({
-                        token: currentToken
-                    })
-                })
-
-                if (userInformation.status === 200) {
-
-                    const json = await userInformation.json()
-                    console.log("🚀 ~ file: navigation.jsx:138 ~ receiveUserInformations ~ json:", json)
-                    await setUserName(json.username || json.nameOrMail)
-                    await setUserID(json.id)
-                    await setUserRole(json.role)
-
-
-                } else if (userInformation.status === 401 || !userInformation.ok) {
-                    const json = await userInformation.json()
-                    await setUserName(false)
-                    await setUserID(false)
-                    await setUserRole(false)
-                    Cookies.remove('token');
-                    setOpen(true)
-                }
-            }
             receiveUserInformations()
+            const interval = setInterval(receiveUserInformations, 10000);
+
+            // Clean up the interval when the component unmounts
+            return () => clearInterval(interval);
         }
     })
     useEffect(() => {
