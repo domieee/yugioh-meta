@@ -19,7 +19,7 @@ export default function InnerWindowWrapper({
             bgcolor="background.paper"
             backgroundColor='#232423'
             p={1}
-            marginBottom={2}
+
             maxWidth={700}
             marginInline='auto'
             boxShadow='0'

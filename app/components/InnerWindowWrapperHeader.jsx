@@ -43,7 +43,6 @@ export default function InnerWindowWrapperHeader({
         disabledIcon ?
             <Box sx={{
                 display: 'flex',
-                height: '50px',
                 alignItems: 'start',
                 width: '100%',
                 justifyContent: {
@@ -69,7 +68,6 @@ export default function InnerWindowWrapperHeader({
 
             <Box sx={{
                 display: 'flex',
-                height: '50px',
                 alignItems: 'start',
                 width: '100%',
                 justifyContent: {
