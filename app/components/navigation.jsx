@@ -294,48 +294,44 @@ function Navigation({ props }) {
                                 <MenuIcon />
                             </IconButton>
                             <Drawer
-                                sx={{ width: '50%', backgroundColor: '#232423', }}
+                                sx={{ width: '50%' }}
                                 open={drawerOpen}
                                 onClose={() => setDrawerOpen(false)}
                             >
-                                <Paper sx={{
-                                    height: '100%',
-                                    transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms'
-                                }} >
-                                    <DrawerHeader>
-                                        <IconButton onClick={() => setDrawerOpen(false)}>
-                                            <TbArrowLeft />
-                                        </IconButton>
-                                    </DrawerHeader>
-                                    <Divider />
-                                    <List>
-                                        <ListItem disablePadding>
-                                            <ListItemButton
-                                                sx={{
-                                                    justifyContent: 'flex-start'
 
-                                                }}
-                                                alignItems="center">
-                                                <ListItemIcon>
-                                                    <GiFamilyTree />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Tournaments" />
-                                            </ListItemButton>
-                                        </ListItem>
-                                        <ListItem disablePadding>
-                                            <ListItemButton
-                                                sx={{
-                                                    justifyContent: 'flex-start'
-                                                }}
-                                                alignItems="center">
-                                                <ListItemIcon>
-                                                    <GiPieChart />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Statistics" />
-                                            </ListItemButton>
-                                        </ListItem>
-                                    </List>
-                                </Paper>
+                                <DrawerHeader>
+                                    <IconButton onClick={() => setDrawerOpen(false)}>
+                                        <TbArrowLeft />
+                                    </IconButton>
+                                </DrawerHeader>
+                                <Divider />
+                                <List>
+                                    <ListItem disablePadding>
+                                        <ListItemButton
+                                            sx={{
+                                                justifyContent: 'flex-start'
+
+                                            }}
+                                            alignItems="center">
+                                            <ListItemIcon>
+                                                <GiFamilyTree />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Tournaments" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                        <ListItemButton
+                                            sx={{
+                                                justifyContent: 'flex-start'
+                                            }}
+                                            alignItems="center">
+                                            <ListItemIcon>
+                                                <GiPieChart />
+                                            </ListItemIcon>
+                                            <ListItemText primary="Statistics" />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </List>
                             </Drawer>
                             <Menu
                                 id="menu-appbar"
