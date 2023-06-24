@@ -25,7 +25,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
         >
             <Paper
                 sx={{
-                    width: '100%',
+                    width: 'calc(100% - 16px) ',
                     backgroundColor: '#232423',
                     borderRadius: 2,
                     paddingBlock: '10px',

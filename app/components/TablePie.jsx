@@ -42,23 +42,40 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                 container
                 flexDirection="row"
                 spacing={2}
-                justifyContent="space-between"
+
                 sx={{
                     flexDirection: {
                         xs: 'column',
                         sm: 'column',
-                        md: 'row'
+                        md: 'row',
+
+                    },
+                    justifyContent: {
+                        xs: 'center'
                     }
                 }}>
                 <Grid
                     item
-                    xs={6}
+                    sx={{
+                        width: {
+                            xs: '100%',
+                            sm: '100%',
+                            md: '50%',
+                            lg: '50%',
+                        },
+                        height: '380px'
+                    }}
+                    xs={{
+                        xs: 6,
+                        sm: 6,
+                        md: 12,
+                        lg: 12, // desktop
+
+                    }}
                     borderRadius={2}
                     height='380px'
                     justifyContent="center"
-                    sx={{
-                        height: '380px'
-                    }} className="canvasContainer">
+                    className="canvasContainer">
                     <Paper
 
                         justifyContent="center"
@@ -72,12 +89,30 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             justifyContent: 'center',
                             flexDirection: 'column'
                         }}>
-                        <div style={{ width: '320px', margin: '20px', height: '380px', display: 'flex' }}>
+                        <div style={{ width: '320px', height: '380px', display: 'flex', alignItems: 'center' }}>
                             <PieChart data={winnerJson || topCutJson || tournamentJson} />
                         </div>
                     </Paper>
                 </Grid>
-                <Grid item xs={6} className="tableContainer">
+                <Grid
+                    item
+                    sx={{
+                        alignItems: 'center',
+                        width: {
+                            xs: '100%',
+                            sm: '100%',
+                            md: '50%',
+                            lg: '50%',
+                        },
+                    }}
+                    xs={{
+                        xs: 6,
+                        sm: 6,
+                        md: 12,
+                        lg: 12, // desktop
+
+                    }}
+                    className="tableContainer">
                     <TableMUI
                         table='winner-breakdown'
                         data={winnerJson || topCutJson || tournamentJson} />

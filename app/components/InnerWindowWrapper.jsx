@@ -25,13 +25,13 @@ export default function InnerWindowWrapper({
             boxShadow='0'
             sx={{
                 minWidth: {
-                    xs: '380px',
+                    xs: '360px',
                     sm: '720px',
                     md: '1080px',
                     lg: '1280px'
                 },
                 paddingInline: {
-                    xs: '50px',
+                    xs: '20px',
                     sm: '50px',
                     md: '100px',
                     lg: '100px'

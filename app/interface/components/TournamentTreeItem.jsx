@@ -49,13 +49,12 @@ export default function TournamentTreeItem({ item, data }) {
     let tournamentStore = useTournamentStore(state => state)
     const [validLink, setValidLink] = useState(false)
 
-    function isValidHttpsLink(link) {
-        // Check if the link starts with "https://" or "http://"
-        if (link.startsWith("https://")) {
-            return true;
-        } else {
-            return false
-        }
+    function isValidLink(link) {
+        console.log("🚀 ~ file: TournamentTreeItem.jsx:53 ~ isValidLink ~ link:", link)
+
+        if (link.length === 0) return true;
+        const linkRegex = /^https:\/\/www\.[^\s\/$.?#]+\.[^\s\/$.?#]+$/;
+        return linkRegex.test(link);
     }
 
     console.log(tournamentStore)
@@ -267,7 +266,7 @@ export default function TournamentTreeItem({ item, data }) {
                             tournamentStore.setItem(open.key, {
                                 deckLink: e.target.value
                             })
-                            if (isValidHttpsLink(e.target.value)) {
+                            if (isValidLink(e.target.value)) {
                                 setValidLink(false)
                             } else {
                                 setValidLink(true)

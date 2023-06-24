@@ -156,13 +156,21 @@ export default function TournamentOverview({ params }) {
                 <TournamentDetails>
                     <Grid
                         item
-                        xs={6}
+
+                        xs={{
+                            xs: 6,
+                            sm: 6,
+                            md: 6,
+                            lg: 6,
+
+                        }}
+                        sx={{
+                            width: '100%'
+                        }}
                         borderRadius={2}
                         height='380px'
                         justifyContent="center"
-                        sx={{
-                            height: '380px'
-                        }} className="canvasContainer">
+                        className="canvasContainer">
                         <Paper
 
                             justifyContent="center"
@@ -179,7 +187,24 @@ export default function TournamentOverview({ params }) {
                             </div>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} className="tableContainer">
+                    <Grid
+                        item
+                        sx={{
+                            width: {
+                                xs: '100%',
+                                sm: '100%',
+                                md: '50%',
+                                lg: '50%',
+                            },
+                        }}
+                        xs={{
+                            xs: 6,
+                            sm: 6,
+                            md: 6,
+                            lg: 6,
+
+                        }}
+                        className="tableContainer">
                         <TableMUI
                             table='winner-breakdown'
                             data={tournamentBreakdownData} />
@@ -194,7 +219,12 @@ export default function TournamentOverview({ params }) {
                 }}>                <Stack
                     borderRadius={2}
                     sx={{
-                        width: '100%',
+                        width: {
+                            xs: '100%',
+                            sm: '100%',
+                            md: '50%',
+                            lg: '50%',
+                        },
                         paddingBlock: '20px',
                         marginBlock: '25px',
 

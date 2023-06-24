@@ -46,7 +46,7 @@ export default function InnerWindowWrapperHeader({
                 alignItems: 'start',
                 width: '100%',
                 justifyContent: {
-                    xs: 'center',
+                    xs: 'start',
                     sm: 'center',
                     md: 'space-between',
                     lg: 'space-between'
@@ -56,7 +56,7 @@ export default function InnerWindowWrapperHeader({
                     variant="h5"
                     sx={{
                         justifyContent: {
-                            xs: 'center',
+                            xs: 'start',
                             sm: 'center',
                             md: 'start',
                             lg: 'space-between'
@@ -71,22 +71,14 @@ export default function InnerWindowWrapperHeader({
                 alignItems: 'start',
                 width: '100%',
                 justifyContent: {
-                    xs: 'center',
+                    xs: 'space-between',
                     sm: 'center',
                     md: 'space-between',
                     lg: 'space-between'
                 }
             }}>
                 <Typography
-                    variant="h5"
-                    sx={{
-                        justifyContent: {
-                            xs: 'center',
-                            sm: 'center',
-                            md: 'start',
-                            lg: 'space-between'
-                        }
-                    }}>
+                    variant="h5">
                     {pagetitle}
                 </Typography>
                 {iconProvider()}

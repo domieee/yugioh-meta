@@ -10,15 +10,19 @@ export default function InformationHeader({ informationTitle }) {
                 display: 'flex',
                 alignItems: 'center',
                 marginBottom: '5px',
-                width: '100%'
+                width: '100%',
+                width: 'fit-content',
+                paddingBottom: '4px',
+                marginRight: 'auto',
+                fontSize: 'min(14px, 4vw)'
             }}>
-            <GiInfo style={{ marginRight: '5px', color: 'rgba(255, 255, 255, 0.6)' }} />
+            <GiInfo style={{ width: '20px', marginRight: '5px', color: 'rgba(255, 255, 255, 0.6)' }} />
             <Typography
                 sx={{
 
                     color: 'rgba(255, 255, 255, 0.6)',
                 }}
                 variant='body2'>{informationTitle}</Typography>
-        </Box>
+        </Box >
     )
 }

@@ -7,10 +7,16 @@ export default function TournamentDetails({ children }) {
     return (
         <Grid
             container
-            justifyContent="space-between"
+            width='100%'
             spacing={2}
+            alignItems='center'
             sx={{
-                'width': '100%',
+                flexDirection: {
+                    xs: 'column', // phone
+                    sm: 'column', // tablets
+                    md: 'row', // small laptop
+                    lg: 'row',
+                }
             }}>
             {Children.map(children, (child) => (
                 child
