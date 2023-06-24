@@ -237,7 +237,8 @@ function Navigation({ props }) {
                     backgroundColor: '#0E0E0D', // Set background color with opacity
                     opacity: 0.97,
                     height: '65px',
-                    top: '0'
+                    top: '0',
+                    boxShadow: '0'
                 }
                 } >
                 <LinearProgress
