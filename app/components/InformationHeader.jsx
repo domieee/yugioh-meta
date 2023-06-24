@@ -9,7 +9,7 @@ export default function InformationHeader({ informationTitle }) {
             sx={{
                 display: 'flex',
                 alignItems: {
-                    xs: 'baseline',
+                    xs: 'center',
                     sm: 'center',
                     md: 'center'
                 },
