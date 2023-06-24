@@ -37,13 +37,32 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Drawer from '@mui/material/Drawer';
+import Divider from "@mui/material/Divider";
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
 
 import { GiFoxHead } from "react-icons/gi";
+import { TbArrowLeft } from "react-icons/tb";
 
 
 import { updateProgress } from "../interfaceStore";
 
 import { useInterfaceStore } from "../interfaceStore";
+import { styled, useTheme } from "@mui/material/styles";
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+}));
 
 const style = {
     position: 'absolute',
@@ -57,8 +76,15 @@ const style = {
     p: 4,
 };
 
+import {
+    GiPieChart,
+    GiFamilyTree
+} from "react-icons/gi";
+
 
 function Navigation({ props }) {
+
+    const theme = useTheme()
 
     console.log(props)
 
@@ -66,6 +92,7 @@ function Navigation({ props }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [alertOpen, setAlertOpen] = useState(true);
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const router = useRouter()
 
@@ -125,7 +152,7 @@ function Navigation({ props }) {
 
     const largeScreenMenu = [
         {
-            title: 'Tournaments', route: '/tournaments'
+            title: 'Tournaments', route: '/tournaments',
         },
         {
             title: 'Statistics', route: '/statistics'
@@ -205,10 +232,9 @@ function Navigation({ props }) {
 
     return (
         <>
-            <AppBar marginBottom={20} position="sticky"
+            <AppBar position="fixed"
                 sx={{// Apply blur effect
                     backgroundColor: '#0E0E0D', // Set background color with opacity
-                    boxShadow: 'none', // Remove box shadow
                     opacity: 0.97,
                     height: '65px',
                     top: '0'
@@ -262,11 +288,55 @@ function Navigation({ props }) {
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
+                                onClick={() => setDrawerOpen(true)}
                                 color="inherit"
                             >
                                 <MenuIcon />
                             </IconButton>
+                            <Drawer
+                                sx={{ width: '50%', backgroundColor: '#232423', }}
+                                open={drawerOpen}
+                                onClose={() => setDrawerOpen(false)}
+                            >
+                                <Paper sx={{
+                                    height: '100%',
+                                    transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms'
+                                }} >
+                                    <DrawerHeader>
+                                        <IconButton onClick={() => setDrawerOpen(false)}>
+                                            <TbArrowLeft />
+                                        </IconButton>
+                                    </DrawerHeader>
+                                    <Divider />
+                                    <List>
+                                        <ListItem disablePadding>
+                                            <ListItemButton
+                                                sx={{
+                                                    justifyContent: 'flex-start'
+
+                                                }}
+                                                alignItems="center">
+                                                <ListItemIcon>
+                                                    <GiFamilyTree />
+                                                </ListItemIcon>
+                                                <ListItemText primary="Tournaments" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <ListItem disablePadding>
+                                            <ListItemButton
+                                                sx={{
+                                                    justifyContent: 'flex-start'
+                                                }}
+                                                alignItems="center">
+                                                <ListItemIcon>
+                                                    <GiPieChart />
+                                                </ListItemIcon>
+                                                <ListItemText primary="Statistics" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                    </List>
+                                </Paper>
+                            </Drawer>
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}
