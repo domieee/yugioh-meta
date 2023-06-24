@@ -10,6 +10,7 @@ export default function TournamentDetails({ children }) {
             width='100%'
             spacing={2}
             alignItems='center'
+            justifyContent='start'
             sx={{
                 flexDirection: {
                     xs: 'column', // phone

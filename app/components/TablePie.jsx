@@ -63,7 +63,11 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             md: '50%',
                             lg: '50%',
                         },
-                        height: '380px'
+                        height: '380px',
+                        marginBottom: {
+                            xs: '25px',
+                            md: '0'
+                        }
                     }}
                     xs={{
                         xs: 6,
@@ -76,10 +80,11 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     height='380px'
                     justifyContent="center"
                     className="canvasContainer">
-                    <Paper
 
+                    <Paper
                         justifyContent="center"
                         sx={{
+                            boxShadow: '0',
                             backgroundColor: '#232423',
                             borderRadius: 2,
                             padding: '10px',

@@ -21,11 +21,11 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
         <Grid
             item
 
-            xs={6}
+            xs={12}
         >
             <Paper
                 sx={{
-                    width: 'calc(100% - 16px) ',
+                    width: '100%',
                     backgroundColor: '#232423',
                     borderRadius: 2,
                     paddingBlock: '10px',

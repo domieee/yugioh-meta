@@ -14,7 +14,7 @@ export default function InnerWindowWrapper({
         <Box
             display="flex"
             flexDirection="column"
-            justifyContent='center'
+            justifyContent='start'
             alignItems='center'
             bgcolor="background.paper"
             backgroundColor='#232423'
