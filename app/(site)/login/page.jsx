@@ -11,6 +11,8 @@ import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+
 import LoadingButton from '@mui/lab/LoadingButton';
 import Cookies from 'js-cookie';
 import { css } from '@emotion/react';
@@ -154,6 +156,7 @@ export default function Login() {
                 <Typography variant="h6" display="block" >
                     Sign In
                 </Typography>
+                <Divider></Divider>
                 <Stack
                     spacing={1}
                     direction='column'
@@ -196,6 +199,7 @@ export default function Login() {
                             variant="outlined"
                             size="small"
                             value={data.password}
+                            bgColor='#fff'
                             onChange={e => setData({ ...data, password: e.target.value })} />
                     </Box>
 
@@ -214,6 +218,7 @@ export default function Login() {
                     }}>
                     Sign In
                 </LoadingButton>
+
 
                 <Box
                     sx={{

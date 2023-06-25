@@ -196,14 +196,11 @@ function Navigation({ props }) {
         })
 
         if (userInformation.status === 200) {
-
             const json = await userInformation.json()
             console.log("🚀 ~ file: navigation.jsx:138 ~ receiveUserInformations ~ json:", json)
             await setUserName(json.username || json.nameOrMail)
             await setUserID(json.id)
             await setUserRole(json.role)
-
-
         } else if (userInformation.status === 401 || !userInformation.ok) {
             const json = await userInformation.json()
             await setUserName(false)
@@ -228,184 +225,198 @@ function Navigation({ props }) {
     }, [])
 
 
-
-
     return (
         <>
-            <AppBar position="fixed"
-                sx={{// Apply blur effect
-                    backgroundColor: '#0E0E0D', // Set background color with opacity
-                    opacity: 0.85,
-                    height: '65px',
-                    top: '0',
-                    boxShadow: '0'
-                }
-                } >
-                <LinearProgress
-                    variant="determinate"
-                    value={progress}
-                    sx={{
-                        backgroundColor: '#232423'
+            <div style={{ position: 'relative' }}>
+                <div
+                    style={{
+                        position: 'absolute',
+
+                        top: '0',
+                        left: '0',
+                        width: '100%',
+                        height: '100%',
+                        backdropFilter: 'blur(80px)', // Apply blur effect
+                        zIndex: '-1'
                     }}
                 />
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters boxShadow={0}>
-                        <Box sx={{
-                            display: {
-                                xs: 'none',
-                                md: 'flex'
-                            }
-                        }}>
-                            <GiFoxHead style={{ marginRight: '10px', width: '20px', height: '20px' }} />
-                        </Box>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'system-ui',
-                                fontSize: '0.9rem',
-                                fontWeight: 400,
-                                letterSpacing: '.1rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            YU-GI-OH! Meta
-                        </Typography>
-
-                        <Box sx={{
-                            flexGrow: 1,
-                            display: {
-                                xs: 'flex',
-                                md: 'none'
-                            }
-                        }}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={() => setDrawerOpen(true)}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Drawer
-                                sx={{ width: '50%' }}
-                                open={drawerOpen}
-                                onClose={() => setDrawerOpen(false)}
-                            >
-
-                                <DrawerHeader>
-                                    <IconButton onClick={() => setDrawerOpen(false)}>
-                                        <TbArrowLeft />
-                                    </IconButton>
-                                </DrawerHeader>
-                                <Divider />
-                                <List>
-                                    <ListItem disablePadding>
-                                        <ListItemButton
-                                            sx={{
-                                                justifyContent: 'flex-start'
-
-                                            }}
-                                            alignItems="center">
-                                            <ListItemIcon>
-                                                <GiFamilyTree />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Tournaments" />
-                                        </ListItemButton>
-                                    </ListItem>
-                                    <ListItem disablePadding>
-                                        <ListItemButton
-                                            sx={{
-                                                justifyContent: 'flex-start'
-                                            }}
-                                            alignItems="center">
-                                            <ListItemIcon>
-                                                <GiPieChart />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Statistics" />
-                                        </ListItemButton>
-                                    </ListItem>
-                                </List>
-                            </Drawer>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorElNav}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={Boolean(anchorElNav)}
-                                onClose={handleCloseNavMenu}
+                <AppBar
+                    className='blur-background'
+                    position="fixed"
+                    sx={{// Apply blur effect
+                        opacity: 0.85,
+                        height: '65px',
+                        top: '-100',
+                        boxShadow: '0',
+                        backgroundColor: '##1b1b1c',
+                    }
+                    } >
+                    <LinearProgress
+                        variant="determinate"
+                        value={progress}
+                        sx={{
+                            backgroundColor: '#232423'
+                        }}
+                    />
+                    <Container maxWidth="xl">
+                        <Toolbar disableGutters boxShadow={0}>
+                            <Box sx={{
+                                display: {
+                                    xs: 'none',
+                                    md: 'flex'
+                                }
+                            }}>
+                                <GiFoxHead style={{ marginRight: '10px', width: '20px', height: '20px' }} />
+                            </Box>
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="a"
+                                href="/"
                                 sx={{
-                                    display: { xs: 'block', md: 'none' },
+                                    mr: 2,
+                                    display: { xs: 'none', md: 'flex' },
+                                    fontFamily: 'system-ui',
+                                    fontSize: '0.9rem',
+                                    fontWeight: 400,
+                                    letterSpacing: '.1rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
                                 }}
                             >
-                                {pages.map((page) => (
-                                    <MenuItem key={page.title} onClick={page.route}>
-                                        <Typography textAlign="center">{page.title}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                        <Box sx={{
-                            display: {
-                                xs: 'flex',
-                                md: 'none'
-                            }
-                        }}>
-                            <GiFoxHead
-                                style={{
-                                    marginRight: '10px',
-                                    width: '20px',
-                                    height: '20px'
-                                }} />
-                        </Box>
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
+                                YU-GI-OH! Meta
+                            </Typography>
+
+                            <Box sx={{
                                 flexGrow: 1,
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-
-                        </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map(page => (
-                                <Typography
-                                    className="navigation-link"
-                                    key={page.title}
-                                    onClick={page.route}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                display: {
+                                    xs: 'flex',
+                                    md: 'none'
+                                }
+                            }}>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={() => setDrawerOpen(true)}
+                                    color="inherit"
                                 >
-                                    {page.title}
-                                </Typography>
-                            ))}
-                        </Box>
-                        {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}
-                    </Toolbar>
-                </Container>
+                                    <MenuIcon />
+                                </IconButton>
+                                <Drawer
+                                    sx={{ width: '50%' }}
+                                    open={drawerOpen}
+                                    onClose={() => setDrawerOpen(false)}
+                                >
 
-            </ AppBar >
+                                    <DrawerHeader>
+                                        <IconButton onClick={() => setDrawerOpen(false)}>
+                                            <TbArrowLeft />
+                                        </IconButton>
+                                    </DrawerHeader>
+                                    <Divider />
+                                    <List>
+                                        <ListItem disablePadding>
+                                            <ListItemButton
+                                                sx={{
+                                                    justifyContent: 'flex-start'
+
+                                                }}
+                                                alignItems="center">
+                                                <ListItemIcon>
+                                                    <GiFamilyTree />
+                                                </ListItemIcon>
+                                                <ListItemText primary="Tournaments" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <ListItem disablePadding>
+                                            <ListItemButton
+                                                sx={{
+                                                    justifyContent: 'flex-start'
+                                                }}
+                                                alignItems="center">
+                                                <ListItemIcon>
+                                                    <GiPieChart />
+                                                </ListItemIcon>
+                                                <ListItemText primary="Statistics" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                    </List>
+                                </Drawer>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorElNav}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    open={Boolean(anchorElNav)}
+                                    onClose={handleCloseNavMenu}
+                                    sx={{
+                                        display: { xs: 'block', md: 'none' },
+                                    }}
+                                >
+                                    {pages.map((page) => (
+                                        <MenuItem key={page.title} onClick={page.route}>
+                                            <Typography textAlign="center">{page.title}</Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Box>
+                            <Box sx={{
+                                display: {
+                                    xs: 'flex',
+                                    md: 'none'
+                                }
+                            }}>
+                                <GiFoxHead
+                                    style={{
+                                        marginRight: '10px',
+                                        width: '20px',
+                                        height: '20px'
+                                    }} />
+                            </Box>
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                component="a"
+                                sx={{
+                                    mr: 2,
+                                    display: { xs: 'flex', md: 'none' },
+                                    flexGrow: 1,
+                                    fontFamily: 'monospace',
+                                    fontWeight: 700,
+                                    letterSpacing: '.3rem',
+                                    color: 'inherit',
+                                    textDecoration: 'none',
+                                }}
+                            >
+
+                            </Typography>
+                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                                {pages.map(page => (
+                                    <Typography
+                                        className="navigation-link"
+                                        key={page.title}
+                                        onClick={page.route}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        {page.title}
+                                    </Typography>
+                                ))}
+                            </Box>
+                            {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}
+                        </Toolbar>
+                    </Container>
+
+                </ AppBar >
+            </div >
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}

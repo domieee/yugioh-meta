@@ -11,13 +11,13 @@ import { useStore } from '../../components/store'
 
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-import { GiTrophy, GiTabletopPlayers, GiCalendar, GiPlanetConquest } from "react-icons/gi";
+import { GiTrophy, GiTabletopPlayers, GiCalendar, GiPlanetConquest, GiFamilyTree } from "react-icons/gi";
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons"
 
 import PieChart from '../../statistics/components/PieChart';
 import TableMUI from '../../statistics/components/TabelMUI';
-import { Grid, Card, Paper, Divider, List } from '@mui/material';
+import { Grid, Card, Paper, Divider, List, Accordion } from '@mui/material';
 import EditButton from '../components/EditButton';
 import OuterWindowWrapper from '../../components/OuterWindowWrapper';
 import InnerWindowWrapper from '../../components/InnerWindowWrapper';
@@ -31,7 +31,7 @@ import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem
 
 import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
 import { updateProgress } from '@/app/interfaceStore';
-import InformationHeader from '@/app/components/InformationHeader';
+
 
 
 export default function TournamentOverview({ params }) {
@@ -181,7 +181,6 @@ export default function TournamentOverview({ params }) {
 
                             justifyContent="center"
                             sx={{
-                                backgroundColor: '#232423',
                                 borderRadius: 2,
                                 display: 'flex',
                                 alignItems: 'center',
@@ -196,6 +195,7 @@ export default function TournamentOverview({ params }) {
                     <Grid
                         item
                         sx={{
+
                             width: {
                                 xs: '100%',
                                 sm: '100%',
@@ -212,45 +212,87 @@ export default function TournamentOverview({ params }) {
                     </Grid>
                 </TournamentDetails>
 
-                <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
-                <InformationHeader informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'} />
+                <SecondaryWindowHeader
+                    informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'}
+                    sectionTitle={'Tournament Tree'} />
 
-                <Paper sx={{
-                    backgroundColor: '#232423',
-                    width: '100%'
-                }}>
-                    <Stack
-                        borderRadius={2}
-                        sx={{
-                            width: '100%',
-                            paddingBlock: '20px',
-                            marginBlock: '25px',
-
-                        }}
-                        alignItems='center'
-                        justifyContent='center'
-                        spacing={2}>
-                        <List>
-
-                            {tournamentTree.length > 0 && (
-                                <>
-                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>First Place</Divider>
-                                    <TournamentTreeOverviewRow data={tournamentTree[0]} />
-                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Second Place</Divider>
-                                    <TournamentTreeOverviewRow data={tournamentTree[1]} />
-                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 4</Divider>
-                                    <TournamentTreeOverviewRow data={tournamentTree[2]} />
-                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 8</Divider>
-                                    <TournamentTreeOverviewRow data={tournamentTree[3]} />
-                                    <Divider width='100%' light orientation="horizontal" textAlign='left' >Top 16</Divider>
-                                    <TournamentTreeOverviewRow data={top16FirstRow} />
-                                    <TournamentTreeOverviewRow data={top16SecondRow} />
-                                </>
-                            )}
-                        </List>
-                    </Stack>
-                </Paper>
+                <TournamentDetails>
+                    <TournamentTreeOverviewRow
+                        icon={<GiTrophy style={{ color: '#FFD700' }} />}
+                        data={tournamentTree[0]}
+                        place={'Winner'}
+                        listItem={'firstPlace'}
+                        listOpen={true} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        data={tournamentTree[1]}
+                        place={'Second'}
+                        listItem={'firstPlace'}
+                        listOpen={true} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        data={tournamentTree[2]}
+                        place={'Top 4'}
+                        listItem={'firstPlace'}
+                        listOpen={true} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        place={'Top 8'}
+                        listItem={'firstPlace'}
+                        listOpen={false} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        place={'Top 16'}
+                        listItem={'firstPlace'}
+                        listOpen={false} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        place={'Top 32'}
+                        listItem={'firstPlace'}
+                        listOpen={false} />
+                    <TournamentTreeOverviewRow
+                        icon={<GiFamilyTree />}
+                        place={'Top 64'}
+                        listItem={'firstPlace'}
+                        listOpen={false} />
+                </TournamentDetails>
             </InnerWindowWrapper>
         </OuterWindowWrapper >
     )
 }
+{/* <Paper sx={{
+
+    width: '100%'
+}}>
+    <Stack
+        paddingInline='25px'
+        borderRadius={2}
+        sx={{
+            width: '100%',
+            paddingBlock: '20px',
+            marginBlock: '25px',
+
+        }}
+        alignItems='center'
+        justifyContent='center'
+        spacing={2}>
+        <List>
+
+            {tournamentTree.length > 0 && (
+                <>
+                    <Divider width='100%' light orientation="horizontal" textAlign='left'>First Place</Divider>
+                    <TournamentTreeOverviewRow data={tournamentTree[0]} />
+                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Second Place</Divider>
+                    <TournamentTreeOverviewRow data={tournamentTree[1]} />
+                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 4</Divider>
+                    <TournamentTreeOverviewRow data={tournamentTree[2]} />
+                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 8</Divider>
+                    <TournamentTreeOverviewRow data={tournamentTree[3]} />
+                    <Divider width='100%' light orientation="horizontal" textAlign='left' >Top 16</Divider>
+                    <TournamentTreeOverviewRow data={top16FirstRow} />
+                    <TournamentTreeOverviewRow data={top16SecondRow} />
+                </>
+            )}
+        </List>
+    </Stack>
+</Paper> */}

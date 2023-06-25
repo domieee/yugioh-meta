@@ -15,7 +15,7 @@ import InnerWindowWrapper from '../components/InnerWindowWrapper';
 import TournamentToggle from './components/TournamentToggle';
 import { useEffect } from 'react';
 import TournamentTree from './components/TournamentTree';
-import InformationHeader from '../components/InformationHeader';
+
 
 export default function Interface() {
     let tournamentStore = useTournamentStore(state => state)
@@ -33,8 +33,9 @@ export default function Interface() {
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
 
                 {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
-                <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
-                <InformationHeader informationTitle={'Go ahead and click on any item to easily edit its information.'} />
+                <SecondaryWindowHeader
+                    informationTitle={'Go ahead and click on any item to easily edit its information.'}
+                    sectionTitle={'Tournament Tree'} />
                 <TournamentTree />
             </InnerWindowWrapper>
         </OuterWindowWrapper >

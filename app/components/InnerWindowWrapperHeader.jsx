@@ -45,6 +45,7 @@ export default function InnerWindowWrapperHeader({
                 display: 'flex',
                 alignItems: 'start',
                 width: '100%',
+                borderBlockEnd: '1px solid #3a3a3a',
                 justifyContent: {
                     xs: 'start',
                     sm: 'center',
@@ -70,6 +71,7 @@ export default function InnerWindowWrapperHeader({
                 display: 'flex',
                 alignItems: 'start',
                 width: '100%',
+                borderBlockEnd: '1px solid #3a3a3a',
                 justifyContent: {
                     xs: 'space-between',
                     sm: 'space-between',

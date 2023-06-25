@@ -28,14 +28,13 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
             <Paper
                 sx={{
                     width: '100%',
-                    backgroundColor: '#232423',
-                    borderRadius: 2,
+                    borderRadius: '0',
                     paddingBlock: '10px',
                     display: 'flex',
                     alignItems: 'center',
                     height: '75px',
                     flexDirection: 'row',
-                    boxShadow: 0
+                    boxShadow: '0'
                 }}>
                 <Box sx={{
                     width: '20px',
@@ -43,7 +42,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                     heigth: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                    boxShadow: 0
+                    boxShadow: '0'
 
                 }}>
                     <Box sx={{
@@ -74,7 +73,10 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                 />
 
                 <Box>
-                    <Typography variant='overline'>{tooltipTitle}</Typography>
+                    <Typography sx={{
+
+                    }}
+                        variant='overline'>{tooltipTitle}</Typography>
                     {data === undefined ?
                         <Skeleton sx={{ height: '25px' }} />
                         :

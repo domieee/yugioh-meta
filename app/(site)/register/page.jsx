@@ -21,6 +21,7 @@ import { css } from '@emotion/react';
 
 import { Preview } from "@mui/icons-material";
 import Controller from "@/app/components/Controls";
+import { Divider } from "@mui/material";
 
 
 export default function Register() {
@@ -152,6 +153,7 @@ export default function Register() {
                 <Typography variant="h6" display="block" >
                     Sign Up
                 </Typography>
+                <Divider />
                 <Stack
                     spacing={1}
                     direction='column'
