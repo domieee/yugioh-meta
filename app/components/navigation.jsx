@@ -305,7 +305,7 @@ function Navigation({ props }) {
                                     <MenuIcon />
                                 </IconButton>
                                 <Drawer
-                                    sx={{ width: '50%' }}
+                                    sx={{ width: '50%', opacity: '0.97' }}
                                     open={drawerOpen}
                                     onClose={() => setDrawerOpen(false)}
                                 >
