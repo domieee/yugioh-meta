@@ -17,7 +17,7 @@ import { IconContext } from "react-icons"
 
 import PieChart from '../../statistics/components/PieChart';
 import TableMUI from '../../statistics/components/TabelMUI';
-import { Grid, Card, Paper } from '@mui/material';
+import { Grid, Card, Paper, Divider, List } from '@mui/material';
 import EditButton from '../components/EditButton';
 import OuterWindowWrapper from '../../components/OuterWindowWrapper';
 import InnerWindowWrapper from '../../components/InnerWindowWrapper';
@@ -214,35 +214,40 @@ export default function TournamentOverview({ params }) {
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Tree'} />
                 <InformationHeader informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'} />
+
                 <Paper sx={{
                     backgroundColor: '#232423',
                     width: '100%'
-                }}>                <Stack
-                    borderRadius={2}
-                    sx={{
-                        width: {
-                            xs: '100%',
-                            sm: '100%',
-                            md: '50%',
-                            lg: '50%',
-                        },
-                        paddingBlock: '20px',
-                        marginBlock: '25px',
+                }}>
+                    <Stack
+                        borderRadius={2}
+                        sx={{
+                            width: '100%',
+                            paddingBlock: '20px',
+                            marginBlock: '25px',
 
-                    }}
-                    alignItems='center'
+                        }}
+                        alignItems='center'
+                        justifyContent='center'
+                        spacing={2}>
+                        <List>
 
-                    spacing={2}>
-                        {tournamentTree.length > 0 && (
-                            <>
-                                <TournamentTreeOverviewRow data={tournamentTree[0]} />
-                                <TournamentTreeOverviewRow data={tournamentTree[1]} />
-                                <TournamentTreeOverviewRow data={tournamentTree[2]} />
-                                <TournamentTreeOverviewRow data={tournamentTree[3]} />
-                                <TournamentTreeOverviewRow data={top16FirstRow} />
-                                <TournamentTreeOverviewRow data={top16SecondRow} />
-                            </>
-                        )}
+                            {tournamentTree.length > 0 && (
+                                <>
+                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>First Place</Divider>
+                                    <TournamentTreeOverviewRow data={tournamentTree[0]} />
+                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Second Place</Divider>
+                                    <TournamentTreeOverviewRow data={tournamentTree[1]} />
+                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 4</Divider>
+                                    <TournamentTreeOverviewRow data={tournamentTree[2]} />
+                                    <Divider width='100%' light orientation="horizontal" textAlign='left'>Top 8</Divider>
+                                    <TournamentTreeOverviewRow data={tournamentTree[3]} />
+                                    <Divider width='100%' light orientation="horizontal" textAlign='left' >Top 16</Divider>
+                                    <TournamentTreeOverviewRow data={top16FirstRow} />
+                                    <TournamentTreeOverviewRow data={top16SecondRow} />
+                                </>
+                            )}
+                        </List>
                     </Stack>
                 </Paper>
             </InnerWindowWrapper>

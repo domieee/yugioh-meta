@@ -235,7 +235,7 @@ function Navigation({ props }) {
             <AppBar position="fixed"
                 sx={{// Apply blur effect
                     backgroundColor: '#0E0E0D', // Set background color with opacity
-                    opacity: 0.97,
+                    opacity: 0.85,
                     height: '65px',
                     top: '0',
                     boxShadow: '0'
