@@ -198,7 +198,7 @@ export default function NavigationMenu({ role, username }) {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt={`${username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
+                        <Avatar sx={{ bgcolor: '#536878' }} alt={`${username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
                     </IconButton>
                 </Tooltip>
                 <Menu

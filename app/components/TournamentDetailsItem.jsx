@@ -20,8 +20,10 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
     return (
         <Grid
             item
-
+            width='100%'
             xs={12}
+            sm={6}
+
         >
             <Paper
                 sx={{

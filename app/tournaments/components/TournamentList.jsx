@@ -31,7 +31,7 @@ export default function TournamentList() {
         <>
 
             <Grid
-                justifyContent='space-between'
+                justifyContent='flex-start'
                 paddingInline='100px'
                 paddingBottom='25px'
                 container

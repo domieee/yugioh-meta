@@ -445,8 +445,9 @@ function Navigation({ props }) {
                 </DialogContent>
                 <DialogActions
                     justifyContent='space-between'>
-                    <Button onClick={handleClose}>Close</Button>
+                    <Button size="small" onClick={handleClose}>Close</Button>
                     <Button
+                        size="small"
                         sx={{
                             marginLeft: 'auto'
                         }}

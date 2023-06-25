@@ -72,7 +72,7 @@ export default function InnerWindowWrapperHeader({
                 width: '100%',
                 justifyContent: {
                     xs: 'space-between',
-                    sm: 'center',
+                    sm: 'space-between',
                     md: 'space-between',
                     lg: 'space-between'
                 }

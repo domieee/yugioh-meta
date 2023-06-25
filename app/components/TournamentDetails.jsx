@@ -9,12 +9,12 @@ export default function TournamentDetails({ children }) {
             container
             width='100%'
             spacing={2}
-            alignItems='center'
+            alignItems='start'
             justifyContent='start'
             sx={{
                 flexDirection: {
-                    xs: 'column', // phone
-                    sm: 'column', // tablets
+                    xs: 'row', // phone
+                    sm: 'row', // tablets
                     md: 'row', // small laptop
                     lg: 'row',
                 }

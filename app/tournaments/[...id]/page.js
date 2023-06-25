@@ -125,7 +125,11 @@ export default function TournamentOverview({ params }) {
         <OuterWindowWrapper>
             <InnerWindowWrapper
                 route={'tournament/id'}
-                menuOptions={<EditButton />}
+                menuOptions={<EditButton sx={{
+                    marginLeft: {
+                        sm: 'auto'
+                    }
+                }} />}
                 pagetitle={'Tournament Overview'}>
                 <SecondaryWindowHeader sectionTitle={'Informations'} />
                 <TournamentDetails>
@@ -157,15 +161,17 @@ export default function TournamentOverview({ params }) {
                     <Grid
                         item
 
-                        xs={{
-                            xs: 6,
-                            sm: 6,
-                            md: 6,
-                            lg: 6,
+                        xs={12}
+                        md={6}
 
-                        }}
                         sx={{
-                            width: '100%'
+                            width: '100%',
+                            marginBottom: {
+                                xs: '25px',
+                                sm: '25px',
+                                md: '0px',
+                                lg: '0px'
+                            }
                         }}
                         borderRadius={2}
                         height='380px'
@@ -197,13 +203,8 @@ export default function TournamentOverview({ params }) {
                                 lg: '50%',
                             },
                         }}
-                        xs={{
-                            xs: 6,
-                            sm: 6,
-                            md: 6,
-                            lg: 6,
-
-                        }}
+                        xs={12}
+                        md={6}
                         className="tableContainer">
                         <TableMUI
                             table='winner-breakdown'
