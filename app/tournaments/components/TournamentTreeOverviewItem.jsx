@@ -5,7 +5,9 @@ import {
     GiStabbedNote,
     GiBroadsword,
     GiTrophy,
-    GiFamilyTree
+    GiFamilyTree,
+    GiPerson,
+    GiTabletopPlayers
 } from "react-icons/gi";
 
 import Dialog from '@mui/material/Dialog';
@@ -90,122 +92,74 @@ export default function TournamentTreeOverviewItem({ data }) {
     }
     return (
         <>
-            <Box sx={{ paddingLeft: '50px' }}>
-
-                <ListItem
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '100%'
-                    }}>
-
-                    <Stack
+            <Card
+                sx={{
+                    border: '1px solid #3a3a3a',
+                    marginTop: '16px',
+                    position: 'relative',
+                    marginLeft: '50px',
+                    zIndex: 2, // Increase the z-index to make it overlay other content
+                    '&:hover': {
+                        backgroundColor: data[0].deckLink === '' ? null : '#0f0f0f',
+                        cursor: data[0].deckLink === '' ? 'default' : 'pointer',
+                    },
+                }}
+            >
+                <CardActionArea>
+                    <ListItem
                         sx={{
-                            width: '100%',
-                        }}
-                        spacing={0.75}
-                        alignItems='center'
-                        justifyContent='space-between'
-                        direction='row'>
-                        <Box
+                            display: 'flex',
+                            flexDirection: 'column',
+                            width: '100%'
+                        }}>
+
+                        <Stack
                             sx={{
                                 width: '100%',
-                                display: "flex",
-                                alignItems: "center"
-                            }}>
-                            {
-                                data[0].place === 'first' ?
-                                    <IconContext.Provider value={{ color: "#FFD700" }}>
-                                        <GiTrophy style={{ width: '20px' }} />
-                                    </IconContext.Provider> :
-                                    <GiFamilyTree style={{ width: '20px' }} />
-                            }
-
-                            <Typography
-                                marginLeft={0.75}
-                                variant='body2'>
-                                {data[0].name}
-                            </Typography>
-                        </Box>
-
-                        {data[0].deckLink === '' ?
-                            <IconContext.Provider value={{ color: "#2f2f2f" }}>
-                                <HiExternalLink style={{ width: '20px' }} />
-                            </IconContext.Provider> :
-                            <IconContext.Provider value={{ color: "#ffffff" }}>
-                                <HiExternalLink style={{ width: '20px' }} />
-                            </IconContext.Provider>
-                        }
-
-                    </Stack>
-
-                    <Stack
-                        sx={{
-                            width: '100%',
-                        }}
-                        spacing={0.75}
-                        alignItems='center'
-                        direction='row'>
-                        <GiBroadsword style={{ width: '20px' }} />
-
-
-                        {data[0].name === '' ?
-                            <Typography
+                            }}
+                            spacing={0.75}
+                            alignItems='center'
+                            justifyContent='space-between'
+                            direction='row'>
+                            <Box
                                 sx={{
-                                    fontStyle: 'italic',
-                                    color: 'rgba(255, 255, 255, 0.6)',
-                                    maxWidth: "100%",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "nowrap",
-                                    flex: '1'
-                                }}
-                                variant='body2'
-                            >
-                                No player information provided
-                            </Typography> :
-                            <Typography
-                                variant='body2'>
-                                {data[0].name}
-                            </Typography>
-                        }
-                        {data[0].name === '' ||
-                            data[0].deckNote === '' ?
-                            '' :
-                            <Typography
-                                sx={{
-                                    maxWidth: "100%",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "nowrap",
-                                    flex: '1'
-                                }}
-                                variant='body2'
-                            >
-                                with {data[0].deck}
-                            </Typography>
-                        }
-
-                    </Stack>
+                                    width: '100%',
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}>
+                                <GiPerson style={{ width: '20px' }} />
 
 
-                    <Stack
-                        sx={{
-                            width: '100%',
-                        }}
-                        justifyContent='space-between'
-                        alignItems='center'
-                        direction='row'>
-                        <Box
-                            width='100%'
-                            sx={{
-                                display: "flex",
-                                alignItems: "center"
-                            }}>
-                            <GiStabbedNote style={{ width: '20px' }} />
-                            {data[0].deckNote === '' ?
                                 <Typography
                                     marginLeft={0.75}
+                                    variant='body2'>
+                                    {data[0].name}
+                                </Typography>
+                            </Box>
+
+                            {data[0].deckLink === '' ?
+                                <IconContext.Provider value={{ color: "#2f2f2f" }}>
+                                    <HiExternalLink style={{ width: '20px' }} />
+                                </IconContext.Provider> :
+                                <IconContext.Provider value={{ color: "#ffffff" }}>
+                                    <HiExternalLink style={{ width: '20px' }} />
+                                </IconContext.Provider>
+                            }
+
+                        </Stack>
+
+                        <Stack
+                            sx={{
+                                width: '100%',
+                            }}
+                            spacing={0.75}
+                            alignItems='center'
+                            direction='row'>
+                            <GiBroadsword style={{ width: '20px' }} />
+
+
+                            {data[0].name === '' ?
+                                <Typography
                                     sx={{
                                         fontStyle: 'italic',
                                         color: 'rgba(255, 255, 255, 0.6)',
@@ -217,29 +171,82 @@ export default function TournamentTreeOverviewItem({ data }) {
                                     }}
                                     variant='body2'
                                 >
-                                    No deck note provided
+                                    No player information provided
                                 </Typography> :
                                 <Typography
-                                    marginLeft={0.75}
+                                    variant='body2'>
+                                    {data[0].name}
+                                </Typography>
+                            }
+                            {data[0].name === '' ||
+                                data[0].deckNote === '' ?
+                                '' :
+                                <Typography
                                     sx={{
-                                        color: 'rgba(255, 255, 255, 1)',
                                         maxWidth: "100%",
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
                                         whiteSpace: "nowrap",
                                         flex: '1'
                                     }}
-                                    variant='body2'>
-                                    {data[0].deckNote}
+                                    variant='body2'
+                                >
+                                    with {data[0].deck}
                                 </Typography>
                             }
-                        </Box>
 
-                    </Stack>
+                        </Stack>
 
-                </ListItem>
-                <Divider></Divider>
-            </Box>
+
+                        <Stack
+                            sx={{
+                                width: '100%',
+                            }}
+                            justifyContent='space-between'
+                            alignItems='center'
+                            direction='row'>
+                            <Box
+                                width='100%'
+                                sx={{
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}>
+                                <GiStabbedNote style={{ width: '20px' }} />
+                                {data[0].deckNote === '' ?
+                                    <Typography
+                                        marginLeft={0.75}
+                                        sx={{
+                                            fontStyle: 'italic',
+                                            color: 'rgba(255, 255, 255, 0.6)',
+                                            maxWidth: "100%",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            flex: '1'
+                                        }}
+                                        variant='body2'
+                                    >
+                                        No deck note provided
+                                    </Typography> :
+                                    <Typography
+                                        marginLeft={0.75}
+                                        sx={{
+                                            color: 'rgba(255, 255, 255, 1)',
+                                            maxWidth: "100%",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            flex: '1'
+                                        }}
+                                        variant='body2'>
+                                        {data[0].deckNote}
+                                    </Typography>
+                                }
+                            </Box>
+                        </Stack>
+                    </ListItem>
+                </CardActionArea>
+            </Card >
             <Dialog
                 open={open}
                 onClose={handleClose}

@@ -72,13 +72,19 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                     </Box>
                 </Box>
             </Box>
-            {item.open ?
-                <Box>
+            {item.open ? (
+                <Box
+                    sx={{
+                        transition: 'height 0.2s ease-in-out',
+                        height: item.open ? 'auto' : '0', // Set initial height to 0 when closed
+                        overflow: 'hidden', // Hide content when closed
+                    }}
+                >
                     {data?.map((item, index) => (
                         <TournamentTreeOverviewItem key={index} data={data} />
                     ))}
-                </Box> :
-                null}
+                </Box>
+            ) : null}
         </List >
 
     )
