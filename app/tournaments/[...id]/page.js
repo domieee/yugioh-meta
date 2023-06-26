@@ -36,7 +36,7 @@ import { updateProgress } from '@/app/interfaceStore';
 
 export default function TournamentOverview({ params }) {
 
-    const [tournament, setTournament] = useState()
+    const [tournament, setTournament] = useState(undefined)
     const [isLoading, setIsLoading] = useState(true)
     let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
     let [tournamentTree, setTournamentTree] = useState([])
@@ -136,13 +136,15 @@ export default function TournamentOverview({ params }) {
                     <TournamentDetailsItem
                         iconType={'winner'}
                         icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
-                        data={`${tournament?.player[0].name} with ${tournament?.player[0].deck}`}
-                        tooltipTitle={'Tournament Winner'} />
+                        data={tournament?.player?.[0]?.name ? `${tournament.player[0].name} with ${tournament.player[0].deck}` : 'N/A'}
+                        tooltipTitle={'Tournament Winner'}
+                    />
 
                     <TournamentDetailsItem
                         icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
-                        data={`${tournament?.location}`}
-                        tooltipTitle={'Tournament Location'} />
+                        data={tournament?.location || 'N/A'}
+                        tooltipTitle={'Tournament Location'}
+                    />
 
                     <TournamentDetailsItem
                         icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
@@ -163,7 +165,7 @@ export default function TournamentOverview({ params }) {
 
                         xs={12}
                         md={6}
-
+                        boxShadow={0}
                         sx={{
                             width: '100%',
                             marginBottom: {
@@ -185,9 +187,10 @@ export default function TournamentOverview({ params }) {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                flexDirection: 'column'
+                                flexDirection: 'column',
+                                boxShadow: '0'
                             }}>
-                            <div style={{ width: '360px', margin: '10px' }}>
+                            <div style={{ width: '360px', margin: '10px', boxShadow: '0' }}>
                                 <PieChart data={tournamentBreakdownData} />
                             </div>
                         </Paper>

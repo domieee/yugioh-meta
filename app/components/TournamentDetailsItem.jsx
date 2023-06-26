@@ -17,6 +17,7 @@ import {
 import { IconContext } from "react-icons"
 
 export default function TournamentDetailsItem({ icon, iconType, data, tooltipTitle }) {
+    console.log("🚀 ~ file: TournamentDetailsItem.jsx:20 ~ TournamentDetailsItem ~ data:", data)
     return (
         <Grid
             item
@@ -77,8 +78,8 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
 
                     }}
                         variant='overline'>{tooltipTitle}</Typography>
-                    {data === undefined ?
-                        <Skeleton sx={{ height: '25px' }} />
+                    {data === undefined || data === 'N/A' ?
+                        <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 150 }} />
                         :
                         <Typography variant='body1'>{data}</Typography>}
 

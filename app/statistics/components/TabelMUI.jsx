@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,24 +17,37 @@ import { Typography } from '@mui/material';
 
 export default function TableMUI({ data, table }) {
 
-    const containerRef = useRef(null);
-    const bodyRef = useRef(null);
+    const [scrollable, setScrollable] = useState(false)
 
-    useEffect(() => {
-        const container = containerRef.current;
-        const body = bodyRef.current
 
-        console.log(body, container)
-        if (container && container.scrollHeight > container.clientHeight) {
-            container.classList.add('scrollable');
-        } else {
-            container?.classList.remove('scrollable');
-        }
-    }, []);
+
+
 
     const values = data[0]
     const totals = data[1]
     const percentages = data[2]
+
+    useEffect(() => {
+        if (values?.length > 10) {
+            console.log("🚀 ~ file: TabelMUI.jsx:32 ~ useEffect ~ values?.length:", values?.length)
+            setScrollable(true)
+        }
+    }, [])
+
+    const containerHeight = useRef()
+    const tableHeight = useRef()
+
+    useEffect(() => {
+
+        const container = containerHeight.current.offsetHeight;
+        console.log('Container height:', container);
+        const table = tableHeight.current.offsetHeight;
+        console.log('Table height:', table);
+        if (table > container) {
+            setScrollable(true)
+        }
+
+    }, [values]);
 
     return (
         <>
@@ -53,33 +66,49 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
 
-                <TableContainer component={Paper} sx={{ height: 380, borderRadius: '0' }} className='table-container' ref={containerRef}  >
+                <TableContainer component={Paper}
+                    ref={containerHeight}
+                    sx={{
+                        minHeight: 'fit-content',
+                        maxHeight: 380,
+                        borderRadius: '0',
+                        boxShadow: '0',
+                        '&:hover': {
+                            cursor: scrollable ? 'n-resize' : 'default'
+                        }
+                    }} className='table-container'  >
 
-                    <Table variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px' } }} aria-label="simple table">
+                    <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px' } }} aria-label="simple table">
                         <TableHead style={{ backgroundColor: '#fff' }}>
                             <TableRow backgroundColor='white'>
                                 <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
-                                {percentages !== undefined ? <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell> : null}
+                                <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
 
                             </TableRow>
                         </TableHead>
-                        <TableBody red={bodyRef}>
+                        <TableBody>
                             {values && values.map((value, index) => (
                                 <TableRow
                                     onClick={(value) => alert({ value })}
-                                    hover
                                     key={index}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row" cursor='pointer'>
-                                        <Typography variant='body1'>
+                                        <Typography variant='body2'>
                                             {value}
                                         </Typography>
                                     </TableCell>
-                                    <TableCell align="right">{totals[index]}</TableCell>
-                                    {percentages !== undefined ? <TableCell align="right">{percentages && percentages[index]}</TableCell> : null}
-
+                                    <TableCell align="right">
+                                        <Typography variant='body2'>
+                                            {totals[index]}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Typography variant='body2'>
+                                            {percentages[index]}
+                                        </Typography>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
