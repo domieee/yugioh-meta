@@ -17,20 +17,24 @@ export default function InnerWindowWrapper({
                 flexDirection="column"
                 justifyContent='start'
                 alignItems='center'
-                p={1}
-                border='1px solid #3a3a3a'
+                boxSizing='border-box'
                 maxWidth={700}
                 marginInline='auto'
                 boxShadow='0'
                 sx={{
+                    border: {
+                        xs: '0',
+                        sm: '1px solid #3a3a3a'
+                    },
+
                     minWidth: {
-                        xs: '360px',
+                        xs: '350px',
                         sm: '720px',
                         md: '1080px',
                         lg: '1280px'
                     },
                     paddingInline: {
-                        xs: '20px',
+                        xs: '0px',
                         sm: '50px',
                         md: '100px',
                         lg: '100px'
