@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Skeleton from '@mui/material/Skeleton';
 
 import { HiExternalLink } from "react-icons/hi";
 
@@ -112,109 +113,62 @@ export default function TournamentTreeOverviewItem({ data }) {
                             flexDirection: 'column',
                             width: '100%'
                         }}>
-
                         <Stack
                             sx={{
                                 width: '100%',
                             }}
-                            spacing={0.75}
-                            alignItems='center'
-                            justifyContent='space-between'
-                            direction='row'>
-                            <Box
+                            spacing={0.75}>
+
+                            <Stack
                                 sx={{
                                     width: '100%',
-                                    display: "flex",
-                                    alignItems: "center"
-                                }}>
-                                <GiPerson style={{ width: '20px' }} />
-
-
-                                <Typography
-                                    marginLeft={0.75}
-                                    variant='body2'>
-                                    {data[0].name}
-                                </Typography>
-                            </Box>
-
-                            {data[0].deckLink === '' ?
-                                <IconContext.Provider value={{ color: "#2f2f2f" }}>
-                                    <HiExternalLink style={{ width: '20px' }} />
-                                </IconContext.Provider> :
-                                <IconContext.Provider value={{ color: "#ffffff" }}>
-                                    <HiExternalLink style={{ width: '20px' }} />
-                                </IconContext.Provider>
-                            }
-
-                        </Stack>
-
-                        <Stack
-                            sx={{
-                                width: '100%',
-                            }}
-                            spacing={0.75}
-                            alignItems='center'
-                            direction='row'>
-                            <GiBroadsword style={{ width: '20px' }} />
-
-
-                            {data[0].name === '' ?
-                                <Typography
+                                }}
+                                spacing={0.75}
+                                alignItems='center'
+                                justifyContent='space-between'
+                                direction='row'>
+                                <Box
                                     sx={{
-                                        fontStyle: 'italic',
-                                        color: 'rgba(255, 255, 255, 0.6)',
-                                        maxWidth: "100%",
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                        whiteSpace: "nowrap",
-                                        flex: '1'
-                                    }}
-                                    variant='body2'
-                                >
-                                    No player information provided
-                                </Typography> :
-                                <Typography
-                                    variant='body2'>
-                                    {data[0].name}
-                                </Typography>
-                            }
-                            {data[0].name === '' ||
-                                data[0].deckNote === '' ?
-                                '' :
-                                <Typography
-                                    sx={{
-                                        maxWidth: "100%",
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                        whiteSpace: "nowrap",
-                                        flex: '1'
-                                    }}
-                                    variant='body2'
-                                >
-                                    with {data[0].deck}
-                                </Typography>
-                            }
+                                        width: '100%',
+                                        display: "flex",
+                                        alignItems: "center"
+                                    }}>
+                                    <GiPerson style={{ width: '20px' }} />
 
-                        </Stack>
+                                    {data ?
+                                        <Typography
+                                            marginLeft={0.75}
+                                            variant='body2'>
+                                            {data[0].name}
+                                        </Typography> :
+                                        <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 150 }} />
+                                    }
 
+                                </Box>
 
-                        <Stack
-                            sx={{
-                                width: '100%',
-                            }}
-                            justifyContent='space-between'
-                            alignItems='center'
-                            direction='row'>
-                            <Box
-                                width='100%'
+                                {data[0].deckLink === '' ?
+                                    <IconContext.Provider value={{ color: "#2f2f2f" }}>
+                                        <HiExternalLink style={{ width: '20px' }} />
+                                    </IconContext.Provider> :
+                                    <IconContext.Provider value={{ color: "#ffffff" }}>
+                                        <HiExternalLink style={{ width: '20px' }} />
+                                    </IconContext.Provider>
+                                }
+
+                            </Stack>
+
+                            <Stack
                                 sx={{
-                                    display: "flex",
-                                    alignItems: "center"
-                                }}>
-                                <GiStabbedNote style={{ width: '20px' }} />
-                                {data[0].deckNote === '' ?
+                                    width: '100%',
+                                }}
+                                spacing={0.75}
+                                alignItems='center'
+                                direction='row'>
+                                <GiBroadsword style={{ width: '20px' }} />
+
+
+                                {data[0].name === '' ?
                                     <Typography
-                                        marginLeft={0.75}
                                         sx={{
                                             fontStyle: 'italic',
                                             color: 'rgba(255, 255, 255, 0.6)',
@@ -226,23 +180,79 @@ export default function TournamentTreeOverviewItem({ data }) {
                                         }}
                                         variant='body2'
                                     >
-                                        No deck note provided
+                                        No player information provided
                                     </Typography> :
                                     <Typography
-                                        marginLeft={0.75}
+                                        variant='body2'>
+                                        {data[0].name}
+                                    </Typography>
+                                }
+                                {data[0].name === '' ||
+                                    data[0].deckNote === '' ?
+                                    '' :
+                                    <Typography
                                         sx={{
-                                            color: 'rgba(255, 255, 255, 1)',
                                             maxWidth: "100%",
                                             overflow: "hidden",
                                             textOverflow: "ellipsis",
                                             whiteSpace: "nowrap",
                                             flex: '1'
                                         }}
-                                        variant='body2'>
-                                        {data[0].deckNote}
+                                        variant='body2'
+                                    >
+                                        with {data[0].deck}
                                     </Typography>
                                 }
-                            </Box>
+
+                            </Stack>
+
+
+                            <Stack
+                                sx={{
+                                    width: '100%',
+                                }}
+                                justifyContent='space-between'
+                                alignItems='center'
+                                direction='row'>
+                                <Box
+                                    width='100%'
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center"
+                                    }}>
+                                    <GiStabbedNote style={{ width: '20px' }} />
+                                    {data[0].deckNote === '' ?
+                                        <Typography
+                                            marginLeft={0.75}
+                                            sx={{
+                                                fontStyle: 'italic',
+                                                color: 'rgba(255, 255, 255, 0.6)',
+                                                maxWidth: "100%",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                whiteSpace: "nowrap",
+                                                flex: '1'
+                                            }}
+                                            variant='body2'
+                                        >
+                                            No deck note provided
+                                        </Typography> :
+                                        <Typography
+                                            marginLeft={0.75}
+                                            sx={{
+                                                color: 'rgba(255, 255, 255, 1)',
+                                                maxWidth: "100%",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                whiteSpace: "nowrap",
+                                                flex: '1'
+                                            }}
+                                            variant='body2'>
+                                            {data[0].deckNote}
+                                        </Typography>
+                                    }
+                                </Box>
+                            </Stack>
                         </Stack>
                     </ListItem>
                 </CardActionArea>

@@ -10,7 +10,8 @@ import {
     Typography,
     Paper,
     Divider,
-    Skeleton
+    Skeleton,
+    Stack
 } from '@mui/material'
 
 
@@ -24,7 +25,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
             width='100%'
             xs={12}
             sm={6}
-
+            justifyContent='center'
         >
             <Paper
                 sx={{
@@ -61,7 +62,6 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
 
                             icon
 
-
                         }
                     </Box>
                 </Box>
@@ -73,17 +73,16 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                     }}
                 />
 
-                <Box>
+                <Stack>
                     <Typography sx={{
 
                     }}
                         variant='overline'>{tooltipTitle}</Typography>
                     {data === undefined || data === 'N/A' ?
-                        <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 150 }} />
+                        <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 100 }} />
                         :
-                        <Typography variant='body1'>{data}</Typography>}
-
-                </Box>
+                        <Typography variant='body2'>{data}</Typography>}
+                </Stack>
             </Paper>
         </Grid>
     )

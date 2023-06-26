@@ -38,10 +38,15 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
             direction='row'
             spacing={2}>
 
-            <Box sx={{
-                display: 'flex'
-            }}>
-                <IconButton onClick={() => toggleOpen()}>
+            <Box
+                onClick={() => toggleOpen()}
+                sx={{
+                    display: 'flex',
+                    '&:hover': {
+                        cursor: 'pointer'
+                    }
+                }}>
+                <IconButton >
                     <TfiAngleRight style={{
                         width: '20px',
                         height: '20px',
@@ -61,12 +66,17 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                             alignSelf: 'center'
                         }} width='100%' light orientation="horizontal" textAlign='left'>
                             <Chip
-                                style={{
-                                    width: '100px'
+                                sx={{
+                                    width: '100px',
+                                    cursor: 'default', // Set the default cursor style
+                                    '&:hover': {
+                                        cursor: 'pointer', // Set the cursor style when hovering
+                                    },
                                 }}
                                 variant='outlined'
                                 icon={icon}
-                                label={place} />
+                                label={place}
+                            />
 
                         </Divider>
                     </Box>
