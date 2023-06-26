@@ -79,7 +79,7 @@ export default function TableMUI({ data, table }) {
                     }} className='table-container'  >
 
                     <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px' } }} aria-label="simple table">
-                        <TableHead style={{ backgroundColor: '#fff' }}>
+                        <TableHead style={{}}>
                             <TableRow backgroundColor='white'>
                                 <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>

@@ -79,7 +79,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                     }}
                         variant='overline'>{tooltipTitle}</Typography>
                     {data === undefined || data === 'N/A' ?
-                        <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 150 }} />
+                        <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 150 }} />
                         :
                         <Typography variant='body1'>{data}</Typography>}
 
