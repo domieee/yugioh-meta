@@ -24,16 +24,21 @@ export default function TournamentListItem({ data }) {
     }
 
     return (
-        <Grid item xs={6} md={6}  >
-            <Card sx={{
-                backgroundColor: '#212121',
-                boxShadow: '0',
-                transition: 'all 0.1s linear',
-                '&:hover': {
-                    backgroundColor: '#272727',
-                    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
-                }
-            }} elevation={1}   >
+        <Grid
+            item
+            xs={6}
+            md={6}  >
+            <Card
+                elevation={1}
+                sx={{
+                    backgroundColor: '#212121',
+                    boxShadow: '0',
+                    transition: 'all 0.1s linear',
+                    '&:hover': {
+                        backgroundColor: '#272727',
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                    }
+                }}   >
                 <CardActionArea onClick={() => openTournament()}>
                     <CardContent >
                         <Box

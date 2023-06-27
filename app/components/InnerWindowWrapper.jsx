@@ -26,7 +26,6 @@ export default function InnerWindowWrapper({
                         xs: '0',
                         sm: '1px solid #3a3a3a'
                     },
-
                     minWidth: {
                         xs: '350px',
                         sm: '720px',

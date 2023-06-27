@@ -129,7 +129,8 @@ export default function TournamentOverview({ params }) {
                     marginLeft: {
                         sm: 'auto'
                     }
-                }} />}
+                }} />
+                }
                 pagetitle={'Tournament Overview'}>
                 <SecondaryWindowHeader sectionTitle={'Informations'} />
                 <TournamentDetails>

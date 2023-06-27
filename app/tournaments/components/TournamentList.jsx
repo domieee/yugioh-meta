@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TournamentListItem from './TournamentListItem';
 import Skeleton from '@mui/material/Skeleton';
@@ -10,8 +9,6 @@ import { updateProgress } from '@/app/interfaceStore';
 export default function TournamentList() {
     const [tournaments, setTournaments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-
-    console.log(tournaments)
 
     useEffect(() => {
         const fetchPieData = async () => {
@@ -27,15 +24,12 @@ export default function TournamentList() {
     }, [])
 
     return (
-
         <>
-
             <Grid
                 justifyContent='flex-start'
                 paddingInline='100px'
                 paddingBottom='25px'
                 container
-
                 spacing={3}>
                 {/* Render skeletons if isLoading is true */}
                 {isLoading ? (
@@ -52,7 +46,6 @@ export default function TournamentList() {
                     ))
                 )}
             </Grid>
-
         </>
     )
 }

@@ -17,7 +17,7 @@ import { IconContext } from "react-icons"
 
 import countries from '../utils/data.json'
 
-import TournamentTree from './TournamentTree';
+import TournamentTree from './TournamentTreeRow';
 
 import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';

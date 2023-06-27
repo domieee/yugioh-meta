@@ -43,7 +43,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                     marginInline: " 25px",
                     heigth: '100%',
                     display: 'flex',
-                    alignItems: 'center',
+                    alignItems: 'start',
                     boxShadow: '0'
 
                 }}>

@@ -96,11 +96,10 @@ export default function TableMUI({ data, table }) {
                             {values && values.length > 0 ? (
                                 values.map((value, index) => (
                                     <TableRow
-                                        onClick={(value) => alert({ value })}
                                         key={index}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        sx={{ maxHeight: '30px', '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell component="th" scope="row" >
+                                        <TableCell sx={{ height: '30px' }} scope="row" >
                                             <Typography variant='body2'>
                                                 {value}
                                             </Typography>
@@ -115,7 +114,7 @@ export default function TableMUI({ data, table }) {
                                                 {totals[index]}
                                             </Typography>
                                         </TableCell>
-                                        <TableCell align="right">
+                                        <TableCell sx={{ height: '30px' }} align="right">
                                             <Typography variant='body2'>
                                                 {percentages[index]}
                                             </Typography>

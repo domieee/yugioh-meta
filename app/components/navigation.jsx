@@ -94,6 +94,24 @@ function Navigation({ props }) {
     const [alertOpen, setAlertOpen] = useState(true);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
+    let username = useStore((state) => state.username)
+    let id = useStore((state) => state.id)
+    let role = useStore((state) => state.role)
+
+    let progress = useInterfaceStore((state) => state.progress)
+
+    let alertVisibility = useInterfaceStore((state) => state.alert.visibility)
+    let successVisibility = useInterfaceStore((state) => state.success.visibility)
+    let updateSuccessVisibility = useInterfaceStore((state) => state.updateSuccessVisibility)
+
+    const setUserName = useStore((state) => state.setUserName)
+    const setUserID = useStore((state) => state.setUserID)
+    const setUserRole = useStore((state) => state.setUserRole)
+
+    const alert = useInterfaceStore((state) => state.alert.msg);
+    const success = useInterfaceStore((state) => state.success.msg);
+
+
     const router = useRouter()
 
     const [open, setOpen] = React.useState(false);
@@ -110,12 +128,6 @@ function Navigation({ props }) {
         setOpen(false);
         router.push('/login')
     }
-
-
-    const alert = useInterfaceStore((state) => state.alert.msg);
-    const success = useInterfaceStore((state) => state.success.msg);
-
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -159,19 +171,7 @@ function Navigation({ props }) {
         }
     ];
 
-    let username = useStore((state) => state.username)
-    let id = useStore((state) => state.id)
-    let role = useStore((state) => state.role)
 
-    let progress = useInterfaceStore((state) => state.progress)
-
-    let alertVisibility = useInterfaceStore((state) => state.alert.visibility)
-    let successVisibility = useInterfaceStore((state) => state.success.visibility)
-    let updateSuccessVisibility = useInterfaceStore((state) => state.updateSuccessVisibility)
-
-    const setUserName = useStore((state) => state.setUserName)
-    const setUserID = useStore((state) => state.setUserID)
-    const setUserRole = useStore((state) => state.setUserRole)
 
 
     const handleAlertClose = (event, reason) => {
@@ -215,8 +215,6 @@ function Navigation({ props }) {
         if (Cookies.get('token')) {
             receiveUserInformations()
             const interval = setInterval(receiveUserInformations, 10000);
-
-            // Clean up the interval when the component unmounts
             return () => clearInterval(interval);
         }
     })
@@ -227,17 +225,19 @@ function Navigation({ props }) {
 
     return (
         <>
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', height: '65px', width: '100%' }}>
                 <div
                     style={{
-                        position: 'absolute',
+                        backgroundColor: 'rgba(27,27,28,0.1)',
 
+                        position: 'fixed',
+                        backdropFilter: 'blur(3px)',
                         top: '0',
                         left: '0',
                         width: '100%',
-                        height: '100%',
-                        backdropFilter: 'blur(80px)', // Apply blur effect
-                        zIndex: '-1'
+                        height: '65px',
+                        // Apply blur effect
+                        zIndex: '10'
                     }}
                 />
                 <AppBar
@@ -245,7 +245,9 @@ function Navigation({ props }) {
                     position="fixed"
                     sx={{// Apply blur effect
                         opacity: 0.85,
+                        backdropFilter: 'blur(100px)',
                         height: '65px',
+
                         top: '-100',
                         boxShadow: '0',
                         backgroundColor: '##1b1b1c',
@@ -321,7 +323,6 @@ function Navigation({ props }) {
                                             <ListItemButton
                                                 sx={{
                                                     justifyContent: 'flex-start'
-
                                                 }}
                                                 alignItems="center">
                                                 <ListItemIcon>

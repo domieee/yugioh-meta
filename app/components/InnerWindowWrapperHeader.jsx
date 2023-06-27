@@ -66,7 +66,6 @@ export default function InnerWindowWrapperHeader({
                     {pagetitle}
                 </Typography>
             </Box> :
-
             <Box sx={{
                 display: 'flex',
                 alignItems: 'start',
