@@ -126,6 +126,8 @@ export default function TournamentOverview({ params }) {
             <InnerWindowWrapper
                 route={'tournament/id'}
                 menuOptions={<EditButton sx={{
+                    width: '15px',
+                    height: '15px',
                     marginLeft: {
                         sm: 'auto'
                     }

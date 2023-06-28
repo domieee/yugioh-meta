@@ -3,9 +3,11 @@ import {
     TextField,
     Box,
     Typography,
-
+    IconButton
 } from '@mui/material'
 import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
+
+import { VscAdd, VscTrash } from "react-icons/vsc";
 
 
 
@@ -20,11 +22,46 @@ import TournamentTree from './components/TournamentTreeRow';
 import TournamentDetails from '../components/TournamentDetails';
 import TournamentTreeRow from './components/TournamentTreeRow'
 
+
+const firstPlaceRow = [
+    { key: 'firstPlace', title: 'First' }
+];
+const secondPlaceRow = [
+    { key: 'secondPlace', title: 'Second' }
+];
+const top4Row = [
+    { key: 'top4FirstItem', title: 'Top 4' },
+    { key: 'top4SecondItem', title: 'Top 4' }
+];
+const top8Row = [
+    { key: 'top8FirstItem', title: 'Top 8' },
+    { key: 'top8SecondItem', title: 'Top 8' },
+    { key: 'top8ThirdItem', title: 'Top 8' },
+    { key: 'top8FourthItem', title: 'Top 8' }
+]
+const top16Row = [
+    { key: 'top16FirstItem', title: 'Top 16' },
+    { key: 'top16SecondItem', title: 'Top 16' },
+    { key: 'top16ThirdItem', title: 'Top 16' },
+    { key: 'top16FourthItem', title: 'Top 16' },
+    { key: 'top16FifthItem', title: 'Top 16' },
+    { key: 'top16SixthItem', title: 'Top 16' },
+    { key: 'top16SeventhItem', title: 'Top 16' },
+    { key: 'top16EighthItem', title: 'Top 16' },
+];
+
+
 export default function Interface() {
+
+    const [interfaceState, setInterfaceState] = useState([firstPlaceRow, secondPlaceRow, top4Row, top8Row])
 
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     let tournamentStore = useTournamentStore(state => state)
+
+    const exampleArray = [firstPlaceRow, secondPlaceRow, top4Row, top8Row, top16Row]
+
+
 
     const postTournament = async () => {
         setIsLoading(true);
@@ -176,6 +213,9 @@ export default function Interface() {
 
 
 
+    { interfaceState.map((item, index) => (item[0].title)) }
+    console.log("🚀 ~ file: page.jsx:211 ~ Interface ~ interfaceState:", interfaceState.length)
+
     return (
         <OuterWindowWrapper>
             <InnerWindowWrapper
@@ -191,7 +231,25 @@ export default function Interface() {
                     informationTitle={'Go ahead and click on any item to easily edit its information.'}
                     sectionTitle={'Tournament Tree'} />
                 <TournamentDetails>
-                    <TournamentTreeRow></TournamentTreeRow>
+                    <Box
+                        sx={{
+                            width: '100%',
+                        }}>
+                        {interfaceState.map((item, index) => (
+                            <TournamentTreeRow
+                                key={index}
+                                chipIcon={<VscAdd style={{
+                                    width: '20px',
+                                    height: '20px',
+                                }} />}
+                                interfaceIndex={index}
+                                currentInterfaceState={interfaceState.length}
+                                treeRow={item} />
+                        ))}
+                        <IconButton>
+                            <VscAdd />
+                        </IconButton>
+                    </Box>
                 </TournamentDetails>
             </InnerWindowWrapper>
         </OuterWindowWrapper >

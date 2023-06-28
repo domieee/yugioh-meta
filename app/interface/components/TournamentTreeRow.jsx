@@ -12,7 +12,9 @@ import {
     Typography,
     Modal,
     TextField,
-    Button
+    Button,
+    Divider,
+    Chip
 } from '@mui/material'
 
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -26,44 +28,16 @@ import TournamentTreeItem from './TournamentTreeItem';
 import { useRouter } from 'next/navigation';
 
 
+export default function TournamentTree({ treeRow, currentInterfaceState, interfaceIndex, chipIcon }) {
+    console.log("🚀 ~ file: TournamentTreeRow.jsx:30 ~ TournamentTree ~ currentInterfaceState:", currentInterfaceState)
+    console.log("🚀 ~ file: TournamentTreeRow.jsx:30 ~ TournamentTree ~ treeRow:", treeRow)
 
-export default function TournamentTree() {
+
 
     const [top16, setTop16] = useState(false)
 
     const router = useRouter()
-
-
     let tournamentStore = useTournamentStore(state => state)
-
-    const firstPlaceRow = [
-        { key: 'firstPlace', title: 'First Place' }
-    ];
-    const secondPlaceRow = [
-        { key: 'secondPlace', title: 'Second Place' }
-    ];
-    const top4Row = [
-        { key: 'top4FirstItem', title: 'Top 4' },
-        { key: 'top4SecondItem', title: 'Top 4' }
-    ];
-    const top8Row = [
-        { key: 'top8FirstItem', title: 'Top 8' },
-        { key: 'top8SecondItem', title: 'Top 8' },
-        { key: 'top8ThirdItem', title: 'Top 8' },
-        { key: 'top8FourthItem', title: 'Top 8' }
-    ]
-    const top16Row = [
-        { key: 'top16FirstItem', title: 'Top 16' },
-        { key: 'top16SecondItem', title: 'Top 16' },
-        { key: 'top16ThirdItem', title: 'Top 16' },
-        { key: 'top16FourthItem', title: 'Top 16' },
-        { key: 'top16FifthItem', title: 'Top 16' },
-        { key: 'top16SixthItem', title: 'Top 16' },
-        { key: 'top16SeventhItem', title: 'Top 16' },
-        { key: 'top16EighthItem', title: 'Top 16' },
-    ];
-
-
 
 
     return (
@@ -71,16 +45,44 @@ export default function TournamentTree() {
             <Box
                 sx={{
                     widht: '100%',
-                    display: 'flex',
-                    '&:hover': {
-                        cursor: 'pointer'
-                    }
+                    display: 'flex'
                 }}>
                 <IconButton>
-                    <VscAdd />
+                    {currentInterfaceState - 1 === interfaceIndex ? <VscTrash /> : null}
                 </IconButton>
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <Box sx={{
+                        width: '100%'
+                    }}>
+                        <Divider sx={{
+                            alignSelf: 'center'
+                        }} width='100%' light orientation="horizontal" textAlign='left'>
+                            <Chip
+                                sx={{
+                                    width: '100px',
+                                    cursor: 'default', // Set the default cursor style
+                                    '&:hover': {
+                                        cursor: 'pointer', // Set the cursor style when hovering
+                                    },
+                                }}
+                                variant='outlined'
+                                icon={chipIcon}
+                                label={treeRow[0].title}
+                            />
+
+                        </Divider>
+                    </Box>
+                </Box>
 
             </Box >
+            <Box>
+                {treeRow.map(item => (item.title))}
+            </Box>
+
         </>
     )
 }
