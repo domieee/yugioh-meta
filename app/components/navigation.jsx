@@ -233,6 +233,7 @@ function Navigation({ props }) {
         <>
             <div style={{ position: 'relative', width: '100%', heigth: '65px' }}>
                 <div
+                    className="safari"
                     style={{
                         backgroundColor: 'rgba(27, 27, 28, 0.1)',
                         position: 'fixed',
