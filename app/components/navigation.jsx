@@ -147,6 +147,7 @@ function Navigation({ props }) {
     const nav = (route) => {
         router.push(route)
         setDrawerOpen(false)
+        updateProgress(25)
     }
 
 
@@ -481,4 +482,5 @@ function Navigation({ props }) {
         </>
     );
 }
+
 export default Navigation;
