@@ -253,11 +253,14 @@ function Navigation({ props }) {
                             backdropFilter: 'blur(100px)',
                             height: '65px',
                             boxShadow: '0',
-                            backgroundColor: '#1b1b1c',
                             zIndex: '20',
                         }}
                     >
-                        <Paper>
+                        <Paper sx={{
+                            height: '65px',
+                            borderRadius: '0',
+                            boxShadow: '0',
+                        }}>
                             <LinearProgress
                                 variant="determinate"
                                 value={progress}
@@ -345,6 +348,7 @@ function Navigation({ props }) {
                                                             <ListItemText primary="Tournaments" />
                                                         </ListItemButton>
                                                     </ListItem>
+                                                    <Divider />
                                                     <ListItem disablePadding>
                                                         <ListItemButton
                                                             onClick={() => nav('/statistics')}
@@ -358,6 +362,7 @@ function Navigation({ props }) {
                                                             <ListItemText primary="Statistics" />
                                                         </ListItemButton>
                                                     </ListItem>
+                                                    <Divider />
                                                 </List>
                                             </Paper>
                                         </Drawer>
