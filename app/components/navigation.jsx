@@ -384,12 +384,13 @@ function Navigation({ props }) {
                                     md: 'none'
                                 }
                             }}>
-                                <GiFoxHead
-                                    style={{
-                                        marginRight: '10px',
-                                        width: '20px',
-                                        height: '20px'
-                                    }} />
+                                <IconButton onClick={() => nav('/')}>
+                                    <GiFoxHead
+                                        style={{
+                                            width: '20px',
+                                            height: '20px'
+                                        }} />
+                                </IconButton>
                             </Box>
                             <Typography
                                 variant="h5"
