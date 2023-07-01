@@ -251,7 +251,6 @@ function Navigation({ props }) {
                         opacity: 0.85,
                         backdropFilter: 'blur(100px)',
                         height: '65px',
-                        top: '-100px', // Fix: Added 'px' unit
                         boxShadow: '0',
                         backgroundColor: '#1b1b1c',
                     }}
