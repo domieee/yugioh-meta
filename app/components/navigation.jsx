@@ -231,34 +231,31 @@ function Navigation({ props }) {
 
     return (
         <>
-            <div style={{ position: 'relative', height: '65px', width: '100%' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
                 <div
                     style={{
-                        backgroundColor: 'rgba(27,27,28,0.1)',
-
+                        backgroundColor: 'rgba(27, 27, 28, 0.1)',
                         position: 'fixed',
                         backdropFilter: 'blur(3px)',
                         top: '0',
                         left: '0',
                         width: '100%',
                         height: '65px',
-                        // Apply blur effect
                         zIndex: '10'
                     }}
                 />
                 <AppBar
                     className='blur-background'
                     position="fixed"
-                    sx={{// Apply blur effect
+                    sx={{
                         opacity: 0.85,
                         backdropFilter: 'blur(100px)',
                         height: '65px',
-
-                        top: '-100',
+                        top: '-100px', // Fix: Added 'px' unit
                         boxShadow: '0',
-                        backgroundColor: '##1b1b1c',
-                    }
-                    } >
+                        backgroundColor: '#1b1b1c',
+                    }}
+                >
                     <LinearProgress
                         variant="determinate"
                         value={progress}
