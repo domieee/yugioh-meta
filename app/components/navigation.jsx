@@ -251,7 +251,7 @@ function Navigation({ props }) {
                         sx={{
                             opacity: 0.85,
                             backdropFilter: 'blur(100px)',
-                            height: '100%',
+                            height: '65ps',
                             boxShadow: '0',
                             backgroundColor: '#1b1b1c',
                             zIndex: '20',

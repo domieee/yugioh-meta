@@ -20,7 +20,7 @@
 }
 
 .table-safari {
-    white-space: nowrap;
+
     overflow: scroll;
-    -webkit-overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
 }
