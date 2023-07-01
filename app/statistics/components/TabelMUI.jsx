@@ -80,8 +80,7 @@ export default function TableMUI({ data, table }) {
                         boxShadow: '0',
                         '&:hover': {
                             cursor: scrollable ? 'n-resize' : 'default'
-                        },
-                        overflow: 'auto',
+                        }
                     }} className='table-container'  >
 
                     <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
@@ -93,7 +92,11 @@ export default function TableMUI({ data, table }) {
                             </TableRow>
                         </TableHead>
 
-                        <TableBody sx={{ overflow: 'auto' }}>
+                        <TableBody sx={{
+                            whiteSpace: "nowrap",
+                            overflow: "scroll",
+
+                        }}>
                             {values && values.length > 0 ? (
                                 values.map((value, index) => (
                                     <TableRow
