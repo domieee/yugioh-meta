@@ -251,7 +251,7 @@ function Navigation({ props }) {
                         sx={{
                             opacity: 0.85,
                             backdropFilter: 'blur(100px)',
-                            height: '65px',
+                            height: '100%',
                             boxShadow: '0',
                             backgroundColor: '#1b1b1c',
                             zIndex: '20',
@@ -263,6 +263,7 @@ function Navigation({ props }) {
                             sx={{
                                 backgroundColor: '#232423',
                                 position: 'fixed',
+                                height: '2px',
                                 top: '0', // Adjust the value as needed
                                 left: '0',
                                 width: '100%',
@@ -273,6 +274,7 @@ function Navigation({ props }) {
                             <Toolbar disableGutters boxShadow={0}>
                                 <Box sx={{
                                     display: {
+
                                         xs: 'none',
                                         md: 'flex'
                                     }
@@ -412,7 +414,7 @@ function Navigation({ props }) {
                                 >
 
                                 </Typography>
-                                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', height: '100%', } }}>
                                     {pages.map(page => (
                                         <Typography
                                             className="navigation-link"
