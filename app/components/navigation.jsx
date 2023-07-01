@@ -317,47 +317,50 @@ function Navigation({ props }) {
                                     >
                                         <MenuIcon />
                                     </IconButton>
+
                                     <Drawer
                                         sx={{ width: '50%', opacity: '0.97' }}
                                         open={drawerOpen}
                                         onClose={() => setDrawerOpen(false)}
                                     >
-
-                                        <DrawerHeader>
-                                            <IconButton onClick={() => setDrawerOpen(false)}>
-                                                <TbArrowLeft />
-                                            </IconButton>
-                                        </DrawerHeader>
-                                        <Divider />
-                                        <List>
-                                            <ListItem disablePadding>
-                                                <ListItemButton
-                                                    onClick={() => nav('/tournaments')}
-                                                    sx={{
-                                                        justifyContent: 'flex-start'
-                                                    }}
-                                                    alignItems="center">
-                                                    <ListItemIcon>
-                                                        <GiFamilyTree />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary="Tournaments" />
-                                                </ListItemButton>
-                                            </ListItem>
-                                            <ListItem disablePadding>
-                                                <ListItemButton
-                                                    onClick={() => nav('/statistics')}
-                                                    sx={{
-                                                        justifyContent: 'flex-start'
-                                                    }}
-                                                    alignItems="center">
-                                                    <ListItemIcon>
-                                                        <GiPieChart />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary="Statistics" />
-                                                </ListItemButton>
-                                            </ListItem>
-                                        </List>
+                                        <Paper sx={{ height: '100%' }}>
+                                            <DrawerHeader sx={{ height: '65px' }}>
+                                                <IconButton onClick={() => setDrawerOpen(false)}>
+                                                    <TbArrowLeft />
+                                                </IconButton>
+                                            </DrawerHeader>
+                                            <Divider />
+                                            <List>
+                                                <ListItem disablePadding>
+                                                    <ListItemButton
+                                                        onClick={() => nav('/tournaments')}
+                                                        sx={{
+                                                            justifyContent: 'flex-start'
+                                                        }}
+                                                        alignItems="center">
+                                                        <ListItemIcon>
+                                                            <GiFamilyTree />
+                                                        </ListItemIcon>
+                                                        <ListItemText primary="Tournaments" />
+                                                    </ListItemButton>
+                                                </ListItem>
+                                                <ListItem disablePadding>
+                                                    <ListItemButton
+                                                        onClick={() => nav('/statistics')}
+                                                        sx={{
+                                                            justifyContent: 'flex-start'
+                                                        }}
+                                                        alignItems="center">
+                                                        <ListItemIcon>
+                                                            <GiPieChart />
+                                                        </ListItemIcon>
+                                                        <ListItemText primary="Statistics" />
+                                                    </ListItemButton>
+                                                </ListItem>
+                                            </List>
+                                        </Paper>
                                     </Drawer>
+
                                     <Menu
                                         id="menu-appbar"
                                         anchorEl={anchorElNav}
@@ -432,7 +435,7 @@ function Navigation({ props }) {
 
                     </ AppBar >
                 </div>
-            </div>
+            </div >
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
