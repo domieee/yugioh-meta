@@ -81,7 +81,7 @@ export default function TableMUI({ data, table }) {
                         '&:hover': {
                             cursor: scrollable ? 'n-resize' : 'default'
                         }
-                    }} className='table-container'  >
+                    }} className='table-safari'  >
 
                     <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
                         <TableHead >
@@ -92,8 +92,7 @@ export default function TableMUI({ data, table }) {
                             </TableRow>
                         </TableHead>
 
-                        <TableBody
-                            className='table-safari'>
+                        <TableBody>
                             {values && values.length > 0 ? (
                                 values.map((value, index) => (
                                     <TableRow
