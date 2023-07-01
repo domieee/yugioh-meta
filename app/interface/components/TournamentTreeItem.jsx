@@ -44,14 +44,18 @@ const style = {
 
 export default function TournamentTreeItem({ item, data }) {
     const [open, setOpen] = useState({ state: false, key: '' });
-    const handleOpen = (key) => setOpen({ state: true, key: key });
+    console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
+    const handleOpen = (key) => {
+        console.log("🚀 ~ file: TournamentTreeItem.jsx:49 ~ handleOpen ~ key:", key)
+        console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
+
+        setOpen({ state: true, key: key })
+    };
     const handleClose = () => setOpen({ state: false, key: '' });
     let tournamentStore = useTournamentStore(state => state)
     const [validLink, setValidLink] = useState(false)
 
     function isValidLink(link) {
-        console.log("🚀 ~ file: TournamentTreeItem.jsx:53 ~ isValidLink ~ link:", link)
-
         if (link.length === 0) return true;
         const linkRegex = /^https:\/\/www\.[^\s\/$.?#]+\.[^\s\/$.?#]+$/;
         return linkRegex.test(link);
@@ -62,7 +66,7 @@ export default function TournamentTreeItem({ item, data }) {
         <>
             <Card
                 sx={{
-                    width: 225,
+                    width: '100&',
                     '&:hover': {
                         cursor: 'crosshair',
                         backgroundColor: '#272727',
@@ -96,7 +100,7 @@ export default function TournamentTreeItem({ item, data }) {
                                 </Typography>
                             </Box>
 
-                            {tournamentStore[item.key].deckLink === '' ?
+                            {tournamentStore[item?.key]?.deckLink === '' ?
                                 <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                     <HiExternalLink style={{ width: '20px' }} />
                                 </IconContext.Provider> :
@@ -113,8 +117,7 @@ export default function TournamentTreeItem({ item, data }) {
                             direction='row'>
                             <GiBroadsword style={{ width: '20px' }} />
 
-
-                            {tournamentStore[item.key]?.playerName === '' ?
+                            {tournamentStore[item?.key]?.playerName === '' ?
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
@@ -125,17 +128,16 @@ export default function TournamentTreeItem({ item, data }) {
                                         whiteSpace: "nowrap",
                                         flex: '1'
                                     }}
-                                    variant='body2'
-                                >
+                                    variant='body2'>
                                     No player information provided
                                 </Typography> :
                                 <Typography
                                     variant='body2'>
-                                    {tournamentStore[item.key]?.playerName}
+                                    {tournamentStore[item?.key]?.playerName}
                                 </Typography>
                             }
-                            {tournamentStore[item.key]?.playerName === '' ||
-                                tournamentStore[item.key]?.playedDeck === '' ?
+                            {tournamentStore[item?.key]?.playerName === '' ||
+                                tournamentStore[item?.key]?.playedDeck === '' ?
                                 '' :
                                 <Typography
                                     sx={{
@@ -147,7 +149,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     }}
                                     variant='body2'
                                 >
-                                    with {tournamentStore[item.key]?.playedDeck}
+                                    with {tournamentStore[item?.key]?.playedDeck}
                                 </Typography>
                             }
 
@@ -165,7 +167,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {tournamentStore[item.key]?.deckNotes === '' ?
+                                {tournamentStore[item?.key]?.deckNotes === '' ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -192,7 +194,7 @@ export default function TournamentTreeItem({ item, data }) {
                                             flex: '1'
                                         }}
                                         variant='body2'>
-                                        {tournamentStore[item.key]?.deckNotes}
+                                        {tournamentStore[item?.key]?.deckNotes}
                                     </Typography>
                                 }
                             </Box>

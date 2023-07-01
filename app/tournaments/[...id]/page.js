@@ -33,7 +33,7 @@ import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
 import { updateProgress } from '@/app/interfaceStore';
 
 
-
+import { VscMenu } from "react-icons/vsc";
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState(undefined)
@@ -125,7 +125,7 @@ export default function TournamentOverview({ params }) {
         <OuterWindowWrapper>
             <InnerWindowWrapper
                 route={'tournament/id'}
-                menuOptions={<EditButton sx={{
+                menuOptions={<VscMenu sx={{
                     width: '15px',
                     height: '15px',
                     marginLeft: {

@@ -78,14 +78,21 @@ export default function InnerWindowWrapperHeader({
                     lg: 'space-between'
                 }
             }}>
-                <Typography
-                    variant="h5">
-                    {pagetitle}
-                </Typography>
-                {iconProvider()}
-                {itemState === undefined ?
-                    null :
-                    itemState}
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
+                    <Typography
+                        variant="h5">
+                        {pagetitle}
+                    </Typography>
+                    {iconProvider()}
+                    {itemState === undefined ?
+                        null :
+                        itemState}
+                </Box>
             </Box>
     )
 }

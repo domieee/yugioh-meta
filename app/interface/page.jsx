@@ -50,16 +50,77 @@ const top16Row = [
     { key: 'top16EighthItem', title: 'Top 16' },
 ];
 
+const top32Row = [
+    { key: 'top32FirstItem', title: 'Top 32' },
+    { key: 'top32SecondItem', title: 'Top 32' },
+    { key: 'top32ThirdItem', title: 'Top 32' },
+    { key: 'top32FourthItem', title: 'Top 32' },
+    { key: 'top32FifthItem', title: 'Top 32' },
+    { key: 'top32SixthItem', title: 'Top 32' },
+    { key: 'top32SeventhItem', title: 'Top 32' },
+    { key: 'top32EighthItem', title: 'Top 32' },
+    { key: 'top32NinthItem', title: 'Top 32' },
+    { key: 'top32TenthItem', title: 'Top 32' },
+    { key: 'top32EleventhItem', title: 'Top 32' },
+    { key: 'top32TwelfthItem', title: 'Top 32' },
+    { key: 'top32ThirteenthItem', title: 'Top 32' },
+    { key: 'top32FourteenthItem', title: 'Top 32' },
+    { key: 'top32FifteenthItem', title: 'Top 32' },
+    { key: 'top32SixteenthItem', title: 'Top 32' }
+];
+
+const top64Row = [
+    { key: 'top64FirstItem', title: 'Top 64' },
+    { key: 'top64SecondItem', title: 'Top 64' },
+    { key: 'top64ThirdItem', title: 'Top 64' },
+    { key: 'top64FourthItem', title: 'Top 64' },
+    { key: 'top64FifthItem', title: 'Top 64' },
+    { key: 'top64SixthItem', title: 'Top 64' },
+    { key: 'top64SeventhItem', title: 'Top 64' },
+    { key: 'top64EighthItem', title: 'Top 64' },
+    { key: 'top64NinthItem', title: 'Top 64' },
+    { key: 'top64TenthItem', title: 'Top 64' },
+    { key: 'top64EleventhItem', title: 'Top 64' },
+    { key: 'top64TwelfthItem', title: 'Top 64' },
+    { key: 'top64ThirteenthItem', title: 'Top 64' },
+    { key: 'top64FourteenthItem', title: 'Top 64' },
+    { key: 'top64FifteenthItem', title: 'Top 64' },
+    { key: 'top64SixteenthItem', title: 'Top 64' },
+    { key: 'top64SeventeenthItem', title: 'Top 64' },
+    { key: 'top64EighteenthItem', title: 'Top 64' },
+    { key: 'top64NineteenthItem', title: 'Top 64' },
+    { key: 'top64TwentiethItem', title: 'Top 64' },
+    { key: 'top64TwentyFirstItem', title: 'Top 64' },
+    { key: 'top64TwentySecondItem', title: 'Top 64' },
+    { key: 'top64TwentyThirdItem', title: 'Top 64' },
+    { key: 'top64TwentyFourthItem', title: 'Top 64' },
+    { key: 'top64TwentyFifthItem', title: 'Top 64' },
+    { key: 'top64TwentySixthItem', title: 'Top 64' },
+    { key: 'top64TwentySeventhItem', title: 'Top 64' },
+    { key: 'top64TwentyEighthItem', title: 'Top 64' },
+    { key: 'top64TwentyNinthItem', title: 'Top 64' },
+    { key: 'top64ThirtiethItem', title: 'Top 64' },
+    { key: 'top64ThirtyFirstItem', title: 'Top 64' },
+    { key: 'top64ThirtySecondItem', title: 'Top 64' }
+];
+
 
 export default function Interface() {
 
-    const [interfaceState, setInterfaceState] = useState([firstPlaceRow, secondPlaceRow, top4Row, top8Row])
+    const [interfaceState, setInterfaceState] = useState([firstPlaceRow, secondPlaceRow, top4Row])
+
+
+    const exampleArray = [firstPlaceRow, secondPlaceRow, top4Row, top8Row, top16Row, top32Row, top64Row]
+
+    const addTournamentRow = () => {
+        setInterfaceState(oldArray => [...oldArray, exampleArray[interfaceState.length]])
+        console.log("🚀 ~ file: page.jsx:57 ~ Interface ~ interfaceState:", interfaceState)
+    }
 
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     let tournamentStore = useTournamentStore(state => state)
 
-    const exampleArray = [firstPlaceRow, secondPlaceRow, top4Row, top8Row, top16Row]
 
 
 
@@ -247,7 +308,7 @@ export default function Interface() {
                                 treeRow={item} />
                         ))}
                         <IconButton>
-                            <VscAdd />
+                            <VscAdd onClick={addTournamentRow} />
                         </IconButton>
                     </Box>
                 </TournamentDetails>

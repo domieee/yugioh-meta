@@ -144,6 +144,11 @@ function Navigation({ props }) {
         setAnchorElUser(null);
     };
 
+    const nav = (route) => {
+        router.push(route)
+        setDrawerOpen(false)
+    }
+
 
     const pages = [
         {
@@ -321,6 +326,7 @@ function Navigation({ props }) {
                                     <List>
                                         <ListItem disablePadding>
                                             <ListItemButton
+                                                onClick={() => nav('/tournaments')}
                                                 sx={{
                                                     justifyContent: 'flex-start'
                                                 }}
@@ -333,6 +339,7 @@ function Navigation({ props }) {
                                         </ListItem>
                                         <ListItem disablePadding>
                                             <ListItemButton
+                                                onClick={() => nav('/statistics')}
                                                 sx={{
                                                     justifyContent: 'flex-start'
                                                 }}

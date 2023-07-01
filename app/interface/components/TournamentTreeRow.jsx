@@ -80,7 +80,7 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
 
             </Box >
             <Box>
-                {treeRow.map(item => (item.title))}
+                {treeRow.map((item, index) => (<TournamentTreeItem key={index} data={item} />))}
             </Box>
 
         </>

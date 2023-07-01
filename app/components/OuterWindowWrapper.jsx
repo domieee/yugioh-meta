@@ -28,9 +28,9 @@ export default function OuterWindowWrapper({ children }) {
                 },
                 padding: {
                     xs: '0px', // phone
-                    sm: '40px', // tablets
-                    md: '40px', // small laptop
-                    xl: '40px'
+                    sm: '25px', // tablets
+                    md: '25px', // small laptop
+                    xl: '25px'
                 }
             }}
         >
