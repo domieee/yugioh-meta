@@ -92,11 +92,8 @@ export default function TableMUI({ data, table }) {
                             </TableRow>
                         </TableHead>
 
-                        <TableBody sx={{
-                            whiteSpace: "nowrap",
-                            overflow: "scroll",
-
-                        }}>
+                        <TableBody
+                            className='table-safari'>
                             {values && values.length > 0 ? (
                                 values.map((value, index) => (
                                     <TableRow

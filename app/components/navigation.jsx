@@ -242,7 +242,6 @@ function Navigation({ props }) {
                         backdropFilter: 'blur(4px)',
                         height: '65px',
                         zIndex: '10',
-
                     }}
                     className="navigation-safari"
                 >
@@ -255,13 +254,19 @@ function Navigation({ props }) {
                             height: '65px',
                             boxShadow: '0',
                             backgroundColor: '#1b1b1c',
+                            zIndex: '20',
                         }}
                     >
                         <LinearProgress
                             variant="determinate"
                             value={progress}
                             sx={{
-                                backgroundColor: '#232423'
+                                backgroundColor: '#232423',
+                                position: 'fixed',
+                                top: '0', // Adjust the value as needed
+                                left: '0',
+                                width: '100%',
+                                zIndex: '11',
                             }}
                         />
                         <Container maxWidth="xl">

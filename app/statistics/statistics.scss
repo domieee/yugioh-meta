@@ -18,3 +18,9 @@
     cursor: grabbing;
     /* Cursor style when scrolling */
 }
+
+.table-safari {
+    white-space: nowrap;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
