@@ -75,8 +75,8 @@ export default function TableMUI({ data, table }) {
                     ref={containerHeight}
                     sx={{
                         minHeight: 'fit-content',
-                        maxHeight: 380,
                         borderRadius: '0',
+                        maxHeight: 380,
                         boxShadow: '0',
                         '&:hover': {
                             cursor: scrollable ? 'n-resize' : 'default'
@@ -86,14 +86,14 @@ export default function TableMUI({ data, table }) {
 
                     <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
                         <TableHead >
-                            <TableRow backgroundColor='white'>
+                            <TableRow>
                                 <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
                             </TableRow>
                         </TableHead>
 
-                        <TableBody>
+                        <TableBody sx={{ overflow: 'auto' }}>
                             {values && values.length > 0 ? (
                                 values.map((value, index) => (
                                     <TableRow

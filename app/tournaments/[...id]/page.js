@@ -183,7 +183,6 @@ export default function TournamentOverview({ params }) {
                         justifyContent="center"
                         className="canvasContainer">
                         <Paper
-
                             justifyContent="center"
                             sx={{
                                 borderRadius: 2,

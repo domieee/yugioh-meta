@@ -85,7 +85,6 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                         justifyContent="center"
                         sx={{
                             boxShadow: '0',
-                            backgroundColor: '#232423',
                             borderRadius: 2,
                             padding: '10px',
                             height: '380px',

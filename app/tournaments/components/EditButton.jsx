@@ -13,7 +13,6 @@ export default function EditButton() {
             <IconButton
                 onClick={() => handleClickOpen(item === 'winner-breakdown' ? 'winner-breakdown' : 'overall-breakdown')
                 } aria-label="Example" >
-
                 <EditIcon fontSize='small' />
             </IconButton > :
             null
