@@ -384,7 +384,7 @@ function Navigation({ props }) {
                                     md: 'none'
                                 }
                             }}>
-                                <IconButton onClick={() => nav('/')}>
+                                <IconButton onClick={() => router.push('/')}>
                                     <GiFoxHead
                                         style={{
                                             width: '20px',
