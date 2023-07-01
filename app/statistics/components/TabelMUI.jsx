@@ -88,7 +88,6 @@ export default function TableMUI({ data, table }) {
                                 <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
-
                             </TableRow>
                         </TableHead>
 
