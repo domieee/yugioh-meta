@@ -70,93 +70,97 @@ export default function TableMUI({ data, table }) {
                     <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
 
-                <TableContainer component={Paper}
-                    ref={containerHeight}
+                <Box
                     sx={{
-                        minHeight: 'fit-content',
+                        overflow: 'auto',
                         maxHeight: 380,
                         borderRadius: '0',
                         boxShadow: '0',
                         '&:hover': {
                             cursor: scrollable ? 'n-resize' : 'default'
                         },
-                        overflow: 'auto',
-                    }} className='table-container'  >
+                    }}
+                >
+                    <TableContainer
+                        component={Paper}
+                        ref={containerHeight}
+                        className='table-container'>
 
-                    <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
-                        <TableHead >
-                            <TableRow backgroundColor='white'>
-                                <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
-                                <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
-                                <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
-                            </TableRow>
-                        </TableHead>
+                        <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
+                            <TableHead >
+                                <TableRow backgroundColor='white'>
+                                    <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
+                                    <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
+                                    <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
+                                </TableRow>
+                            </TableHead>
 
-                        <TableBody>
-                            {values && values.length > 0 ? (
-                                values.map((value, index) => (
-                                    <TableRow
-                                        key={index}
-                                        sx={{ maxHeight: '30px', '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell sx={{ height: '30px' }} scope="row" >
-                                            <Typography variant='body2'>
-                                                {value}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell
-                                            sx={{
-                                                display: 'flex',
-                                                justifyContent: 'end'
-                                            }}
-                                            align="right">
-                                            <Typography variant='body2'>
-                                                {totals[index]}
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell sx={{ height: '30px' }} align="right">
-                                            <Typography variant='body2'>
-                                                {percentages[index]}
-                                            </Typography>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            ) : (
+                            <TableBody>
+                                {values && values.length > 0 ? (
+                                    values.map((value, index) => (
+                                        <TableRow
+                                            key={index}
+                                            sx={{ maxHeight: '30px', '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell sx={{ height: '30px' }} scope="row" >
+                                                <Typography variant='body2'>
+                                                    {value}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell
+                                                sx={{
+                                                    display: 'flex',
+                                                    justifyContent: 'end'
+                                                }}
+                                                align="right">
+                                                <Typography variant='body2'>
+                                                    {totals[index]}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell sx={{ height: '30px' }} align="right">
+                                                <Typography variant='body2'>
+                                                    {percentages[index]}
+                                                </Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
 
-                                emptyArray.map((_, index) => (
-                                    <TableRow key={index} sx={{
-                                        width: '100%'
-                                    }} >
-                                        <TableCell
-                                            component="th"
-                                            scope="row" >
-                                            <Typography sx={{ textAlign: 'right' }}>
-                                                <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 100 }} />
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell align='right'>
-                                            <Box sx={{
-                                                display: 'flex',
-                                                justifyContent: 'end'
-                                            }}>
-                                                <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 20 }} />
-                                            </Box>
-                                        </TableCell>
-                                        <TableCell >
-                                            <Box sx={{
-                                                display: 'flex',
-                                                justifyContent: 'end'
-                                            }}>
-                                                <Skeleton variant="text" sx={{ fontSize: '0.75rem', width: 37.5 }} />
-                                            </Box>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
+                                    emptyArray.map((_, index) => (
+                                        <TableRow key={index} sx={{
+                                            width: '100%'
+                                        }} >
+                                            <TableCell
+                                                component="th"
+                                                scope="row" >
+                                                <Typography sx={{ textAlign: 'right' }}>
+                                                    <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 100 }} />
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell align='right'>
+                                                <Box sx={{
+                                                    display: 'flex',
+                                                    justifyContent: 'end'
+                                                }}>
+                                                    <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 20 }} />
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell >
+                                                <Box sx={{
+                                                    display: 'flex',
+                                                    justifyContent: 'end'
+                                                }}>
+                                                    <Skeleton variant="text" sx={{ fontSize: '0.75rem', width: 37.5 }} />
+                                                </Box>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
 
-                    </Table>
-                </TableContainer >
+                        </Table>
+                    </TableContainer >
+                </Box >
             }
         </>
     )
