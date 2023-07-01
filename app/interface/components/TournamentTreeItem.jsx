@@ -136,6 +136,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     {tournamentStore[item?.key]?.playerName}
                                 </Typography>
                             }
+
                             {tournamentStore[item?.key]?.playerName === '' ||
                                 tournamentStore[item?.key]?.playedDeck === '' ?
                                 '' :
@@ -285,7 +286,7 @@ export default function TournamentTreeItem({ item, data }) {
                         onClick={() => {
                             handleClose()
                         }}
-                        variant='outlined'>OK</Button>
+                        variant='outlined'>Ok</Button>
                 </Box>
             </Modal>
         </>
