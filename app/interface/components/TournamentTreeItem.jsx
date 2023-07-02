@@ -70,7 +70,8 @@ export default function TournamentTreeItem({ item, data }) {
                     '&:hover': {
                         cursor: 'crosshair',
                         backgroundColor: '#272727',
-                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                        border: '0'
                     }
                 }}>
                 <CardActionArea onClick={() => handleOpen(item.key)}>

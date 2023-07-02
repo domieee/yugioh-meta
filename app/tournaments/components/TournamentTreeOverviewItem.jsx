@@ -54,7 +54,7 @@ const style = {
 
 
 
-export default function TournamentTreeOverviewItem({ data }) {
+export default function TournamentTreeOverviewItem({ data, borderColor }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -95,7 +95,7 @@ export default function TournamentTreeOverviewItem({ data }) {
         <>
             <Card
                 sx={{
-                    border: '1px solid #3a3a3a',
+                    borderLeft: `1px solid ${borderColor}`,
                     marginTop: '16px',
                     position: 'relative',
                     marginLeft: '50px',

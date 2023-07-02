@@ -14,7 +14,7 @@ import {
 } from "react-icons/gi";
 
 
-export default function TournamentTreeOverviewRow({ data, place, listOpen, itemKey, icon }) {
+export default function TournamentTreeOverviewRow({ data, place, listOpen, itemKey, icon, borderColor }) {
 
     const [item, setItem] = useState({ open: listOpen, key: itemKey })
 
@@ -91,7 +91,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                     }}
                 >
                     {data?.map((item, index) => (
-                        <TournamentTreeOverviewItem key={index} data={data} />
+                        <TournamentTreeOverviewItem key={index} data={data} borderColor={borderColor} />
                     ))}
                 </Box>
             ) : null}
