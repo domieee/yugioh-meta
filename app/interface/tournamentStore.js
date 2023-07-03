@@ -12,15 +12,30 @@ export const useInterfaceStore = create((set) => ({
         'top32',
         'top64'
     ],
+    titles: [
+        'First Place',
+        'Second Place',
+        'Top 4',
+        'Top 8',
+        'Top 16',
+        'Top 32',
+        'Top 64'
+    ],
     addTournamentRow: () => {
         set((state) => ({
             interfaceState: [...state.interfaceState, state.exampleArray[state.interfaceState.length]]
         }));
     },
     deleteLastItem: () => {
-        set((state) => ({
-            interfaceState: state.interfaceState.slice(0, -1)
-        }));
+        set((state) => {
+            if (state.interfaceState.length > 0) {
+                const newInterfaceState = state.interfaceState.slice(0, -1);
+                return {
+                    interfaceState: newInterfaceState
+                };
+            }
+            return state; // No items left to remove, return the unchanged state
+        });
     }
 }));
 

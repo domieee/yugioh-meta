@@ -264,6 +264,21 @@ export default function Interface() {
         }
     }
 
+    const [arrayStartLimit, setArrayStartLimit] = useState(false)
+    const [arrayEndLimit, setArrayEndLimit] = useState(false)
+
+    useEffect(() => {
+        console.log(interfaceStore.interfaceState.length)
+        if (interfaceStore.interfaceState.length === 0) {
+            setArrayStartLimit(true)
+        } else if (interfaceStore.interfaceState.length === 7) {
+            setArrayEndLimit(true)
+        } else {
+            setArrayStartLimit(false)
+            setArrayEndLimit(false)
+        }
+    }, [interfaceStore.interfaceState])
+
     { interfaceStore.interfaceState.map((item, index) => (item[0].title)) }
 
 
@@ -381,14 +396,16 @@ export default function Interface() {
                                     sx={{
                                         marginRight: '10px'
                                     }}
+                                    disabled={arrayStartLimit}
                                     onClick={interfaceStore.deleteLastItem}
                                     startIcon={<BiTrash />}>
-                                    Delete
+                                    Delete last row
                                 </Button>
                                 <Button
                                     onClick={interfaceStore.addTournamentRow}
+                                    disabled={arrayEndLimit}
                                     startIcon={<BiPlus />}>
-                                    Add
+                                    Add new row
                                 </Button>
                             </Box>
                             <Button

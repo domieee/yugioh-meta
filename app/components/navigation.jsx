@@ -231,7 +231,7 @@ function Navigation({ props }) {
 
     return (
         <>
-            <div style={{ position: 'relative', height: '65px' }}>
+            <div style={{ position: 'relative', height: '65px', top: -1000 }}>
                 <div
                     style={{
                         backgroundColor: 'rgba(27, 27, 28, 0.1)',
