@@ -9,7 +9,8 @@ import {
     GiStabbedNote,
     GiBroadsword,
     GiTrophy,
-    GiFamilyTree
+    GiFamilyTree,
+    GiPerson
 } from "react-icons/gi";
 
 import { HiExternalLink } from "react-icons/hi";
@@ -42,9 +43,10 @@ const style = {
     flexDirection: 'column'
 };
 
-export default function TournamentTreeItem({ item, data }) {
-    console.log(data.key)
-    const [open, setOpen] = useState({ state: false, key: '' });
+export default function TournamentTreeItem({ item, data, interfaceIndex, variableName }) {
+
+
+    const [open, setOpen] = useState({ state: false, key: `${variableName}[${interfaceIndex}]` });
     console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
     const handleOpen = (key) => {
         console.log("🚀 ~ file: TournamentTreeItem.jsx:49 ~ handleOpen ~ key:", data.key)
@@ -61,6 +63,15 @@ export default function TournamentTreeItem({ item, data }) {
         const linkRegex = /^https:\/\/www\.[^\s\/$.?#]+\.[^\s\/$.?#]+$/;
         return linkRegex.test(link);
     }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        console.log(variableName, interfaceIndex, name, value)
+        tournamentStore.updateField(variableName, interfaceIndex, name, value);
+
+        console.log(tournamentStore.firstPlace)// Update the specified field in the array
+        console.log(tournamentStore[variableName][interfaceIndex])
+    };
 
     console.log(tournamentStore)
     return (
@@ -81,27 +92,40 @@ export default function TournamentTreeItem({ item, data }) {
                             alignItems='center'
                             justifyContent='space-between'
                             direction='row'>
+
                             <Box
                                 sx={{
                                     display: "flex",
                                     alignItems: "center"
                                 }}>
-                                {
-                                    item && item.title === 'First Place' ?
-                                        <IconContext.Provider value={{ color: "#FFD700" }}>
-                                            <GiTrophy style={{ width: '20px' }} />
-                                        </IconContext.Provider> :
-                                        <GiFamilyTree style={{ width: '20px' }} />
-                                }
 
-                                <Typography
-                                    marginLeft={0.75}
-                                    variant='overline'>
-                                    {item?.title}
-                                </Typography>
+                                <GiPerson style={{ width: '20px' }} />
+
+
+                                {tournamentStore[variableName][interfaceIndex]?.name.length === 0 ?
+                                    <Typography
+                                        marginLeft={0.75}
+                                        sx={{
+                                            fontStyle: 'italic',
+                                            color: 'rgba(255, 255, 255, 0.6)',
+                                            maxWidth: "100%",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            flex: '1'
+                                        }}
+                                        variant='body2'>
+                                        No player name provided
+                                    </Typography> :
+                                    <Typography
+                                        marginLeft={0.75}
+                                        variant='body2'>
+                                        {tournamentStore[variableName][interfaceIndex]?.name}
+                                    </Typography>}
+
                             </Box>
 
-                            {tournamentStore[item?.key]?.deckLink === '' ?
+                            {tournamentStore[variableName][interfaceIndex]?.deckLink === '' ?
                                 <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                     <HiExternalLink style={{ width: '20px' }} />
                                 </IconContext.Provider> :
@@ -118,7 +142,7 @@ export default function TournamentTreeItem({ item, data }) {
                             direction='row'>
                             <GiBroadsword style={{ width: '20px' }} />
 
-                            {tournamentStore[item?.key]?.playerName === '' ?
+                            {tournamentStore[variableName][interfaceIndex]?.deck.length === 0 ?
                                 <Typography
                                     sx={{
                                         fontStyle: 'italic',
@@ -130,33 +154,14 @@ export default function TournamentTreeItem({ item, data }) {
                                         flex: '1'
                                     }}
                                     variant='body2'>
-                                    No player information provided
+                                    No deck information provided
                                 </Typography> :
                                 <Typography
                                     variant='body2'>
-                                    {tournamentStore[item?.key]?.playerName}
+                                    {tournamentStore[variableName][interfaceIndex]?.deck}
                                 </Typography>
                             }
-
-                            {tournamentStore[item?.key]?.playerName === '' ||
-                                tournamentStore[item?.key]?.playedDeck === '' ?
-                                '' :
-                                <Typography
-                                    sx={{
-                                        maxWidth: "100%",
-                                        overflow: "hidden",
-                                        textOverflow: "ellipsis",
-                                        whiteSpace: "nowrap",
-                                        flex: '1'
-                                    }}
-                                    variant='body2'
-                                >
-                                    with {tournamentStore[item?.key]?.playedDeck}
-                                </Typography>
-                            }
-
                         </Stack>
-
 
                         <Stack
                             justifyContent='space-between'
@@ -169,7 +174,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {tournamentStore[open.key]?.deckNotes === '' ?
+                                {tournamentStore[variableName][interfaceIndex]?.deckNote.length === 0 ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -196,13 +201,11 @@ export default function TournamentTreeItem({ item, data }) {
                                             flex: '1'
                                         }}
                                         variant='body2'>
-                                        {tournamentStore[open.key]?.deckNotes}
+                                        {tournamentStore[variableName][interfaceIndex]?.deckNote}
                                     </Typography>
                                 }
                             </Box>
-
                         </Stack>
-
                     </CardContent>
                 </CardActionArea>
             </Card >
@@ -212,9 +215,7 @@ export default function TournamentTreeItem({ item, data }) {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description">
-                <Box
-
-                    sx={style}>
+                <Box sx={style}>
                     <Typography
                         variant="overline"
                         display="block" >
@@ -222,27 +223,23 @@ export default function TournamentTreeItem({ item, data }) {
                     </Typography>
                     <TextField
                         placeholder="John Doe"
-                        value={tournamentStore[open.key]?.playerName || ''}
+                        name="name"
+                        value={tournamentStore[variableName][interfaceIndex]?.name || ''}
+                        data-array-name={variableName}
+                        data-index={interfaceIndex}
                         size='small'
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                playerName: e.target.value
-                            })
-                        } />
+                        onChange={(event) => handleChange(event)} />
                     <Typography
                         variant="overline">
                         Played Deck
                     </Typography>
                     <TextField
                         placeholder="Kashtira"
-                        value={tournamentStore[open.key]?.playedDeck || ''}
+                        name="deck"
+                        value={tournamentStore[variableName][interfaceIndex]?.deck || ''}
                         size='small'
                         display="block"
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                playedDeck: e.target.value
-                            })
-                        } />
+                        onChange={handleChange} />
                     <Typography
                         variant="overline"
                         display="block" >
@@ -250,13 +247,10 @@ export default function TournamentTreeItem({ item, data }) {
                     </Typography>
                     <TextField
                         placeholder="Evil Twin"
-                        value={tournamentStore[open.key]?.deckNotes || ''}
+                        name='deckNote'
+                        value={tournamentStore[variableName][interfaceIndex]?.deckNote || ''}
                         size='small'
-                        onChange={(e) =>
-                            tournamentStore.setItem(open.key, {
-                                deckNotes: e.target.value
-                            })
-                        } />
+                        onChange={handleChange} />
                     <Typography
                         variant="overline"
                         display="block" >
@@ -264,19 +258,10 @@ export default function TournamentTreeItem({ item, data }) {
                     </Typography>
                     <TextField
                         placeholder='https://www.youtube.com/watch?v=12345678'
-                        value={tournamentStore[open.key]?.deckLink || ''}
+                        name='deckLink'
+                        value={tournamentStore[variableName][interfaceIndex]?.deckLink || ''}
                         size='small'
-                        onChange={(e) => {
-                            tournamentStore.setItem(open.key, {
-                                deckLink: e.target.value
-                            })
-                            if (isValidLink(e.target.value)) {
-                                setValidLink(false)
-                            } else {
-                                setValidLink(true)
-                            }
-                        }
-                        } />
+                        onChange={handleChange} />
                     <Button
                         disabled={validLink}
                         sx={{
@@ -289,7 +274,7 @@ export default function TournamentTreeItem({ item, data }) {
                         }}
                         variant='outlined'>Ok</Button>
                 </Box>
-            </Modal>
+            </Modal >
         </>
     )
 }

@@ -24,24 +24,23 @@ import TournamentTree from './components/TournamentTreeRow';
 import TournamentDetails from '../components/TournamentDetails';
 import TournamentTreeRow from './components/TournamentTreeRow'
 
-
-const firstPlaceRow = [
+const firstPlace = [
     { key: 'firstPlace', title: 'First' }
 ];
-const secondPlaceRow = [
+const secondPlace = [
     { key: 'secondPlace', title: 'Second' }
 ];
-const top4Row = [
+const top4 = [
     { key: 'top4FirstItem', title: 'Top 4' },
     { key: 'top4SecondItem', title: 'Top 4' }
 ];
-const top8Row = [
+const top8 = [
     { key: 'top8FirstItem', title: 'Top 8' },
     { key: 'top8SecondItem', title: 'Top 8' },
     { key: 'top8ThirdItem', title: 'Top 8' },
     { key: 'top8FourthItem', title: 'Top 8' }
 ]
-const top16Row = [
+const top16 = [
     { key: 'top16FirstItem', title: 'Top 16' },
     { key: 'top16SecondItem', title: 'Top 16' },
     { key: 'top16ThirdItem', title: 'Top 16' },
@@ -52,7 +51,7 @@ const top16Row = [
     { key: 'top16EighthItem', title: 'Top 16' },
 ];
 
-const top32Row = [
+const top32 = [
     { key: 'top32FirstItem', title: 'Top 32' },
     { key: 'top32SecondItem', title: 'Top 32' },
     { key: 'top32ThirdItem', title: 'Top 32' },
@@ -71,7 +70,7 @@ const top32Row = [
     { key: 'top32SixteenthItem', title: 'Top 32' }
 ];
 
-const top64Row = [
+const top64 = [
     { key: 'top64FirstItem', title: 'Top 64' },
     { key: 'top64SecondItem', title: 'Top 64' },
     { key: 'top64ThirdItem', title: 'Top 64' },
@@ -109,21 +108,28 @@ const top64Row = [
 
 export default function Interface() {
 
-    const [interfaceState, setInterfaceState] = useState([firstPlaceRow, secondPlaceRow, top4Row])
+    const [interfaceState, setInterfaceState] = useState([firstPlace, secondPlace, top4])
 
 
-    const exampleArray = [firstPlaceRow, secondPlaceRow, top4Row, top8Row, top16Row, top32Row, top64Row]
+
+    const exampleArray = [firstPlace, secondPlace, top4, top8, top16, top32, top64]
 
     const addTournamentRow = () => {
         setInterfaceState(oldArray => [...oldArray, exampleArray[interfaceState.length]])
         console.log("🚀 ~ file: page.jsx:57 ~ Interface ~ interfaceState:", interfaceState)
     }
 
+    const deleteLastItem = () => {
+        setInterfaceState(prevState => {
+            const newState = [...prevState]; // Create a copy of the state array
+            newState.pop(); // Remove the last item from the copied array
+            return newState; // Return the updated array as the new state
+        });
+    };
+
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     let tournamentStore = useTournamentStore(state => state)
-
-
 
 
     const postTournament = async () => {
@@ -274,10 +280,8 @@ export default function Interface() {
         }
     }
 
-
-
     { interfaceState.map((item, index) => (item[0].title)) }
-    console.log("🚀 ~ file: page.jsx:211 ~ Interface ~ interfaceState:", interfaceState.length)
+
 
     return (
         <OuterWindowWrapper>
@@ -298,27 +302,63 @@ export default function Interface() {
                         sx={{
                             width: '100%',
                         }}>
-                        {interfaceState.map((item, index) => (
-                            <TournamentTreeRow
-                                key={index}
-                                chipIcon={<GiFamilyTree style={{
-                                    width: '12.5px',
-                                    height: '12.5px',
-                                }} />}
-                                interfaceIndex={index}
-                                currentInterfaceState={interfaceState.length}
-                                treeRow={item} />
-                        ))}
+                        {interfaceState.map((item, index) => {
+                            let variableName = '';
+                            if (item === firstPlace) {
+                                variableName = 'firstPlace';
+                            } else if (item === secondPlace) {
+                                variableName = 'secondPlace';
+                            } else if (item === top4) {
+                                variableName = 'top4';
+                            } else if (item === top8) {
+                                variableName = 'top8';
+                            } else if (item === top16) {
+                                variableName = 'top16';
+                            } else if (item === top32) {
+                                variableName = 'top32';
+                            } else if (item === top64) {
+                                variableName = 'top64';
+                            }
+                            // Weitere else if-Blöcke für die anderen Konstanten
+
+                            return (
+                                <TournamentTreeRow
+                                    key={index}
+                                    chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
+                                    interfaceIndex={index}
+                                    currentInterfaceState={interfaceState.length}
+                                    treeRow={item}
+                                    variableName={variableName} // Übergebe den Namen der Konstanten als 'variableName' Prop
+                                />
+                            );
+                        })}
                         <Box sx={{
+                            width: '100%',
                             display: 'flex',
-                            justifyContent: 'space-between',
+                            justifyContent: {
+                                xs: 'center',
+                                md: 'space-between',
+
+                            },
+                            flexDirection: {
+                                xs: 'column',
+                                md: 'row'
+                            }
 
                         }}>
-                            <Box>
+                            <Box sx={{
+
+                                display: 'flex',
+                                justifyContent: {
+                                    xs: 'space-between',
+                                    md: 'flex-start'
+                                }
+                            }}>
                                 <Button
                                     sx={{
                                         marginRight: '10px'
                                     }}
+                                    onClick={deleteLastItem}
                                     startIcon={<BiTrash />}>
                                     Delete
                                 </Button>
@@ -335,8 +375,8 @@ export default function Interface() {
                             </Button>
                         </Box>
                     </Box>
-                </TournamentDetails>
-            </InnerWindowWrapper>
+                </TournamentDetails >
+            </InnerWindowWrapper >
         </OuterWindowWrapper >
     )
 }

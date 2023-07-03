@@ -334,8 +334,10 @@ function Navigation({ props }) {
                                                         <TbArrowLeft />
                                                     </IconButton>
                                                 </DrawerHeader>
-                                                <Divider />
+
                                                 <List>
+
+                                                    <Divider />
                                                     <ListItem disablePadding>
                                                         <ListItemButton
                                                             onClick={() => nav('/tournaments')}
@@ -354,7 +356,8 @@ function Navigation({ props }) {
                                                         <ListItemButton
                                                             onClick={() => nav('/statistics')}
                                                             sx={{
-                                                                justifyContent: 'flex-start'
+                                                                justifyContent: 'flex-start',
+                                                                height: '50px'
                                                             }}
                                                             alignItems="center">
                                                             <ListItemIcon>
