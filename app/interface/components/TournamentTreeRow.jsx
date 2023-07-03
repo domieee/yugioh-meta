@@ -20,7 +20,7 @@ import TournamentTreeItem from './TournamentTreeItem';
 import { useRouter } from 'next/navigation';
 
 
-export default function TournamentTree({ treeRow, currentInterfaceState, interfaceIndex, chipIcon, variableName }) {
+export default function TournamentTree({ treeRow, currentInterfaceState, interfaceIndex, chipIcon, title, variableName }) {
     console.log("🚀 ~ file: TournamentTreeRow.jsx:24 ~ TournamentTree ~ treeRow:", treeRow)
     console.log("🚀 ~ file: TournamentTreeRow.jsx:24 ~ TournamentTree ~ variableName:", variableName)
 
@@ -51,14 +51,11 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
                             <Chip
                                 sx={{
                                     width: '100px',
-                                    cursor: 'default', // Set the default cursor style
-                                    '&:hover': {
-                                        cursor: 'pointer', // Set the cursor style when hovering
-                                    },
+                                    justifyContent: 'center'
                                 }}
                                 variant='outlined'
                                 icon={chipIcon}
-                                label={treeRow[0].title}
+                                label={title}
                             />
 
                         </Divider>
@@ -67,7 +64,9 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
 
             </Box >
             <Box>
-                {treeRow.map((item, index) => (<TournamentTreeItem key={index} data={item} interfaceIndex={index} variableName={variableName} />))}
+                {treeRow.map((item, index) => (
+                    < TournamentTreeItem key={index} data={item} title={title} interfaceIndex={index} variableName={variableName} />
+                ))}
             </Box>
 
         </>

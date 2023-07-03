@@ -14,7 +14,7 @@ import {
 } from "react-icons/gi";
 
 import NationalTournamentInterface from './components/NationalTournamentInterface';
-import { useTournamentStore } from './tournamentStore';
+import { useTournamentStore, useInterfaceStore } from './tournamentStore';
 import OuterWindowWrapper from '../components/OuterWindowWrapper';
 import InnerWindowWrapper from '../components/InnerWindowWrapper';
 import TournamentToggle from './components/TournamentToggle';
@@ -108,28 +108,12 @@ const top64 = [
 
 export default function Interface() {
 
-    const [interfaceState, setInterfaceState] = useState([firstPlace, secondPlace, top4])
-
-
-
-    const exampleArray = [firstPlace, secondPlace, top4, top8, top16, top32, top64]
-
-    const addTournamentRow = () => {
-        setInterfaceState(oldArray => [...oldArray, exampleArray[interfaceState.length]])
-        console.log("🚀 ~ file: page.jsx:57 ~ Interface ~ interfaceState:", interfaceState)
-    }
-
-    const deleteLastItem = () => {
-        setInterfaceState(prevState => {
-            const newState = [...prevState]; // Create a copy of the state array
-            newState.pop(); // Remove the last item from the copied array
-            return newState; // Return the updated array as the new state
-        });
-    };
 
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     let tournamentStore = useTournamentStore(state => state)
+
+    let interfaceStore = useInterfaceStore(state => state)
 
 
     const postTournament = async () => {
@@ -280,7 +264,7 @@ export default function Interface() {
         }
     }
 
-    { interfaceState.map((item, index) => (item[0].title)) }
+    { interfaceStore.interfaceState.map((item, index) => (item[0].title)) }
 
 
     return (
@@ -288,8 +272,7 @@ export default function Interface() {
             <InnerWindowWrapper
                 pagetitle={tournamentStore?.tournamentType === 'national' ?
                     'Create a national tournament' :
-                    'Create a regional tournament'}
-            >
+                    'Create a regional tournament'}>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
 
@@ -302,43 +285,84 @@ export default function Interface() {
                         sx={{
                             width: '100%',
                         }}>
-                        {interfaceState.map((item, index) => {
+                        {interfaceStore.interfaceState.map((item, index) => {
+                            console.log(item, 'itemsadsasd')
                             let variableName = '';
                             if (item === firstPlace) {
                                 variableName = 'firstPlace';
                             } else if (item === secondPlace) {
                                 variableName = 'secondPlace';
                             } else if (item === top4) {
-                                variableName = 'top4';
+                                variableName = 'top4'
                             } else if (item === top8) {
-                                variableName = 'top8';
+                                variableName = 'top8'
                             } else if (item === top16) {
-                                variableName = 'top16';
+                                variableName = 'top16'
                             } else if (item === top32) {
-                                variableName = 'top32';
+                                variableName = 'top32'
                             } else if (item === top64) {
-                                variableName = 'top64';
+                                variableName = 'top64'
                             }
-                            // Weitere else if-Blöcke für die anderen Konstanten
+                            let title = ''
+                            let treeRow;
+
+                            switch (index) {
+                                case 0:
+                                    variableName = 'firstPlace';
+                                    title = 'Winner'
+                                    treeRow = tournamentStore.firstPlace
+                                    break;
+                                case 1:
+                                    variableName = 'secondPlace';
+                                    title = 'Second'
+                                    treeRow = tournamentStore.secondPlace
+                                    break;
+                                case 2:
+                                    variableName = 'top4';
+                                    title = 'Top 4'
+                                    treeRow = tournamentStore.top4
+                                    break;
+                                case 3:
+                                    title = 'Top 8'
+                                    variableName = 'top8';
+                                    treeRow = tournamentStore.top8
+                                    break;
+                                case 4:
+                                    title = 'Top 16'
+                                    variableName = 'top16';
+                                    treeRow = tournamentStore.top16
+                                    break;
+                                case 5:
+                                    title = 'Top 32'
+                                    variableName = 'top32';
+                                    treeRow = tournamentStore.top32
+                                    break;
+                                case 6:
+                                    title = 'Top 64'
+                                    variableName = 'top64';
+                                    treeRow = tournamentStore.top64
+                                    break;
+                            }
 
                             return (
                                 <TournamentTreeRow
                                     key={index}
+                                    title={title}
                                     chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
                                     interfaceIndex={index}
-                                    currentInterfaceState={interfaceState.length}
-                                    treeRow={item}
-                                    variableName={variableName} // Übergebe den Namen der Konstanten als 'variableName' Prop
+                                    currentInterfaceState={interfaceStore.interfaceState.length}
+                                    treeRow={treeRow}
+                                    variableName={variableName}
                                 />
-                            );
+                            )
                         })}
+
                         <Box sx={{
                             width: '100%',
                             display: 'flex',
                             justifyContent: {
                                 xs: 'center',
                                 md: 'space-between',
-
                             },
                             flexDirection: {
                                 xs: 'column',
@@ -347,7 +371,6 @@ export default function Interface() {
 
                         }}>
                             <Box sx={{
-
                                 display: 'flex',
                                 justifyContent: {
                                     xs: 'space-between',
@@ -358,12 +381,12 @@ export default function Interface() {
                                     sx={{
                                         marginRight: '10px'
                                     }}
-                                    onClick={deleteLastItem}
+                                    onClick={interfaceStore.deleteLastItem}
                                     startIcon={<BiTrash />}>
                                     Delete
                                 </Button>
                                 <Button
-                                    onClick={addTournamentRow}
+                                    onClick={interfaceStore.addTournamentRow}
                                     startIcon={<BiPlus />}>
                                     Add
                                 </Button>

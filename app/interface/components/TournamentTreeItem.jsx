@@ -43,7 +43,8 @@ const style = {
     flexDirection: 'column'
 };
 
-export default function TournamentTreeItem({ item, data, interfaceIndex, variableName }) {
+export default function TournamentTreeItem({ item, data, interfaceIndex, title, variableName }) {
+    console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ item, data, interfaceIndex, title, variableName :", item, data, interfaceIndex, title, variableName)
 
 
     const [open, setOpen] = useState({ state: false, key: `${variableName}[${interfaceIndex}]` });
@@ -66,14 +67,9 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(variableName, interfaceIndex, name, value)
         tournamentStore.updateField(variableName, interfaceIndex, name, value);
-
-        console.log(tournamentStore.firstPlace)// Update the specified field in the array
-        console.log(tournamentStore[variableName][interfaceIndex])
     };
 
-    console.log(tournamentStore)
     return (
         <>
             <Card
@@ -101,7 +97,6 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
 
                                 <GiPerson style={{ width: '20px' }} />
 
-
                                 {tournamentStore[variableName][interfaceIndex]?.name.length === 0 ?
                                     <Typography
                                         marginLeft={0.75}
@@ -125,7 +120,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
 
                             </Box>
 
-                            {tournamentStore[variableName][interfaceIndex]?.deckLink === '' ?
+                            {tournamentStore[variableName][interfaceIndex]?.deckLink.length === 0 ?
                                 <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                     <HiExternalLink style={{ width: '20px' }} />
                                 </IconContext.Provider> :
@@ -140,6 +135,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                             spacing={0.75}
                             alignItems='center'
                             direction='row'>
+
                             <GiBroadsword style={{ width: '20px' }} />
 
                             {tournamentStore[variableName][interfaceIndex]?.deck.length === 0 ?
@@ -173,7 +169,9 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                                     display: "flex",
                                     alignItems: "center"
                                 }}>
+
                                 <GiStabbedNote style={{ width: '20px' }} />
+
                                 {tournamentStore[variableName][interfaceIndex]?.deckNote.length === 0 ?
                                     <Typography
                                         marginLeft={0.75}
@@ -186,8 +184,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                                             whiteSpace: "nowrap",
                                             flex: '1'
                                         }}
-                                        variant='body2'
-                                    >
+                                        variant='body2'>
                                         No deck note provided
                                     </Typography> :
                                     <Typography
@@ -221,6 +218,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                         display="block" >
                         Player Name
                     </Typography>
+
                     <TextField
                         placeholder="John Doe"
                         name="name"
@@ -233,6 +231,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                         variant="overline">
                         Played Deck
                     </Typography>
+
                     <TextField
                         placeholder="Kashtira"
                         name="deck"
@@ -245,6 +244,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                         display="block" >
                         Deck Notes
                     </Typography>
+
                     <TextField
                         placeholder="Evil Twin"
                         name='deckNote'
@@ -256,12 +256,14 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                         display="block" >
                         Deck Link
                     </Typography>
+
                     <TextField
                         placeholder='https://www.youtube.com/watch?v=12345678'
                         name='deckLink'
                         value={tournamentStore[variableName][interfaceIndex]?.deckLink || ''}
                         size='small'
                         onChange={handleChange} />
+
                     <Button
                         disabled={validLink}
                         sx={{
@@ -272,7 +274,9 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, variabl
                         onClick={() => {
                             handleClose()
                         }}
-                        variant='outlined'>Ok</Button>
+                        variant='outlined'>
+                        Ok
+                    </Button>
                 </Box>
             </Modal >
         </>

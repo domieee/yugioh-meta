@@ -1,6 +1,29 @@
 import { create } from 'zustand'
 import { persist } from "zustand/middleware"
 
+export const useInterfaceStore = create((set) => ({
+    interfaceState: ['firstPlace', 'secondPlace', 'top4'],
+    exampleArray: [
+        'firstPlace',
+        'secondPlace',
+        'top4',
+        'top8',
+        'top16',
+        'top32',
+        'top64'
+    ],
+    addTournamentRow: () => {
+        set((state) => ({
+            interfaceState: [...state.interfaceState, state.exampleArray[state.interfaceState.length]]
+        }));
+    },
+    deleteLastItem: () => {
+        set((state) => ({
+            interfaceState: state.interfaceState.slice(0, -1)
+        }));
+    }
+}));
+
 export const useTournamentStore = create(
     (set) => ({
         tournamentType: 'national',
