@@ -85,7 +85,11 @@ export default function InnerWindowWrapperHeader({
                     justifyContent: 'space-between'
                 }}>
                     <Typography
-                        variant="h5">
+                        variant="h5"
+                        component="h2"
+                        sx={{
+
+                        }} >
                         {pagetitle}
                     </Typography>
                     {iconProvider()}

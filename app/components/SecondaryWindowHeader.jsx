@@ -16,7 +16,10 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
         }}>
             <Box>
                 <Typography
-                    variant="h6">
+                    variant="h6"
+                    sx={{
+
+                    }}>
                     {sectionTitle}
                 </Typography>
             </Box>
@@ -41,6 +44,7 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                         sx={{
                             alignSelf: 'flex-start',
                             color: 'rgba(255, 255, 255, 0.6)',
+
                         }}
                         variant='body2'>{informationTitle}</Typography>
                 </Box >)

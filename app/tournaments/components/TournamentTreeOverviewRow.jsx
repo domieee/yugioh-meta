@@ -50,7 +50,9 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                     <TfiAngleRight style={{
                         width: '20px',
                         height: '20px',
-                        transform: item.open ? 'rotate(90deg)' : 'rotate(0deg)',
+                        transform: item.open ?
+                            'rotate(90deg)' :
+                            'rotate(0deg)',
                         transition: 'all 0.2s ease-in-out'
                     }} />
                 </IconButton>

@@ -3,13 +3,15 @@ import {
     TextField,
     Box,
     Typography,
-    IconButton
+    Button
 } from '@mui/material'
 import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
 
-import { VscAdd, VscTrash } from "react-icons/vsc";
+import { BiPlus, BiTrash, BiSend } from "react-icons/bi";
 
-
+import {
+    GiFamilyTree
+} from "react-icons/gi";
 
 import NationalTournamentInterface from './components/NationalTournamentInterface';
 import { useTournamentStore } from './tournamentStore';
@@ -299,17 +301,39 @@ export default function Interface() {
                         {interfaceState.map((item, index) => (
                             <TournamentTreeRow
                                 key={index}
-                                chipIcon={<VscAdd style={{
-                                    width: '20px',
-                                    height: '20px',
+                                chipIcon={<GiFamilyTree style={{
+                                    width: '12.5px',
+                                    height: '12.5px',
                                 }} />}
                                 interfaceIndex={index}
                                 currentInterfaceState={interfaceState.length}
                                 treeRow={item} />
                         ))}
-                        <IconButton>
-                            <VscAdd onClick={addTournamentRow} />
-                        </IconButton>
+                        <Box sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+
+                        }}>
+                            <Box>
+                                <Button
+                                    sx={{
+                                        marginRight: '10px'
+                                    }}
+                                    startIcon={<BiTrash />}>
+                                    Delete
+                                </Button>
+                                <Button
+                                    onClick={addTournamentRow}
+                                    startIcon={<BiPlus />}>
+                                    Add
+                                </Button>
+                            </Box>
+                            <Button
+                                startIcon={<BiSend />}
+                                variant="outlined">
+                                Post Tournament
+                            </Button>
+                        </Box>
                     </Box>
                 </TournamentDetails>
             </InnerWindowWrapper>

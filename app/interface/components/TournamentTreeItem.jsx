@@ -43,13 +43,14 @@ const style = {
 };
 
 export default function TournamentTreeItem({ item, data }) {
+    console.log(data.key)
     const [open, setOpen] = useState({ state: false, key: '' });
     console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
     const handleOpen = (key) => {
-        console.log("🚀 ~ file: TournamentTreeItem.jsx:49 ~ handleOpen ~ key:", key)
+        console.log("🚀 ~ file: TournamentTreeItem.jsx:49 ~ handleOpen ~ key:", data.key)
         console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
 
-        setOpen({ state: true, key: key })
+        setOpen({ state: true, key: data.key })
     };
     const handleClose = () => setOpen({ state: false, key: '' });
     let tournamentStore = useTournamentStore(state => state)
@@ -68,13 +69,12 @@ export default function TournamentTreeItem({ item, data }) {
                 sx={{
                     width: '100&',
                     '&:hover': {
-                        cursor: 'crosshair',
                         backgroundColor: '#272727',
                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
                         border: '0'
                     }
                 }}>
-                <CardActionArea onClick={() => handleOpen(item.key)}>
+                <CardActionArea onClick={() => handleOpen()}>
                     <CardContent>
                         <Stack
                             spacing={0.75}
@@ -169,7 +169,7 @@ export default function TournamentTreeItem({ item, data }) {
                                     alignItems: "center"
                                 }}>
                                 <GiStabbedNote style={{ width: '20px' }} />
-                                {tournamentStore[item?.key]?.deckNotes === '' ?
+                                {tournamentStore[open.key]?.deckNotes === '' ?
                                     <Typography
                                         marginLeft={0.75}
                                         sx={{
@@ -196,7 +196,7 @@ export default function TournamentTreeItem({ item, data }) {
                                             flex: '1'
                                         }}
                                         variant='body2'>
-                                        {tournamentStore[item?.key]?.deckNotes}
+                                        {tournamentStore[open.key]?.deckNotes}
                                     </Typography>
                                 }
                             </Box>

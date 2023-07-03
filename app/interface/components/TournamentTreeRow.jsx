@@ -39,9 +39,6 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
                     widht: '100%',
                     display: 'flex'
                 }}>
-                <IconButton>
-                    {currentInterfaceState - 1 === interfaceIndex ? <VscTrash /> : null}
-                </IconButton>
                 <Box sx={{
                     width: '100%',
                     display: 'flex',

@@ -254,6 +254,7 @@ function Navigation({ props }) {
                             height: '65px',
                             boxShadow: '0',
                             zIndex: '20',
+
                         }}
                     >
                         <Paper sx={{
@@ -423,16 +424,20 @@ function Navigation({ props }) {
                                     >
 
                                     </Typography>
-                                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', height: '100%', } }}>
+                                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
                                         {pages.map(page => (
-                                            <Typography
-                                                className="navigation-link"
-                                                key={page.title}
-                                                onClick={page.route}
-                                                sx={{ my: 2, color: 'white', display: 'block' }}
-                                            >
-                                                {page.title}
-                                            </Typography>
+                                            <>
+                                                <Button onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
+                                                    <Typography
+                                                        className="navigation-link"
+                                                        key={page.title}
+                                                        variant="body2"
+                                                        sx={{ margin: 0, color: 'white', display: 'block' }}
+                                                    >
+                                                        {page.title}
+                                                    </Typography>
+                                                </Button>
+                                            </>
                                         ))}
                                     </Box>
                                     {isLoading ? <Skeleton variant="circular" width={40} height={40} /> : <NavigationMenu role={role} username={username} />}

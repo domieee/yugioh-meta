@@ -3,9 +3,6 @@
     color: rgb(255, 255, 255);
     transition: color 0.1s ease-in-out;
 
-    &:nth-child(1) {
-        margin-inline: 5px 10px;
-    }
 
     &:hover {
         cursor: pointer;
