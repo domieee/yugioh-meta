@@ -1,6 +1,9 @@
 import { create } from 'zustand'
 import { persist } from "zustand/middleware"
 
+import { updateProgress } from '../interfaceStore';
+import Cookies from 'js-cookie';
+
 export const useInterfaceStore = create((set) => ({
     interfaceState: ['firstPlace', 'secondPlace', 'top4'],
     exampleArray: [
@@ -144,6 +147,8 @@ export const useTournamentStore = create(
             set({ date });
         },
         fetchObjectsFromInterfaceState: async (useTournamentStore) => {
+            updateProgress(10)
+            const token = Cookies.get('token')
             const interfaceState = useInterfaceStore.getState().interfaceState;
             const objects = [];
 
@@ -166,7 +171,8 @@ export const useTournamentStore = create(
                         "location": useTournamentStore.location,
                         "totalParticipants": useTournamentStore.totalParticipants,
                         "date": useTournamentStore.date,
-                        "players": objects
+                        "players": objects,
+                        "token": token
                     })
                 },
             )

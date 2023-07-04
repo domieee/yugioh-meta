@@ -87,10 +87,6 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
         }
     }, [])
 
-
-    if (place.includes('top')) {
-        place = place.replace('top', 'top ');
-    }
     return (
         <>
             <Card

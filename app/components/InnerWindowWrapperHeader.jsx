@@ -93,16 +93,25 @@ export default function InnerWindowWrapperHeader({
                     <Breadcrumbs
 
                         aria-label="breadcrumb">
+
                         <Link
-                            alignItems="end"
-                            underline="hover" color="inherit" href="/">
+                            style={{
+                                height: '50px'
+                            }}
+                            underline="hover"
+                            color="inherit"
+                            href="/">
                             <Typography
                                 variant='body2'
                                 color="text.primary">
                                 Home
                             </Typography>
                         </Link>
+
                         <Link
+                            style={{
+                                height: '50px'
+                            }}
                             underline="hover"
                             color="inherit"
                             href="/tournaments">

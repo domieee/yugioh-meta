@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { updateProgress } from '@/app/interfaceStore';
 
 export default function TournamentListItem({ data }) {
+    console.log("🚀 ~ file: TournamentListItem.jsx:18 ~ TournamentListItem ~ data:", data)
 
     const router = useRouter()
 
@@ -46,7 +47,7 @@ export default function TournamentListItem({ data }) {
                             display='flex'
                             justifyContent='space-between'>
                             <IconContext.Provider value={{ color: "#FFD700" }}>
-                                <Typography variant='body2'><GiTrophy style={{ marginRight: '7.5px' }} />{`${data.player[0].name} with ${data.player[0].deck}`}</Typography>
+                                <Typography variant='body2'><GiTrophy style={{ marginRight: '7.5px' }} />{`${data.players[0][0].name} with ${data.players[0][0].deck}`}</Typography>
                             </IconContext.Provider>
                             <IconContext.Provider value={{ color: "#ffffff" }}>
                                 <Typography variant='body2'><GiTabletopPlayers style={{ marginRight: '7.5px' }} />{data.totalParticipants}</Typography>
