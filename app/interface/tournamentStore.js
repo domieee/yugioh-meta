@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware"
 
 import { updateProgress } from '../interfaceStore';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+
+
 
 export const useInterfaceStore = create((set) => ({
     interfaceState: ['firstPlace', 'secondPlace', 'top4'],
@@ -176,11 +179,14 @@ export const useTournamentStore = create(
                     })
                 },
             )
-
             if (res.ok) {
-                console.log('first')
+
+                const json = await res.json();
+                console.log("🚀 ~ file: tournamentStore.js:185 ~ fetchObjectsFromInterfaceState: ~ res:", res)
+                console.log(json)
+                return json
             } else {
-                console.log('nop')
+                return false
             }
             return objects;
         },

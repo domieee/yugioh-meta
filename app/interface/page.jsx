@@ -3,14 +3,15 @@ import {
     TextField,
     Box,
     Typography,
-    Button
+    Button,
+    Divider
 } from '@mui/material'
 import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
 
 import { BiPlus, BiTrash, BiSend } from "react-icons/bi";
 
 import {
-    GiFamilyTree
+    GiFamilyTree, GiSwirlString
 } from "react-icons/gi";
 
 import NationalTournamentInterface from './components/NationalTournamentInterface';
@@ -23,6 +24,8 @@ import { useEffect, useState } from 'react';
 import TournamentTree from './components/TournamentTreeRow';
 import TournamentDetails from '../components/TournamentDetails';
 import TournamentTreeRow from './components/TournamentTreeRow'
+import { updateProgress } from '../interfaceStore';
+import { useRouter } from 'next/navigation';
 
 const firstPlace = [
     { key: 'firstPlace', title: 'First' }
@@ -108,167 +111,25 @@ const top64 = [
 
 export default function Interface() {
 
-
-    const [isLoading, setIsLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
-    let tournamentStore = useTournamentStore(state => state)
-
-    let interfaceStore = useInterfaceStore(state => state)
-
-
-    const postTournament = async () => {
-        setIsLoading(true);
-        const tournamentData = {
-            tournament: {
-                "tournamentType": tournamentStore.tournamentType,
-                "location": tournamentStore.location,
-                "totalParticipants": tournamentStore.totalParticipants,
-                "date": tournamentStore.date,
-                "player": [
-                    {
-                        "place": 'first',
-                        "name": tournamentStore.firstPlace.playerName,
-                        "deck": tournamentStore.firstPlace.playedDeck,
-                        "deckNote": tournamentStore.firstPlace.deckNotes,
-                        "deckLink": tournamentStore.firstPlace.deckLink
-                    },
-                    {
-                        "place": 'second',
-                        "name": tournamentStore.secondPlace.playerName,
-                        "deck": tournamentStore.secondPlace.playedDeck,
-                        "deckNote": tournamentStore.secondPlace.deckNotes,
-                        "deckLink": tournamentStore.secondPlace.deckLink
-                    },
-                    {
-                        "place": 'top4',
-                        "name": tournamentStore.top4FirstItem.playerName,
-                        "deck": tournamentStore.top4FirstItem.playedDeck,
-                        "deckNote": tournamentStore.top4FirstItem.deckNotes,
-                        "deckLink": tournamentStore.top4FirstItem.deckLink
-                    },
-                    {
-                        "place": 'top4',
-                        "name": tournamentStore.top4SecondItem.playerName,
-                        "deck": tournamentStore.top4SecondItem.playedDeck,
-                        "deckNote": tournamentStore.top4SecondItem.deckNotes,
-                        "deckLink": tournamentStore.top4SecondItem.deckLink
-                    },
-                    {
-                        "place": 'top8',
-                        "name": tournamentStore.top8FirstItem.playerName,
-                        "deck": tournamentStore.top8FirstItem.playedDeck,
-                        "deckNote": tournamentStore.top8FirstItem.deckNotes,
-                        "deckLink": tournamentStore.top8FirstItem.deckLink
-                    },
-                    {
-                        "place": 'top8',
-                        "name": tournamentStore.top8SecondItem.playerName,
-                        "deck": tournamentStore.top8SecondItem.playedDeck,
-                        "deckNote": tournamentStore.top8SecondItem.deckNotes,
-                        "deckLink": tournamentStore.top8SecondItem.deckLink
-                    },
-                    {
-                        "place": 'top8',
-                        "name": tournamentStore.top8ThirdItem.playerName,
-                        "deck": tournamentStore.top8ThirdItem.playedDeck,
-                        "deckNote": tournamentStore.top8ThirdItem.deckNotes,
-                        "deckLink": tournamentStore.top8ThirdItem.deckLink
-                    },
-                    {
-                        "place": 'top8',
-                        "name": tournamentStore.top8FourthItem.playerName,
-                        "deck": tournamentStore.top8FourthItem.playedDeck,
-                        "deckNote": tournamentStore.top8FourthItem.deckNotes,
-                        "deckLink": tournamentStore.top8FourthItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16FirstItem.playerName,
-                        "deck": tournamentStore.top16FirstItem.playedDeck,
-                        "deckNote": tournamentStore.top16FirstItem.deckNotes,
-                        "deckLink": tournamentStore.top16FirstItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16SecondItem.playerName,
-                        "deck": tournamentStore.top16SecondItem.playedDeck,
-                        "deckNote": tournamentStore.top16SecondItem.deckNotes,
-                        "deckLink": tournamentStore.top16SecondItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16ThirdItem.playerName,
-                        "deck": tournamentStore.top16ThirdItem.playedDeck,
-                        "deckNote": tournamentStore.top16ThirdItem.deckNotes,
-                        "deckLink": tournamentStore.top16ThirdItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16FourthItem.playerName,
-                        "deck": tournamentStore.top16FourthItem.playedDeck,
-                        "deckNote": tournamentStore.top16FourthItem.deckNotes,
-                        "deckLink": tournamentStore.top16FourthItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16FifthItem.playerName,
-                        "deck": tournamentStore.top16FifthItem.playedDeck,
-                        "deckNote": tournamentStore.top16FifthItem.deckNotes,
-                        "deckLink": tournamentStore.top16FifthItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16SixthItem.playerName,
-                        "deck": tournamentStore.top16SixthItem.playedDeck,
-                        "deckNote": tournamentStore.top16SixthItem.deckNotes,
-                        "deckLink": tournamentStore.top16SixthItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16SeventhItem.playerName,
-                        "deck": tournamentStore.top16SeventhItem.playedDeck,
-                        "deckNote": tournamentStore.top16SeventhItem.deckNotes,
-                        "deckLink": tournamentStore.top16SeventhItem.deckLink
-                    },
-                    {
-                        "place": 'top16',
-                        "name": tournamentStore.top16EighthItem.playerName,
-                        "deck": tournamentStore.top16EighthItem.playedDeck,
-                        "deckNote": tournamentStore.top16EighthItem.deckNotes,
-                        "deckLink": tournamentStore.top16EighthItem.deckLink
-                    }
-                ]
-            },
-            userId: Cookies.get('token')
-        };
-
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}post-new-tournament`, {
-            method: 'POST',
-            headers: {
-                "Access-Control-Allow-Origin": '*',
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify(tournamentData)
-        })
-
-        if (response.ok) {
-            const tournamentID = await response.json()
-            setTimeout(() => {
-                setIsLoading(false)
-                setSuccess(true)
-                router.push(`/tournaments/${tournamentID}`)
-            }, 2000)
-        } else if (!response.ok) {
-            const json = await response.json()
-            console.log(json)
-        }
-    }
+    const router = useRouter()
 
     const [arrayStartLimit, setArrayStartLimit] = useState(false)
     const [arrayEndLimit, setArrayEndLimit] = useState(false)
 
+    let tournamentStore = useTournamentStore(state => state)
+    let interfaceStore = useInterfaceStore(state => state)
+
+    const handleTournamentFetch = async () => {
+        const tournament = await tournamentStoreState.fetchObjectsFromInterfaceState(tournamentStore)
+        console.log("🚀 ~ file: page.jsx:124 ~ handleTournamentFetch ~ tournament:", tournament)
+
+        if (await tournament) {
+            console.log(tournament)
+            router.push(`/tournaments/${tournament.tournamentId}`)
+        }
+    }
+
     useEffect(() => {
-        console.log(interfaceStore.interfaceState.length)
         if (interfaceStore.interfaceState.length === 0) {
             setArrayStartLimit(true)
         } else if (interfaceStore.interfaceState.length === 7) {
@@ -287,9 +148,7 @@ export default function Interface() {
         <OuterWindowWrapper>
 
             <InnerWindowWrapper
-                pagetitle={tournamentStore?.tournamentType === 'national' ?
-                    'Interface' :
-                    'Create a regional tournament'}>
+                pagetitle={'Create a regional tournament'}>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
 
@@ -397,9 +256,9 @@ export default function Interface() {
                             )
                         })
                     }
-
+                    <Divider sx={{ marginBlock: '20px 10px', }} />
                     <Box sx={{
-                        marginTop: '20px',
+
                         width: '100%',
                         display: 'flex',
                         justifyContent: {
@@ -441,7 +300,7 @@ export default function Interface() {
                             </Button>
                         </Box>
                         <Button
-                            onClick={() => tournamentStoreState.fetchObjectsFromInterfaceState(tournamentStore)}
+                            onClick={handleTournamentFetch}
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
