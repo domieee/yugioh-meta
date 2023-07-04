@@ -74,8 +74,7 @@ export default function NationalTournamentInterface() {
                 display='flex'
                 flexDirection='column'
                 justifyContent='center'
-                alignItems='center'
-                marginBlock='25px'>
+                alignItems='center'>
                 <Stack
                     width='100%'
                     direction="row"
@@ -142,7 +141,7 @@ export default function NationalTournamentInterface() {
                                         Date
                                     </Typography>
                                     <DatePicker
-                                        size="small"
+
                                         value={calendarValue}
                                         onChange={(newValue) => {
                                             const selectedDate = new Date(newValue); // Convert to Date format
@@ -164,6 +163,7 @@ export default function NationalTournamentInterface() {
                             Total Participants
                         </Typography>
                         <TextField
+                            size='small'
                             value={tournamentStore.totalParticipants}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}

@@ -6,7 +6,7 @@ import {
     Box,
     IconButton,
     Divider,
-    Chip
+    Chip, List
 } from '@mui/material'
 
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -51,7 +51,8 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
                             <Chip
                                 sx={{
                                     width: '100px',
-                                    justifyContent: 'center'
+                                    justifyContent: 'center',
+
                                 }}
                                 variant='outlined'
                                 icon={chipIcon}
@@ -63,11 +64,14 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
                 </Box>
 
             </Box >
-            <Box>
+            <List
+                display='flex'
+
+                spacing={2}>
                 {treeRow.map((item, index) => (
                     < TournamentTreeItem key={index} data={item} title={title} interfaceIndex={index} variableName={variableName} />
                 ))}
-            </Box>
+            </List>
 
         </>
     )

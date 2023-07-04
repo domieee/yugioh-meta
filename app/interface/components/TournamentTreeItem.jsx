@@ -74,11 +74,13 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, title, 
         <>
             <Card
                 sx={{
+                    borderLeft: `1px solid yellow`,
+                    paddingLeft: '25px',
                     width: '100&',
                     '&:hover': {
                         backgroundColor: '#272727',
                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-                        border: '0'
+
                     }
                 }}>
                 <CardActionArea onClick={() => handleOpen()}>
