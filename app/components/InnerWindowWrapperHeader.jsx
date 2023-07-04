@@ -96,15 +96,25 @@ export default function InnerWindowWrapperHeader({
                         <Link
                             alignItems="end"
                             underline="hover" color="inherit" href="/">
-                            Home
+                            <Typography
+                                variant='body2'
+                                color="text.primary">
+                                Home
+                            </Typography>
                         </Link>
                         <Link
                             underline="hover"
                             color="inherit"
                             href="/tournaments">
-                            Tournaments
+                            <Typography
+                                variant='body2'
+                                color="text.primary">
+                                Tournaments
+                            </Typography>
                         </Link>
-                        <Typography color="text.primary">
+                        <Typography
+                            variant='body2'
+                            color="text.secondary">
                             Overview
                         </Typography>
                     </Breadcrumbs>
