@@ -5,7 +5,12 @@ import {
     Skeleton
 } from '@mui/material'
 
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+
 import { useStore } from './store'
+
+import { VscHome } from "react-icons/vsc";
 
 
 export default function InnerWindowWrapperHeader({
@@ -43,7 +48,7 @@ export default function InnerWindowWrapperHeader({
         disabledIcon ?
             <Box sx={{
                 display: 'flex',
-                alignItems: 'start',
+                alignItems: 'center',
                 width: '100%',
                 borderBlockEnd: '1px solid #3a3a3a',
                 justifyContent: {
@@ -67,8 +72,9 @@ export default function InnerWindowWrapperHeader({
                 </Typography>
             </Box> :
             <Box sx={{
+                marginBlock: '10px 5px',
                 display: 'flex',
-                alignItems: 'start',
+                alignItems: 'center',
                 width: '100%',
                 borderBlockEnd: '1px solid #3a3a3a',
                 justifyContent: {
@@ -84,19 +90,30 @@ export default function InnerWindowWrapperHeader({
                     alignItems: 'center',
                     justifyContent: 'space-between'
                 }}>
-                    <Typography
-                        variant="h5"
-                        component="h2"
-                        sx={{
+                    <Breadcrumbs
 
-                        }} >
-                        {pagetitle}
-                    </Typography>
+                        aria-label="breadcrumb">
+                        <Link
+                            alignItems="end"
+                            underline="hover" color="inherit" href="/">
+                            Home
+                        </Link>
+                        <Link
+                            underline="hover"
+                            color="inherit"
+                            href="/tournaments">
+                            Tournaments
+                        </Link>
+                        <Typography color="text.primary">
+                            Overview
+                        </Typography>
+                    </Breadcrumbs>
                     {iconProvider()}
                     {itemState === undefined ?
                         null :
                         itemState}
                 </Box>
+
             </Box>
     )
 }

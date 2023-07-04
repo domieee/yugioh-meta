@@ -7,7 +7,7 @@ import { useTournamentStore } from '../tournamentStore';
 
 import {
     GiStabbedNote,
-    GiBroadsword,
+    GiStack,
     GiTrophy,
     GiFamilyTree,
     GiPerson
@@ -138,7 +138,7 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, title, 
                             alignItems='center'
                             direction='row'>
 
-                            <GiBroadsword style={{ width: '20px' }} />
+                            <GiStack style={{ width: '20px' }} />
 
                             {tournamentStore[variableName][interfaceIndex]?.deck.length === 0 ?
                                 <Typography

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import {
     GiStabbedNote,
-    GiBroadsword,
+    GiStack,
     GiTrophy,
     GiFamilyTree,
     GiPerson,
@@ -164,7 +164,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                 spacing={0.75}
                                 alignItems='center'
                                 direction='row'>
-                                <GiBroadsword style={{ width: '20px' }} />
+                                <GiStack style={{ width: '20px' }} />
 
 
                                 {data[0].name === '' ?

@@ -221,52 +221,50 @@ export default function TournamentOverview({ params }) {
                     informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'}
                     sectionTitle={'Tournament Tree'} />
 
-                <TournamentDetails>
-                    <TournamentTreeOverviewRow
-                        icon={<GiTrophy style={{ color: '#FFD700' }} />}
-                        data={tournamentTree[0]}
-                        place={'Winner'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
-                        borderColor={'#FFD700'} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[1]}
-                        place={'Second'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
-                        borderColor={'#c0c0c0'} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[2]}
-                        place={'Top 4'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
-                        borderColor={'#bf8970'} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[3]}
-                        place={'Top 8'}
-                        listItem={'firstPlace'}
-                        listOpen={false}
-                        borderColor={'#7eb6ff'} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        place={'Top 16'}
-                        listItem={'firstPlace'}
-                        listOpen={false}
-                        borderColor={'#58763a'} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        place={'Top 32'}
-                        listItem={'firstPlace'}
-                        listOpen={false} />
-                    <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        place={'Top 64'}
-                        listItem={'firstPlace'}
-                        listOpen={false} />
-                </TournamentDetails>
+                <TournamentTreeOverviewRow
+                    icon={<GiTrophy style={{ color: '#FFD700' }} />}
+                    data={tournamentTree[0]}
+                    place={'Winner'}
+                    listItem={'firstPlace'}
+                    listOpen={true}
+                    borderColor={'#FFD700'} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    data={tournamentTree[1]}
+                    place={'Second'}
+                    listItem={'firstPlace'}
+                    listOpen={true}
+                    borderColor={'#c0c0c0'} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    data={tournamentTree[2]}
+                    place={'Top 4'}
+                    listItem={'firstPlace'}
+                    listOpen={true}
+                    borderColor={'#bf8970'} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    data={tournamentTree[3]}
+                    place={'Top 8'}
+                    listItem={'firstPlace'}
+                    listOpen={false}
+                    borderColor={'#7eb6ff'} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    place={'Top 16'}
+                    listItem={'firstPlace'}
+                    listOpen={false}
+                    borderColor={'#58763a'} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    place={'Top 32'}
+                    listItem={'firstPlace'}
+                    listOpen={false} />
+                <TournamentTreeOverviewRow
+                    icon={<GiFamilyTree />}
+                    place={'Top 64'}
+                    listItem={'firstPlace'}
+                    listOpen={false} />
             </InnerWindowWrapper>
         </OuterWindowWrapper >
     )

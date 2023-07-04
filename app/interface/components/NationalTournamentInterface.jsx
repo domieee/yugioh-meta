@@ -163,7 +163,6 @@ export default function NationalTournamentInterface() {
                             Total Participants
                         </Typography>
                         <TextField
-                            size='small'
                             value={tournamentStore.totalParticipants}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
