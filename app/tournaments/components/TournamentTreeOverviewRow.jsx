@@ -69,6 +69,8 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                         }} width='100%' light orientation="horizontal" textAlign='left'>
                             <Chip
                                 sx={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
                                     width: '100px',
                                     cursor: 'default', // Set the default cursor style
                                     '&:hover': {

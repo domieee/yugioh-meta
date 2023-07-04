@@ -142,6 +142,41 @@ export const useTournamentStore = create(
         },
         setDate: (date) => {
             set({ date });
-        }
+        },
+        fetchObjectsFromInterfaceState: async (useTournamentStore) => {
+            const interfaceState = useInterfaceStore.getState().interfaceState;
+            const objects = [];
+
+            interfaceState.forEach((state) => {
+                const objectArray = useTournamentStore[state];
+
+                if (objectArray) {
+                    objects.push(objectArray);
+                }
+            });
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}fetch-new-tournament`,
+                {
+                    method: 'POST',
+                    headers: {
+                        "Access-Control-Allow-Origin": '*',
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        "tournamentType": useTournamentStore.tournamentType,
+                        "location": useTournamentStore.location,
+                        "totalParticipants": useTournamentStore.totalParticipants,
+                        "date": useTournamentStore.date,
+                        "players": objects
+                    })
+                },
+            )
+
+            if (res.ok) {
+                console.log('first')
+            } else {
+                console.log('nop')
+            }
+            return objects;
+        },
     })
 )   

@@ -281,12 +281,13 @@ export default function Interface() {
 
     { interfaceStore.interfaceState.map((item, index) => (item[0].title)) }
 
+    const tournamentStoreState = useTournamentStore.getState();
 
     return (
         <OuterWindowWrapper>
             <InnerWindowWrapper
                 pagetitle={tournamentStore?.tournamentType === 'national' ?
-                    'Create a national tournament' :
+                    'Interface' :
                     'Create a regional tournament'}>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
@@ -300,77 +301,99 @@ export default function Interface() {
                         sx={{
                             width: '100%',
                         }}>
-                        {interfaceStore.interfaceState.map((item, index) => {
-                            console.log(item, 'itemsadsasd')
-                            let variableName = '';
-                            if (item === firstPlace) {
-                                variableName = 'firstPlace';
-                            } else if (item === secondPlace) {
-                                variableName = 'secondPlace';
-                            } else if (item === top4) {
-                                variableName = 'top4'
-                            } else if (item === top8) {
-                                variableName = 'top8'
-                            } else if (item === top16) {
-                                variableName = 'top16'
-                            } else if (item === top32) {
-                                variableName = 'top32'
-                            } else if (item === top64) {
-                                variableName = 'top64'
-                            }
-                            let title = ''
-                            let treeRow;
-
-                            switch (index) {
-                                case 0:
+                        {interfaceStore.interfaceState.length === 0 ?
+                            <Box sx={{
+                                marginTop: '20px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                border: '0.5px solid #3a3a3a',
+                                padding: '5px 10px',
+                                borderRadius: '2px'
+                            }}>
+                                <Typography sx={{
+                                    fontStyle: 'italic',
+                                    color: 'rgba(255, 255, 255, 0.6)',
+                                    maxWidth: "100%",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                    flex: '1'
+                                }}>
+                                    No tournament rows added
+                                </Typography>
+                            </Box> :
+                            interfaceStore.interfaceState.map((item, index) => {
+                                console.log(item, 'itemsadsasd')
+                                let variableName = '';
+                                if (item === firstPlace) {
                                     variableName = 'firstPlace';
-                                    title = 'Winner'
-                                    treeRow = tournamentStore.firstPlace
-                                    break;
-                                case 1:
+                                } else if (item === secondPlace) {
                                     variableName = 'secondPlace';
-                                    title = 'Second'
-                                    treeRow = tournamentStore.secondPlace
-                                    break;
-                                case 2:
-                                    variableName = 'top4';
-                                    title = 'Top 4'
-                                    treeRow = tournamentStore.top4
-                                    break;
-                                case 3:
-                                    title = 'Top 8'
-                                    variableName = 'top8';
-                                    treeRow = tournamentStore.top8
-                                    break;
-                                case 4:
-                                    title = 'Top 16'
-                                    variableName = 'top16';
-                                    treeRow = tournamentStore.top16
-                                    break;
-                                case 5:
-                                    title = 'Top 32'
-                                    variableName = 'top32';
-                                    treeRow = tournamentStore.top32
-                                    break;
-                                case 6:
-                                    title = 'Top 64'
-                                    variableName = 'top64';
-                                    treeRow = tournamentStore.top64
-                                    break;
-                            }
+                                } else if (item === top4) {
+                                    variableName = 'top4'
+                                } else if (item === top8) {
+                                    variableName = 'top8'
+                                } else if (item === top16) {
+                                    variableName = 'top16'
+                                } else if (item === top32) {
+                                    variableName = 'top32'
+                                } else if (item === top64) {
+                                    variableName = 'top64'
+                                }
+                                let title = ''
+                                let treeRow;
 
-                            return (
-                                <TournamentTreeRow
-                                    key={index}
-                                    title={title}
-                                    chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
-                                    interfaceIndex={index}
-                                    currentInterfaceState={interfaceStore.interfaceState.length}
-                                    treeRow={treeRow}
-                                    variableName={variableName}
-                                />
-                            )
-                        })}
+                                switch (index) {
+                                    case 0:
+                                        variableName = 'firstPlace';
+                                        title = 'Winner'
+                                        treeRow = tournamentStore.firstPlace
+                                        break;
+                                    case 1:
+                                        variableName = 'secondPlace';
+                                        title = 'Second'
+                                        treeRow = tournamentStore.secondPlace
+                                        break;
+                                    case 2:
+                                        variableName = 'top4';
+                                        title = 'Top 4'
+                                        treeRow = tournamentStore.top4
+                                        break;
+                                    case 3:
+                                        title = 'Top 8'
+                                        variableName = 'top8';
+                                        treeRow = tournamentStore.top8
+                                        break;
+                                    case 4:
+                                        title = 'Top 16'
+                                        variableName = 'top16';
+                                        treeRow = tournamentStore.top16
+                                        break;
+                                    case 5:
+                                        title = 'Top 32'
+                                        variableName = 'top32';
+                                        treeRow = tournamentStore.top32
+                                        break;
+                                    case 6:
+                                        title = 'Top 64'
+                                        variableName = 'top64';
+                                        treeRow = tournamentStore.top64
+                                        break;
+                                }
+
+                                return (
+                                    <TournamentTreeRow
+                                        key={index}
+                                        title={title}
+                                        chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
+                                        interfaceIndex={index}
+                                        currentInterfaceState={interfaceStore.interfaceState.length}
+                                        treeRow={treeRow}
+                                        variableName={variableName}
+                                    />
+                                )
+                            })
+                        }
 
                         <Box sx={{
                             marginTop: '20px',
@@ -395,14 +418,20 @@ export default function Interface() {
                             }}>
                                 <Button
                                     sx={{
+                                        alignItems: 'center',
                                         marginRight: '10px'
                                     }}
+                                    size='small'
                                     disabled={arrayStartLimit}
                                     onClick={interfaceStore.deleteLastItem}
                                     startIcon={<BiTrash />}>
                                     Delete last row
                                 </Button>
                                 <Button
+                                    sx={{
+                                        alignItems: 'center',
+                                    }}
+                                    size='small'
                                     onClick={interfaceStore.addTournamentRow}
                                     disabled={arrayEndLimit}
                                     startIcon={<BiPlus />}>
@@ -410,13 +439,19 @@ export default function Interface() {
                                 </Button>
                             </Box>
                             <Button
+                                onClick={() => tournamentStoreState.fetchObjectsFromInterfaceState(tournamentStore)}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                                size='small'
                                 startIcon={<BiSend />}
                                 variant="outlined">
                                 Post Tournament
                             </Button>
                         </Box>
                     </Box>
-                </TournamentDetails >
+                </TournamentDetails>
             </InnerWindowWrapper >
         </OuterWindowWrapper >
     )
