@@ -226,7 +226,7 @@ export default function TournamentOverview({ params }) {
                     tournamentTree[0]?.length > 0 ? <TournamentTreeOverviewRow
                         icon={<GiTrophy style={{ color: '#FFD700' }} />}
                         data={tournamentTree[0]}
-                        place={'Top 1'}
+                        place={'Winner'}
                         listItem={'firstPlace'}
                         listOpen={true}
                         borderColor={'#FFD700'} /> :
@@ -236,8 +236,8 @@ export default function TournamentOverview({ params }) {
                     tournamentTree[1]?.length > 0 ? <TournamentTreeOverviewRow
                         icon={<GiFamilyTree />}
                         data={tournamentTree[1]}
-                        place={'Top 2'}
-                        listItem={'firstPlace'}
+                        place={'2nd Place'}
+                        listItem={'secondPlace'}
                         listOpen={true}
                         borderColor={'#c0c0c0'} /> :
                         null
@@ -247,9 +247,9 @@ export default function TournamentOverview({ params }) {
                         icon={<GiFamilyTree />}
                         data={tournamentTree[2]}
                         place={'Top 4'}
-                        listItem={'firstPlace'}
+                        listItem={'top4'}
                         listOpen={true}
-                        borderColor={'#c0c0c0'} /> :
+                        borderColor={'#cd7f32'} /> :
                         null
                 }
                 {
@@ -257,8 +257,8 @@ export default function TournamentOverview({ params }) {
                         icon={<GiFamilyTree />}
                         data={tournamentTree[3]}
                         place={'Top 8'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
+                        listItem={'top8'}
+                        listOpen={false}
                         borderColor={'#c0c0c0'} /> :
                         null
                 }
@@ -267,8 +267,8 @@ export default function TournamentOverview({ params }) {
                         icon={<GiFamilyTree />}
                         data={tournamentTree[4]}
                         place={'Top 16'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
+                        listItem={'top16'}
+                        listOpen={false}
                         borderColor={'#c0c0c0'} /> :
                         null
                 }
@@ -277,8 +277,8 @@ export default function TournamentOverview({ params }) {
                         icon={<GiFamilyTree />}
                         data={tournamentTree[5]}
                         place={'Top 32'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
+                        listItem={'top32'}
+                        listOpen={false}
                         borderColor={'#c0c0c0'} /> :
                         null
                 }
@@ -287,8 +287,8 @@ export default function TournamentOverview({ params }) {
                         icon={<GiFamilyTree />}
                         data={tournamentTree[6]}
                         place={'Top 64'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
+                        listItem={'top64'}
+                        listOpen={false}
                         borderColor={'#c0c0c0'} /> :
                         null
                 }
