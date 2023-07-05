@@ -321,7 +321,7 @@ export default function TournamentOverview({ params }) {
                             place={'Top 8'}
                             listItem={'top8'}
                             listOpen={false}
-                            borderColor={'#c0c0c0'} /> :
+                            borderColor={'#525252'} /> :
                             null
                     }
                     {
@@ -331,7 +331,7 @@ export default function TournamentOverview({ params }) {
                             place={'Top 16'}
                             listItem={'top16'}
                             listOpen={false}
-                            borderColor={'#c0c0c0'} /> :
+                            borderColor={'#525252'} /> :
                             null
                     }
                     {
@@ -341,7 +341,7 @@ export default function TournamentOverview({ params }) {
                             place={'Top 32'}
                             listItem={'top32'}
                             listOpen={false}
-                            borderColor={'#c0c0c0'} /> :
+                            borderColor={'#525252'} /> :
                             null
                     }
                     {
@@ -351,7 +351,7 @@ export default function TournamentOverview({ params }) {
                             place={'Top 64'}
                             listItem={'top64'}
                             listOpen={false}
-                            borderColor={'#c0c0c0'} /> :
+                            borderColor={'#525252'} /> :
                             null
                     }
 

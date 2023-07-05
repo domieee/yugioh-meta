@@ -43,7 +43,7 @@ const style = {
     flexDirection: 'column'
 };
 
-export default function TournamentTreeItem({ item, data, interfaceIndex, title, variableName }) {
+export default function TournamentTreeItem({ item, data, borderColor, index, lastItem, interfaceIndex, title, variableName }) {
 
     const [open, setOpen] = useState({ state: false, key: `${variableName}[${interfaceIndex}]` });
 
@@ -69,14 +69,15 @@ export default function TournamentTreeItem({ item, data, interfaceIndex, title, 
         <>
             <Card
                 sx={{
-                    borderLeft: `1px solid yellow`,
+                    borderLeft: `1px solid ${borderColor}`,
                     paddingLeft: '25px',
                     width: '100&',
                     '&:hover': {
                         backgroundColor: '#272727',
                         boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
 
-                    }
+                    },
+                    ...(index + 1 !== lastItem && { marginBottom: '10px' }),
                 }}>
                 <CardActionArea onClick={() => handleOpen()}>
                     <CardContent>

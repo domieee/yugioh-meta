@@ -20,7 +20,7 @@ import TournamentTreeItem from './TournamentTreeItem';
 import { useRouter } from 'next/navigation';
 
 
-export default function TournamentTree({ treeRow, currentInterfaceState, interfaceIndex, chipIcon, title, variableName }) {
+export default function TournamentTree({ treeRow, borderColor, currentInterfaceState, interfaceIndex, chipIcon, title, variableName }) {
     console.log("🚀 ~ file: TournamentTreeRow.jsx:24 ~ TournamentTree ~ treeRow:", treeRow)
     console.log("🚀 ~ file: TournamentTreeRow.jsx:24 ~ TournamentTree ~ variableName:", variableName)
 
@@ -69,7 +69,7 @@ export default function TournamentTree({ treeRow, currentInterfaceState, interfa
 
                 spacing={2}>
                 {treeRow.map((item, index) => (
-                    < TournamentTreeItem key={index} data={item} title={title} interfaceIndex={index} variableName={variableName} />
+                    < TournamentTreeItem key={index} index={index} lastItem={treeRow.length} borderColor={borderColor} data={item} title={title} interfaceIndex={index} variableName={variableName} />
                 ))}
             </List>
 

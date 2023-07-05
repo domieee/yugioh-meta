@@ -205,42 +205,50 @@ export default function Interface() {
                             }
                             let title = ''
                             let treeRow;
+                            let borderColor
 
                             switch (index) {
                                 case 0:
                                     variableName = 'firstPlace';
                                     title = 'Winner'
                                     treeRow = tournamentStore.firstPlace
+                                    borderColor = '#FFD700'
                                     break;
                                 case 1:
                                     variableName = 'secondPlace';
                                     title = 'Second'
                                     treeRow = tournamentStore.secondPlace
+                                    borderColor = '#c0c0c0'
                                     break;
                                 case 2:
                                     variableName = 'top4';
                                     title = 'Top 4'
                                     treeRow = tournamentStore.top4
+                                    borderColor = '#cd7f32'
                                     break;
                                 case 3:
                                     title = 'Top 8'
                                     variableName = 'top8';
                                     treeRow = tournamentStore.top8
+                                    borderColor = '#525252'
                                     break;
                                 case 4:
                                     title = 'Top 16'
                                     variableName = 'top16';
                                     treeRow = tournamentStore.top16
+                                    borderColor = '#525252'
                                     break;
                                 case 5:
                                     title = 'Top 32'
                                     variableName = 'top32';
                                     treeRow = tournamentStore.top32
+                                    borderColor = '#525252'
                                     break;
                                 case 6:
                                     title = 'Top 64'
                                     variableName = 'top64';
                                     treeRow = tournamentStore.top64
+                                    borderColor = '#525252'
                                     break;
                             }
 
@@ -253,6 +261,7 @@ export default function Interface() {
                                     currentInterfaceState={interfaceStore.interfaceState.length}
                                     treeRow={treeRow}
                                     variableName={variableName}
+                                    borderColor={borderColor}
                                 />
                             )
                         })
