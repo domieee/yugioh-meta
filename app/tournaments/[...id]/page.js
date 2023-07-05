@@ -17,27 +17,64 @@ import { IconContext } from "react-icons"
 
 import PieChart from '../../statistics/components/PieChart';
 import TableMUI from '../../statistics/components/TabelMUI';
-import { Grid, Card, Paper, Divider, List, Accordion } from '@mui/material';
+import { Grid, Card, Avatar, Paper, Divider, List, Accordion, MenuList, MenuItem, ListItemText, ListItemIcon, Menu, Button } from '@mui/material';
 import EditButton from '../components/EditButton';
 import OuterWindowWrapper from '../../components/OuterWindowWrapper';
 import InnerWindowWrapper from '../../components/InnerWindowWrapper';
 import TournamentDetails from '../../components/TournamentDetails';
 import TournamentDetailsItem from '../../components/TournamentDetailsItem';
 import TablePie from '@/app/components/TablePie';
-
+import MenuIcon from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack';
 import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
 import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
 
 import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
+
 import { updateProgress } from '@/app/interfaceStore';
 
 
-import { VscMenu } from "react-icons/vsc";
+
+import { VscMenu, VscEdit } from "react-icons/vsc";
 export default function TournamentOverview({ params }) {
 
-    const [tournament, setTournament] = useState(undefined)
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+    const [tournament, setTournament] = useState(undefined)
+    const MenuButton = () => {
+
+
+
+        return (
+
+            <>
+
+                <Tooltip title="Options">
+                    <IconButton
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 2 }}
+                        aria-controls={open ? 'account-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                    >
+                        <VscMenu />
+                    </IconButton>
+                </Tooltip>
+
+
+
+            </>
+
+        )
+    }
     const [isLoading, setIsLoading] = useState(true)
     let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
     let [tournamentTree, setTournamentTree] = useState([])
@@ -124,201 +161,240 @@ export default function TournamentOverview({ params }) {
     }, [])
 
     return (
-        <OuterWindowWrapper>
-            <InnerWindowWrapper
-                route={'tournament/id'}
-                menuOptions={<VscMenu sx={{
-                    width: '15px',
-                    height: '15px',
-                    marginLeft: {
-                        sm: 'auto'
-                    }
-                }} />
-                }
-                pagetitle={'Tournament Overview'}>
-                <SecondaryWindowHeader sectionTitle={'Informations'} />
-                <TournamentDetails>
-                    <TournamentDetailsItem
-                        iconType={'winner'}
-                        icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
-                        data={`${tournament?.players[0][0].name} with ${tournament?.players[0][0].deck}` || 'N/A'}
-                        tooltipTitle={'Tournament Winner'}
-                    />
+        <>
+            <OuterWindowWrapper>
+                <InnerWindowWrapper
+                    route={'tournament/id'}
+                    menuOptions={MenuButton()}
+                    pagetitle={'Tournament Overview'}>
+                    <SecondaryWindowHeader sectionTitle={'Informations'} />
+                    <TournamentDetails>
+                        <TournamentDetailsItem
+                            iconType={'winner'}
+                            icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
+                            data={`${tournament?.players[0][0].name} with ${tournament?.players[0][0].deck}` || 'N/A'}
+                            tooltipTitle={'Tournament Winner'}
+                        />
 
-                    <TournamentDetailsItem
-                        icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
-                        data={tournament?.location}
-                        tooltipTitle={'Tournament Location'}
-                    />
+                        <TournamentDetailsItem
+                            icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
+                            data={tournament?.location}
+                            tooltipTitle={'Tournament Location'}
+                        />
 
-                    <TournamentDetailsItem
-                        icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
-                        data={tournament?.date}
-                        tooltipTitle={'Tournament Date'} />
+                        <TournamentDetailsItem
+                            icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
+                            data={tournament?.date}
+                            tooltipTitle={'Tournament Date'} />
 
-                    <TournamentDetailsItem
-                        icon={<GiTabletopPlayers style={{ width: '25px', height: '25px' }} />}
-                        data={tournament?.totalParticipants}
-                        tooltipTitle={'Total Participants'} />
-                </TournamentDetails>
+                        <TournamentDetailsItem
+                            icon={<GiTabletopPlayers style={{ width: '25px', height: '25px' }} />}
+                            data={tournament?.totalParticipants}
+                            tooltipTitle={'Total Participants'} />
+                    </TournamentDetails>
 
-                <SecondaryWindowHeader sectionTitle={'Statistics'} />
+                    <SecondaryWindowHeader sectionTitle={'Statistics'} />
 
-                <Box
-                    sx={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDirection: {
-                            xs: 'column',
-                            sm: 'column',
-                            md: 'row',
-                            lg: 'row'
-                        },
-                        justifyContent: 'space-around',
-                    }}>
-                    <Grid
-                        item
-
-                        xs={12}
-                        md={6}
-                        boxShadow={0}
+                    <Box
                         sx={{
-                            width: {
-                                xs: '90%',
-                                sm: '100%',
-                                md: '50%',
-                                lg: '50%',
-
-                            },
-                            marginBottom: {
-                                xs: '25px',
-                                sm: '25px',
-                                md: '0px',
-                                lg: '0px'
-                            }
-                        }}
-                        borderRadius={2}
-                        height='380px'
-                        justifyContent="center"
-                        className="canvasContainer">
-                        <Paper
-                            justifyContent="center"
-                            sx={{
-                                borderRadius: 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexDirection: 'column',
-                                boxShadow: '0'
-                            }}>
-                            <div style={{ width: '360px', margin: '10px', boxShadow: '0' }}>
-                                <PieChart data={tournamentBreakdownData} />
-                            </div>
-                        </Paper>
-                    </Grid>
-                    <Grid
-                        item
-                        sx={{
+                            width: '100%',
                             display: 'flex',
-                            justifyContent: 'center',
-                            minWidth: {
-                                xs: '100%',
-                                sm: '100%',
-                                md: '50%',
-                                lg: '50%',
+                            flexDirection: {
+                                xs: 'column',
+                                sm: 'column',
+                                md: 'row',
+                                lg: 'row'
                             },
-                        }}
-                        xs={12}
-                        md={6}
-                        className="tableContainer">
-                        <TableMUI
-                            table='winner-breakdown'
-                            data={tournamentBreakdownData} />
-                    </Grid>
-                </Box>
+                            justifyContent: 'space-around',
+                        }}>
+                        <Grid
+                            item
+
+                            xs={12}
+                            md={6}
+                            boxShadow={0}
+                            sx={{
+                                width: {
+                                    xs: '90%',
+                                    sm: '100%',
+                                    md: '50%',
+                                    lg: '50%',
+
+                                },
+                                marginBottom: {
+                                    xs: '25px',
+                                    sm: '25px',
+                                    md: '0px',
+                                    lg: '0px'
+                                }
+                            }}
+                            borderRadius={2}
+                            height='380px'
+                            justifyContent="center"
+                            className="canvasContainer">
+                            <Paper
+                                justifyContent="center"
+                                sx={{
+                                    borderRadius: 2,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexDirection: 'column',
+                                    boxShadow: '0'
+                                }}>
+                                <div style={{ width: '360px', margin: '10px', boxShadow: '0' }}>
+                                    <PieChart data={tournamentBreakdownData} />
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid
+                            item
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                minWidth: {
+                                    xs: '100%',
+                                    sm: '100%',
+                                    md: '50%',
+                                    lg: '50%',
+                                },
+                            }}
+                            xs={12}
+                            md={6}
+                            className="tableContainer">
+                            <TableMUI
+                                table='winner-breakdown'
+                                data={tournamentBreakdownData} />
+                        </Grid>
+                    </Box>
 
 
-                <SecondaryWindowHeader
-                    informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'}
-                    sectionTitle={'Tournament Tree'} />
+                    <SecondaryWindowHeader
+                        informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'}
+                        sectionTitle={'Tournament Tree'} />
 
 
-                {
-                    tournamentTree[0]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiTrophy style={{ color: '#FFD700' }} />}
-                        data={tournamentTree[0]}
-                        place={'Winner'}
-                        listItem={'firstPlace'}
-                        listOpen={true}
-                        borderColor={'#FFD700'} /> :
-                        null
-                }
-                {
-                    tournamentTree[1]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[1]}
-                        place={'2nd Place'}
-                        listItem={'secondPlace'}
-                        listOpen={true}
-                        borderColor={'#c0c0c0'} /> :
-                        null
-                }
-                {
-                    tournamentTree[2]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[2]}
-                        place={'Top 4'}
-                        listItem={'top4'}
-                        listOpen={true}
-                        borderColor={'#cd7f32'} /> :
-                        null
-                }
-                {
-                    tournamentTree[3]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[3]}
-                        place={'Top 8'}
-                        listItem={'top8'}
-                        listOpen={false}
-                        borderColor={'#c0c0c0'} /> :
-                        null
-                }
-                {
-                    tournamentTree[4]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[4]}
-                        place={'Top 16'}
-                        listItem={'top16'}
-                        listOpen={false}
-                        borderColor={'#c0c0c0'} /> :
-                        null
-                }
-                {
-                    tournamentTree[5]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[5]}
-                        place={'Top 32'}
-                        listItem={'top32'}
-                        listOpen={false}
-                        borderColor={'#c0c0c0'} /> :
-                        null
-                }
-                {
-                    tournamentTree[6]?.length > 0 ? <TournamentTreeOverviewRow
-                        icon={<GiFamilyTree />}
-                        data={tournamentTree[6]}
-                        place={'Top 64'}
-                        listItem={'top64'}
-                        listOpen={false}
-                        borderColor={'#c0c0c0'} /> :
-                        null
-                }
+                    {
+                        tournamentTree[0]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiTrophy style={{ color: '#FFD700' }} />}
+                            data={tournamentTree[0]}
+                            place={'Winner'}
+                            listItem={'firstPlace'}
+                            listOpen={true}
+                            borderColor={'#FFD700'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[1]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[1]}
+                            place={'2nd Place'}
+                            listItem={'secondPlace'}
+                            listOpen={true}
+                            borderColor={'#c0c0c0'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[2]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[2]}
+                            place={'Top 4'}
+                            listItem={'top4'}
+                            listOpen={true}
+                            borderColor={'#cd7f32'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[3]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[3]}
+                            place={'Top 8'}
+                            listItem={'top8'}
+                            listOpen={false}
+                            borderColor={'#c0c0c0'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[4]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[4]}
+                            place={'Top 16'}
+                            listItem={'top16'}
+                            listOpen={false}
+                            borderColor={'#c0c0c0'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[5]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[5]}
+                            place={'Top 32'}
+                            listItem={'top32'}
+                            listOpen={false}
+                            borderColor={'#c0c0c0'} /> :
+                            null
+                    }
+                    {
+                        tournamentTree[6]?.length > 0 ? <TournamentTreeOverviewRow
+                            icon={<GiFamilyTree />}
+                            data={tournamentTree[6]}
+                            place={'Top 64'}
+                            listItem={'top64'}
+                            listOpen={false}
+                            borderColor={'#c0c0c0'} /> :
+                            null
+                    }
 
 
 
 
-            </InnerWindowWrapper>
-        </OuterWindowWrapper >
+                </InnerWindowWrapper>
+            </OuterWindowWrapper >
+            <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleMenuClose}
+                onClick={handleMenuClose}
+                PaperProps={{
+                    elevation: 0,
+                    sx: {
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                        mt: 1.5,
+                        '& .MuiAvatar-root': {
+                            width: 32,
+                            height: 32,
+                            ml: -0.5,
+                            mr: 1,
+                        },
+                        '&:before': {
+                            content: '""',
+                            display: 'block',
+                            position: 'absolute',
+                            top: 0,
+                            right: 14,
+                            width: 10,
+                            height: 10,
+                            bgcolor: 'background.paper',
+                            transform: 'translateY(-50%) rotate(45deg)',
+                            zIndex: 0,
+                        },
+                    },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+
+                    <ListItemIcon>
+                        <VscEdit />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Edit tournament</Typography>
+
+                </MenuItem>
+            </Menu>
+        </>
     )
 }
 {/* <Paper sx={{

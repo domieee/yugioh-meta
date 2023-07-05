@@ -28,7 +28,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
                         color: 'rgba(255, 255, 255, 0.6)',
                     }}
                     variant='body2'>
-                    No data provided
+                    No information provided
                 </Typography>
             )
         } else {
