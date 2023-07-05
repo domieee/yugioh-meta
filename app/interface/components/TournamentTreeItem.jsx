@@ -44,15 +44,10 @@ const style = {
 };
 
 export default function TournamentTreeItem({ item, data, interfaceIndex, title, variableName }) {
-    console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ item, data, interfaceIndex, title, variableName :", item, data, interfaceIndex, title, variableName)
-
 
     const [open, setOpen] = useState({ state: false, key: `${variableName}[${interfaceIndex}]` });
-    console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
-    const handleOpen = (key) => {
-        console.log("🚀 ~ file: TournamentTreeItem.jsx:49 ~ handleOpen ~ key:", data.key)
-        console.log("🚀 ~ file: TournamentTreeItem.jsx:47 ~ TournamentTreeItem ~ open:", open)
 
+    const handleOpen = (key) => {
         setOpen({ state: true, key: data.key })
     };
     const handleClose = () => setOpen({ state: false, key: '' });
