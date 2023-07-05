@@ -162,7 +162,18 @@ export default function TournamentOverview({ params }) {
 
                 <SecondaryWindowHeader sectionTitle={'Statistics'} />
 
-                <TournamentDetails>
+                <Box
+                    sx={{
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: {
+                            xs: 'column',
+                            sm: 'column',
+                            md: 'row',
+                            lg: 'row'
+                        },
+                        justifyContent: 'space-around',
+                    }}>
                     <Grid
                         item
 
@@ -170,7 +181,13 @@ export default function TournamentOverview({ params }) {
                         md={6}
                         boxShadow={0}
                         sx={{
-                            width: '100%',
+                            width: {
+                                xs: '100%',
+                                sm: '100%',
+                                md: '50%',
+                                lg: '50%',
+
+                            },
                             marginBottom: {
                                 xs: '25px',
                                 sm: '25px',
@@ -200,8 +217,9 @@ export default function TournamentOverview({ params }) {
                     <Grid
                         item
                         sx={{
-
-                            width: {
+                            display: 'flex',
+                            justifyContent: 'center',
+                            minWidth: {
                                 xs: '100%',
                                 sm: '100%',
                                 md: '50%',
@@ -215,7 +233,8 @@ export default function TournamentOverview({ params }) {
                             table='winner-breakdown'
                             data={tournamentBreakdownData} />
                     </Grid>
-                </TournamentDetails>
+                </Box>
+
 
                 <SecondaryWindowHeader
                     informationTitle={'Explore the deck further by clicking on an item, which will direct you to an external page for viewing.'}
