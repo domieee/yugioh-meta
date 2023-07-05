@@ -55,6 +55,7 @@ const style = {
 
 
 export default function TournamentTreeOverviewItem({ data, borderColor }) {
+    console.log("🚀 ~ file: TournamentTreeOverviewItem.jsx:58 ~ TournamentTreeOverviewItem ~ data:", data)
 
     const [open, setOpen] = React.useState(false);
 
@@ -129,17 +130,38 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                         display: "flex",
                                         alignItems: "center"
                                     }}>
-                                    <GiPerson style={{ width: '20px' }} />
 
-                                    {data ?
-                                        <Typography
-                                            marginLeft={0.75}
-                                            variant='body2'>
-                                            {data[0].name}
-                                        </Typography> :
-                                        <Skeleton variant="text" sx={{ fontSize: '1.5rem', minWidth: 150 }} />
-                                    }
+                                    <Stack
+                                        sx={{
+                                            width: '100%',
+                                        }}
+                                        spacing={0.75}
+                                        alignItems='center'
+                                        direction='row'>
+                                        <GiPerson style={{ width: '20px' }} />
 
+
+                                        {data[0].name === '' ?
+                                            <Typography
+                                                sx={{
+                                                    fontStyle: 'italic',
+                                                    color: 'rgba(255, 255, 255, 0.6)',
+                                                    maxWidth: "100%",
+                                                    overflow: "hidden",
+                                                    textOverflow: "ellipsis",
+                                                    whiteSpace: "nowrap",
+                                                    flex: '1'
+                                                }}
+                                                variant='body2'
+                                            >
+                                                No player name specified
+                                            </Typography> :
+                                            <Typography
+                                                variant='body2'>
+                                                {data[0].name}
+                                            </Typography>
+                                        }
+                                    </Stack>
                                 </Box>
 
                                 {data[0].deckLink === '' ?
@@ -163,7 +185,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                 <GiStack style={{ width: '20px' }} />
 
 
-                                {data[0].name === '' ?
+                                {data[0].deck === '' ?
                                     <Typography
                                         sx={{
                                             fontStyle: 'italic',
@@ -176,29 +198,14 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                         }}
                                         variant='body2'
                                     >
-                                        No player information provided
+                                        No deck information provided
                                     </Typography> :
                                     <Typography
                                         variant='body2'>
-                                        {data[0].name}
+                                        {data[0].deck}
                                     </Typography>
                                 }
-                                {data[0].name === '' ||
-                                    data[0].deckNote === '' ?
-                                    '' :
-                                    <Typography
-                                        sx={{
-                                            maxWidth: "100%",
-                                            overflow: "hidden",
-                                            textOverflow: "ellipsis",
-                                            whiteSpace: "nowrap",
-                                            flex: '1'
-                                        }}
-                                        variant='body2'
-                                    >
-                                        with {data[0].deck}
-                                    </Typography>
-                                }
+
 
                             </Stack>
 

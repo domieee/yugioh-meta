@@ -18,6 +18,25 @@ import {
 import { IconContext } from "react-icons"
 
 export default function TournamentDetailsItem({ icon, iconType, data, tooltipTitle }) {
+
+    const dataProvider = () => {
+        if (data === null || data.length === 0 || data === 0) {
+            return (
+                <Typography
+                    sx={{
+                        fontStyle: 'italic',
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    }}
+                    variant='body2'>
+                    No data provided
+                </Typography>
+            )
+        } else {
+            return (
+                <Typography variant='body2'>{data}</Typography>
+            )
+        }
+    }
     console.log("🚀 ~ file: TournamentDetailsItem.jsx:20 ~ TournamentDetailsItem ~ data:", data)
     return (
         <Grid
@@ -78,10 +97,12 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
 
                     }}
                         variant='overline'>{tooltipTitle}</Typography>
-                    {data === undefined || data === 'N/A' ?
+
+
+                    {data === 'N/A' || data === undefined ?
                         <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 100 }} />
                         :
-                        <Typography variant='body2'>{data}</Typography>}
+                        dataProvider()}
                 </Stack>
             </Paper>
         </Grid>

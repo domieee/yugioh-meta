@@ -37,6 +37,7 @@ import { VscMenu } from "react-icons/vsc";
 export default function TournamentOverview({ params }) {
 
     const [tournament, setTournament] = useState(undefined)
+
     const [isLoading, setIsLoading] = useState(true)
     let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
     let [tournamentTree, setTournamentTree] = useState([])
@@ -64,6 +65,7 @@ export default function TournamentOverview({ params }) {
                 setTournament(json);
                 setIsLoading(false);
                 updateProgress(60)
+                console.log("🚀 ~ file: page.js:40 ~ TournamentOverview ~ tournament:", tournament)
             } catch (error) {
                 console.log(error);
             }
@@ -139,13 +141,13 @@ export default function TournamentOverview({ params }) {
                     <TournamentDetailsItem
                         iconType={'winner'}
                         icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
-                        data={tournament?.player?.[0]?.name ? `${tournament.player[0].name} with ${tournament.player[0].deck}` : 'N/A'}
+                        data={`${tournament?.players[0][0].name} with ${tournament?.players[0][0].deck}` || 'N/A'}
                         tooltipTitle={'Tournament Winner'}
                     />
 
                     <TournamentDetailsItem
                         icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
-                        data={tournament?.location || 'N/A'}
+                        data={tournament?.location}
                         tooltipTitle={'Tournament Location'}
                     />
 
@@ -182,7 +184,7 @@ export default function TournamentOverview({ params }) {
                         boxShadow={0}
                         sx={{
                             width: {
-                                xs: '100%',
+                                xs: '90%',
                                 sm: '100%',
                                 md: '50%',
                                 lg: '50%',

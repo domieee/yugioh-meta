@@ -86,7 +86,7 @@ export default function TableMUI({ data, table }) {
                     <Table ref={tableHeight} variant='outline' boxShadow={0} size='small' stickyHeader style={{ boxShadow: 'none', }} sx={{ '&:nth-first-child()': { marginTop: '37px', width: '100%' } }} aria-label="simple table">
                         <TableHead >
                             <TableRow>
-                                <TableCell><Typography variant='overline'>  Played Deck</Typography></TableCell>
+                                <TableCell><Typography variant='overline'>Played Deck</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>Total</Typography></TableCell>
                                 <TableCell align="right"><Typography variant='overline'>%</Typography></TableCell>
                             </TableRow>
@@ -101,7 +101,17 @@ export default function TableMUI({ data, table }) {
                                     >
                                         <TableCell sx={{ height: '30px' }} scope="row" >
                                             <Typography variant='body2'>
-                                                {value}
+                                                {value.length > 0 ?
+                                                    value :
+                                                    <Typography
+                                                        sx={{
+                                                            fontStyle: 'italic',
+                                                            color: 'rgba(255, 255, 255, 0.6)',
+                                                        }}
+                                                        variant='body2'>
+                                                        Unknown decks
+                                                    </Typography>
+                                                }
                                             </Typography>
                                         </TableCell>
                                         <TableCell
