@@ -154,7 +154,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                 }}
                                                 variant='body2'
                                             >
-                                                No player name specified
+                                                No player name provided
                                             </Typography> :
                                             <Typography
                                                 variant='body2'>

@@ -10,7 +10,6 @@ export default function OuterWindowWrapper({ children }) {
     return (
         <Box
             bgcolor="background.paper"
-            backgroundColor='#1b1b1c'
             display="flex"
             justifyContent="center"
             flexWrap='wrap'
@@ -32,11 +31,14 @@ export default function OuterWindowWrapper({ children }) {
                     md: '25px', // small laptop
                     xl: '25px'
                 }
-            }}
+            }
+            }
         >
-            {Children.map(children, (child) => (
-                child
-            ))}
-        </Box>
+            {
+                Children.map(children, (child) => (
+                    child
+                ))
+            }
+        </Box >
     )
 }
