@@ -209,6 +209,12 @@ export default function TournamentOverview({ params }) {
                                 lg: 'row'
                             },
                             justifyContent: 'space-around',
+                            alignItems: {
+                                xs: 'center',
+                                sm: 'center',
+                                md: 'start',
+                                lg: 'start'
+                            }
                         }}>
                         <Grid
                             item
@@ -234,6 +240,7 @@ export default function TournamentOverview({ params }) {
                             borderRadius={2}
                             height='380px'
                             justifyContent="center"
+                            alignItems="center"
                             className="canvasContainer">
                             <Paper
                                 justifyContent="center"

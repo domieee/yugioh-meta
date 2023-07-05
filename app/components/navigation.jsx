@@ -427,15 +427,15 @@ function Navigation({ props }) {
                                     >
 
                                     </Typography>
-                                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
+                                    <Box gap={2} sx={{ flexGrow: 1, marginLeft: '30px', marginTop: '5.25px', display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
                                         {pages.map(page => (
                                             <>
-                                                <Button onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
+                                                <Button disableElevation={true} onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
                                                     <Typography
                                                         className="navigation-link"
                                                         key={page.title}
-                                                        variant="body2"
-                                                        sx={{ margin: 0, color: 'white', display: 'block' }}
+                                                        variant="caption"
+                                                        sx={{ margin: 0, color: 'white', display: 'block', fontSize: '12px' }}
                                                     >
                                                         {page.title}
                                                     </Typography>
