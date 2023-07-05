@@ -148,6 +148,7 @@ export default function Interface() {
         <OuterWindowWrapper>
 
             <InnerWindowWrapper
+                currentRoute={'/interface'}
                 pagetitle={'Create a regional tournament'}>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
