@@ -64,15 +64,21 @@ export default function TournamentTree({ treeRow, borderColor, currentInterfaceS
                 </Box>
 
             </Box >
-            <List
-                display='flex'
 
-                spacing={2}>
-                {treeRow.map((item, index) => (
-                    < TournamentTreeItem key={index} index={index} lastItem={treeRow.length} borderColor={borderColor} data={item} title={title} interfaceIndex={index} variableName={variableName} />
-                ))}
-            </List>
+            <Box sx={{
+                paddingBlock: '10px'
+            }}>
+                <List
 
+                    display='flex'
+
+                    spacing={2}>
+                    {treeRow.map((item, index) => (
+                        < TournamentTreeItem key={index} index={index} lastItem={treeRow.length} borderColor={borderColor} data={item} title={title} interfaceIndex={index} variableName={variableName} />
+                    ))}
+                </List>
+
+            </Box >
         </>
     )
 }

@@ -21,7 +21,7 @@ export default function Tournaments() {
                 currentRoute={'/tournaments'}
                 disabledIcon={true}>
                 <SecondaryWindowHeader
-                    pagetitle={'Tournaments'}
+                    sectionTitle={'Tournaments'}
                     informationTitle={'You can either search for winner decks, winner names or locations'} />
                 <Box
                     sx={{

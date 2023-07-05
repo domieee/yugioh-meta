@@ -28,7 +28,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack';
 import TournamentTreeOverviewRow from '../components/TournamentTreeOverviewRow';
 import TournamentTreeOverviewItem from '../components/TournamentTreeOverviewItem';
-
+import Router from 'next/router'
 import SecondaryWindowHeader from '@/app/components/SecondaryWindowHeader';
 
 import { updateProgress } from '@/app/interfaceStore';
@@ -36,10 +36,15 @@ import { updateProgress } from '@/app/interfaceStore';
 
 
 import { VscMenu, VscEdit } from "react-icons/vsc";
+import { useRouter } from 'next/navigation';
 export default function TournamentOverview({ params }) {
-
+    const [isLoading, setIsLoading] = useState(true)
+    let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
+    let [tournamentTree, setTournamentTree] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const router = useRouter()
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -48,37 +53,32 @@ export default function TournamentOverview({ params }) {
         setAnchorEl(null);
     };
 
+    const handleMenuEditClick = () => {
+        router.push(`/interface/${params.id}`)
+        setAnchorEl(null);
+    };
+
     const [tournament, setTournament] = useState(undefined)
+
     const MenuButton = () => {
-
-
-
         return (
-
             <>
-
                 <Tooltip title="Options">
                     <IconButton
                         onClick={handleClick}
                         size="small"
-                        sx={{ ml: 2, width: '20px', height: '20px' }}
+                        sx={{ ml: 2, width: '24px', height: '24px' }}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        <VscMenu style={{ width: '20px', height: '20px' }} />
+                        aria-expanded={open ? 'true' : undefined}>
+                        <MenuIcon style={{ width: '20px', height: '20px' }} />
                     </IconButton>
                 </Tooltip>
-
-
-
             </>
-
         )
     }
-    const [isLoading, setIsLoading] = useState(true)
-    let [tournamentBreakdownData, setTournamentBreakdownData] = useState([])
-    let [tournamentTree, setTournamentTree] = useState([])
+
+
 
     const top16FirstRow = tournamentTree[4]?.slice(0, 4)
     const top16SecondRow = tournamentTree[4]?.slice(4, 8)
@@ -395,7 +395,7 @@ export default function TournamentOverview({ params }) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleMenuClose}>
+                <MenuItem onClick={handleMenuEditClick}>
 
                     <ListItemIcon>
                         <VscEdit />

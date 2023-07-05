@@ -124,6 +124,26 @@ export default function InnerWindowWrapperHeader({
                 </Typography>
             ]
             break;
+        case '/interface/id':
+            breadcrumbs = [
+                <Link
+                    key="1"
+                    style={{
+                        height: '50px'
+                    }}
+                    underline="hover"
+                    color="inherit"
+                    href="/">
+                    Home
+                </Link>,
+                <Typography
+                    key="2"
+                    variant='body2'
+                    color="text.secondary">
+                    Interface
+                </Typography>
+            ]
+            break;
         case '/statistics':
             breadcrumbs = [
                 <Link

@@ -6,7 +6,7 @@ import {
     Button,
     Divider
 } from '@mui/material'
-import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
+import SecondaryWindowHeader from '../../components/SecondaryWindowHeader';
 
 import { BiPlus, BiTrash, BiSend } from "react-icons/bi";
 
@@ -14,17 +14,17 @@ import {
     GiFamilyTree, GiSwirlString
 } from "react-icons/gi";
 
-import NationalTournamentInterface from './components/NationalTournamentInterface';
-import { useTournamentStore, useInterfaceStore } from './tournamentStore';
-import OuterWindowWrapper from '../components/OuterWindowWrapper';
-import InnerWindowWrapper from '../components/InnerWindowWrapper';
-import TournamentToggle from './components/TournamentToggle';
+import NationalTournamentInterface from '../components/NationalTournamentInterface';
+import { useTournamentStore, useInterfaceStore } from '../tournamentStore';
+import OuterWindowWrapper from '../../components/OuterWindowWrapper';
+import InnerWindowWrapper from '../../components/InnerWindowWrapper';
+import TournamentToggle from '../components/TournamentToggle';
 
 import { useEffect, useState } from 'react';
-import TournamentTree from './components/TournamentTreeRow';
-import TournamentDetails from '../components/TournamentDetails';
-import TournamentTreeRow from './components/TournamentTreeRow'
-import { updateProgress } from '../interfaceStore';
+import TournamentTree from '../components/TournamentTreeRow';
+import TournamentDetails from '../../components/TournamentDetails';
+import TournamentTreeRow from '../components/TournamentTreeRow'
+import { updateProgress } from '../../interfaceStore';
 import { useRouter } from 'next/navigation';
 
 const firstPlace = [
@@ -109,7 +109,8 @@ const top64 = [
 ];
 
 
-export default function Interface() {
+export default function Interface({ params }) {
+    console.log("🚀 ~ file: page.js:113 ~ Interface ~ params:", params.id)
 
     const router = useRouter()
 
@@ -118,7 +119,6 @@ export default function Interface() {
 
     let tournamentStore = useTournamentStore(state => state)
     let interfaceStore = useInterfaceStore(state => state)
-
     const handleTournamentFetch = async () => {
         const tournament = await tournamentStoreState.fetchObjectsFromInterfaceState(tournamentStore)
         console.log("🚀 ~ file: page.jsx:124 ~ handleTournamentFetch ~ tournament:", tournament)
@@ -148,7 +148,7 @@ export default function Interface() {
         <OuterWindowWrapper>
 
             <InnerWindowWrapper
-                currentRoute={'/interface'}
+                currentRoute={'/interface/id'}
                 pagetitle={'Create a regional tournament'}>
 
                 <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
@@ -186,8 +186,23 @@ export default function Interface() {
                             </Typography>
                         </Box> :
                         interfaceStore.interfaceState.map((item, index) => {
-
-                            let variableName = ''
+                            console.log(item, 'itemsadsasd')
+                            let variableName = '';
+                            if (item === firstPlace) {
+                                variableName = 'firstPlace';
+                            } else if (item === secondPlace) {
+                                variableName = 'secondPlace';
+                            } else if (item === top4) {
+                                variableName = 'top4'
+                            } else if (item === top8) {
+                                variableName = 'top8'
+                            } else if (item === top16) {
+                                variableName = 'top16'
+                            } else if (item === top32) {
+                                variableName = 'top32'
+                            } else if (item === top64) {
+                                variableName = 'top64'
+                            }
                             let title = ''
                             let treeRow;
                             let borderColor
