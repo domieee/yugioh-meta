@@ -427,7 +427,7 @@ function Navigation({ props }) {
                                     >
 
                                     </Typography>
-                                    <Box gap={2} sx={{ flexGrow: 1, marginLeft: '30px', marginTop: '5.25px', display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
+                                    <Box gap={2} sx={{ flexGrow: 1, marginLeft: '30px', marginTop: '5px', display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
                                         {pages.map(page => (
                                             <>
                                                 <Button disableElevation={true} onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
