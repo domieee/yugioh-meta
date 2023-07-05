@@ -17,18 +17,18 @@ export default function Tournaments() {
 
     return (
         <OuterWindowWrapper>
-            <InnerWindowWrapper pagetitle={'Tournaments'} currentRoute={'/tournaments'} disabledIcon={true}>
+            <InnerWindowWrapper
+                currentRoute={'/tournaments'}
+                disabledIcon={true}>
                 <SecondaryWindowHeader
-                    informationTitle={'You can either search for winner decks, winner names or locations'}
-                />
+                    pagetitle={'Tournaments'}
+                    informationTitle={'You can either search for winner decks, winner names or locations'} />
                 <Box
                     sx={{
                         width: '100%'
-                    }}
-                >
-                    <Typography
+                    }}>
 
-                        variant="overline">
+                    <Typography variant="overline">
 
                     </Typography>
                     <TextField

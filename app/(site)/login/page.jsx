@@ -12,6 +12,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Checkbox from '@mui/material/Checkbox';
 
 import LoadingButton from '@mui/lab/LoadingButton';
 import Cookies from 'js-cookie';
@@ -202,8 +203,14 @@ export default function Login() {
                             bgColor='#fff'
                             onChange={e => setData({ ...data, password: e.target.value })} />
                     </Box>
-
-
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%'
+                    }}>
+                        <Checkbox size='small' />
+                        <Typography variant='body2'>Stay signed in</Typography>
+                    </Box>
                 </Stack>
 
                 <LoadingButton
@@ -214,7 +221,7 @@ export default function Login() {
                     sx={{
                         width: '50%',
                         marginInline: 'auto',
-                        marginBlock: '15px 10px'
+                        marginBlock: '10px 10px'
                     }}>
                     Sign In
                 </LoadingButton>

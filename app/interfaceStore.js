@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export const useInterfaceStore = create((set) => ({
+    currentRoute: undefined,
     progress: 0,
     alert: { visibility: false, msg: '' },
     success: { visibility: false, msg: '' },
@@ -57,6 +58,11 @@ export const useInterfaceStore = create((set) => ({
                 }));
             }, 5000); // Hide alert after 7 seconds (7000 milliseconds)
         }
+    },
+    setCurrentRoute: (route) => {
+        set((state) => ({
+            currentRoute: route
+        }));
     }
 
 }));

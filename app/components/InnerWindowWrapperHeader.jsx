@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { useStore } from './store'
 
 import { VscHome } from "react-icons/vsc";
+import { useInterfaceStore } from '../interfaceStore';
 
 
 export default function InnerWindowWrapperHeader({
@@ -23,7 +24,13 @@ export default function InnerWindowWrapperHeader({
 
     const [itemState, setItemState] = useState(undefined)
 
+
     let role = useStore((state) => state.role)
+
+    function handleClick(event) {
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
 
     useEffect(() => {
         if (currentRoute === '/tournament/id' && role === 'moderator' || role === 'administrator') {
@@ -43,6 +50,68 @@ export default function InnerWindowWrapperHeader({
             return null
         }
     }
+
+    let breadcrumbs
+
+    switch (currentRoute) {
+        case '/tournaments':
+            breadcrumbs = [
+                <Link
+                    key="1"
+                    style={{
+                        height: '50px'
+                    }}
+                    underline="hover"
+                    color="inherit"
+                    href="/">
+                    Home
+                </Link>,
+                <Typography
+                    key="2"
+                    variant='body2'
+                    color="text.secondary">
+                    Tournaments
+                </Typography>
+            ]
+            break;
+        case '/tournaments/id':
+            breadcrumbs = [
+                <Link
+                    key="1"
+                    style={{
+                        height: '50px'
+                    }}
+                    underline="hover"
+                    color="inherit"
+                    href="/">
+                    Home
+                </Link>,
+                <Link
+                    key="2"
+                    style={{
+                        height: '50px'
+                    }}
+                    underline="hover"
+                    color="inherit"
+                    href="/tournaments">
+                    Tournaments
+                </Link>,
+                <Typography
+                    key="3"
+                    variant='body2'
+                    color="text.secondary">
+                    Overview
+                </Typography>
+            ]
+            break;
+        default:
+            break;
+    }
+
+
+
+
+
 
     return (
         disabledIcon ?
@@ -90,44 +159,14 @@ export default function InnerWindowWrapperHeader({
                     alignItems: 'center',
                     justifyContent: 'space-between'
                 }}>
-                    <Breadcrumbs
+                    <div role="presentation" onClick={handleClick}>
+                        <Breadcrumbs sx={{ display: 'flex', width: '100%' }} seperator='/' aria-label="breadcrumb">
+                            {breadcrumbs}
+                        </Breadcrumbs>
+                    </div>
 
-                        aria-label="breadcrumb">
-
-                        <Link
-                            style={{
-                                height: '50px'
-                            }}
-                            underline="hover"
-                            color="inherit"
-                            href="/">
-                            <Typography
-                                variant='body2'
-                                color="text.primary">
-                                Home
-                            </Typography>
-                        </Link>
-
-                        <Link
-                            style={{
-                                height: '50px'
-                            }}
-                            underline="hover"
-                            color="inherit"
-                            href="/tournaments">
-                            <Typography
-                                variant='body2'
-                                color="text.primary">
-                                Tournaments
-                            </Typography>
-                        </Link>
-                        <Typography
-                            variant='body2'
-                            color="text.secondary">
-                            Overview
-                        </Typography>
-                    </Breadcrumbs>
                     {iconProvider()}
+
                     {itemState === undefined ?
                         null :
                         itemState}

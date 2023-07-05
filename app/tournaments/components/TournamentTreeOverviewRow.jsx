@@ -6,13 +6,6 @@ import { List, Paper, Box, IconButton, Typography, Chip } from '@mui/material'
 import TournamentTreeOverviewItem from './TournamentTreeOverviewItem'
 import { Divider } from '@mui/material'
 import { TfiAngleRight } from "react-icons/tfi";
-import {
-    GiStabbedNote,
-    GiBroadsword,
-    GiTrophy,
-    GiFamilyTree
-} from "react-icons/gi";
-
 
 export default function TournamentTreeOverviewRow({ data, place, listOpen, itemKey, icon, borderColor }) {
 

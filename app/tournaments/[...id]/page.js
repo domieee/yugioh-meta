@@ -47,6 +47,7 @@ export default function TournamentOverview({ params }) {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
+
     const [tournament, setTournament] = useState(undefined)
     const MenuButton = () => {
 
@@ -60,12 +61,12 @@ export default function TournamentOverview({ params }) {
                     <IconButton
                         onClick={handleClick}
                         size="small"
-                        sx={{ ml: 2 }}
+                        sx={{ ml: 2, width: '20px', height: '20px' }}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <VscMenu />
+                        <VscMenu style={{ width: '20px', height: '20px' }} />
                     </IconButton>
                 </Tooltip>
 
@@ -164,10 +165,12 @@ export default function TournamentOverview({ params }) {
         <>
             <OuterWindowWrapper>
                 <InnerWindowWrapper
-                    route={'tournament/id'}
+                    currentRoute={'/tournaments/id'}
                     menuOptions={MenuButton()}
                     pagetitle={'Tournament Overview'}>
-                    <SecondaryWindowHeader sectionTitle={'Informations'} />
+                    <SecondaryWindowHeader
+                        pagetitle={'Tournaments'}
+                        sectionTitle={'Informations'} />
                     <TournamentDetails>
                         <TournamentDetailsItem
                             iconType={'winner'}
