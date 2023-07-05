@@ -70,6 +70,7 @@ export default function NationalTournamentInterface() {
     return (
         <>
             <Box
+                marginBlock={2}
                 width='100%'
                 display='flex'
                 flexDirection='column'
@@ -77,7 +78,12 @@ export default function NationalTournamentInterface() {
                 alignItems='center'>
                 <Stack
                     width='100%'
-                    direction="row"
+                    direction={{
+                        xs: 'column',
+                        sm: 'column',
+                        md: 'row',
+                        lg: 'row'
+                    }}
                     justifyContent="space-around"
                     alignItems="center"
                     spacing={0}>
