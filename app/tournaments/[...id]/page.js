@@ -374,7 +374,7 @@ export default function TournamentOverview({ params }) {
                     <ListItemIcon>
                         <VscEdit />
                     </ListItemIcon>
-                    <Typography variant="inherit">Edit tournament</Typography>
+                    <ListItemText><Typography variant='body2'> Edit Tournament</Typography></ListItemText>
 
                 </MenuItem>
             </Menu>
