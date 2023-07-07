@@ -394,14 +394,11 @@ export default function Interface() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Unsaved Changes"}
+                    {"Delete changes?"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         You have unsaved changes in this row.
-                    </DialogContentText>
-                    <DialogContentText id="alert-dialog-description">
-                        Are sure you want to delete it?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions
