@@ -26,6 +26,8 @@ import TournamentDetails from '../components/TournamentDetails';
 import TournamentTreeRow from './components/TournamentTreeRow'
 import { updateProgress } from '../interfaceStore';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { useStore } from '../components/store';
 
 const firstPlace = [
     { key: 'firstPlace', title: 'First' }
@@ -115,6 +117,7 @@ export default function Interface() {
 
     const [arrayStartLimit, setArrayStartLimit] = useState(false)
     const [arrayEndLimit, setArrayEndLimit] = useState(false)
+    const [authenticated, setAuthenticated] = useState(null)
 
     let tournamentStore = useTournamentStore(state => state)
     let interfaceStore = useInterfaceStore(state => state)
@@ -128,6 +131,8 @@ export default function Interface() {
             router.push(`/tournaments/${tournament.tournamentId}`)
         }
     }
+
+    const store = useStore(state => state)
 
     useEffect(() => {
         if (interfaceStore.interfaceState.length === 0) {
@@ -144,172 +149,212 @@ export default function Interface() {
 
     const tournamentStoreState = useTournamentStore.getState();
 
-    return (
-        <OuterWindowWrapper>
 
-            <InnerWindowWrapper
-                currentRoute={'/interface'}
-                pagetitle={'Create a regional tournament'}>
+    console.log(store)
 
-                <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
+    useEffect(() => {
+        const checkUserPermission = async () => {
+            try {
+                const currentToken = Cookies.get('token');
+                const userInformation = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}receive-user-informations`, {
+                    method: 'POST',
+                    headers: {
+                        "Access-Control-Allow-Origin": '*',
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        token: currentToken
+                    })
+                })
 
-                {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
-                <SecondaryWindowHeader
-                    informationTitle={'Go ahead and click on any item to easily edit its information.'}
-                    sectionTitle={'Tournament Tree'} />
-
-                <Box
-                    sx={{
-                        width: '100%',
-                    }}>
-                    {interfaceStore.interfaceState.length === 0 ?
-                        <Box sx={{
-
-                            display: 'flex',
-                            alignItems: 'center',
-                            border: '0.5px solid #3a3a3a',
-                            padding: '5px 10px',
-                            borderRadius: '2px'
-                        }}>
-                            <Typography
-                                variant='body2'
-                                sx={{
-                                    fontStyle: 'italic',
-                                    color: 'rgba(255, 255, 255, 0.6)',
-                                    maxWidth: "100%",
-                                    overflow: "hidden",
-                                    textOverflow: "ellipsis",
-                                    whiteSpace: "nowrap",
-                                    flex: '1'
-                                }}>
-                                No tournament rows added
-                            </Typography>
-                        </Box> :
-                        interfaceStore.interfaceState.map((item, index) => {
-
-                            let variableName = ''
-                            let title = ''
-                            let treeRow;
-                            let borderColor
-
-                            switch (index) {
-                                case 0:
-                                    variableName = 'firstPlace';
-                                    title = 'Winner'
-                                    treeRow = tournamentStore.firstPlace
-                                    borderColor = '#FFD700'
-                                    break;
-                                case 1:
-                                    variableName = 'secondPlace';
-                                    title = 'Second'
-                                    treeRow = tournamentStore.secondPlace
-                                    borderColor = '#c0c0c0'
-                                    break;
-                                case 2:
-                                    variableName = 'top4';
-                                    title = 'Top 4'
-                                    treeRow = tournamentStore.top4
-                                    borderColor = '#cd7f32'
-                                    break;
-                                case 3:
-                                    title = 'Top 8'
-                                    variableName = 'top8';
-                                    treeRow = tournamentStore.top8
-                                    borderColor = '#525252'
-                                    break;
-                                case 4:
-                                    title = 'Top 16'
-                                    variableName = 'top16';
-                                    treeRow = tournamentStore.top16
-                                    borderColor = '#525252'
-                                    break;
-                                case 5:
-                                    title = 'Top 32'
-                                    variableName = 'top32';
-                                    treeRow = tournamentStore.top32
-                                    borderColor = '#525252'
-                                    break;
-                                case 6:
-                                    title = 'Top 64'
-                                    variableName = 'top64';
-                                    treeRow = tournamentStore.top64
-                                    borderColor = '#525252'
-                                    break;
-                            }
-
-                            return (
-                                <TournamentTreeRow
-                                    key={index}
-                                    title={title}
-                                    chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
-                                    interfaceIndex={index}
-                                    currentInterfaceState={interfaceStore.interfaceState.length}
-                                    treeRow={treeRow}
-                                    variableName={variableName}
-                                    borderColor={borderColor}
-                                />
-                            )
-                        })
+                if (userInformation.status === 200) {
+                    const json = await userInformation.json();
+                    console.log("User Role:", json.role);
+                    if (json.role === 'administrator' || json.role === 'moderator') {
+                        setAuthenticated(true);
+                    } else {
+                        router.push('/')
                     }
-                    <Divider sx={{ marginBlock: '20px 10px', }} />
-                    <Box sx={{
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        checkUserPermission()
+    }, [])
 
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: {
-                            xs: 'center',
-                            md: 'space-between',
-                        },
-                        flexDirection: {
-                            xs: 'column',
-                            md: 'row'
-                        }
-                    }}>
-                        <Box sx={{
-                            display: 'flex',
-                            justifyContent: {
-                                xs: 'space-between',
-                                md: 'flex-start'
-                            }
-                        }}>
-                            <Button
+    return (
+        <>
+            {
+                authenticated ?
+                    <OuterWindowWrapper>
+
+                        <InnerWindowWrapper
+                            currentRoute={'/interface'}
+                            pagetitle={'Create a regional tournament'}>
+
+                            <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
+
+                            {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
+                            <SecondaryWindowHeader
+                                informationTitle={'Go ahead and click on any item to easily edit its information.'}
+                                sectionTitle={'Tournament Tree'} />
+
+                            <Box
                                 sx={{
-                                    alignItems: 'center',
-                                    marginRight: '10px'
-                                }}
-                                size='small'
-                                disabled={arrayStartLimit}
-                                onClick={interfaceStore.deleteLastItem}
-                                startIcon={<BiTrash />}>
-                                Delete last row
-                            </Button>
-                            <Button
-                                sx={{
-                                    alignItems: 'center',
-                                }}
-                                size='small'
-                                onClick={interfaceStore.addTournamentRow}
-                                disabled={arrayEndLimit}
-                                startIcon={<BiPlus />}>
-                                Add new row
-                            </Button>
-                        </Box>
-                        <Button
-                            onClick={handleTournamentFetch}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                            }}
-                            size='small'
-                            startIcon={<BiSend />}
-                            variant="outlined">
-                            Post Tournament
-                        </Button>
-                    </Box>
-                </Box>
+                                    width: '100%',
+                                }}>
+                                {interfaceStore.interfaceState.length === 0 ?
+                                    <Box sx={{
 
-            </InnerWindowWrapper >
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        border: '0.5px solid #3a3a3a',
+                                        padding: '5px 10px',
+                                        borderRadius: '2px'
+                                    }}>
+                                        <Typography
+                                            variant='body2'
+                                            sx={{
+                                                fontStyle: 'italic',
+                                                color: 'rgba(255, 255, 255, 0.6)',
+                                                maxWidth: "100%",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                whiteSpace: "nowrap",
+                                                flex: '1'
+                                            }}>
+                                            No tournament rows added
+                                        </Typography>
+                                    </Box> :
+                                    interfaceStore.interfaceState.map((item, index) => {
+                                        let variableName = ''
+                                        let title = ''
+                                        let treeRow;
+                                        let borderColor
 
-        </OuterWindowWrapper >
+                                        switch (index) {
+                                            case 0:
+                                                variableName = 'firstPlace';
+                                                title = 'Winner'
+                                                treeRow = tournamentStore.firstPlace
+                                                borderColor = '#FFD700'
+                                                break;
+                                            case 1:
+                                                variableName = 'secondPlace';
+                                                title = 'Second'
+                                                treeRow = tournamentStore.secondPlace
+                                                borderColor = '#c0c0c0'
+                                                break;
+                                            case 2:
+                                                variableName = 'top4';
+                                                title = 'Top 4'
+                                                treeRow = tournamentStore.top4
+                                                borderColor = '#cd7f32'
+                                                break;
+                                            case 3:
+                                                title = 'Top 8'
+                                                variableName = 'top8';
+                                                treeRow = tournamentStore.top8
+                                                borderColor = '#525252'
+                                                break;
+                                            case 4:
+                                                title = 'Top 16'
+                                                variableName = 'top16';
+                                                treeRow = tournamentStore.top16
+                                                borderColor = '#525252'
+                                                break;
+                                            case 5:
+                                                title = 'Top 32'
+                                                variableName = 'top32';
+                                                treeRow = tournamentStore.top32
+                                                borderColor = '#525252'
+                                                break;
+                                            case 6:
+                                                title = 'Top 64'
+                                                variableName = 'top64';
+                                                treeRow = tournamentStore.top64
+                                                borderColor = '#525252'
+                                                break;
+                                        }
+
+                                        return (
+                                            <TournamentTreeRow
+                                                key={index}
+                                                title={title}
+                                                chipIcon={<GiFamilyTree style={{ width: '12.5px', height: '12.5px' }} />}
+                                                interfaceIndex={index}
+                                                currentInterfaceState={interfaceStore.interfaceState.length}
+                                                treeRow={treeRow}
+                                                variableName={variableName}
+                                                borderColor={borderColor}
+                                            />
+                                        )
+                                    })
+                                }
+                                <Divider sx={{ marginBlock: '20px 10px', }} />
+                                <Box sx={{
+
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: {
+                                        xs: 'center',
+                                        md: 'space-between',
+                                    },
+                                    flexDirection: {
+                                        xs: 'column',
+                                        md: 'row'
+                                    }
+                                }}>
+                                    <Box sx={{
+                                        display: 'flex',
+                                        justifyContent: {
+                                            xs: 'space-between',
+                                            md: 'flex-start'
+                                        }
+                                    }}>
+                                        <Button
+                                            sx={{
+                                                alignItems: 'center',
+                                                marginRight: '10px'
+                                            }}
+                                            size='small'
+                                            disabled={arrayStartLimit}
+                                            onClick={interfaceStore.deleteLastItem}
+                                            startIcon={<BiTrash />}>
+                                            Delete last row
+                                        </Button>
+                                        <Button
+                                            sx={{
+                                                alignItems: 'center',
+                                            }}
+                                            size='small'
+                                            onClick={interfaceStore.addTournamentRow}
+                                            disabled={arrayEndLimit}
+                                            startIcon={<BiPlus />}>
+                                            Add new row
+                                        </Button>
+                                    </Box>
+                                    <Button
+                                        onClick={handleTournamentFetch}
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                        size='small'
+                                        startIcon={<BiSend />}
+                                        variant="outlined">
+                                        Post Tournament
+                                    </Button>
+                                </Box>
+                            </Box>
+
+                        </InnerWindowWrapper >
+                    </OuterWindowWrapper > :
+                    null
+            }
+        </>
     )
+
+
 }

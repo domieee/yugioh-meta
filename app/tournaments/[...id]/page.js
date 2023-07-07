@@ -67,11 +67,12 @@ export default function TournamentOverview({ params }) {
                     <IconButton
                         onClick={handleClick}
                         size="small"
-                        sx={{ ml: 2, width: '24px', height: '24px' }}
+                        sx={{ ml: 2, width: '18px', height: '18px' }}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}>
-                        <MenuIcon style={{ width: '20px', height: '20px' }} />
+                        aria-expanded={open ? 'true' : undefined}
+                    >
+                        <MenuIcon style={{ width: '18px', height: '18px' }} />
                     </IconButton>
                 </Tooltip>
             </>
@@ -159,6 +160,7 @@ export default function TournamentOverview({ params }) {
             await fetchTournamentTree();
         };
         fetchData()
+
     }, [])
 
     return (
