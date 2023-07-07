@@ -189,7 +189,7 @@ export default function TournamentOverview({ params }) {
 
                         <TournamentDetailsItem
                             icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
-                            data={tournament?.date}
+                            data={tournament?.datetimes.UIDate}
                             tooltipTitle={'Tournament Date'} />
 
                         <TournamentDetailsItem

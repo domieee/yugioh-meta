@@ -25,7 +25,7 @@ import dayjs from 'dayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateField } from '@mui/x-date-pickers/DateField';
 import { useTournamentStore } from '../tournamentStore';
 import { updateProgress } from '@/app/interfaceStore';
 
@@ -34,6 +34,8 @@ export default function NationalTournamentInterface() {
     const [value, setValue] = useState(countries[0]);
     const [inputValue, setInputValue] = useState('');
 
+    const [dateValue, setDateValue] = useState(dayjs('2022-04-17'));
+
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -41,7 +43,7 @@ export default function NationalTournamentInterface() {
     let formattedDate = `${year}-${month}-${day}`;
 
     const [calendarValue, setCalendarValue] = useState(dayjs(formattedDate).startOf('day'));
-    const [dateValue, setDateValue] = useState(1);
+
     let tournamentStore = useTournamentStore(state => state)
 
     const handleChange = (event) => {
@@ -138,29 +140,22 @@ export default function NationalTournamentInterface() {
                         display: 'flex',
                         flexDirection: 'column',
                     }}>
-
+                        < Typography variant="overline" display="block" >
+                            Date
+                        </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer
-                                components={['Typography', 'DatePicker']}>
-                                <Box
-                                    sx={{ display: 'flex', flexDirection: 'column' }}
-                                >
-                                    <Typography variant="overline" display="block" >
-                                        Date
-                                    </Typography>
-                                    <DatePicker
+                            <DemoContainer components={['DateField']}>
 
-                                        value={calendarValue}
-                                        onChange={(newValue) => {
-                                            const selectedDate = new Date(newValue); // Convert to Date format
-                                            console.log(selectedDate);
-                                            tournamentStore.setDate(selectedDate);
-
-                                        }}
-                                    />
-                                </Box>
+                                <DateField
+                                    value={tournamentStore.date}
+                                    onChange={(newValue) => {
+                                        console.log(newValue)
+                                        tournamentStore.setDate(newValue)
+                                    }}
+                                    format='DD/MM/YYYY'
+                                />
                             </DemoContainer>
-                        </LocalizationProvider >
+                        </LocalizationProvider>
                     </Box>
 
                     <Box sx={{
@@ -185,8 +180,8 @@ export default function NationalTournamentInterface() {
                                 min: 1,
                             }} />
                     </Box>
-                </Stack>
-            </Box>
+                </Stack >
+            </Box >
         </>
     )
 }

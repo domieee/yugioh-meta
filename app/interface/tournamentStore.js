@@ -3,8 +3,8 @@ import { persist } from "zustand/middleware"
 
 import { updateProgress } from '../interfaceStore';
 import Cookies from 'js-cookie';
+import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
-
 
 
 export const useInterfaceStore = create((set) => ({
@@ -50,7 +50,7 @@ export const useTournamentStore = create(
         tournamentType: 'national',
         location: '',
         totalParticipants: 0,
-        date: '',
+        date: dayjs('07-07-2023'),
         firstPlace: [
             { name: '', deck: '', deckNote: '', deckLink: '' }
         ],
@@ -147,6 +147,7 @@ export const useTournamentStore = create(
             set({ totalParticipants });
         },
         setDate: (date) => {
+            date = dayjs(date)
             set({ date });
         },
         isAnyFieldEmpty: (arrayName) => {
