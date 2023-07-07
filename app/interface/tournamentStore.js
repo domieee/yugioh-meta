@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 
-
 export const useInterfaceStore = create((set) => ({
     interfaceState: ['firstPlace', 'secondPlace', 'top4'],
     exampleArray: [
@@ -50,7 +49,7 @@ export const useTournamentStore = create(
         tournamentType: 'national',
         location: '',
         totalParticipants: 0,
-        date: dayjs('07-07-2023'),
+        date: dayjs('2023-07-07'),
         firstPlace: [
             { name: '', deck: '', deckNote: '', deckLink: '' }
         ],

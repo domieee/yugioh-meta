@@ -144,7 +144,7 @@ export default function NationalTournamentInterface() {
                             Date
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DateField']}>
+                            <DemoContainer sx={{ paddingTop: 0 }} components={['DateField']}>
 
                                 <DateField
                                     value={tournamentStore.date}

@@ -59,7 +59,7 @@ export default function TournamentListItem({ data }) {
                             <Typography
                                 variant='caption'>{data.location}</Typography>
                             <Typography
-                                variant='caption'>{data.date}</Typography>
+                                variant='caption'>{data.datetimes.UIDate}</Typography>
                         </Box>
                     </CardContent>
                 </CardActionArea>
