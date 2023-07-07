@@ -4,7 +4,13 @@ import {
     Box,
     Typography,
     Button,
-    Divider
+    Divider,
+    Modal,
+    Dialog,
+    DialogTitle,
+    DialogActions,
+    DialogContent,
+    DialogContentText
 } from '@mui/material'
 import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
 
@@ -119,8 +125,17 @@ export default function Interface() {
     const [arrayEndLimit, setArrayEndLimit] = useState(false)
     const [authenticated, setAuthenticated] = useState(null)
 
+
     let tournamentStore = useTournamentStore(state => state)
     let interfaceStore = useInterfaceStore(state => state)
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleTournamentFetch = async () => {
         const tournament = await tournamentStoreState.fetchObjectsFromInterfaceState(tournamentStore)
@@ -147,9 +162,23 @@ export default function Interface() {
 
     { interfaceStore.interfaceState.map((item, index) => (item[0].title)) }
 
-    const tournamentStoreState = useTournamentStore.getState();
+    const tournamentStoreState = useTournamentStore.getState()
+
+    const handleRowDelete = () => {
+        tournamentStore.resetArray(interfaceStore.interfaceState[interfaceStore.interfaceState.length - 1])
+        interfaceStore.deleteLastItem()
+        handleClose()
+    }
 
 
+    const checkForEmptyFields = () => {
+        if (tournamentStore.isAnyFieldEmpty(interfaceStore.interfaceState[interfaceStore.interfaceState.length - 1])) {
+            handleOpen()
+            return
+        } else {
+            interfaceStore.deleteLastItem()
+        }
+    }
     console.log(store)
 
     useEffect(() => {
@@ -185,10 +214,10 @@ export default function Interface() {
 
     return (
         <>
-            {
-                authenticated ?
-                    <OuterWindowWrapper>
 
+            <OuterWindowWrapper>
+                {
+                    authenticated ?
                         <InnerWindowWrapper
                             currentRoute={'/interface'}
                             pagetitle={'Create a regional tournament'}>
@@ -320,7 +349,7 @@ export default function Interface() {
                                             }}
                                             size='small'
                                             disabled={arrayStartLimit}
-                                            onClick={interfaceStore.deleteLastItem}
+                                            onClick={checkForEmptyFields}
                                             startIcon={<BiTrash />}>
                                             Delete last row
                                         </Button>
@@ -350,9 +379,45 @@ export default function Interface() {
                             </Box>
 
                         </InnerWindowWrapper >
-                    </OuterWindowWrapper > :
-                    null
-            }
+                        :
+                        null
+                }
+            </OuterWindowWrapper >
+
+            <Dialog
+                sx={{
+                    p: 4
+                }}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Unsaved Changes"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        You have unsaved changes in this row.
+                    </DialogContentText>
+                    <DialogContentText id="alert-dialog-description">
+                        Are sure you want to delete it?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions
+                    justifyContent='space-between'>
+                    <Button size="small" onClick={handleClose}>Close</Button>
+                    <Button
+                        size="small"
+                        sx={{
+                            marginLeft: 'auto'
+                        }}
+                        variant="outlined"
+                        onClick={handleRowDelete} >
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog >
         </>
     )
 

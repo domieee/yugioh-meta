@@ -46,7 +46,7 @@ export const useInterfaceStore = create((set) => ({
 }));
 
 export const useTournamentStore = create(
-    (set) => ({
+    (set, get) => ({
         tournamentType: 'national',
         location: '',
         totalParticipants: 0,
@@ -148,6 +148,35 @@ export const useTournamentStore = create(
         },
         setDate: (date) => {
             set({ date });
+        },
+        isAnyFieldEmpty: (arrayName) => {
+            const array = get()[arrayName];
+            console.log("🚀 ~ file: tournamentStore.js:154 ~ array:", array)
+
+            for (let i = 0; i < array.length; i++) {
+                const item = array[i];
+                console.log("🚀 ~ file: tournamentStore.js:158 ~ item:", item)
+                if (
+                    item.name !== '' ||
+                    item.deck !== '' ||
+                    item.deckNote !== '' ||
+                    item.deckLink !== ''
+                ) {
+                    return true; // At least one field is empty
+                }
+            }
+
+            return false; // No empty fields found
+        },
+        resetArray: (arrayName) => {
+            set((state) => ({
+                [arrayName]: state[arrayName].map((item) => ({
+                    name: '',
+                    deck: '',
+                    deckNote: '',
+                    deckLink: ''
+                }))
+            }));
         },
         fetchObjectsFromInterfaceState: async (useTournamentStore) => {
             updateProgress(10)
