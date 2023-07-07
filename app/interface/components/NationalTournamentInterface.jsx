@@ -11,7 +11,9 @@ import {
     Autocomplete,
     Box,
     Button,
-    Stack
+    Stack,
+    Select,
+    MenuItem
 } from '@mui/material'
 
 import { GiTrophy, GiTabletopPlayers } from "react-icons/gi";
@@ -49,8 +51,6 @@ export default function NationalTournamentInterface() {
     const handleChange = (event) => {
         const newValue = event.target.value;
         tournamentStore.setTotalParticipants(newValue)
-        console.log(tournamentStore.totalParticipants)
-        console.log(tournamentStore.date)
     }
 
     const handleKeyPress = (event) => {
@@ -91,6 +91,25 @@ export default function NationalTournamentInterface() {
                     justifyContent="space-around"
                     alignItems="center"
                     spacing={0}>
+
+                    <Box sx={{
+                        width: '220px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}>
+                        <Typography variant="overline" display="block" >
+                            Tournament Type
+                        </Typography>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={tournamentStore.tournamentType}
+                            onChange={e => tournamentStore.setTournamentType(e.target.value)}>
+                            <MenuItem value={'national'}>National</MenuItem>
+                            <MenuItem value={'regional'}>Regional</MenuItem>
+                        </Select>
+                    </Box>
+
                     <Box sx={{
                         width: '220px',
                         display: 'flex',

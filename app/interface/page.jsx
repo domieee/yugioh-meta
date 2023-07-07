@@ -224,7 +224,7 @@ export default function Interface() {
 
                             <SecondaryWindowHeader sectionTitle={'Tournament Informations'} />
 
-                            {tournamentStore.tournamentType === 'national' ? <NationalTournamentInterface /> : null}
+                            <NationalTournamentInterface />
                             <SecondaryWindowHeader
                                 informationTitle={'Go ahead and click on any item to easily edit its information.'}
                                 sectionTitle={'Tournament Tree'} />
