@@ -45,6 +45,8 @@ export default function TournamentOverview({ params }) {
     const open = Boolean(anchorEl);
     const router = useRouter()
 
+    const [tournamentWinner, setTournamentWinner] = useState(undefined);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -101,6 +103,17 @@ export default function TournamentOverview({ params }) {
                     })
                 });
                 const json = await response.json();
+
+                if (json.players[0][0].name.length > 0 && json.players[0][0].deck.length === 0) {
+                    setTournamentWinner(`${json.players[0][0].name} with unknown deck`)
+                } else if (json.players[0][0].name.length === 0 && json.players[0][0].deck.length > 0) {
+                    setTournamentWinner(`Unknown player with ${json.players[0][0].deck}`)
+                } else if (json.players[0][0].name.length > 0 && json.players[0][0].deck.length > 0) {
+                    setTournamentWinner(`${json.players[0][0].name} with ${json.players[0][0].deck}`)
+                } else (
+                    setTournamentWinner('')
+                )
+
                 setTournament(json);
                 setIsLoading(false);
                 updateProgress(60)
@@ -177,7 +190,7 @@ export default function TournamentOverview({ params }) {
                         <TournamentDetailsItem
                             iconType={'winner'}
                             icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
-                            data={`${tournament?.players[0][0].name} with ${tournament?.players[0][0].deck}` || 'N/A'}
+                            data={tournamentWinner}
                             tooltipTitle={'Tournament Winner'}
                         />
 

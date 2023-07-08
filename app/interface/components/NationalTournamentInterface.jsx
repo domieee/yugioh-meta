@@ -20,6 +20,7 @@ import { GiTrophy, GiTabletopPlayers } from "react-icons/gi";
 import { IconContext } from "react-icons"
 
 import countries from '../utils/data.json'
+import citys from '../utils/cityData.json'
 
 import TournamentTree from './TournamentTreeRow';
 
@@ -33,7 +34,9 @@ import { updateProgress } from '@/app/interfaceStore';
 
 export default function NationalTournamentInterface() {
 
-    const [value, setValue] = useState(countries[0]);
+    let tournamentStore = useTournamentStore(state => state)
+
+    const [value, setValue] = useState(tournamentStore.tournamentType === 'national' ? countries[0] : citys[0]);
     const [inputValue, setInputValue] = useState('');
 
     const [dateValue, setDateValue] = useState(dayjs('2022-04-17'));
@@ -46,7 +49,7 @@ export default function NationalTournamentInterface() {
 
     const [calendarValue, setCalendarValue] = useState(dayjs(formattedDate).startOf('day'));
 
-    let tournamentStore = useTournamentStore(state => state)
+
 
     const handleChange = (event) => {
         const newValue = event.target.value;
@@ -129,19 +132,25 @@ export default function NationalTournamentInterface() {
                                 console.log(inputValue)
                             }}
                             id="country-select-demo"
-                            options={countries}
+                            options={tournamentStore.tournamentType === 'national' ? countries : citys}
                             autoHighlight
-                            getOptionLabel={(option) => option.label}
+                            getOptionLabel={(option) => {
+                                if (tournamentStore.tournamentType === 'national') {
+                                    return option.label;
+                                } else {
+                                    return option.toponymName;
+                                }
+                            }}
                             renderOption={(props, option) => (
                                 <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                                     <img
                                         loading="lazy"
                                         width="20"
-                                        src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                        srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                        src={`https://flagcdn.com/w20/${tournamentStore.tournamentType === 'national' ? option?.code?.toLowerCase() : option.countryCode.toLowerCase()}.png`}
+                                        srcSet={`https://flagcdn.com/w40/${tournamentStore.tournamentType === 'national' ? option?.code?.toLowerCase() : option.countryCode.toLowerCase()}.png 2x`}
                                         alt=""
                                     />
-                                    {option.label} ({option.code})
+                                    {tournamentStore.tournamentType === 'national' ? option.label : ''} {tournamentStore.tournamentType === 'national' ? option.code : option.toponymName}
                                 </Box>
                             )}
                             renderInput={(params) => (
