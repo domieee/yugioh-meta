@@ -10,7 +10,7 @@ import {
     DialogTitle,
     DialogActions,
     DialogContent,
-    DialogContentText
+    DialogContentText, Paper
 } from '@mui/material'
 import SecondaryWindowHeader from '../components/SecondaryWindowHeader';
 
@@ -386,34 +386,36 @@ export default function Interface() {
 
             <Dialog
                 sx={{
-                    p: 4
+                    p: 4,
                 }}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">
-                    {"Delete changes?"}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        You have unsaved changes in this row.
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions
-                    justifyContent='space-between'>
-                    <Button size="small" onClick={handleClose}>Close</Button>
-                    <Button
-                        size="small"
-                        sx={{
-                            marginLeft: 'auto'
-                        }}
-                        variant="outlined"
-                        onClick={handleRowDelete} >
-                        Delete
-                    </Button>
-                </DialogActions>
+                <Paper>
+                    <DialogTitle id="alert-dialog-title">
+                        {"Delete changes?"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            You have unsaved changes in this row.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions
+                        justifyContent='space-between'>
+                        <Button size="small" onClick={handleClose}>Close</Button>
+                        <Button
+                            size="small"
+                            sx={{
+                                marginLeft: 'auto'
+                            }}
+                            variant="outlined"
+                            onClick={handleRowDelete} >
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Paper>
             </Dialog >
         </>
     )

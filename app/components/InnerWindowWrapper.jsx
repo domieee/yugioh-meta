@@ -38,9 +38,10 @@ export default function InnerWindowWrapper({
                         md: '100px',
                         lg: '100px'
                     },
-                    paddingBottom: '40px'
+                    paddingBottom: '40px',
                 }}
             >
+
                 <InnerWindowWrapperHeader
                     currentRoute={currentRoute}
                     menuOptions={menuOptions}
@@ -50,6 +51,7 @@ export default function InnerWindowWrapper({
                 {Children.map(children, (child) => (
                     child
                 ))}
+
             </Box>
         </Paper>
     )

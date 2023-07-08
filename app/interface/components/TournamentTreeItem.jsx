@@ -267,6 +267,7 @@ export default function TournamentTreeItem({ item, data, borderColor, index, las
                         onChange={handleChange} />
 
                     <Button
+                        size='small'
                         disabled={validLink}
                         sx={{
                             width: '50%',

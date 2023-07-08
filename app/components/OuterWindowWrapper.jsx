@@ -11,7 +11,7 @@ export default function OuterWindowWrapper({ children }) {
         <Box
             bgcolor="background.paper"
             display="flex"
-            justifyContent="center"
+
             flexWrap='wrap'
             alignItems="center"
             height='100%'
@@ -30,7 +30,8 @@ export default function OuterWindowWrapper({ children }) {
                     sm: '25px', // tablets
                     md: '25px', // small laptop
                     xl: '25px'
-                }
+                },
+                minHeight: '100vh'
             }
             }
         >

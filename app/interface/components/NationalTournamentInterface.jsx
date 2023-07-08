@@ -104,6 +104,7 @@ export default function NationalTournamentInterface() {
                             Tournament Type
                         </Typography>
                         <Select
+                            size='small'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={tournamentStore.tournamentType}
@@ -122,6 +123,7 @@ export default function NationalTournamentInterface() {
                             Location
                         </Typography>
                         <Autocomplete
+                            size='small'
                             value={value}
                             onChange={(event, newValue) => {
                                 setValue(newValue);
@@ -165,6 +167,7 @@ export default function NationalTournamentInterface() {
                     </Box>
 
                     <Box sx={{
+                        width: '220px',
                         display: 'flex',
                         flexDirection: 'column',
                     }}>
@@ -175,6 +178,7 @@ export default function NationalTournamentInterface() {
                             <DemoContainer sx={{ paddingTop: 0 }} components={['DateField']}>
 
                                 <DateField
+                                    size='small'
                                     value={tournamentStore.date}
                                     onChange={(newValue) => {
                                         console.log(newValue)
@@ -187,6 +191,7 @@ export default function NationalTournamentInterface() {
                     </Box>
 
                     <Box sx={{
+                                                width: '220px',
                         display: 'flex',
                         flexDirection: 'column',
                     }}>
@@ -194,14 +199,12 @@ export default function NationalTournamentInterface() {
                             Total Participants
                         </Typography>
                         <TextField
+                            size='small'
                             value={tournamentStore.totalParticipants}
                             onChange={handleChange}
                             onKeyPress={handleKeyPress}
                             id="outlined-number"
                             type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
                             inputProps={{
                                 inputMode: 'numeric',
                                 pattern: '[0-9]*',

@@ -211,7 +211,9 @@ export default function TournamentOverview({ params }) {
                             tooltipTitle={'Total Participants'} />
                     </TournamentDetails>
 
-                    <SecondaryWindowHeader sectionTitle={'Statistics'} />
+                    <SecondaryWindowHeader
+                        informationTitle={'You can toggle decks in the graph by clicking on the element in the legend.'}
+                        sectionTitle={'Statistics'} />
 
                     <Box
                         sx={{
