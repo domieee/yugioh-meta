@@ -33,7 +33,7 @@ export default function InnerWindowWrapper({
                         lg: '1280px'
                     },
                     paddingInline: {
-                        xs: '15px',
+                        xs: '5px',
                         sm: '50px',
                         md: '100px',
                         lg: '100px'
