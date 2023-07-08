@@ -38,7 +38,7 @@ export default function InnerWindowWrapper({
                         md: '100px',
                         lg: '100px'
                     },
-                    paddingBottom: '40px',
+                    paddingBottom: '20px',
                 }}
             >
 

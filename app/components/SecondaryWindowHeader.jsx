@@ -11,7 +11,7 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
             component: 'section',
             width: '100%',
             borderBottom: '1px solid #3a3a3a',
-            marginBlock: '5px 10px',
+
 
         }}>
             <Box>
@@ -28,8 +28,8 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                     sx={{
                         display: 'flex',
                         alignItems: {
-                            xs: 'center',
-                            sm: 'center',
+                            xs: 'start',
+                            sm: 'start',
                             md: 'center'
                         },
                         marginBottom: '5px',
@@ -39,10 +39,9 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                         marginRight: 'auto',
                         fontSize: 'min(14px, 4vw)'
                     }}>
-                    <GiInfo style={{ width: '20px', marginRight: '5px', color: 'rgba(255, 255, 255, 0.6)' }} />
+                    <GiInfo style={{ width: '20px', marginRight: '5px', marginTop: '3px', color: 'rgba(255, 255, 255, 0.6)' }} />
                     <Typography
                         sx={{
-                            alignSelf: 'flex-start',
                             color: 'rgba(255, 255, 255, 0.6)',
 
                         }}

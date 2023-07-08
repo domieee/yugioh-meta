@@ -22,7 +22,7 @@ export default function Tournaments() {
                 disabledIcon={true}>
                 <SecondaryWindowHeader
                     sectionTitle={'Tournaments'}
-                    informationTitle={'You can either search for winner decks, winner names or locations'} />
+                    informationTitle={'You have the option to search for either winning decks, winners names, or locations.'} />
                 <Box
                     sx={{
                         width: '100%'
