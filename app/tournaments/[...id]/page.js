@@ -212,7 +212,7 @@ export default function TournamentOverview({ params }) {
                     </TournamentDetails>
 
                     <SecondaryWindowHeader
-                        informationTitle={'You can toggle decks in the graph by clicking on the element in the legend.'}
+                        informationTitle={'You can enable or disable decks in the graph by clicking on the respective element in the legend.'}
                         sectionTitle={'Statistics'} />
 
                     <Box
