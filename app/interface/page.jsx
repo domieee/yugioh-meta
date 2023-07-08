@@ -321,7 +321,7 @@ export default function Interface() {
                                         )
                                     })
                                 }
-                                <Divider sx={{ marginBlock: '20px 10px', }} />
+                                <Divider sx={{ marginBlock: '10px 10px', }} />
                                 <Box sx={{
 
                                     width: '100%',
