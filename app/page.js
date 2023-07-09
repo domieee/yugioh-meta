@@ -32,14 +32,3 @@ export default function Home({ token }) {
     </>
   );
 }
-
-export async function getServerSideProps() {
-  const token = Cookies.get('token') || null;
-  console.log(token);
-  console.log("🚀 ~ file: page.js:36 ~ getServerSideProps ~ token:", token)
-  return {
-    props: {
-      token,
-    },
-  };
-}
