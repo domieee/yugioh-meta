@@ -101,7 +101,8 @@ export default function TournamentOverview({ params }) {
                     body: JSON.stringify({
                         id: params.id
                     })
-                });
+                })
+
                 const json = await response.json();
 
                 if (json.players[0][0].name.length > 0 && json.players[0][0].deck.length === 0) {
@@ -114,12 +115,12 @@ export default function TournamentOverview({ params }) {
                     setTournamentWinner('')
                 )
 
-                setTournament(json);
-                setIsLoading(false);
+                setTournament(json)
+                setIsLoading(false)
                 updateProgress(60)
-                console.log("🚀 ~ file: page.js:40 ~ TournamentOverview ~ tournament:", tournament)
+
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         };
 
@@ -135,11 +136,11 @@ export default function TournamentOverview({ params }) {
                         id: params.id
                     })
                 });
-                const json = await response.json();
+                const json = await response.json()
                 setTournamentBreakdownData(json)
                 updateProgress(80)
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         };
 
@@ -260,6 +261,7 @@ export default function TournamentOverview({ params }) {
                             alignItems="center"
                             className="canvasContainer">
                             <Paper
+                                elevation={0}
                                 justifyContent="center"
                                 sx={{
                                     borderRadius: 2,

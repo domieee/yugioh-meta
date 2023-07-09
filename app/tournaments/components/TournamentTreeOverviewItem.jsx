@@ -91,6 +91,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
     return (
         <>
             <Card
+                elevation={0}
                 sx={{
                     borderLeft: `1px solid ${borderColor}`,
                     marginTop: '16px',

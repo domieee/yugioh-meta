@@ -239,7 +239,7 @@ function Navigation({ props }) {
                         top: '0',
                         left: '0',
                         width: '100%',
-                        backdropFilter: 'blur(4px)',
+                        backdropFilter: 'blur(10px)',
                         height: '65px',
                         zIndex: '10',
                     }}
@@ -249,7 +249,7 @@ function Navigation({ props }) {
                         className='blur-background'
                         position="fixed"
                         sx={{
-                            opacity: 0.85,
+                            opacity: 0.75,
                             backdropFilter: 'blur(100px)',
                             height: '65px',
                             boxShadow: '0',

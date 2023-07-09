@@ -47,6 +47,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
             justifyContent='center'
         >
             <Paper
+                elevation={0}
                 sx={{
                     width: '100%',
                     borderRadius: '0',
@@ -100,7 +101,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
 
 
                     {data === 'N/A' || data === undefined ?
-                        <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 100 }} />
+                        <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 100 }} />
                         :
                         dataProvider()}
                 </Stack>

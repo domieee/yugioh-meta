@@ -64,11 +64,11 @@ export default function PieChart({ data }) {
                     alignItems='center'
                     marginBlock='auto'
                     sx={{ height: 360 }}>
-                    <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 240 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1rem', minWidth: 270 }} />
-                    <Skeleton variant="circular" sx={{ width: 260, height: 260 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', minWidth: 300, color: '#000' }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', minWidth: 240 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', minWidth: 300 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', minWidth: 270 }} />
+                    <Skeleton animation='wave' variant="circular" sx={{ width: 260, height: 260 }} />
                 </Stack > :
                 <div className='chart' >
                     <Pie data={dataWinners} />

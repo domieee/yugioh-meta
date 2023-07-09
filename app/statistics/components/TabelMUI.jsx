@@ -58,20 +58,22 @@ export default function TableMUI({ data, table }) {
             {!data ?
                 <Stack sx={{ marginInline: 'auto' }}>
                     <Skeleton animation="wave" variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
-                    <Skeleton variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
+                    <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.75rem', minWidth: 350 }} />
                 </Stack > :
 
 
-                <TableContainer component={Paper}
+                <TableContainer
+                    elevation={0}
+                    component={Paper}
                     ref={containerHeight}
                     sx={{
                         minHeight: 'fit-content',
@@ -141,7 +143,7 @@ export default function TableMUI({ data, table }) {
                                             component="th"
                                             scope="row" >
                                             <Typography sx={{ textAlign: 'right' }}>
-                                                <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 100 }} />
+                                                <Skeleton animation='wave' variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 100 }} />
                                             </Typography>
                                         </TableCell>
                                         <TableCell align='right'>
@@ -149,7 +151,7 @@ export default function TableMUI({ data, table }) {
                                                 display: 'flex',
                                                 justifyContent: 'end'
                                             }}>
-                                                <Skeleton variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 20 }} />
+                                                <Skeleton animation='wave' variant="text" sx={{ textAlign: 'right', fontSize: '0.75rem', width: 20 }} />
                                             </Box>
                                         </TableCell>
                                         <TableCell >
@@ -157,7 +159,7 @@ export default function TableMUI({ data, table }) {
                                                 display: 'flex',
                                                 justifyContent: 'end'
                                             }}>
-                                                <Skeleton variant="text" sx={{ fontSize: '0.75rem', width: 37.5 }} />
+                                                <Skeleton animation='wave' variant="text" sx={{ fontSize: '0.75rem', width: 37.5 }} />
                                             </Box>
                                         </TableCell>
                                     </TableRow>

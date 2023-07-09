@@ -11,7 +11,9 @@ export default function InnerWindowWrapper({
     menuOptions
 }) {
     return (
-        <Paper>
+        <Paper
+            elevation={0}
+            boxShadow={0}>
             <Box
                 display="flex"
                 flexDirection="column"
@@ -39,6 +41,7 @@ export default function InnerWindowWrapper({
                         lg: '100px'
                     },
                     paddingBottom: '20px',
+                    backgroundColor: 'transparent',
                 }}
             >
 
@@ -53,6 +56,6 @@ export default function InnerWindowWrapper({
                 ))}
 
             </Box>
-        </Paper>
+        </Paper >
     )
 }

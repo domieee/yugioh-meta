@@ -8,30 +8,46 @@ import TablePie from "../components/TablePie";
 import DialogExplanation from "./components/DialogExplanation";
 import { updateProgress } from '@/app/interfaceStore';
 import SecondaryWindowHeader from "../components/SecondaryWindowHeader";
+import { Typography } from "@mui/material";
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
     const [pieOverallData, setPieOverallData] = useState([]);
+    const [mostPlayedDeck, setMostPlayedDeck] = useState({});
 
     useEffect(() => {
+        const fetchMostPlayedDeck = async () => {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}most-played-deck`
+            );
+            const json = await response.json();
+            console.log("🚀 ~ file: page.jsx:31 ~ fetchPieOverallData ~ json:", json)
+            setMostPlayedDeck(json);
+            updateProgress(66)
+            setTimeout(() => updateProgress(0), 500)
+        };
         const fetchPieData = async () => {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}winner-breakdown`
             );
             const json = await response.json();
+            console.log("🚀 ~ file: page.jsx:22 ~ fetchPieData ~ json:", json)
             setPieData(json);
-            updateProgress(75)
+            updateProgress(80)
         };
         const fetchPieOverallData = async () => {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}overall-breakdown`
             );
             const json = await response.json();
+            console.log("🚀 ~ file: page.jsx:31 ~ fetchPieOverallData ~ json:", json)
             setPieOverallData(json);
             updateProgress(100)
             setTimeout(() => updateProgress(0), 500)
         };
+
         const data = async () => {
+            await fetchMostPlayedDeck();
             await fetchPieData();
             await fetchPieOverallData()
         }
@@ -43,6 +59,9 @@ export default function Statistics() {
             <InnerWindowWrapper
                 currentRoute={'/statistics'}
                 pagetitle={'Statistics'}>
+                <Typography>{mostPlayedDeck?.name}</Typography>
+                <Typography>{mostPlayedDeck?.count}</Typography>
+                <Typography>{mostPlayedDeck?.percentage}</Typography>
                 <SecondaryWindowHeader
                     informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'}
                     sectionTitle={'Winner Breakdown'} />

@@ -82,6 +82,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     className="canvasContainer">
 
                     <Paper
+                        elevation={0}
                         justifyContent="center"
                         sx={{
                             boxShadow: '0',
