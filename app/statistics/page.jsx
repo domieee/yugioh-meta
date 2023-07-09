@@ -63,11 +63,11 @@ export default function Statistics() {
                 <Typography>{mostPlayedDeck?.count}</Typography>
                 <Typography>{mostPlayedDeck?.percentage}</Typography>
                 <SecondaryWindowHeader
-                    informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'}
+                    informationTitle={'These data reveal the frequency of deck victories in tournaments, indicating which decks have won the most tournaments.'}
                     sectionTitle={'Winner Breakdown'} />
                 <TablePie winnerJson={pieData} item="winner-breakdown" />
                 <SecondaryWindowHeader
-                    informationTitle={'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor...'}
+                    informationTitle={'The data provides an overview of the total number of games played with each deck.'}
                     sectionTitle={'Overall Breakdown'} />
                 <TablePie winnerJson={pieOverallData} item="winner-breakdown" />
             </InnerWindowWrapper>

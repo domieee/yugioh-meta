@@ -257,11 +257,13 @@ function Navigation({ props }) {
 
                         }}
                     >
-                        <Paper sx={{
-                            height: '65px',
-                            borderRadius: '0',
-                            boxShadow: '0',
-                        }}>
+                        <Paper
+                            elevation={0}
+                            sx={{
+                                height: '65px',
+                                borderRadius: '0',
+                                boxShadow: '0',
+                            }}>
                             <LinearProgress
                                 variant="determinate"
                                 value={progress}
