@@ -73,7 +73,6 @@ export default function InnerWindowWrapperHeader({
                     Tournaments
                 </Typography>
             ]
-            break;
         case '/tournaments/id':
             breadcrumbs = [
                 <Link
@@ -103,7 +102,6 @@ export default function InnerWindowWrapperHeader({
                     Overview
                 </Typography>
             ]
-            break;
         case '/interface':
             breadcrumbs = [
                 <Link
@@ -123,7 +121,6 @@ export default function InnerWindowWrapperHeader({
                     Interface
                 </Typography>
             ]
-            break;
         case '/interface/id':
             breadcrumbs = [
                 <Link
@@ -143,7 +140,6 @@ export default function InnerWindowWrapperHeader({
                     Interface
                 </Typography>
             ]
-            break;
         case '/statistics':
             breadcrumbs = [
                 <Link
@@ -163,15 +159,9 @@ export default function InnerWindowWrapperHeader({
                     Statistics
                 </Typography>
             ]
-            break;
         default:
             break;
     }
-
-
-
-
-
 
     return (
         disabledIcon ?
@@ -213,6 +203,7 @@ export default function InnerWindowWrapperHeader({
                     lg: 'space-between'
                 }
             }}>
+
                 <Box sx={{
                     width: '100%',
                     display: 'flex',

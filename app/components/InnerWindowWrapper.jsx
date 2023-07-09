@@ -45,9 +45,9 @@ export default function InnerWindowWrapper({
                 <InnerWindowWrapperHeader
                     currentRoute={currentRoute}
                     menuOptions={menuOptions}
-                    pagetitle={pagetitle}>
+                    pagetitle={pagetitle} />
 
-                </InnerWindowWrapperHeader>
+
                 {Children.map(children, (child) => (
                     child
                 ))}
