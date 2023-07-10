@@ -17,7 +17,7 @@ import {
 
 import { IconContext } from "react-icons"
 
-export default function TournamentDetailsItem({ icon, iconType, data, itemTitle, tooltipTitle }) {
+export default function TournamentDetailsItem({ icon, iconType, data, itemTitle, tooltipTitle, color, bgColor }) {
 
     const dataProvider = () => {
         if (data === null || data.length === 0 || data === 0) {
@@ -35,8 +35,8 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
             return (
                 <Typography
                     sx={{
-                        color: '#191919'
-                    }} variant='body2'>{data}</Typography>
+                        color: color
+                    }} variant='body1'>{data}</Typography>
             )
         }
     }
@@ -56,9 +56,9 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                 justifyContent='center'
             >
                 <Paper
-                    elevation={0}
+                    elevation={1}
                     sx={{
-                        bgcolor: 'yellow',
+                        bgcolor: bgColor,
                         width: '100%',
                         paddingBlock: '10px',
                         display: 'flex',
@@ -78,12 +78,12 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                         <Box sx={{
                             height: '100%'
                         }}>
-                            <IconContext.Provider value={{ color: '#191919' }}>
+                            <IconContext.Provider value={{ color: color }}>
                                 {icon && icon}
                             </IconContext.Provider>
                         </Box>
                     </Box>
-                    <Divider
+                    <Divider color={'#000'}
                         orientation="vertical"
                         flexItem
                         sx={{
@@ -93,9 +93,8 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
 
                     <Stack>
                         <Typography sx={{
-                            color: '#191919'
-                        }}
-                            variant='overline'>{itemTitle}</Typography>
+                            color: color
+                        }} variant='overline'>{itemTitle}</Typography>
 
 
                         {data === 'N/A' || data === undefined ?

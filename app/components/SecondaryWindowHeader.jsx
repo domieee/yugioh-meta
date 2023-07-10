@@ -44,7 +44,7 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                         sx={{
                             color: 'rgba(255, 255, 255, 0.6)'
                         }}
-                        variant='body2'>{informationTitle}</Typography>
+                        variant='body1'>{informationTitle}</Typography>
                 </Box >)
                 : null}
         </Box >

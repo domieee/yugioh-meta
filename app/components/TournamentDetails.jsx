@@ -8,7 +8,7 @@ export default function TournamentDetails({ children }) {
         <Grid
             container
             width='100%'
-            spacing={2}
+            spacing={3}
             alignItems='start'
             justifyContent='start'
             sx={{

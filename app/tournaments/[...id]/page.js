@@ -189,6 +189,9 @@ export default function TournamentOverview({ params }) {
                     <TournamentDetails>
                         <TournamentDetailsItem
                             iconType={'winner'}
+                            color={'#f0f0f0'}
+                            bgcolor={'#191919'}
+                            iconColor={'#ffd700'}
                             icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
                             data={tournamentWinner}
                             itemTitle={'Tournament Winner'}
@@ -198,6 +201,8 @@ export default function TournamentOverview({ params }) {
                         <TournamentDetailsItem
                             icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.location}
+                            color={'#f0f0f0'}
+                            bgColor={'#191919'}
                             itemTitle={'Tournament Location'}
                             tooltipTitle={'Location of the tournament'}
                         />
@@ -205,12 +210,16 @@ export default function TournamentOverview({ params }) {
                         <TournamentDetailsItem
                             icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.datetimes.UIDate}
+                            color={'#f0f0f0'}
+                            bgColor={'#191919'}
                             itemTitle={'Tournament Date'}
                             tooltipTitle={'Day of the tournament'} />
 
                         <TournamentDetailsItem
                             icon={<GiTabletopPlayers style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.totalParticipants}
+                            color={'#f0f0f0'}
+                            bgColor={'#191919'}
                             itemTitle={'Total Participants'}
                             tooltipTitle={'Total Players participated in the Tournament'} />
                     </TournamentDetails>
