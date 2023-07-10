@@ -37,12 +37,14 @@ export default function RegisterButton() {
     return (
         token ?
             <Button
+                autoFocus
                 onClick={handleTournamentClick}
                 variant='outlined'
                 endIcon={<ArrowForwardRoundedIcon />} >
                 Show latest tournaments
             </Button> :
             <Button
+                autoFocus
                 sx={{ marginLeft: 'auto' }}
                 onClick={handleRegisterClick}
                 variant='outlined'

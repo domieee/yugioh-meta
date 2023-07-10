@@ -45,6 +45,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
 
 import { GiFoxHead } from "react-icons/gi";
 import { TbArrowLeft } from "react-icons/tb";
@@ -153,14 +154,18 @@ function Navigation({ props }) {
 
     const pages = [
         {
-            title: 'Tournaments', route: () => {
+            title: 'Tournaments',
+            tooltipTitle: 'Show latest tournaments',
+            route: () => {
                 updateProgress(25)
                 router.push('/tournaments')
                 handleCloseNavMenu()
             }
         },
         {
-            title: 'Statistics', route: () => {
+            title: 'Statistics',
+            tooltipTitle: 'Show statistics',
+            route: () => {
                 updateProgress(25)
                 router.push('/statistics')
                 handleCloseNavMenu()
@@ -392,9 +397,11 @@ function Navigation({ props }) {
                                             }}
                                         >
                                             {pages.map((page) => (
-                                                <MenuItem key={page.title} onClick={page.route}>
-                                                    <Typography textAlign="center">{page.title}</Typography>
-                                                </MenuItem>
+                                                <Tooltip key={page.title}>
+                                                    <MenuItem onClick={page.route}>
+                                                        <Typography textAlign="center">{page.title}</Typography>
+                                                    </MenuItem>
+                                                </Tooltip>
                                             ))}
                                         </Menu>
                                     </Box>
@@ -432,16 +439,18 @@ function Navigation({ props }) {
                                     <Box gap={2} sx={{ flexGrow: 1, marginLeft: '30px', marginTop: '5px', display: { xs: 'none', md: 'flex' }, alignItems: 'flex-end' }}>
                                         {pages.map(page => (
                                             <>
-                                                <Button disableElevation={true} onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
-                                                    <Typography
-                                                        className="navigation-link"
-                                                        key={page.title}
-                                                        variant="caption"
-                                                        sx={{ margin: 0, color: 'white', display: 'block', fontSize: '12px' }}
-                                                    >
-                                                        {page.title}
-                                                    </Typography>
-                                                </Button>
+                                                <Tooltip placement="bottom" key={page.title} title={page.tooltipTitle}>
+                                                    <Button disableElevation={true} onClick={page.route} sx={{ height: 'fit-content', p: 0, display: 'flex', alignItems: 'end', justifyContent: 'center' }}>
+                                                        <Typography
+                                                            className="navigation-link"
+                                                            key={page.title}
+                                                            variant="caption"
+                                                            sx={{ margin: 0, color: 'white', display: 'block', fontSize: '12px' }}
+                                                        >
+                                                            {page.title}
+                                                        </Typography>
+                                                    </Button>
+                                                </Tooltip>
                                             </>
                                         ))}
                                     </Box>
