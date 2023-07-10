@@ -121,6 +121,13 @@ p {
 
 .rotation-animation {
   animation: rotate 120s linear infinite;
+
+}
+
+.border-bottom {
+  border-width: 1px;
+  border: 1px solid --secondary-glow;
+  border-color: var(--tile-border);
 }
 
 @keyframes rotate {

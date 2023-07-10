@@ -22,7 +22,7 @@ export default function Home({ token }) {
             height={500}
           />
         </article>
-        <article style={{ position: 'relative', marginLeft: '50px', maxWidth: '800px' }}>
+        <article className='border-bottom' style={{ position: 'relative', marginLeft: '50px', maxWidth: '800px' }}>
           <h1 style={{ marginBottom: '10px', fontSize: '30px' }} variant='h1'>Unleash Your Dueling Potential with Yu-Gi-Oh Meta!</h1>
           <p style={{ marginBottom: '30px' }}>Your Source for Current Tournament Statistics and Insights. Elevate Your Dueling Game with In-Depth Analysis and Winning Strategies.</p>
           <RegisterButton />

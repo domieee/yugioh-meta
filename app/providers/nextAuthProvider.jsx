@@ -14,6 +14,9 @@ const darkTheme = createTheme({
     sheet: {
         // Style properties for the sheet
     },
+    paper: {
+        backgroundColor: 'red'
+    }
     // Other styles...
 });
 
