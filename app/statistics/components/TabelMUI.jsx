@@ -72,14 +72,14 @@ export default function TableMUI({ data, table }) {
 
 
                 <TableContainer
-                    elevation={0}
+                    elevation={1}
                     component={Paper}
                     ref={containerHeight}
                     sx={{
+                        bgcolor: '#191919',
                         minHeight: 'fit-content',
-                        borderRadius: '0',
                         maxHeight: 380,
-                        boxShadow: '0',
+                        minHeight: 380,
                         '&:hover': {
                             cursor: scrollable ? 'n-resize' : 'default'
                         }

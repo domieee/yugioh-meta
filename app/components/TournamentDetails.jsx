@@ -12,6 +12,7 @@ export default function TournamentDetails({ children }) {
             alignItems='start'
             justifyContent='start'
             sx={{
+                marginBlock: '5px',
                 flexDirection: {
                     xs: 'row', // phone
                     sm: 'row', // tablets

@@ -216,8 +216,12 @@ export default function TournamentOverview({ params }) {
                         informationTitle={'You can enable or disable decks in the graph by clicking on the respective element in the legend.'}
                         sectionTitle={'Statistics'} />
 
-                    <Box
+                    <Grid
+                        container
+
+                        spacing={2}
                         sx={{
+                            marginBlock: '5px',
                             width: '100%',
                             display: 'flex',
                             flexDirection: {
@@ -236,7 +240,6 @@ export default function TournamentOverview({ params }) {
                         }}>
                         <Grid
                             item
-
                             xs={12}
                             md={6}
                             boxShadow={0}
@@ -255,21 +258,19 @@ export default function TournamentOverview({ params }) {
                                     lg: '0px'
                                 }
                             }}
-                            borderRadius={2}
                             height='380px'
                             justifyContent="center"
                             alignItems="center"
                             className="canvasContainer">
                             <Paper
-                                elevation={0}
+                                elevation={1}
                                 justifyContent="center"
                                 sx={{
-                                    borderRadius: 2,
+                                    bgcolor: '#191919',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    flexDirection: 'column',
-                                    boxShadow: '0'
+                                    flexDirection: 'column'
                                 }}>
                                 <div style={{ width: '360px', margin: '10px', boxShadow: '0' }}>
                                     <PieChart data={tournamentBreakdownData} />
@@ -279,6 +280,7 @@ export default function TournamentOverview({ params }) {
                         <Grid
                             item
                             sx={{
+                                bgcolor: '#191919',
                                 display: 'flex',
                                 justifyContent: 'center',
                                 minWidth: {
@@ -295,7 +297,7 @@ export default function TournamentOverview({ params }) {
                                 table='winner-breakdown'
                                 data={tournamentBreakdownData} />
                         </Grid>
-                    </Box>
+                    </Grid>
 
 
                     <SecondaryWindowHeader

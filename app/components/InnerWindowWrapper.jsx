@@ -12,6 +12,9 @@ export default function InnerWindowWrapper({
 }) {
     return (
         <Paper
+            sx={{
+                bgcolor: '#191919'
+            }}
             elevation={0}
             boxShadow={0}>
             <Box

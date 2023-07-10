@@ -41,7 +41,9 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                     }}>
                     <GiInfo style={{ width: '20px', marginRight: '5px', marginTop: '3px', color: 'rgba(255, 255, 255, 0.6)' }} />
                     <Typography
-                        color='secondary.dark'
+                        sx={{
+                            color: 'rgba(255, 255, 255, 0.6)'
+                        }}
                         variant='body2'>{informationTitle}</Typography>
                 </Box >)
                 : null}

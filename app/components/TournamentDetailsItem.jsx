@@ -47,16 +47,15 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
             justifyContent='center'
         >
             <Paper
-                elevation={0}
+                elevation={1}
                 sx={{
+                    bgcolor: '#191919',
                     width: '100%',
-                    borderRadius: '0',
                     paddingBlock: '10px',
                     display: 'flex',
                     alignItems: 'center',
                     height: '75px',
                     flexDirection: 'row',
-                    boxShadow: '0'
                 }}>
                 <Box sx={{
                     width: '20px',
