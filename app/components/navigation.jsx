@@ -155,7 +155,7 @@ function Navigation({ props }) {
     const pages = [
         {
             title: 'Tournaments',
-            tooltipTitle: 'Show latest tournaments',
+            tooltipTitle: 'Search for tournaments',
             route: () => {
                 updateProgress(25)
                 router.push('/tournaments')

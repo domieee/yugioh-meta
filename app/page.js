@@ -20,6 +20,7 @@ export default function Home({ token }) {
             alt='Buy me a Coffee Button'
             width={500}
             height={500}
+            _82d87970-2832-49bd-9349-1014dc9153c7
           />
         </article>
         <article className='border-bottom' style={{ position: 'relative', marginLeft: '50px', maxWidth: '800px' }}>
@@ -28,7 +29,40 @@ export default function Home({ token }) {
           <RegisterButton />
         </article>
       </section>
-      <section style={{ height: '100vh' }}></section>
+      <section style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <article style={{ maxWidth: '800px' }}>
+          <h2>Unlock the Power of Yu-Gi-Oh! Tournament Data</h2>
+          <p>Accessing and analyzing Yugioh tournament data is challenging and time-consuming. Results are scattered across various platforms, making it difficult to gather comprehensive information and make informed decisions.</p>
+          <p>Our centralized platform revolutionizes the way you engage with Yu-Gi-Oh! Tournaments.</p>
+        </article>
+        <Image
+          src='/_82d87970-2832-49bd-9349-1014dc9153c7.jpeg'
+          alt='Buy me a Coffee Button'
+          width={450}
+          height={450}
+
+        />
+      </section>
+      <section style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <h2>Experience the competitive edge like never before.</h2>
+        <article style={{ maxWidth: '1000px', display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+
+          <article style={{ textAlign: 'center' }}>
+            <h3>Comprehensive Data</h3>
+            <p >We gather tournament results, decklists, and player performances from multiple sources, ensuring all the information you need is in one place.</p>
+          </article>
+          <article style={{ textAlign: 'center' }}>
+            <h3>User-Friendly Interface</h3>
+            <p>Our intuitive design allows effortless navigation, making it easy to search, filter, and explore tournament data.</p>
+          </article>
+          <article style={{ textAlign: 'center' }}>
+            <h3>Advanced Analytics</h3>
+            <p>Gain valuable insights and track trends, enabling you to stay ahead of the game and refine your strategies.</p>
+          </article>
+
+
+        </article>
+      </section>
     </>
   );
 }
