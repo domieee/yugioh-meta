@@ -245,7 +245,6 @@ export default function TournamentOverview({ params }) {
                             item
                             xs={12}
                             md={6}
-                            boxShadow={0}
                             sx={{
                                 width: {
                                     xs: '90%',
@@ -266,7 +265,7 @@ export default function TournamentOverview({ params }) {
                             alignItems="center"
                             className="canvasContainer">
                             <Paper
-                                elevation={1}
+                                elevation={0}
                                 justifyContent="center"
                                 sx={{
                                     bgcolor: '#191919',

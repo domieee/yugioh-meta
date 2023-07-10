@@ -25,7 +25,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                 <Typography
                     sx={{
                         fontStyle: 'italic',
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0, 0.6)',
                     }}
                     variant='body2'>
                     No information provided
@@ -33,7 +33,10 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
             )
         } else {
             return (
-                <Typography variant='body2'>{data}</Typography>
+                <Typography
+                    sx={{
+                        color: '#191919'
+                    }} variant='body2'>{data}</Typography>
             )
         }
     }
@@ -53,9 +56,9 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                 justifyContent='center'
             >
                 <Paper
-                    elevation={1}
+                    elevation={0}
                     sx={{
-                        bgcolor: '#191919',
+                        bgcolor: 'yellow',
                         width: '100%',
                         paddingBlock: '10px',
                         display: 'flex',
@@ -75,19 +78,9 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                         <Box sx={{
                             height: '100%'
                         }}>
-                            {iconType === 'winner' ?
-
-                                <IconContext.Provider value={{ color: "#FFD700" }}>
-
-                                    {icon && icon}
-
-
-                                </IconContext.Provider> :
-
-
-                                icon
-
-                            }
+                            <IconContext.Provider value={{ color: '#191919' }}>
+                                {icon && icon}
+                            </IconContext.Provider>
                         </Box>
                     </Box>
                     <Divider
@@ -100,7 +93,7 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
 
                     <Stack>
                         <Typography sx={{
-
+                            color: '#191919'
                         }}
                             variant='overline'>{itemTitle}</Typography>
 

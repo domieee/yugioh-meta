@@ -70,9 +70,10 @@ export default function TournamentTreeItem({ item, data, borderColor, index, las
     return (
         <>
             <Card
+                elevation={1}
                 sx={{
                     borderLeft: `1px solid ${borderColor}`,
-
+                    bgColor: '#191919',
                     width: '100&',
                     '&:hover': {
                         backgroundColor: '#272727',
