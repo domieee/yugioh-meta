@@ -192,24 +192,28 @@ export default function TournamentOverview({ params }) {
                             iconType={'winner'}
                             icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
                             data={tournamentWinner}
-                            tooltipTitle={'Tournament Winner'}
+                            itemTitle={'Tournament Winner'}
+                            tooltipTitle={'Tournament Winner with/or winners deck'}
                         />
 
                         <TournamentDetailsItem
                             icon={<GiPlanetConquest style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.location}
-                            tooltipTitle={'Tournament Location'}
+                            itemTitle={'Tournament Location'}
+                            tooltipTitle={'Location of the tournament'}
                         />
 
                         <TournamentDetailsItem
                             icon={<GiCalendar style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.datetimes.UIDate}
-                            tooltipTitle={'Tournament Date'} />
+                            itemTitle={'Tournament Date'}
+                            tooltipTitle={'Day of the tournament'} />
 
                         <TournamentDetailsItem
                             icon={<GiTabletopPlayers style={{ width: '25px', height: '25px' }} />}
                             data={tournament?.totalParticipants}
-                            tooltipTitle={'Total Participants'} />
+                            itemTitle={'Total Participants'}
+                            tooltipTitle={'Total Players participated in the Tournament'} />
                     </TournamentDetails>
 
                     <SecondaryWindowHeader

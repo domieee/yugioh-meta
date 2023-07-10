@@ -18,6 +18,7 @@ export default function OuterWindowWrapper({ children }) {
                 minHeight='100%'
 
                 sx={{
+                    bgcolor: '#191919',
                     flexDirection: {
                         // small phone
                         xs: 'column', // phone
@@ -25,12 +26,7 @@ export default function OuterWindowWrapper({ children }) {
                         md: 'column', // small laptop
                         xl: 'column'
                     },
-                    padding: {
-                        xs: '0px', // phone
-                        sm: '25px', // tablets
-                        md: '25px', // small laptop
-                        xl: '25px'
-                    },
+
                     minHeight: '100vh'
                 }
                 }

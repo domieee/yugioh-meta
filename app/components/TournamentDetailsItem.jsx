@@ -17,7 +17,7 @@ import {
 
 import { IconContext } from "react-icons"
 
-export default function TournamentDetailsItem({ icon, iconType, data, tooltipTitle }) {
+export default function TournamentDetailsItem({ icon, iconType, data, itemTitle, tooltipTitle }) {
 
     const dataProvider = () => {
         if (data === null || data.length === 0 || data === 0) {
@@ -39,72 +39,79 @@ export default function TournamentDetailsItem({ icon, iconType, data, tooltipTit
     }
     console.log("🚀 ~ file: TournamentDetailsItem.jsx:20 ~ TournamentDetailsItem ~ data:", data)
     return (
-        <Grid
-            item
-            width='100%'
-            xs={12}
-            sm={6}
-            justifyContent='center'
-        >
-            <Paper
-                elevation={1}
+        <Tooltip title={tooltipTitle}>
+            <Grid
                 sx={{
-                    bgcolor: '#191919',
-                    width: '100%',
-                    paddingBlock: '10px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: '75px',
-                    flexDirection: 'row',
-                }}>
-                <Box sx={{
-                    width: '20px',
-                    marginInline: " 25px",
-                    heigth: '100%',
-                    display: 'flex',
-                    alignItems: 'start',
-                    boxShadow: '0'
-
-                }}>
-                    <Box sx={{
-                        height: '100%'
-                    }}>
-                        {iconType === 'winner' ?
-
-                            <IconContext.Provider value={{ color: "#FFD700" }}>
-
-                                {icon && icon}
-
-
-                            </IconContext.Provider> :
-
-
-                            icon
-
-                        }
-                    </Box>
-                </Box>
-                <Divider
-                    orientation="vertical"
-                    flexItem
+                    '&:hover': {
+                        cursor: 'help',
+                    }
+                }}
+                item
+                width='100%'
+                xs={12}
+                sm={6}
+                justifyContent='center'
+            >
+                <Paper
+                    elevation={1}
                     sx={{
-                        marginRight: '25px'
-                    }}
-                />
+                        bgcolor: '#191919',
+                        width: '100%',
+                        paddingBlock: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        height: '75px',
+                        flexDirection: 'row',
+                    }}>
+                    <Box sx={{
+                        width: '20px',
+                        marginInline: " 25px",
+                        heigth: '100%',
+                        display: 'flex',
+                        alignItems: 'start',
+                        boxShadow: '0'
 
-                <Stack>
-                    <Typography sx={{
+                    }}>
+                        <Box sx={{
+                            height: '100%'
+                        }}>
+                            {iconType === 'winner' ?
 
-                    }}
-                        variant='overline'>{tooltipTitle}</Typography>
+                                <IconContext.Provider value={{ color: "#FFD700" }}>
+
+                                    {icon && icon}
 
 
-                    {data === 'N/A' || data === undefined ?
-                        <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 100 }} />
-                        :
-                        dataProvider()}
-                </Stack>
-            </Paper>
-        </Grid>
+                                </IconContext.Provider> :
+
+
+                                icon
+
+                            }
+                        </Box>
+                    </Box>
+                    <Divider
+                        orientation="vertical"
+                        flexItem
+                        sx={{
+                            marginRight: '25px'
+                        }}
+                    />
+
+                    <Stack>
+                        <Typography sx={{
+
+                        }}
+                            variant='overline'>{itemTitle}</Typography>
+
+
+                        {data === 'N/A' || data === undefined ?
+                            <Skeleton animation='wave' variant="text" sx={{ fontSize: '1rem', width: 100 }} />
+                            :
+                            dataProvider()}
+                    </Stack>
+                </Paper>
+            </Grid>
+        </Tooltip>
     )
 }
