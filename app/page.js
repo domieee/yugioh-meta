@@ -30,7 +30,7 @@ export default function Home({ token }) {
         </article>
       </section>
       <section style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <article style={{ maxWidth: '800px' }}>
+        <article style={{ maxWidth: '800px', textAlign: 'right', marginRight: '50px' }}>
           <h2>Unlock the Power of Yu-Gi-Oh! Tournament Data</h2>
           <p>Accessing and analyzing Yugioh tournament data is challenging and time-consuming. Results are scattered across various platforms, making it difficult to gather comprehensive information and make informed decisions.</p>
           <p>Our centralized platform revolutionizes the way you engage with Yu-Gi-Oh! Tournaments.</p>
@@ -48,7 +48,7 @@ export default function Home({ token }) {
         <article style={{ maxWidth: '1000px', display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
 
           <article style={{ textAlign: 'center' }}>
-            <h3>Comprehensive Data</h3>
+            <h3 style={{ textAlign: 'cemter' }}>Comprehensive Data</h3>
             <p >We gather tournament results, decklists, and player performances from multiple sources, ensuring all the information you need is in one place.</p>
           </article>
           <article style={{ textAlign: 'center' }}>
@@ -59,8 +59,28 @@ export default function Home({ token }) {
             <h3>Advanced Analytics</h3>
             <p>Gain valuable insights and track trends, enabling you to stay ahead of the game and refine your strategies.</p>
           </article>
+        </article>
+      </section>
 
-
+      <section style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <h2>FAQ</h2>
+        <article style={{ textAlign: 'center' }}>
+          <button class="accordion">Section 1</button>
+          <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </article>
+        <article style={{ textAlign: 'center' }}>
+          <button class="accordion">Section 2</button>
+          <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </article>
+        <article style={{ textAlign: 'center' }}>
+          <button class="accordion">Section 3</button>
+          <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
         </article>
       </section>
     </>
