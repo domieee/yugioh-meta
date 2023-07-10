@@ -59,6 +59,9 @@ export default function Statistics() {
             <InnerWindowWrapper
                 currentRoute={'/statistics'}
                 pagetitle={'Statistics'}>
+                <SecondaryWindowHeader
+                    informationTitle={'These data reveal the frequency of deck victories in tournaments, indicating which decks have won the most tournaments.'}
+                    sectionTitle={'Overall Informations'} />
                 <Typography>{mostPlayedDeck?.name}</Typography>
                 <Typography>{mostPlayedDeck?.count}</Typography>
                 <Typography>{mostPlayedDeck?.percentage}</Typography>

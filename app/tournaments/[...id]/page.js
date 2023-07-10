@@ -182,7 +182,6 @@ export default function TournamentOverview({ params }) {
             <OuterWindowWrapper>
                 <InnerWindowWrapper
                     currentRoute={'/tournaments/id'}
-                    menuOptions={MenuButton()}
                     pagetitle={'Tournament Overview'}>
                     <SecondaryWindowHeader
                         pagetitle={'Tournaments'}

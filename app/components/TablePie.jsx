@@ -44,6 +44,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                 spacing={2}
 
                 sx={{
+                    marginBlock: '5px',
                     flexDirection: {
                         xs: 'column',
                         sm: 'column',
@@ -82,11 +83,10 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     className="canvasContainer">
 
                     <Paper
-                        elevation={0}
+                        elevation={1}
                         justifyContent="center"
                         sx={{
-                            boxShadow: '0',
-                            borderRadius: 2,
+                            bgcolor: '#191919',
                             padding: '10px',
                             height: '380px',
                             display: 'flex',
