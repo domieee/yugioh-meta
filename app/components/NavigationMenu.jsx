@@ -190,13 +190,17 @@ export default function NavigationMenu({ role, username }) {
 
     return (
         role === false ?
-            <IconButton
-                onClick={handleLoginClick}
-                aria-label="add an alarm" >
-                <LoginIcon />
-            </IconButton > :
+            <Tooltip
+                title='Login'
+                placement='bottom'>
+                <IconButton
+                    onClick={handleLoginClick}
+                    aria-label="Login" >
+                    <LoginIcon />
+                </IconButton >
+            </Tooltip> :
             <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Open menu">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                         <Avatar sx={{}} alt={`${username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
                     </IconButton>
