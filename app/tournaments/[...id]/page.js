@@ -158,6 +158,7 @@ export default function TournamentOverview({ params }) {
                 });
                 const json = await response.json();
                 setTournamentTree(json);
+                console.log("🚀 ~ file: page.js:161 ~ fetchTournamentTree ~ json:", json)
                 updateProgress(100)
                 setTimeout(() => {
                     updateProgress(0)

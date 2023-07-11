@@ -70,16 +70,16 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
     };
 
     const handleRedirect = () => {
-        const newWindow = window.open(data[0].deckLink, '_blank');
+        const newWindow = window.open(data.deckLink, '_blank');
         if (newWindow) {
             newWindow.focus();
         }
         setOpen(false);
     }
 
-    let place = data[0].place;
+    let place = data.place;
 
-    let link = data[0].deckLink;
+    let link = data.deckLink;
     let [linkAvailable, setLinkAvailable] = useState()
 
     useEffect(() => {
@@ -98,9 +98,9 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                 xs={11}>
                 <Tooltip
                     placement='top'
-                    title={data[0]?.deckLink.length === 0 ? 'No deck link provided' : data[0].deckLink}>
+                    title={data?.deckLink.length === 0 ? 'No deck link provided' : data.deckLink}>
                     <Card
-                        elevation={data[0]?.deckLink.length === 0 ? 0 : 1}
+                        elevation={data?.deckLink.length === 0 ? 0 : 1}
                         sx={{
                             marginBlock: '5px',
                             bgcolor: '#191919',
@@ -109,7 +109,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                             position: 'relative',
                             zIndex: 2,
                             '&:hover': {
-                                cursor: data[0]?.deckLink.length === 0 ? 'not-allowed' : 'pointer',
+                                cursor: data?.deckLink.length === 0 ? 'not-allowed' : 'pointer',
                             }
                         }} >
                         <CardActionArea
@@ -119,7 +119,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                 p: 0
                             }}
                             onClick={handleClickOpen}
-                            disabled={data[0]?.deckLink.length === 0 ? true : false}>
+                            disabled={data?.deckLink.length === 0 ? true : false}>
                             <ListItem
                                 sx={{
                                     display: 'flex',
@@ -157,7 +157,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                 <GiPerson style={{ width: '20px' }} />
 
 
-                                                {data[0].name === '' ?
+                                                {data.name === '' ?
                                                     <Typography
                                                         sx={{
                                                             fontStyle: 'italic',
@@ -174,13 +174,13 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                     </Typography> :
                                                     <Typography
                                                         variant='body2'>
-                                                        {data[0].name}
+                                                        {data.name}
                                                     </Typography>
                                                 }
                                             </Stack>
                                         </Box>
 
-                                        {data[0].deckLink === '' ?
+                                        {data.deckLink === '' ?
                                             <IconContext.Provider value={{ color: "#2f2f2f" }}>
                                                 <HiExternalLink style={{ width: '20px' }} />
                                             </IconContext.Provider> :
@@ -201,7 +201,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                         <GiStack style={{ width: '20px' }} />
 
 
-                                        {data[0].deck === '' ?
+                                        {data.deck === '' ?
                                             <Typography
                                                 sx={{
                                                     fontStyle: 'italic',
@@ -218,7 +218,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                             </Typography> :
                                             <Typography
                                                 variant='body2'>
-                                                {data[0].deck}
+                                                {data.deck}
                                             </Typography>
                                         }
 
@@ -240,7 +240,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                 alignItems: "center"
                                             }}>
                                             <GiStabbedNote style={{ width: '20px' }} />
-                                            {data[0].deckNote === '' ?
+                                            {data.deckNote === '' ?
                                                 <Typography
                                                     marginLeft={0.75}
                                                     sx={{
@@ -267,7 +267,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                         flex: '1'
                                                     }}
                                                     variant='body2'>
-                                                    {data[0].deckNote}
+                                                    {data.deckNote}
                                                 </Typography>
                                             }
                                         </Box>
@@ -302,7 +302,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                 color: '#fff'
                             }}
                             id="alert-dialog-description">
-                            {data[0].deckLink}
+                            {data.deckLink}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

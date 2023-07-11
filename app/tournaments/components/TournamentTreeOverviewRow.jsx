@@ -93,7 +93,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                     }}
                 >
                     {data?.map((item, index) => (
-                        <TournamentTreeOverviewItem key={index} data={data} borderColor={borderColor} />
+                        <TournamentTreeOverviewItem key={index} data={item} borderColor={borderColor} />
                     ))}
                 </Grid>
             ) : null}
