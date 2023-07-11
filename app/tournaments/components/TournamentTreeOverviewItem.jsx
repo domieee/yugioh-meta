@@ -26,12 +26,12 @@ import {
     Card,
     CardActionArea,
     CardContent,
+    Grid,
     Stack,
     Typography,
     Modal,
     TextField,
     Button,
-    Grid,
     List,
     ListItem,
     ListItemText,
@@ -92,153 +92,117 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
 
     return (
         <>
-            <Tooltip
-                placement='top'
-                title={data[0]?.deckLink.length === 0 ? 'No deck link provided' : data[0].deckLink}>
-                <Card
-                    elevation={data[0]?.deckLink.length === 0 ? 0 : 1}
-                    sx={{
-                        marginBlock: '5px',
-                        bgcolor: '#191919',
-                        borderLeft: `1px solid ${borderColor}`,
-                        marginTop: '16px',
-                        position: 'relative',
-                        zIndex: 2,
-                        '&:hover': {
-                            cursor: data[0]?.deckLink.length === 0 ? 'not-allowed' : 'pointer',
-                        }
-                    }} >
-                    <CardActionArea
-                        sx={{
-                            width: '100%',
-                            m: 0,
-                            p: 0
-                        }}
-                        onClick={handleClickOpen}
-                        disabled={data[0]?.deckLink.length === 0 ? true : false}>
-                        <ListItem
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                width: '100%'
-                            }}>
-                            <Stack
-                                sx={{
-                                    width: '100%',
-                                }}
-                                spacing={0.75}>
 
+            <Grid
+                item
+                xs={11}>
+                <Tooltip
+                    placement='top'
+                    title={data[0]?.deckLink.length === 0 ? 'No deck link provided' : data[0].deckLink}>
+                    <Card
+                        elevation={data[0]?.deckLink.length === 0 ? 0 : 1}
+                        sx={{
+                            marginBlock: '5px',
+                            bgcolor: '#191919',
+                            borderLeft: `1px solid ${borderColor}`,
+                            marginTop: '16px',
+                            position: 'relative',
+                            zIndex: 2,
+                            '&:hover': {
+                                cursor: data[0]?.deckLink.length === 0 ? 'not-allowed' : 'pointer',
+                            }
+                        }} >
+                        <CardActionArea
+                            sx={{
+                                width: '100%',
+                                m: 0,
+                                p: 0
+                            }}
+                            onClick={handleClickOpen}
+                            disabled={data[0]?.deckLink.length === 0 ? true : false}>
+                            <ListItem
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    width: '100%'
+                                }}>
                                 <Stack
                                     sx={{
                                         width: '100%',
                                     }}
-                                    spacing={0.75}
-                                    alignItems='center'
-                                    justifyContent='space-between'
-                                    direction='row'>
-                                    <Box
+                                    spacing={0.75}>
+
+                                    <Stack
                                         sx={{
                                             width: '100%',
-                                            display: "flex",
-                                            alignItems: "center"
-                                        }}>
-
-                                        <Stack
+                                        }}
+                                        spacing={0.75}
+                                        alignItems='center'
+                                        justifyContent='space-between'
+                                        direction='row'>
+                                        <Box
                                             sx={{
                                                 width: '100%',
-                                            }}
-                                            spacing={0.75}
-                                            alignItems='center'
-                                            direction='row'>
-                                            <GiPerson style={{ width: '20px' }} />
+                                                display: "flex",
+                                                alignItems: "center"
+                                            }}>
+
+                                            <Stack
+                                                sx={{
+                                                    width: '100%',
+                                                }}
+                                                spacing={0.75}
+                                                alignItems='center'
+                                                direction='row'>
+                                                <GiPerson style={{ width: '20px' }} />
 
 
-                                            {data[0].name === '' ?
-                                                <Typography
-                                                    sx={{
-                                                        fontStyle: 'italic',
-                                                        color: 'rgba(255, 255, 255, 0.6)',
-                                                        maxWidth: "100%",
-                                                        overflow: "hidden",
-                                                        textOverflow: "ellipsis",
-                                                        whiteSpace: "nowrap",
-                                                        flex: '1'
-                                                    }}
-                                                    variant='body2'
-                                                >
-                                                    No player name provided
-                                                </Typography> :
-                                                <Typography
-                                                    variant='body2'>
-                                                    {data[0].name}
-                                                </Typography>
-                                            }
-                                        </Stack>
-                                    </Box>
+                                                {data[0].name === '' ?
+                                                    <Typography
+                                                        sx={{
+                                                            fontStyle: 'italic',
+                                                            color: 'rgba(255, 255, 255, 0.6)',
+                                                            maxWidth: "100%",
+                                                            overflow: "hidden",
+                                                            textOverflow: "ellipsis",
+                                                            whiteSpace: "nowrap",
+                                                            flex: '1'
+                                                        }}
+                                                        variant='body2'
+                                                    >
+                                                        No player name provided
+                                                    </Typography> :
+                                                    <Typography
+                                                        variant='body2'>
+                                                        {data[0].name}
+                                                    </Typography>
+                                                }
+                                            </Stack>
+                                        </Box>
 
-                                    {data[0].deckLink === '' ?
-                                        <IconContext.Provider value={{ color: "#2f2f2f" }}>
-                                            <HiExternalLink style={{ width: '20px' }} />
-                                        </IconContext.Provider> :
-                                        <IconContext.Provider value={{ color: "#ffffff" }}>
-                                            <HiExternalLink style={{ width: '20px' }} />
-                                        </IconContext.Provider>
-                                    }
+                                        {data[0].deckLink === '' ?
+                                            <IconContext.Provider value={{ color: "#2f2f2f" }}>
+                                                <HiExternalLink style={{ width: '20px' }} />
+                                            </IconContext.Provider> :
+                                            <IconContext.Provider value={{ color: "#ffffff" }}>
+                                                <HiExternalLink style={{ width: '20px' }} />
+                                            </IconContext.Provider>
+                                        }
 
-                                </Stack>
+                                    </Stack>
 
-                                <Stack
-                                    sx={{
-                                        width: '100%',
-                                    }}
-                                    spacing={0.75}
-                                    alignItems='center'
-                                    direction='row'>
-                                    <GiStack style={{ width: '20px' }} />
-
-
-                                    {data[0].deck === '' ?
-                                        <Typography
-                                            sx={{
-                                                fontStyle: 'italic',
-                                                color: 'rgba(255, 255, 255, 0.6)',
-                                                maxWidth: "100%",
-                                                overflow: "hidden",
-                                                textOverflow: "ellipsis",
-                                                whiteSpace: "nowrap",
-                                                flex: '1'
-                                            }}
-                                            variant='body2'
-                                        >
-                                            No deck information provided
-                                        </Typography> :
-                                        <Typography
-                                            variant='body2'>
-                                            {data[0].deck}
-                                        </Typography>
-                                    }
-
-
-                                </Stack>
-
-
-                                <Stack
-                                    sx={{
-                                        width: '100%',
-                                    }}
-                                    justifyContent='space-between'
-                                    alignItems='center'
-                                    direction='row'>
-                                    <Box
-                                        width='100%'
+                                    <Stack
                                         sx={{
-                                            display: "flex",
-                                            alignItems: "center"
-                                        }}>
-                                        <GiStabbedNote style={{ width: '20px' }} />
-                                        {data[0].deckNote === '' ?
+                                            width: '100%',
+                                        }}
+                                        spacing={0.75}
+                                        alignItems='center'
+                                        direction='row'>
+                                        <GiStack style={{ width: '20px' }} />
+
+
+                                        {data[0].deck === '' ?
                                             <Typography
-                                                marginLeft={0.75}
                                                 sx={{
                                                     fontStyle: 'italic',
                                                     color: 'rgba(255, 255, 255, 0.6)',
@@ -250,29 +214,71 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                                                 }}
                                                 variant='body2'
                                             >
-                                                No deck note provided
+                                                No deck information provided
                                             </Typography> :
                                             <Typography
-                                                marginLeft={0.75}
-                                                sx={{
-                                                    color: 'rgba(255, 255, 255, 1)',
-                                                    maxWidth: "100%",
-                                                    overflow: "hidden",
-                                                    textOverflow: "ellipsis",
-                                                    whiteSpace: "nowrap",
-                                                    flex: '1'
-                                                }}
                                                 variant='body2'>
-                                                {data[0].deckNote}
+                                                {data[0].deck}
                                             </Typography>
                                         }
-                                    </Box>
+
+
+                                    </Stack>
+
+
+                                    <Stack
+                                        sx={{
+                                            width: '100%',
+                                        }}
+                                        justifyContent='space-between'
+                                        alignItems='center'
+                                        direction='row'>
+                                        <Box
+                                            width='100%'
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center"
+                                            }}>
+                                            <GiStabbedNote style={{ width: '20px' }} />
+                                            {data[0].deckNote === '' ?
+                                                <Typography
+                                                    marginLeft={0.75}
+                                                    sx={{
+                                                        fontStyle: 'italic',
+                                                        color: 'rgba(255, 255, 255, 0.6)',
+                                                        maxWidth: "100%",
+                                                        overflow: "hidden",
+                                                        textOverflow: "ellipsis",
+                                                        whiteSpace: "nowrap",
+                                                        flex: '1'
+                                                    }}
+                                                    variant='body2'
+                                                >
+                                                    No deck note provided
+                                                </Typography> :
+                                                <Typography
+                                                    marginLeft={0.75}
+                                                    sx={{
+                                                        color: 'rgba(255, 255, 255, 1)',
+                                                        maxWidth: "100%",
+                                                        overflow: "hidden",
+                                                        textOverflow: "ellipsis",
+                                                        whiteSpace: "nowrap",
+                                                        flex: '1'
+                                                    }}
+                                                    variant='body2'>
+                                                    {data[0].deckNote}
+                                                </Typography>
+                                            }
+                                        </Box>
+                                    </Stack>
                                 </Stack>
-                            </Stack>
-                        </ListItem>
-                    </CardActionArea>
-                </Card >
-            </Tooltip >
+                            </ListItem>
+                        </CardActionArea>
+                    </Card>
+                </Tooltip >
+            </Grid >
+
             <Dialog
                 open={open}
                 onClose={handleClose}

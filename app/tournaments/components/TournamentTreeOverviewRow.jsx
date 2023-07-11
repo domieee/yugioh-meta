@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { List, Paper, Box, IconButton, Typography, Chip } from '@mui/material'
+import { List, Paper, Box, IconButton, Typography, Chip, Grid } from '@mui/material'
 import TournamentTreeOverviewItem from './TournamentTreeOverviewItem'
 import { Divider } from '@mui/material'
 import { TfiAngleRight } from "react-icons/tfi";
@@ -62,6 +62,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                         }} width='100%' light orientation="horizontal" textAlign='left'>
                             <Chip
                                 sx={{
+                                    marginBlock: 1,
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     width: '100px',
@@ -80,8 +81,12 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                 </Box>
             </Box>
             {item.open ? (
-                <Box spacing={2}
+                <Grid
+                    container
+                    spacing={2}
                     sx={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         transition: 'height 0.2s ease-in-out',
                         height: item.open ? 'auto' : '0', // Set initial height to 0 when closed
                         overflow: 'hidden', // Hide content when closed
@@ -90,7 +95,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                     {data?.map((item, index) => (
                         <TournamentTreeOverviewItem key={index} data={data} borderColor={borderColor} />
                     ))}
-                </Box>
+                </Grid>
             ) : null}
         </List >
 
