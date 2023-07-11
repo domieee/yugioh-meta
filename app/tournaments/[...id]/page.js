@@ -190,7 +190,7 @@ export default function TournamentOverview({ params }) {
                         <TournamentDetailsItem
                             iconType={'winner'}
                             color={'#f0f0f0'}
-                            bgcolor={'#191919'}
+                            bgColor={'#191919'}
                             iconColor={'#ffd700'}
                             icon={<GiTrophy style={{ width: '25px', height: '25px' }} />}
                             data={tournamentWinner}

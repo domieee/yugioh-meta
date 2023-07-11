@@ -91,7 +91,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
     return (
         <>
             <Card
-                elevation={1}
+                elevation={data[0]?.deckLink.length === 0 ? 0 : 1}
                 sx={{
                     bgcolor: '#191919',
                     borderLeft: `1px solid ${borderColor}`,
@@ -99,7 +99,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                     position: 'relative',
                     zIndex: 2, // Increase the z-index to make it overlay other content
                     '&:hover': {
-                        backgroundColor: data[0].deckLink === '' ? null : '#0f0f0f',
+                        backgroundColor: data[0].deckLink.length === 0 ? null : '#0f0f0f',
                         cursor: data[0].deckLink === '' ? 'default' : 'pointer',
                     },
                 }}

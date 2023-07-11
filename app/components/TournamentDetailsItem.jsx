@@ -17,7 +17,7 @@ import {
 
 import { IconContext } from "react-icons"
 
-export default function TournamentDetailsItem({ icon, iconType, data, itemTitle, tooltipTitle, color, bgColor }) {
+export default function TournamentDetailsItem({ icon, iconType, index, data, itemTitle, tooltipTitle, color, bgColor }) {
 
     const dataProvider = () => {
         if (data === null || data.length === 0 || data === 0) {
@@ -25,9 +25,9 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                 <Typography
                     sx={{
                         fontStyle: 'italic',
-                        color: 'rgba(0, 0, 0, 0.6)',
+                        color: 'rgba(255,255,255, 0.6)',
                     }}
-                    variant='body2'>
+                    variant='body1'>
                     No information provided
                 </Typography>
             )
@@ -78,9 +78,13 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                         <Box sx={{
                             height: '100%'
                         }}>
-                            <IconContext.Provider value={{ color: color }}>
-                                {icon && icon}
-                            </IconContext.Provider>
+                            {index === 1 ?
+                                <IconContext.Provider value={{ color: iconColor }}>
+                                    {icon && icon}
+                                </IconContext.Provider> :
+                                icon}
+
+
                         </Box>
                     </Box>
                     <Divider color={'#000'}
@@ -104,6 +108,6 @@ export default function TournamentDetailsItem({ icon, iconType, data, itemTitle,
                     </Stack>
                 </Paper>
             </Grid>
-        </Tooltip>
+        </Tooltip >
     )
 }

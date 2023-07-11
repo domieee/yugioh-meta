@@ -102,7 +102,7 @@ export default function TableMUI({ data, table }) {
                                         sx={{ maxHeight: '30px', '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell sx={{ height: '30px' }} scope="row" >
-                                            <Typography variant='body2'>
+                                            <Typography variant='body1'>
                                                 {value.length > 0 ?
                                                     value :
                                                     <Typography
@@ -110,7 +110,7 @@ export default function TableMUI({ data, table }) {
                                                             fontStyle: 'italic',
                                                             color: 'rgba(255, 255, 255, 0.6)',
                                                         }}
-                                                        variant='body2'>
+                                                        variant='body1'>
                                                         Unknown decks
                                                     </Typography>
                                                 }
@@ -122,12 +122,12 @@ export default function TableMUI({ data, table }) {
                                                 justifyContent: 'end'
                                             }}
                                             align="right">
-                                            <Typography variant='body2'>
+                                            <Typography variant='body1'>
                                                 {totals[index]}
                                             </Typography>
                                         </TableCell>
                                         <TableCell sx={{ height: '30px' }} align="right">
-                                            <Typography variant='body2'>
+                                            <Typography variant='body1'>
                                                 {percentages[index]}
                                             </Typography>
                                         </TableCell>
