@@ -99,7 +99,7 @@ export default function TableMUI({ data, table }) {
                                 values.map((value, index) => (
                                     <TableRow
                                         key={index}
-                                        sx={{ maxHeight: '30px', '&:last-child td, &:last-child th': { border: 0 } }}
+                                        sx={{ maxHeight: '30px' }}
                                     >
                                         <TableCell sx={{ height: '30px' }} scope="row" >
                                             <Typography variant='body1'>

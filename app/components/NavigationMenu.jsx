@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
+import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
@@ -133,12 +134,6 @@ export default function NavigationMenu({ role, username }) {
             }
         },
         {
-            title: 'Admin Panel', clickHandler: () => {
-                // ...
-                handleCloseUserMenu()
-            }
-        },
-        {
             title: 'Sign Out', clickHandler: async () => {
                 Cookies.remove('token');
                 updateSuccessVisibility(true)
@@ -205,6 +200,7 @@ export default function NavigationMenu({ role, username }) {
                         <Avatar sx={{}} alt={`${username}`} src="/static/images/avatar/2.jpg" /> {/*  TODO: Avatar needs a dynamic link */}
                     </IconButton>
                 </Tooltip>
+
                 <Menu
                     sx={{ mt: '45px' }}
                     id="menu-appbar"
@@ -221,10 +217,21 @@ export default function NavigationMenu({ role, username }) {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    {checkForUserRole()}
+                    <Paper
+                        elevation={1}
+                        sx={{
+                            bgColor: '#191919'
+                        }}>
+                        <MenuItem
+                            sx={{ textAlign: 'end' }}
+                            disabled>
+                            <Typography variant='caption'>{username}</Typography>
+                        </MenuItem>
 
+                        {checkForUserRole()}
+                    </Paper>
                 </Menu>
-            </Box>
+            </Box >
     )
 
 

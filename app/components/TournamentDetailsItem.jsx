@@ -42,7 +42,9 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
     }
     console.log("🚀 ~ file: TournamentDetailsItem.jsx:20 ~ TournamentDetailsItem ~ data:", data)
     return (
-        <Tooltip title={tooltipTitle}>
+        <Tooltip
+            placement='top'
+            title={tooltipTitle}>
             <Grid
                 sx={{
                     '&:hover': {
@@ -87,7 +89,7 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
 
                         </Box>
                     </Box>
-                    <Divider color={'#000'}
+                    <Divider
                         orientation="vertical"
                         flexItem
                         sx={{

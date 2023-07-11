@@ -27,7 +27,7 @@ export default function Footer() {
                             flexDirection: 'column',
                             maxWidth: '250px'
                         }}>
-                        <p>Footer</p>
+                        <p>Pricacy</p>
                         <a href="https://www.buymeacoffee.com/domiedev">Buy me a coffee!</a>
                     </Box>
                     <Box
@@ -65,6 +65,16 @@ export default function Footer() {
 
                     </Box>
 
+                </Box>
+                <Box
+                    sx={{
+                        marginBottom: '2px',
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}>
+                    <Typography
+                        variant="caption">© Copyright by Peanut Creative Labs, 2023</Typography>
                 </Box>
             </Box>
 

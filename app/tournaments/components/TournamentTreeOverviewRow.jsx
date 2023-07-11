@@ -29,7 +29,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
             alignItems='center'
             justifyContent='center'
             direction='row'
-            spacing={2}>
+            spacing={20}>
 
             <Box
                 onClick={() => toggleOpen()}
@@ -80,7 +80,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
                 </Box>
             </Box>
             {item.open ? (
-                <Box
+                <Box spacing={2}
                     sx={{
                         transition: 'height 0.2s ease-in-out',
                         height: item.open ? 'auto' : '0', // Set initial height to 0 when closed

@@ -75,11 +75,6 @@ export default function TournamentTreeItem({ item, data, borderColor, index, las
                     borderLeft: `1px solid ${borderColor}`,
                     bgColor: '#191919',
                     width: '100&',
-                    '&:hover': {
-                        backgroundColor: '#272727',
-                        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
-
-                    },
                     ...(index + 1 !== lastItem && { marginBottom: '20px' }),
                 }}>
                 <CardActionArea onClick={() => handleOpen()}>
