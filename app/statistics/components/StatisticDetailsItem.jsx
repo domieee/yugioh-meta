@@ -59,7 +59,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                                 sx={{
                                     color: 'rgba(255,255,255,0.6)'
                                 }} variant='overline'>Percentage</Typography>
-                            {data === undefined ? <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> : <Typography>{data.percentage}</Typography>}
+                            {data === undefined ? <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> : <Typography>{data.percentage}%</Typography>}
                         </Box>
                     </Box>
                 </Paper>
