@@ -19,18 +19,10 @@ export default function Statistics() {
     const [pieData, setPieData] = useState([]);
     const [pieOverallData, setPieOverallData] = useState([]);
     const [mostPlayedDeck, setMostPlayedDeck] = useState(undefined);
+    const [lessPlayedDeck, setLessPlayedDeck] = useState(undefined);
 
     useEffect(() => {
-        const fetchMostPlayedDeck = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}most-played-deck`
-            );
-            const json = await response.json();
-            console.log("🚀 ~ file: page.jsx:31 ~ fetchPieOverallData ~ json:", json)
-            setMostPlayedDeck(json);
-            updateProgress(66)
-            setTimeout(() => updateProgress(0), 500)
-        };
+
         const fetchPieData = async () => {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}winner-breakdown`
@@ -40,19 +32,31 @@ export default function Statistics() {
             setPieData(json);
             updateProgress(80)
         };
+
         const fetchPieOverallData = async () => {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}overall-breakdown`
             );
             const json = await response.json();
-            console.log("🚀 ~ file: page.jsx:31 ~ fetchPieOverallData ~ json:", json)
+            console.log("🚀 ~ file: page.jsx:41 ~ fetchPieOverallData ~ json:", json)
+
+
             setPieOverallData(json);
+
+            if (json[0][0].length === 0) {
+                setMostPlayedDeck({ name: json[0][1], count: json[1][1], percentage: json[2][1] })
+            }
+
+            let length = json[0].length - 1;
+
+            setLessPlayedDeck({ name: json[0][length], count: json[1][length], percentage: json[2][length] })
+
             updateProgress(100)
             setTimeout(() => updateProgress(0), 500)
         };
 
         const data = async () => {
-            await fetchMostPlayedDeck();
+
             await fetchPieData();
             await fetchPieOverallData()
         }
@@ -74,7 +78,7 @@ export default function Statistics() {
                     <StatisticDetailsItem
                         itemTitle={'Less Played Deck'}
                         icon={<TrendingDownRoundedIcon />}
-                        data={mostPlayedDeck} />
+                        data={lessPlayedDeck} />
                     <StatisticDetailsItem
                         itemTitle={'Most Played Deck'}
                         icon={<TrendingDownRoundedIcon />}
