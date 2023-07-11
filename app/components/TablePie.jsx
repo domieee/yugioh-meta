@@ -46,11 +46,14 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     marginBlock: '5px',
                     flexDirection: {
                         xs: 'column',
-                        sm: 'column',
+                        sm: 'row',
                         md: 'row',
 
                     },
                     justifyContent: {
+                        xs: 'center'
+                    },
+                    alignItems: {
                         xs: 'center'
                     }
                 }}>
@@ -69,13 +72,8 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             md: '0'
                         }
                     }}
-                    xs={{
-                        xs: 6,
-                        sm: 6,
-                        md: 12,
-                        lg: 12, // desktop
-
-                    }}
+                    xs={11}
+                    sm={6}
                     borderRadius={2}
                     height='380px'
                     justifyContent="center"
@@ -110,13 +108,10 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                             lg: '50%',
                         },
                     }}
-                    xs={{
-                        xs: 6,
-                        sm: 6,
-                        md: 12,
-                        lg: 12, // desktop
+                    xs={11}
+                    sm={6}
 
-                    }}
+
                     className="tableContainer">
                     <TableMUI
                         table='winner-breakdown'
