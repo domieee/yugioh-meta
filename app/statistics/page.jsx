@@ -12,8 +12,8 @@ import { Typography } from "@mui/material";
 import StatisticDetails from "./components/StatisticDetails";
 import StatisticDetailsItem from "./components/StatisticDetailsItem";
 
-import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
-import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
+import NorthWestRoundedIcon from '@mui/icons-material/NorthWestRounded';
+import SouthEastRoundedIcon from '@mui/icons-material/SouthEastRounded';
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
@@ -83,17 +83,17 @@ export default function Statistics() {
 
                     <StatisticDetailsItem
                         itemTitle={'Most Played Deck(s)'}
-                        icon={<TrendingUpRoundedIcon />}
+                        icon={<NorthWestRoundedIcon />}
                         data={mostPlayedDeck} />
 
                     <StatisticDetailsItem
                         itemTitle={'Less Played Deck(s)'}
-                        icon={<TrendingDownRoundedIcon />}
+                        icon={<SouthEastRoundedIcon />}
                         data={lessPlayedDecks} />
 
                     <StatisticDetailsItem
                         itemTitle={'Most Played Deck'}
-                        icon={<TrendingDownRoundedIcon />}
+                        icon={<SouthEastRoundedIcon />}
                         data={mostPlayedDeck} />
 
                 </StatisticDetails>

@@ -202,6 +202,7 @@ export default function NavigationMenu({ role, username }) {
                 </Tooltip>
 
                 <Menu
+                    disableGutters
                     sx={{ mt: '45px' }}
                     id="menu-appbar"
                     anchorEl={anchorElUser}
@@ -224,7 +225,7 @@ export default function NavigationMenu({ role, username }) {
                         }}>
                         <MenuItem
                             sx={{ textAlign: 'end' }}
-                            disabled>
+                            focusVisible={false}>
                             <Typography variant='caption'>{username}</Typography>
                         </MenuItem>
 

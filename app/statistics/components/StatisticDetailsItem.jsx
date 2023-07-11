@@ -1,8 +1,61 @@
-import { Grid, Paper, Box, Typography, Divider, Skeleton } from '@mui/material'
+import { Grid, Paper, Box, Typography, Divider, Skeleton, Stack } from '@mui/material'
 import React from 'react'
+import Fade from '@mui/material/Fade';
+import Popper from '@mui/material/Popper';
+
+import { Tooltip, IconButton } from '@mui/material'
+
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 export default function StatisticDetailsItem({ data, icon, itemTitle }) {
     console.log("🚀 ~ file: StatisticDetailsItem.jsx:5 ~ StatisticDetailsItem ~ data:", data)
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [placement, setPlacement] = React.useState();
+
+    const handleClick = (event) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
+
+    const open = Boolean(anchorEl);
+
+    const id = open ? 'simple-popper' : undefined;
+
+    const dataProvider = () => {
+        if (data.indicesOfLowestResult.length === 1) {
+            return (
+                <Typography>{data.value}</Typography>
+            )
+        } else {
+            return (
+                <Box sx={{
+
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
+                    <Typography>
+                        {`${data.value} and ${data?.indicesOfLowestResult.length - 1} more`}
+                    </Typography>
+                    <Tooltip title='Show other items'>
+                        <IconButton
+                            sx={{
+                                width: '20px',
+                                height: '20px'
+                            }}
+                            aria-describedby={id}
+                            onClick={handleClick}>
+                            <ArrowDropDownRoundedIcon sx={{
+                                rotate: 'deg(90)'
+                            }} />
+                        </IconButton>
+                    </Tooltip>
+                </Box>
+            )
+        }
+    }
+
     return (
         <>
             <Grid
@@ -52,11 +105,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                                 }} variant='overline'>{itemTitle}</Typography>
 
                             {data === undefined ?
-                                <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> :
-                                <Typography>{data?.indicesOfLowestResult.length > 0 ?
-                                    `${data.value} and ${data?.indicesOfLowestResult.length} other decks` :
-                                    data.value}
-                                </Typography>
+                                <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> : dataProvider()
                             }
 
                             <Typography
@@ -73,6 +122,27 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                     </Box>
                 </Paper>
             </Grid>
+            <Popper onClick={handleClick} sx={{ zIndex: 2000 }} id={id} open={open} anchorEl={anchorEl} placement={placement} transition>
+                {({ TransitionProps }) => (
+                    <Fade {...TransitionProps} timeout={350}>
+                        <Paper elevation={1}>
+                            <Stack>
+
+                                {data?.indicesOfLowestResult.map((item, index) => (
+                                    <Box
+                                        sx={{
+                                            padding: '5px 12px',
+                                        }}
+                                        key={index}>
+                                        <Typography>{item}</Typography>
+                                    </Box>
+                                ))}
+
+                            </Stack>
+                        </Paper>
+                    </Fade>
+                )}
+            </Popper>
         </>
     )
 }
