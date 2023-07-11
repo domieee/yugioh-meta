@@ -83,7 +83,7 @@ export default function TournamentTreeOverviewRow({ data, place, listOpen, itemK
             {item.open ? (
                 <Grid
                     container
-                    spacing={2}
+                    spacing={1}
                     sx={{
                         alignItems: 'center',
                         justifyContent: 'center',
