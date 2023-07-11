@@ -71,23 +71,19 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
                     <Box sx={{
                         width: '20px',
                         marginInline: " 25px",
-                        heigth: '100%',
+                        height: '100%',
                         display: 'flex',
-                        alignItems: 'start',
+                        alignItems: 'center',
                         boxShadow: '0'
 
                     }}>
-                        <Box sx={{
-                            height: '100%'
-                        }}>
-                            {index === 1 ?
-                                <IconContext.Provider value={{ color: iconColor }}>
-                                    {icon && icon}
-                                </IconContext.Provider> :
-                                icon}
 
+                        {index === 1 ?
+                            <IconContext.Provider value={{ color: iconColor }}>
+                                {icon && icon}
+                            </IconContext.Provider> :
+                            icon}
 
-                        </Box>
                     </Box>
                     <Divider
                         orientation="vertical"

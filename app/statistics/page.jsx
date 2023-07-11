@@ -9,11 +9,16 @@ import DialogExplanation from "./components/DialogExplanation";
 import { updateProgress } from '@/app/interfaceStore';
 import SecondaryWindowHeader from "../components/SecondaryWindowHeader";
 import { Typography } from "@mui/material";
+import StatisticDetails from "./components/StatisticDetails";
+import StatisticDetailsItem from "./components/StatisticDetailsItem";
+
+import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
+import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
 
 export default function Statistics() {
     const [pieData, setPieData] = useState([]);
     const [pieOverallData, setPieOverallData] = useState([]);
-    const [mostPlayedDeck, setMostPlayedDeck] = useState({});
+    const [mostPlayedDeck, setMostPlayedDeck] = useState(undefined);
 
     useEffect(() => {
         const fetchMostPlayedDeck = async () => {
@@ -61,9 +66,21 @@ export default function Statistics() {
                 pagetitle={'Statistics'}>
                 <SecondaryWindowHeader
                     sectionTitle={'Overall Informations'} />
-                <Typography>{mostPlayedDeck?.name}</Typography>
-                <Typography>{mostPlayedDeck?.count}</Typography>
-                <Typography>{mostPlayedDeck?.percentage}</Typography>
+                <StatisticDetails>
+                    <StatisticDetailsItem
+                        itemTitle={'Most Played Deck'}
+                        icon={<TrendingUpRoundedIcon />}
+                        data={mostPlayedDeck} />
+                    <StatisticDetailsItem
+                        itemTitle={'Less Played Deck'}
+                        icon={<TrendingDownRoundedIcon />}
+                        data={mostPlayedDeck} />
+                    <StatisticDetailsItem
+                        itemTitle={'Most Played Deck'}
+                        icon={<TrendingDownRoundedIcon />}
+                        data={mostPlayedDeck} />
+                </StatisticDetails>
+
                 <SecondaryWindowHeader
                     informationTitle={'These data reveal the frequency of deck victories in tournaments, indicating which decks have won the most tournaments.'}
                     sectionTitle={'Winner Breakdown'} />

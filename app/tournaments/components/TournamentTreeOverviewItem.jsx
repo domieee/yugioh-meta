@@ -98,6 +98,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                 <Card
                     elevation={data[0]?.deckLink.length === 0 ? 0 : 1}
                     sx={{
+                        marginBlock: '5px',
                         bgcolor: '#191919',
                         borderLeft: `1px solid ${borderColor}`,
                         marginTop: '16px',
@@ -299,8 +300,13 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Decline</Button>
                         <Button
+                            size='small'
+                            onClick={handleClose}>
+                            Decline
+                        </Button>
+                        <Button
+                            size='small'
                             variant='outlined'
                             onClick={handleRedirect}
                             autoFocus>
