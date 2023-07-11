@@ -6,19 +6,21 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
     return (
         <>
             <Grid
+                item
+                xs={10}
+                sm={6}
+                md={5}
+                lg={4}
                 sx={{
                     width: '100%'
-                }}
+                }}>
 
-                xs={12}
-                sm={6}
-                md={4}
-                item>
                 <Paper
                     elevation={1}
                     sx={{
                         bgcolor: '#191919'
                     }}>
+
                     <Box
                         sx={{
                             display: 'flex',
@@ -48,7 +50,14 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                                 sx={{
                                     color: 'rgba(255,255,255,0.6)'
                                 }} variant='overline'>{itemTitle}</Typography>
-                            {data === undefined ? <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> : <Typography>{data.name}</Typography>}
+
+                            {data === undefined ?
+                                <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> :
+                                <Typography>{data?.indicesOfLowestResult.length > 0 ?
+                                    `${data.value} and ${data?.indicesOfLowestResult.length} other decks` :
+                                    data.value}
+                                </Typography>
+                            }
 
                             <Typography
                                 sx={{

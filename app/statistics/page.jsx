@@ -19,9 +19,20 @@ export default function Statistics() {
     const [pieData, setPieData] = useState([]);
     const [pieOverallData, setPieOverallData] = useState([]);
     const [mostPlayedDeck, setMostPlayedDeck] = useState(undefined);
-    const [lessPlayedDeck, setLessPlayedDeck] = useState(undefined);
+    const [lessPlayedDecks, setLessPlayedDecks] = useState(undefined);
 
     useEffect(() => {
+
+        const fetchLowestResults = async () => {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}find-lowest-results`
+            );
+            const json = await response.json();
+            console.log("🚀 ~ file: page.jsx:22 ~ fetchPieData ~ json:", json)
+            setLessPlayedDecks(json)
+
+            updateProgress(80)
+        };
 
         const fetchPieData = async () => {
             const response = await fetch(
@@ -44,19 +55,15 @@ export default function Statistics() {
             setPieOverallData(json);
 
             if (json[0][0].length === 0) {
-                setMostPlayedDeck({ name: json[0][1], count: json[1][1], percentage: json[2][1] })
+                setMostPlayedDeck({ name: json[0][1], count: json[1][1], percentage: json[2][1], indicesOfLowestResult: [] })
             }
-
-            let length = json[0].length - 1;
-
-            setLessPlayedDeck({ name: json[0][length], count: json[1][length], percentage: json[2][length] })
 
             updateProgress(100)
             setTimeout(() => updateProgress(0), 500)
         };
 
         const data = async () => {
-
+            await fetchLowestResults()
             await fetchPieData();
             await fetchPieOverallData()
         }
@@ -68,31 +75,41 @@ export default function Statistics() {
             <InnerWindowWrapper
                 currentRoute={'/statistics'}
                 pagetitle={'Statistics'}>
+
                 <SecondaryWindowHeader
                     sectionTitle={'Overall Informations'} />
+
                 <StatisticDetails>
+
                     <StatisticDetailsItem
-                        itemTitle={'Most Played Deck'}
+                        itemTitle={'Most Played Deck(s)'}
                         icon={<TrendingUpRoundedIcon />}
                         data={mostPlayedDeck} />
+
                     <StatisticDetailsItem
-                        itemTitle={'Less Played Deck'}
+                        itemTitle={'Less Played Deck(s)'}
                         icon={<TrendingDownRoundedIcon />}
-                        data={lessPlayedDeck} />
+                        data={lessPlayedDecks} />
+
                     <StatisticDetailsItem
                         itemTitle={'Most Played Deck'}
                         icon={<TrendingDownRoundedIcon />}
                         data={mostPlayedDeck} />
+
                 </StatisticDetails>
 
                 <SecondaryWindowHeader
                     informationTitle={'These data reveal the frequency of deck victories in tournaments, indicating which decks have won the most tournaments.'}
                     sectionTitle={'Winner Breakdown'} />
+
                 <TablePie winnerJson={pieData} item="winner-breakdown" />
+
                 <SecondaryWindowHeader
                     informationTitle={'The data provides an overview of the total number of games played with each deck.'}
                     sectionTitle={'Overall Breakdown'} />
+
                 <TablePie winnerJson={pieOverallData} item="winner-breakdown" />
+
             </InnerWindowWrapper>
         </OuterWindowWrapper >
     );
