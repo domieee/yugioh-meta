@@ -7,7 +7,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
         <>
             <Grid
                 item
-                xs={10}
+                xs={11}
                 sm={6}
                 md={5}
                 lg={4}
