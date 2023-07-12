@@ -66,16 +66,6 @@ export default function Footer() {
                     </Box>
 
                 </Box>
-                <Box
-                    sx={{
-                        marginBottom: '2px',
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }}>
-                    <Typography
-                        variant="caption">© Copyright by Peanut Creative Labs, 2023</Typography>
-                </Box>
             </Box>
 
         </>

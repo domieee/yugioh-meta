@@ -77,6 +77,7 @@ export default function Statistics() {
                 pagetitle={'Statistics'}>
 
                 <SecondaryWindowHeader
+                    informationTitle={'Please note that the majority of this data may not represent specified decks. If that is the case, these data will still be included in the calculation. However, the next largest decks with a valid value will be displayed. You can get a more detailed overview in the Overall Breakdown on the page below.'}
                     sectionTitle={'Overall Informations'} />
 
                 <StatisticDetails>

@@ -17,9 +17,28 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     };
 
+    // Please note that the majority of this data may not represent specified decks. If that is the case, these data will still be included in the calculation. However, the next largest decks with a valid value will be displayed. You can get a more detailed overview in the Overall Breakdown on the page below.
+
+
+    React.useEffect(() => {
+        const handleWindowClick = (event) => {
+            if (anchorEl && !anchorEl.contains(event.target)) {
+                handleClick();
+            }
+        };
+
+        window.addEventListener('onmouseenter', handleWindowClick);
+
+        return () => {
+            window.removeEventListener('onmouseleave', handleWindowClick);
+        };
+    }, [anchorEl]);
+
+
     const open = Boolean(anchorEl);
 
     const id = open ? 'simple-popper' : undefined;
+
 
     const dataProvider = () => {
         if (data.indicesOfLowestResult.length === 1) {
@@ -67,6 +86,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                 sx={{
                     width: '100%'
                 }}>
+                <Typography variant='h7'>sdsd</Typography>
 
                 <Paper
                     elevation={1}
