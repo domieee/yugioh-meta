@@ -103,7 +103,7 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                         elevation={data?.deckLink.length === 0 ? 0 : 1}
                         sx={{
                             marginBlock: '5px',
-                            bgcolor: '#191919',
+                            bgcolor: 'rgba(0,0,0,0)',
                             borderLeft: `1px solid ${borderColor}`,
                             marginTop: '16px',
                             position: 'relative',

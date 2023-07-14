@@ -18,7 +18,8 @@ export default function OuterWindowWrapper({ children }) {
                 minHeight='100%'
 
                 sx={{
-                    bgcolor: '#191919',
+                    background: 'rgb(23,23,23)',
+                    background: 'linear-gradient(144deg, rgba(23,23,23,1) 0%, rgba(38,38,38,1) 85%, rgba(41,41,41,1) 100%)',
                     flexDirection: {
                         // small phone
                         xs: 'column', // phone

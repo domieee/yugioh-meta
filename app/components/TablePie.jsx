@@ -50,12 +50,8 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                         md: 'row',
 
                     },
-                    justifyContent: {
-                        xs: 'center'
-                    },
-                    alignItems: {
-                        xs: 'center'
-                    }
+                    justifyContent: 'center',
+                    alignItems: 'center'
                 }}>
                 <Grid
                     item
@@ -77,6 +73,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     borderRadius={2}
                     height='380px'
                     justifyContent="center"
+                    alignItems='center'
                     className="canvasContainer">
 
                     <Paper
@@ -84,7 +81,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                         justifyContent="center"
 
                         sx={{
-                            bgcolor: '#191919',
+                            bgcolor: 'rgba(0,0,0,0)',
                             padding: '10px',
                             height: '380px',
                             display: 'flex',
@@ -100,6 +97,7 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                 <Grid
                     item
                     sx={{
+                        bgcolor: 'rgba(0,0,0,0)',
                         alignItems: 'center',
                         width: {
                             xs: '100%',
@@ -110,8 +108,6 @@ export default function TablePie({ winnerJson, topCutJson, tournamentJson, item 
                     }}
                     xs={11}
                     sm={6}
-
-
                     className="tableContainer">
                     <TableMUI
                         table='winner-breakdown'

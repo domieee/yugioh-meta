@@ -232,7 +232,7 @@ export default function TournamentOverview({ params }) {
                     <Grid
                         container
 
-                        spacing={2}
+                        spacing={3}
                         sx={{
                             marginBlock: '5px',
                             width: '100%',
@@ -278,7 +278,7 @@ export default function TournamentOverview({ params }) {
                                 elevation={0}
                                 justifyContent="center"
                                 sx={{
-                                    bgcolor: '#191919',
+                                    bgcolor: 'rgba(0,0,0,0)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
@@ -292,15 +292,10 @@ export default function TournamentOverview({ params }) {
                         <Grid
                             item
                             sx={{
-                                bgcolor: '#191919',
+                                bgcolor: 'rgba(0,0,0,0)',
                                 display: 'flex',
                                 justifyContent: 'center',
-                                minWidth: {
-                                    xs: '100%',
-                                    sm: '100%',
-                                    md: '50%',
-                                    lg: '50%',
-                                },
+
                             }}
                             xs={12}
                             md={6}

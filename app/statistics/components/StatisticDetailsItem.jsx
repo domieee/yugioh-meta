@@ -79,19 +79,19 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
         <>
             <Grid
                 item
-                xs={11}
+                xs={12}
                 sm={6}
                 md={5}
-                lg={4}
+                lg={6}
                 sx={{
                     width: '100%'
                 }}>
-                <Typography variant='h7'>sdsd</Typography>
+                <Typography variant='h7'>{itemTitle}</Typography>
 
                 <Paper
                     elevation={1}
                     sx={{
-                        bgcolor: '#191919'
+                        bgcolor: 'rgba(0,0,0,0)'
                     }}>
 
                     <Box
@@ -122,7 +122,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                             <Typography
                                 sx={{
                                     color: 'rgba(255,255,255,0.6)'
-                                }} variant='overline'>{itemTitle}</Typography>
+                                }} variant='overline'>Deck&#40;s&#41; </Typography>
 
                             {data === undefined ?
                                 <Skeleton animation='wave' variant="text" sx={{ fontSize: '1.25rem', width: 100 }} /> : dataProvider()

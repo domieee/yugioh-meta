@@ -60,7 +60,7 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
                 <Paper
                     elevation={1}
                     sx={{
-                        bgcolor: bgColor,
+                        bgcolor: 'rgba(0, 0, 0, 0)',
                         width: '100%',
                         paddingBlock: '10px',
                         display: 'flex',
