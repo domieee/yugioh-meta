@@ -191,7 +191,7 @@ export default function InnerWindowWrapperHeader({
                 </Typography>
             </Box> :
             <Box sx={{
-                marginBlock: '10px 10px',
+
                 display: 'flex',
                 alignItems: 'center',
                 width: '100%',

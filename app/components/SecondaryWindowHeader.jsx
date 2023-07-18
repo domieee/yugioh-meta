@@ -32,7 +32,6 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
                             sm: 'start',
                             md: 'center'
                         },
-                        marginBottom: '5px',
                         width: '100%',
                         width: 'fit-content',
 

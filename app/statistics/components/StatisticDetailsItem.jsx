@@ -91,6 +91,7 @@ export default function StatisticDetailsItem({ data, icon, itemTitle }) {
                 <Paper
                     elevation={1}
                     sx={{
+                        marginTop: '5px',
                         bgcolor: 'rgba(0,0,0,0)'
                     }}>
 

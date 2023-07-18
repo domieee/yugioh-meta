@@ -6,7 +6,7 @@ export default function StatisticDetails({ children }) {
     return (
         <Grid
             sx={{
-                marginBlock: 2,
+                marginTop: 2.5,
                 justifyContent: 'center'
             }}
             wrap='wrap'

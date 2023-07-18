@@ -132,18 +132,18 @@ function Navigation({ props }) {
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
+    }
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
-    };
+    }
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
+    }
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-    };
+    }
 
     const nav = (route) => {
         router.push(route)
@@ -171,7 +171,7 @@ function Navigation({ props }) {
                 handleCloseNavMenu()
             },
         }
-    ];
+    ]
 
     const largeScreenMenu = [
         {
@@ -180,9 +180,7 @@ function Navigation({ props }) {
         {
             title: 'Statistics', route: '/statistics'
         }
-    ];
-
-
+    ]
 
 
     const handleAlertClose = (event, reason) => {
@@ -263,6 +261,7 @@ function Navigation({ props }) {
                         }}
                     >
                         <Paper
+                            className="nav"
                             elevation={0}
                             sx={{
                                 height: '65px',

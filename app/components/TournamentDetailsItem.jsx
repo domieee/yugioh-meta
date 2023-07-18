@@ -95,7 +95,7 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
 
                     <Stack>
                         <Typography sx={{
-                            color: color
+                            color: 'rgba(255,255,255,0.6)'
                         }} variant='overline'>{itemTitle}</Typography>
 
 

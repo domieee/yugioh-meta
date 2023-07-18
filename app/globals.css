@@ -77,7 +77,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable !important;
 }
 
 html {
@@ -85,12 +85,8 @@ html {
 
 }
 
-
-
-
 html,
 body {
-  overflow-x: auto;
   background-color: #212121;
   
 }
@@ -102,7 +98,7 @@ body {
   background: #191919;
   background-repeat: no-repeat;
   color: white;
-  overflow-y: scroll;
+
   background-repeat: no-repeat;
 }
 
@@ -139,10 +135,30 @@ p {
   }
 }
 
-
-
-::-webkit-scrollbar-thumb {
-  background-color: #888; /* Set the color of the scrollbar thumb */
+/* Hide the default scrollbar */
+body::-webkit-scrollbar {
+  width: 0.5rem; /* Set the width of the scrollbar */
+  background-color: transparent;
 }
 
-/* Firefox */
+/* Track */
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background-color: #999; /* Set the color of the scrollbar thumb */
+  border-radius: 0.25rem; /* Set the border radius of the scrollbar thumb */
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Set the color of the scrollbar thumb on hover */
+}
+
+/* Handle when actively scrolling */
+body::-webkit-scrollbar-thumb:active {
+  background-color: #777; /* Set the color of the scrollbar thumb when actively scrolling */
+}
+

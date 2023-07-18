@@ -285,9 +285,11 @@ export default function TournamentTreeOverviewItem({ data, borderColor }) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <Paper sx={{
-                    bgcolor: '#191919'
-                }}>
+                <Paper
+                    className='paper-container'
+                    sx={{
+                        bgcolor: '#191919'
+                    }}>
                     <DialogTitle id="alert-dialog-title">
                         {"Redirect to external link?"}
                     </DialogTitle>
