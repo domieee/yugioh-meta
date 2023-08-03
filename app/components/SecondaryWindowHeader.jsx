@@ -11,8 +11,7 @@ export default function SecondaryWindowHeader({ children, sectionTitle, informat
             component: 'section',
             width: '100%',
             borderBottom: '1px solid #3a3a3a',
-
-
+            marginBottom: '10px'
         }}>
             <Box>
                 <Typography

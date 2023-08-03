@@ -206,6 +206,7 @@ export default function Register() {
                         <TextField
                             id="password"
                             name="password"
+                            type="password"
                             placeholder="••••••••"
                             variant="outlined"
                             size="small"
@@ -219,6 +220,7 @@ export default function Register() {
                         <TextField
                             id="confirmPassword"
                             name="confirmPassword"
+                            type="password"
                             placeholder="••••••••"
                             variant="outlined"
                             size="small"

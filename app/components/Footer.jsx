@@ -27,18 +27,16 @@ export default function Footer() {
                             flexDirection: 'column',
                             maxWidth: '250px'
                         }}>
-                        <p>Pricacy</p>
-                        <a href="https://www.buymeacoffee.com/domiedev">Buy me a coffee!</a>
+                        <a href=''>
+                            <Typography
+                                variant='caption'>Imprint</Typography>
+                        </a>
+                        <a href=''>
+                            <Typography
+                                variant='caption'>Privacy Policy</Typography>
+                        </a>
                     </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            maxWidth: '250px'
-                        }}>
-                        <p>Footer</p>
-                        <a href="https://www.buymeacoffee.com/domiedev">Buy me a coffee!</a>
-                    </Box>
+
                     <Box
                         sx={{
                             display: 'flex',
@@ -52,7 +50,6 @@ export default function Footer() {
                         <a href=''
                             style={{ marginBottom: '10px' }}>
                             <Typography
-
                                 variant='caption'>Write a feedback</Typography>
                         </a>
                         <a href="https://www.buymeacoffee.com/domiedev">
@@ -62,9 +59,7 @@ export default function Footer() {
                                 width={130}
                                 height={35} />
                         </a>
-
                     </Box>
-
                 </Box>
             </Box>
 

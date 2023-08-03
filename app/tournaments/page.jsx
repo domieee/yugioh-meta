@@ -23,21 +23,7 @@ export default function Tournaments() {
                 <SecondaryWindowHeader
                     sectionTitle={'Tournaments'}
                     informationTitle={'You have the option to search for either winning decks, winners names, or locations.'} />
-                <Box
-                    sx={{
-                        width: '100%'
-                    }}>
 
-                    <Typography variant="overline">
-
-                    </Typography>
-                    <TextField
-                        sx={{
-                            width: '100%'
-                        }}
-                        placeholder="e.g. Kashtira, John Doe or Canada"
-                        size="small"></TextField>
-                </Box>
                 <TournamentList />
             </InnerWindowWrapper>
         </OuterWindowWrapper>

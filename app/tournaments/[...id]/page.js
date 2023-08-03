@@ -398,12 +398,10 @@ export default function TournamentOverview({ params }) {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={handleMenuEditClick}>
-
                     <ListItemIcon>
                         <VscEdit />
                     </ListItemIcon>
                     <ListItemText><Typography variant='body2'> Edit Tournament</Typography></ListItemText>
-
                 </MenuItem>
             </Menu>
         </>

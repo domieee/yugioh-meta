@@ -33,10 +33,7 @@ export default function TournamentDetailsItem({ icon, iconType, index, data, ite
             )
         } else {
             return (
-                <Typography
-                    sx={{
-                        color: color
-                    }} variant='body1'>{data}</Typography>
+                <Typography sx={{ color: color }} variant='body1'>{data}</Typography>
             )
         }
     }

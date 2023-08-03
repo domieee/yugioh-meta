@@ -196,6 +196,7 @@ export default function Login() {
                         <TextField
                             id="outlined-basic"
                             name="password"
+                            type="password"
                             placeholder="••••••••"
                             variant="outlined"
                             size="small"
